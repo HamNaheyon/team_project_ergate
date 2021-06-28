@@ -1,4 +1,4 @@
-package team.semi.ergate.member.controller;
+package edu.kh.semi.common;
 
 import java.io.IOException;
 
@@ -9,21 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/fre_myPage")
-public class fre_MyPageServlet extends HttpServlet {
+@WebServlet("/main")
+public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/fre_myPage.jsp");
+		request.setCharacterEncoding("UTF-8");
+		
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/main.jsp");
 		
 		view.forward(request, response);
+		
+		
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		doGet(request, response);
 	}
 
 }
