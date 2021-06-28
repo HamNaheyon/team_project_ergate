@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="selectComBoardList">
+SELECT * FROM ADMIN_BOARD_LIST
+WHERE BOARD_TYPE_NO = 2
+ORDER BY BOARD_NO DESC
+</entry>
+<!-- 게시글 수 전체 조회 -->
+<entry key="getListCount">
+SELECT COUNT(*)
+FROM ADMIN_BOARD_LIST
+WHERE BOARD_TYPE_NO =?
+AND BOARD_STATUS = 'Y'
+</entry>
+
+<entry key="selectBoardList">
+SELECT * FROM(
+SELECT ROWNUM RNUM, A.* FROM(
+SELECT * FROM ADMIN_BOARD_LIST
+WHERE BOARD_TYPE_NO=?
+ORDER BY BOARD_NO DESC) A)
+WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+
+</properties>
