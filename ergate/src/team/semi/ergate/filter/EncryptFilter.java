@@ -1,4 +1,4 @@
-package edu.kh.semi.filter;
+package team.semi.ergate.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -10,7 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-import edu.kh.semi.wrapper.EncryptWrapper;
+import team.semi.ergate.wrapper.EncryptWrapper;
 
 @WebFilter(filterName = "encryptFilter", urlPatterns = {"/member/login", "/member/fre_signUp_Required","/member/com_signUp" ,"/member/changePwd", "/member/secession"})
 public class EncryptFilter implements Filter {

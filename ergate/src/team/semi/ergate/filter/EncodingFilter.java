@@ -1,4 +1,4 @@
-package edu.kh.semi.filter;
+package team.semi.ergate.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;

@@ -1,4 +1,4 @@
-package edu.kh.semi.common;
+package team.semi.ergate.common;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
