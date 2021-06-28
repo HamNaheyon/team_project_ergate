@@ -1,6 +1,7 @@
-package edu.kh.semi.member.model.dao;
+package team.semi.ergate.member.model.dao;
 
-import static edu.kh.semi.common.JDBCTemplate.*;
+import static team.semi.ergate.common.JDBCTemplate.*;
+
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +9,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Properties;
 
-import edu.kh.semi.member.model.vo.ComMember;
-import edu.kh.semi.member.model.vo.FreMember;
+import team.semi.ergate.member.model.vo.ComMember;
+import team.semi.ergate.member.model.vo.FreMember;
 
 public class MemberDAO {
 
