@@ -1,4 +1,4 @@
-package team.semi.ergate.member.model.vo;
+package edu.kh.semi.member.model.vo;
 
 import java.sql.Date;
 

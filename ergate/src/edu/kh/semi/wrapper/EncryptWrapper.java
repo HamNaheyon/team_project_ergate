@@ -1,4 +1,4 @@
-package team.semi.ergate.wrapper;
+package edu.kh.semi.wrapper;
 
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
