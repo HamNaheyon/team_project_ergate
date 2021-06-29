@@ -9,7 +9,7 @@
 <title></title>
 </head>
 <body>
-<sapn style="float='left'">어드민 페이지 입니다</sapn>
+<sapn style="float='left'">어드민임</sapn>
 
 </body>
 </html>
