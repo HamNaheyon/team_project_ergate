@@ -2,6 +2,7 @@ package edu.kh.semi.member.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -62,7 +63,9 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("text","아이디 또는 비밀번호가 일치하지 않습니다.");
 				
 			} else if(freLoginMember.getMemberGrade().equals("A")) {
-				response.sendRedirect("minseo");
+				String path="/WEB-INF/views/admin/adminmain.jsp";
+	            RequestDispatcher view = request.getRequestDispatcher(path);
+	            view.forward(request, response);
 			}else if(freLoginMember != null) {
 				session.setAttribute("freLoginMember",freLoginMember );
 				response.sendRedirect(request.getContextPath());
@@ -80,12 +83,15 @@ public class LoginServlet extends HttpServlet {
 					
 				}
 				else if(comLoginMember.getMemberGrade().equals("A")) {
-					response.sendRedirect("minseo");
+					String path="/WEB-INF/views/admin/adminmain.jsp";
+		            RequestDispatcher view = request.getRequestDispatcher(path);
+		            view.forward(request, response);
 				}else if(comLoginMember != null) {
 					session.setAttribute("comLoginMember",comLoginMember );
 					response.sendRedirect(request.getContextPath());
 				}
 			}
+			if(freLoginMember == null && comLoginMember == null)
 			response.sendRedirect(request.getContextPath());
 			
 			

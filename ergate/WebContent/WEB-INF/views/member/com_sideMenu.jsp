@@ -19,11 +19,11 @@
 	<div class="col-sm-2 mt">
 	    <h3>사이드 메뉴</h3>
 	    <ul class="list-group">
-			<li class="list-group-item list-group-item-action"><a href="fre_myPage">내정보</a></li>
-			<li class="list-group-item list-group-item-action"><a href="fre_changePwd">내 게시물</a></li>
-			<li class="list-group-item list-group-item-action"><a href="fre_secession">내 문의 사항</a></li>
-			<li class="list-group-item list-group-item-action"><a href="fre_secession">비밀번호 수정</a></li>
-			<li class="list-group-item list-group-item-action"><a href="fre_secession">회원 탈퇴</a></li>
+			<li class="list-group-item list-group-item-action"><a href="com_myPage">내정보</a></li>
+			<li class="list-group-item list-group-item-action"><a href="com_changePwd">내 게시물</a></li>
+			<li class="list-group-item list-group-item-action"><a href="secession">내 문의 사항</a></li>
+			<li class="list-group-item list-group-item-action"><a href="com_changePwd">비밀번호 수정</a></li>
+			<li class="list-group-item list-group-item-action"><a href="com_secession">회원 탈퇴</a></li>
 		</ul>
 	</div>
 </body>

@@ -47,7 +47,7 @@
 		<c:set var="phone" value="${ fn:split( freLoginMember.memberPhone, '-' ) }"/>
 		<c:set var="jumin" value="${ fn:split( freLoginMember.juminNum, '-' ) }"/>
 		<div class="row my-5">
-             <jsp:include page="sideMenu.jsp"></jsp:include>
+             <jsp:include page="com_sideMenu.jsp"></jsp:include>
              <div class="col-sm-8">
                     <h4 class="mb-3">내 정보</h4>
                     <br>
