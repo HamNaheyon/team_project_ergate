@@ -21,12 +21,12 @@ public class Pagination {
 
 
 
-	public Pagination(int currentPage, int listCount, int boardTypeNo, String boardName) {
+	public Pagination(int currentPage, int listCount, int boardTypeNo) {
 		super();
 		this.currentPage = currentPage;
 		this.listCount = listCount;
 		this.boardTypeNo = boardTypeNo;
-		this.boardName = boardName;
+		makePagination();
 	}
 
 
