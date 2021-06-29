@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("text","아이디 또는 비밀번호가 일치하지 않습니다.");
 				
 			} else if(freLoginMember.getMemberGrade().equals("A")) {
-				response.sendRedirect("minseo");
+				response.sendRedirect("/WEB-INF/views/admin/admimmain.jsp");
 			}else if(freLoginMember != null) {
 				session.setAttribute("freLoginMember",freLoginMember );
 				response.sendRedirect(request.getContextPath());
@@ -80,7 +80,7 @@ public class LoginServlet extends HttpServlet {
 					
 				}
 				else if(comLoginMember.getMemberGrade().equals("A")) {
-					response.sendRedirect("minseo");
+					response.sendRedirect("/WEB-INF/views/admin/admimmain.jsp");
 				}else if(comLoginMember != null) {
 					session.setAttribute("comLoginMember",comLoginMember );
 					response.sendRedirect(request.getContextPath());
