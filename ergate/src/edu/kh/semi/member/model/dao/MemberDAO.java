@@ -1,7 +1,6 @@
 package edu.kh.semi.member.model.dao;
 
 import static edu.kh.semi.common.JDBCTemplate.*;
-
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -239,6 +238,91 @@ String sql = prop.getProperty("comSignUp");
 			
 			
 		return comLoginMember;
+	}
+
+	/** 기업 회원 탈퇴 DAO
+	 * @param conn
+	 * @param comNo
+	 * @param comPw
+	 * @return result
+	 * @throws Exception
+	 */
+	public int comSecession(Connection conn, int comNo, String comPw)throws Exception {
+		
+		int result = 0;
+		
+		String sql = prop.getProperty("comSecession");
+				
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, comNo);
+			pstmt.setString(2, comPw);
+			
+			result = pstmt.executeUpdate();
+		}finally {
+			close(pstmt);
+		}
+				
+		return result;
+	}
+
+	/** 프리 회원 탈퇴 DAO
+	 * @param conn
+	 * @param freNo
+	 * @param frePw
+	 * @return result
+	 * @throws Exception
+	 */
+	public int freSecession(Connection conn, int freNo, String frePw)throws Exception {
+		
+		int result = 0;
+		
+		String sql = prop.getProperty("freSecession");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, freNo);
+			pstmt.setString(2, frePw);
+			
+			result = pstmt.executeUpdate();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/** 기업 비밀번호 변경 DAO
+	 * @param conn
+	 * @param currentPwd
+	 * @param newPwd1
+	 * @param comNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int comChangePwd(Connection conn, String currentPwd, String newPwd1, int comNo)throws Exception {
+		
+		int result = 0;
+		
+		String sql = prop.getProperty("comChangePwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, newPwd1);
+			pstmt.setString(2, currentPwd);
+			pstmt.setInt(3, comNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 }
 

@@ -104,5 +104,126 @@ public class MemberService {
 		return comLoginMember;
 	}
 	
+	/** 기업 회원 탈퇴 Service
+	 * @param comNo
+	 * @param comPw
+	 * @return result
+	 * @throws Exception
+	 */
+	public int comSecession(int comNo, String comPw)throws Exception{
+		
+		Connection conn = getConnection();
+
+		int result = dao.comSecession(conn,comNo,comPw);
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		return result;
+	}
+
+	/** 프리랜서 회원 탈퇴 Service
+	 * @param freNo
+	 * @param frePw
+	 * @return result
+	 * @throws Exception
+	 */
+	public int freSecession(int freNo, String frePw)throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.freSecession(conn,freNo,frePw);
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		return result;
+	}
+
+	/** 기업 비밀번호 변경 Service
+	 * @param currentPwd
+	 * @param newPwd1
+	 * @param comNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int comChangePwd(String currentPwd, String newPwd1, int comNo)throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.comChangePwd(conn ,currentPwd, newPwd1, comNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
