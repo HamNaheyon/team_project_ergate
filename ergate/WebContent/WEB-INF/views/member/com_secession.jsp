@@ -47,18 +47,36 @@
         <jsp:include page="../common/header.jsp"></jsp:include>
 
 		<div class="row my-5">
-			<jsp:include page="sideMenu.jsp"></jsp:include>
+			<jsp:include page="com_sideMenu.jsp"></jsp:include>
 
 			<div class="col-sm-offset-2 col-sm-8">
+                <form class="dropOut-form" action="com_secession" method="POST" onsubmit="return secessionValidate();">
+                
                 <h4 class="mb-3">탈퇴 하기</h4>
                 <br>
-                <hr>
-                <div class="col-md-6">
-                    <input type="password" class="form-control" id="pwd1" name="pwd1" maxlength="20"
-                        placeholder="비밀번호를 입력하세요" >
-                </div>
-                <hr>
-                <form class="dropOut-form">
+                <!-- 아이디 -->
+						<div class="row mb-3 form-row">
+							<div class="col-md-3">
+								<h6>아이디</h6>
+							</div>
+							<div class="col-md-6">
+								<h5 id="id">${comLoginMember.comId }</h5>
+							</div>
+						</div>
+
+						<!-- 비밀번호 -->
+						<div class="row mb-3 form-row">
+							<div class="col-md-3">
+								<h6>현재 비밀번호</h6>
+							</div>
+							<div class="col-md-6">
+								<input type="password" class="form-control" id="currentPwd"
+									name="currentPwd" required>
+							</div>
+						</div>
+             	   <hr>
+             	   	<h3>탈퇴 사유</h3>
+             	   	<hr>
                     <div class="custom-control custom-radio">
                         <input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input">
                         <label class="custom-control-label" for="jb-radio-1">잦은 오류가 발생해요</label>
@@ -76,20 +94,38 @@
                     <br>
                     <div class="custom-control custom-radio">
                         <input type="radio" name="jb-radio" id="jb-radio-4" class="custom-control-input">
-                        <label class="custom-control-label" for="jb-radio-4">그냥</label>
+                        <label class="custom-control-label" for="jb-radio-4">언제 끝나냐</label>
                     </div>
                     <br>
                     <div class="custom-control custom-radio">
                         <input type="radio" name="jb-radio" id="jb-radio-5" class="custom-control-input">
                         <label class="custom-control-label" for="jb-radio-5">기타</label>
                     </div>
+                    <br>
+                    <input type="checkbox" name="agree" id="agree"
+						class="form-check-input custom-control-input">
+						<hr>
+					<label class="form-check-label custom-control-label"
+						for="agree">정말 탈퇴하시겠습니까?</label>
+						<br> <br>
                     <button class="btn btn-primary btn-lg btn-block" type="submit">탈퇴하기</button>
                 </form>
+				</div>
             </div>
         </div>
-    </div>
 
     <!-- 콘솔 창으로 회원 탈퇴 시 yes,or 팝업 띄우기 -->
+    
+    <script>
+		// 약관 동의가 체크 되었을 때에만 탈퇴 진행
+		function secessionValidate(){
+			
+		    if(!$("#agree").prop("checked")){
+		    	swal({"icon" : "info", "title" : "탈퇴 동의를 체크해주세요"})
+			    return false;
+		    }
+		}
+	</script>
 
 </body>
 
