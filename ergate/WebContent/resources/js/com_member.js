@@ -8,7 +8,8 @@ var checkObj = {
     "name": false,
     "phone2": false,
     "jumin1": false,
-    "email": false
+    "email": false,
+    "manager" : false
 };
 
 // 아이디가 입력될 때 마다 유효성 검사
@@ -68,26 +69,26 @@ $("#id").on("input", function () {
 
 });
 
-// 이름 유효성 검사
+// 담당자 유효성 검사
 // 조건 : 한글 두 글자 이상 5글자 이하 ->  /^[가-힣]{2,5}$/;
 
 
 // 이메일 유효성 검사
 // 조건 : 아이디 4글자 이상, 이메일 형식  ->   /^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/;
 
-$("#name").on("input", function () {
+$("#manager").on("input", function () {
 
     const regExp = /^[가-힣]{2,5}$/;
 
     // 이벤트 핸들러 내부에 작성된 this == 이벤트가 발생한 요소 == $("#name")
-    const inputName = $("#name").val().trim();
+    const inputManager = $("#manager").val().trim();
 
-    if (regExp.test(inputName)) {
-        $("#checkName").text("유효한 이름 입니다.").css("color", "green");
+    if (regExp.test(inputManager)) {
+        $("#checkManager").text("유효한 이름 입니다.").css("color", "green");
 
         checkObj.name = true;
     } else {
-        $("#checkName").text("한글 2~5 글자").css("color", "red");
+        $("#checkManager").text("한글 2~5 글자로 입력해주세요").css("color", "red");
 
         checkObj.name = false;
     }
@@ -223,6 +224,8 @@ function validate() {
                     break;
                 case "jumin1":
                     msg = "주민번호가 유효하지 않습니다."
+                case "담당자":
+                    msg = "담당자가 유효하지 않습니다."
             }
             swal(msg).then(function () {
 

@@ -31,16 +31,14 @@ public class com_changePwdServlet extends HttpServlet {
 		String currentPwd = request.getParameter("currentPwd");
 		String newPwd1 = request.getParameter("newPwd1");
 		
-		System.out.println(currentPwd);
-		
 		HttpSession session = request.getSession();
 		
-		ComMember comLoginMember = (ComMember)session.getAttribute("loginMember");
+		ComMember comLoginMember = (ComMember)session.getAttribute("comLoginMember");
 		
 		int comNo = comLoginMember.getMemberNo();
 		
 		String comPw = comLoginMember.getComPw();
-		
+		 
 		try {
 			
 			int result = new MemberService().comChangePwd(currentPwd, newPwd1, comNo);
@@ -62,7 +60,7 @@ public class com_changePwdServlet extends HttpServlet {
 				
 			}
 			
-			response.sendRedirect("myPage");
+			response.sendRedirect("com_myPage");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
