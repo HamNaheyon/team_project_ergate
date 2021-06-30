@@ -27,37 +27,25 @@
     }
     /************* 서브로고 이용약관 개인정보처리방침 *************/
     .footer1{
-        width: 7.5%;
         height:100%;
-        float:left;       
-    }
-    .footer1 h4, .questions h4{
-        margin-top:8px;
-        margin-bottom:8px;
-        text-align:center;
-    }
-    
-    .subtl{
-        
-    }
-    .subtl > img{
-        margin-top:9.5px;
-        margin-bottom:8px; 
-        margin-left:5px;
+        float:left; 
+        margin: 10px;      
     }
     .tos{
-        width: 11%;
-        height:100%;
+        font-size: 140%;
+        font-weight: bold;
     }
     .pp{
-        width: 11%;
-        height:100%;
+        font-size: 140%;
+        font-weight: bold;
     }
 
     /************* 문의사항 *************/
     .questions{
         float:right;
         text-align:center;
+        font-size: 140%;
+        font-weight: bold;
     }
     /* .questions h4{
         margin-top:21.280px;
@@ -74,6 +62,14 @@
         margin-top:13px;
         margin-bottom:13px;
     }
+    a{
+    	color: black;
+        text-decoration-line : none;
+    }
+    a:hover{
+    	color: black;
+        text-decoration-line : none;
+    }
 </style>
 </head>
 <body>
@@ -83,9 +79,9 @@
                 <div class="footer1 subtl">
                     <img id="sublogo" src="${contextPath}/resources/img/subtitle.png" style="width:100px;">
                 </div>
-                <div class="footer1 tos"><h4>이용약관</h4></div>
-                <div class="footer1 pp"><h4>개인정보처리방침</h4></div>
-                <div class="footer1 questions"><h4>문의사항</h4></div>
+                <div class="footer1 tos">이용약관</div>
+                <div class="footer1 pp">개인정보처리방침</div>
+                <div class="footer1 questions"><a href="questions">문의사항</a></div>
             </div>
             <div class="footer-2">
                 <h5>
