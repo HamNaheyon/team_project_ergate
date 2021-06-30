@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <jsp:include page="../common/side.jsp"></jsp:include> 
 <!DOCTYPE html>
 <html lang="ko">
@@ -31,32 +32,75 @@
           <tr><th>회원번호</th><th>기업이름</th><th>사업자 번호</th><th>아이디</th><th>가입 날짜</th><th>이메일</th><td>탈퇴 여부</td><td>상세조회</td></>
       </thead>
       <tbody>
-        <tr><td>01</td><td>컴퍼니</td><td>415-456-12345</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button><a href="${contextPath}/admin/ComMemberSel">상세보기</a></button></td></tr>
-        <tr><td>02</td><td>컴퍼니</td><td>415-456-12345</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button onclick="location.href='기업상세페이지.html'">상세보기</button></td></tr>
-        <tr><td>03</td><td>컴퍼니</td><td>415-456-12345</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button onclick="location.href='기업상세페이지.html'">상세보기</button></td></tr>
-        <tr><td>04</td><td>컴퍼니</td><td>415-456-12345</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button onclick="location.href='기업상세페이지.html'">상세보기</button></td></tr>
-        <tr><td>05</td><td>컴퍼니</td><td>415-456-12345</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button onclick="location.href='기업상세페이지.html'">상세보기</button></td></tr>
-        <tr><td>06</td><td>컴퍼니</td><td>415-456-12345</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button onclick="location.href='기업상세페이지.html'">상세보기</button></td></tr>
-        <tr><td>07</td><td>컴퍼니</td><td>415-456-12345</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button onclick="location.href='기업상세페이지.html'">상세보기</button></td></tr>
-        <tr><td>08</td><td>컴퍼니</td><td>415-456-12345</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button onclick="location.href='기업상세페이지.html'">상세보기</button></td></tr>
-        <tr><td>09</td><td>컴퍼니</td><td>415-456-12345</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button onclick="location.href='기업상세페이지.html'">상세보기</button></td></tr>
-        <tr><td>10</td><td>컴퍼니</td><td>415-456-12345</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button onclick="location.href='기업상세페이지.html'">상세보기</button></td></tr>
-        
+     	<c:choose>
+					<c:when test="${empty adminMemberList}">
+					<tr>
+						<td colspan="8"> 게시물이 없습니다.</td>
+					</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${adminMemberList}" var="member">
+							<tr>
+								<td>${member.memberNo }</td>
+								<td>${member.companyName }</td>
+								<td>${member.companyNo }</td>
+								<td>${member.memberId}</td>
+								<td>${member.enrollDate}</td>
+								<td>${member.memberEmail}</td>
+								<td>${member.memberStatus}</td>
+								<td></td>
+							</tr>
+						
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
       </tbody>
     </table>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
+   			<c:set var="pageURL" value="ComMemberAll?type=${pagination.memberGrade }"/>
+			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage }"/>
+			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage }"/>
+			
+			<div class="my-5">
+				<ul class="pagination">
+				<%-- 현재 페이지가 10패이지 초과인 경우 --%>
+				<c:if test = "${pagination.currentPage >pagination.pageSize }">
+					<li><a class="page-link" href="${prev}">&lt;&lt;</a></li>
+				</c:if>	
+				<%--현재 페이지가 2페이지 초과인 경우 이전페이지 --%>			
+				<c:if test = "${pagination.currentPage >2 }">
+					<li><a class="page-link" href="${pageURL}&cp=${pagination.currentPage-1}">&lt;</a></li>
+				</c:if>
+				
+				
+				<%-- 페이지 목록 --%>
+				<c:forEach var="p" begin="${pagination.startPage}" end="${pagination.endPage}">
+					
+					<c:choose>
+						<c:when test="${p==pagination.currentPage}">
+						<li class="page-item active"><a class="page-link">${p}</a></li>
+						</c:when>
+						
+						<c:otherwise>
+						<li><a class="page-link" href="${pageURL}&cp=${p}">${p}</a></li>
+						</c:otherwise>
+					</c:choose>
+					
+				</c:forEach>
+				<%--현재 페이지가 마지막 페이지 미만인 경우 --%>			
+				<c:if test = "${pagination.currentPage <pagination.maxPage }">
+				<li><a class="page-link" href="${pageURL}&cp=${pagination.currentPage+1}">&gt;</a></li>
+				</c:if>		
+				
+				<%--현재 페이지가 마지막 페이지 미만인 경우 --%>			
+				<c:if test = "${pagination.currentPage-pagination.maxPage+pagination.pageSize<0 }">
+					<li><a class="page-link" href="${next}">&gt;&gt;</a></li>
+				</c:if>				
+				</ul>
+			</div>
+	
+	
+	
+	
       <div>
         <select aria-label="Default select example" style="margin-left: 35%;">
           <option value="1" selected>회원 번호</option>
