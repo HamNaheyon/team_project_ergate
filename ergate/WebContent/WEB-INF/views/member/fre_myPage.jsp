@@ -29,6 +29,7 @@
                 border: 2px solid rgb(107, 140, 172);
 
             }
+            
 
             .btn:hover {
                 background-color: #e1e1e1;

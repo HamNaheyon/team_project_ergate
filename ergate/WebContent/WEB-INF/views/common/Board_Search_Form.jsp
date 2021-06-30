@@ -87,7 +87,7 @@
                 </div>
                 <div class="btnarea">
                     <button id="searchbtn">
-                        <img src = "images/MagnifyingGlass_white.png">
+                        <img src = "${contextPath}/resources/img/MagnifyingGlass_white.png">
                     </button>
                 </div>
             </form>

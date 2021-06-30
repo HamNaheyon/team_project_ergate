@@ -31,105 +31,105 @@
         <div class="pfboardcontents">
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
             </div>
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
             </div>
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
             </div>
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
             </div>
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
             </div>
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
             </div>
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
             </div>
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
             </div>
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
             </div>
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
             </div>
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
             </div>
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
             </div>
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
             </div>
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
             </div>
             <div id="pfcontents">
                 <div id="pfthumbnail">
-                    <img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+                    <img src="${contextPath}/resources/img/freeboard/developer.png" style="width:95%;">
                 </div>
                 <div id="pftitle"><h4>portfoliotitle</h4></div>
                 <div id="pfviews"><h6>조회수</h6></div>
