@@ -54,9 +54,13 @@
 		AND MEMBER_PW = ?
 	</entry>
 	<entry key="comChangePwd">
-	UPDATE MEMBER SET MEMBER_PW = ? 
-	WHERE MEMBER_PW= ? 
-	AND MEMBER_NO = ?
+		UPDATE MEMBER SET MEMBER_PW = ? 
+		WHERE MEMBER_PW= ? 
+		AND MEMBER_NO = ?
 	</entry>
-	<!-- 바꿈  -->
+	<entry key="freChangePwd">
+		UPDATE MEMBER SET MEMBER_PW = ? 
+		WHERE MEMBER_PW= ? 
+		AND MEMBER_NO = ?
+	</entry>
 </properties>

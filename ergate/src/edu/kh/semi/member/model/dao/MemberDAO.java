@@ -324,6 +324,36 @@ String sql = prop.getProperty("comSignUp");
 		
 		return result;
 	}
+
+	/** 프리랜서 비밀번호 변경 DAO
+	 * @param conn
+	 * @param currentPwd
+	 * @param newPwd1
+	 * @param freNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int freChangePwd(Connection conn, String currentPwd, String newPwd1, int freNo)throws Exception {
+		
+		int result = 0;
+		
+		String sql = prop.getProperty("freChangePwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, newPwd1);
+			pstmt.setString(2, currentPwd);
+			pstmt.setInt(3, freNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }
 
 

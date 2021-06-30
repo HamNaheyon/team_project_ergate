@@ -18,7 +18,7 @@ public class adminBoardService {
 	 * @throws Exception
 	 */
 	public List<adminBoard> selectComBoardList() throws Exception{
-		// TODO Auto-generated method stub
+		
 		Connection conn = getConnection();
 		List<adminBoard> adminBoardList = dao.selectComBoardList(conn);
 		close(conn);

@@ -163,6 +163,30 @@ public class MemberService {
 		
 		return result;
 	}
+
+	/** 프리 비밀번호 변경 Service
+	 * @param currentPwd
+	 * @param newPwd1
+	 * @param freNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int freChangePwd(String currentPwd, String newPwd1, int freNo)throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.freChangePwd(conn ,currentPwd, newPwd1, freNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
 	
 }

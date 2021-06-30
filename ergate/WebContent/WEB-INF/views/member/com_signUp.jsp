@@ -15,6 +15,11 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <style>
+       	input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
+		{
+		-webkit-appearance: none;
+		margin: 0;
+		}
         body {
             min-height: 100vh;
 
@@ -60,14 +65,17 @@
                 <h4 class="mb-3">회원가입(필수)</h4>
                 <br>
                 <hr>
-                <form class="validation-form" method="POST" action="com_signUp" novalidate>
+                <form class="validation-form" method="POST" action="com_signUp" onsubmit="return signUpValidate();">
                     <!-- 담당자 -->
                     <div class="row mb-3 form-row">
                         <div class="col-md-3">
-                            <label for="name">담당자</label>
+                            <label for="manager">담당자</label>
                         </div>
                         <div class="col-md-6">
                             <input type="text" class="form-control" id="manager" name="manager" >
+                        </div>
+                        <div class="col-md-6 offset-md-3">
+                            <span id="checkManager">&nbsp;</span>
                         </div>
 
                     </div>
@@ -103,20 +111,22 @@
                         </div>
                     </div>
                     
-                    <!-- 주민번호1 -->
+                    <!-- 주민번호 -->
                     <div class="row mb-3 form-row">
                     	<div class="col-md-3">
-                            <!-- CEO 주민번호 alert 창 -->
-                            <label for="juminNum1">CEO 주민번호</label>
+                            <label for="juminNum1">주민번호</label>
                         </div>
                         <!-- 주민번호2 -->
                         <div class="col-md-3">
-                            <input type="number" class="form-control phone" id="juminNum1" name="juminNum" >
+                            <input type="number" class="form-control jumin" id="juminNum1" name="juminNum" >
                         </div>
 
                         <!-- 주민번호3 -->
                         <div class="col-md-3">
-                            <input type="number" class="form-control phone" id="juminNum1" name="juminNum" >
+                            <input type="number" class="form-control jumin" id="juminNum2" name="juminNum" >
+                        </div>
+                        <div class="col-md-6 offset-md-3">
+                            <span id="checkJumin">&nbsp;</span>
                         </div>
                     </div>
 					<br>
@@ -143,9 +153,9 @@
                         <div class="col-md-6">
                             <input type="text" class="form-control" id="company" name="company" >
                         </div>
-
+						<br>
                     </div>
-
+					<br> <br>
                     <!-- 사업자 번호 -->
                     <div class="row mb-3 form-row">
                         <div class="col-md-3">
@@ -205,8 +215,7 @@
                             <label for="pwd2">비밀번호 확인</label>
                         </div>
                         <div class="col-md-6">
-                            <input type="password" class="form-control" id="pwd2" maxlength="20" placeholder="비밀번호 확인"
-                                >
+                            <input type="password" class="form-control" id="pwd2" maxlength="20" placeholder="비밀번호 확인">
                         </div>
                        	
 
@@ -216,17 +225,27 @@
                     </div>
                     <br>
                     <hr>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="aggrement" >
-                        <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
-                    </div>
-                    <div class="mb-4"></div>
+                        <input type="checkbox" name="agree" id="agree"
+						class="form-check-input custom-control-input">
+					<label class="form-check-label custom-control-label"
+						for="agree">개인정보 수집에 동의하시겠습니까?</label>
                     <button class="btn btn-primary btn-lg btn-block" type="submit">가입하기</button>
                 </form>
             </div>
         </div>
         <jsp:include page="../common/footer.jsp"/>
     </div>
+    <script src="${contextPath}/resources/js/com_member.js"></script>
+<script>
+	function signUpValidate(){
+				
+			    if(!$("#agree").prop("checked")){
+			    	swal({"icon" : "info", "title" : "개인정보 동의를 체크해주세요"})
+				    return false;
+			    }
+			}
+
+</script>
 </body>
 
 </html>

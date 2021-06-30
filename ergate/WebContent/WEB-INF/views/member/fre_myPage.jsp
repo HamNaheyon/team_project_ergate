@@ -29,6 +29,7 @@
                 border: 2px solid rgb(107, 140, 172);
 
             }
+            
 
             .btn:hover {
                 background-color: #e1e1e1;
@@ -165,19 +166,19 @@
                             </div>
                             <!-- 분야 -->
                             <div class="col-md-3">
-                                <select class="custom-select" id="feild" name="feild">
-                                	<option>${freLoginMember.feild}</option>
-                                	<c:set var="feild" value="${freLoinMember.feild}"></c:set>
-                                	<c:choose>
-                                	<c:when test="${feild eq '앱개발'}">
-                                    <option>앱개발</option>
-                                    <option>test</option>
-                                	</c:when>
-                                	<c:otherwise>
-                                    <option>웹개발</option>
-                                	</c:otherwise>
-                                	</c:choose>
+                                <select class="custom-select" id="field" name="feild">
+                                   		<option>웹개발</option>
+	                                    <option>test</option>
                                 </select>
+                                
+                                <script>
+                                	const field = "${freLoginMember.feild}";
+	                                	$("#field > option").each(function(index, item){
+                                		if($(item).text() == field){
+                                			$(item).prop("selected", true);
+                                		}
+                                	});
+                                </script>
                             </div>
                              <div class="col-md-6">
 								<h5 id="feild"> ${freLoginMember.feild}</h5>

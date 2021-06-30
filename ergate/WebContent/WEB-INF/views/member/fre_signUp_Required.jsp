@@ -64,7 +64,7 @@
 <body>
     <div class="container">
         <div class="input-form-backgroud row">
-                <form class="validation-form" method="POST" action="fre_signUp_Required" novalidate>
+                <form class="validation-form" method="POST" action="fre_signUp_Required" onsubmit="return signUpValidate();">
             <div class="input-form col-md-12 mx-auto" id="signUp1">
                 <h4 class="mb-3">회원가입(필수)</h4>
                 <br> <hr>
@@ -199,13 +199,7 @@
                     <button type="button" class="btn btn-primary float-right" data-toggle="button" aria-pressed="false" id="next">
                         	다음으로
                       </button>
-                      <br> <br>  <hr>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="aggrement" >
-                        <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
-                    </div>
-                    <div class="mb-4"></div>
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">가입하기</button>
+                      <br>
             </div>
                     
                     
@@ -235,12 +229,12 @@
 
                         <!-- 희망 급여 1 -->
                         <div class="col-md-3">
-                            <input type="number" class="form-control salary" id="salary1" name="salary1" required>
+                            <input type="number" class="form-control salary" id="salary1" name="salary1">
                         </div>
                         ~
                         <!-- 희망급여 2 -->
                         <div class="col-md-3">
-                            <input type="number" class="form-control salary" id="salary2" name="salary2" required>
+                            <input type="number" class="form-control salary" id="salary2" name="salary2">
                         </div>
 
                     </div>
@@ -315,8 +309,13 @@
                     <button type="button" class="btn btn-primary float-left" data-toggle="button" aria-pressed="false" id="prev">
                         	이전으로
                       </button>
-                      <br> <br>  <hr>
-                    <div class="mb-4"></div>
+                      <br> <br> <hr>
+                    <div class="custom-control custom-checkbox">
+						<input type="checkbox" name="agree" id="agree"
+						class="form-check-input custom-control-input">
+					<label class="form-check-label custom-control-label"
+						for="agree">개인정보 수집에 동의하시겠습니까?</label>                   
+					</div>
                     <button class="btn btn-primary btn-lg btn-block" type="submit">가입하기</button>
             </div>
             </form>
@@ -344,7 +343,14 @@
 		
 	});
 	
-	
+	function signUpValidate(){
+				
+			    if(!$("#agree").prop("checked")){
+			    	swal({"icon" : "info", "title" : "개인정보 동의를 체크해주세요"})
+				    return false;
+			    }
+			}
+
 	
 	</script>
 
