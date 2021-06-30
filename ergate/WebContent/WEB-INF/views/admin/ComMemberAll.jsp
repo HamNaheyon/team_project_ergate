@@ -61,7 +61,7 @@
 			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage }"/>
 			
 			<div class="my-5">
-				<ul class="pagination">
+				<ul class="pagination" style="padding-left: 35%">
 				<%-- 현재 페이지가 10패이지 초과인 경우 --%>
 				<c:if test = "${pagination.currentPage >pagination.pageSize }">
 					<li><a class="page-link" href="${prev}">&lt;&lt;</a></li>

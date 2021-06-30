@@ -55,8 +55,8 @@ public class ComBoardAll extends HttpServlet {
 				view = request.getRequestDispatcher(path);
 				view.forward(request, response);
 			}else if(command.equals("ComBoardB")) {
-				String memberGrade = request.getParameter("type");
-				Pagination pagination = service.getMemPagination(cp, memberGrade);
+				int boardTypeNo = Integer.parseInt(request.getParameter("type"));
+				Pagination pagination = service.getPagination(cp,boardTypeNo);
 				System.out.println(pagination);
 				List<adminBoard> adminBoardList = service.selectBoardList(pagination);
 				
@@ -75,6 +75,12 @@ public class ComBoardAll extends HttpServlet {
 				request.setAttribute("adminMemberList", adminMemberList);
 				request.getRequestDispatcher("/WEB-INF/views/admin/ComMemberAll.jsp").forward(request, response);
 			}else if(command.equals("ComMemberDel")) {
+				String memberGrade =request.getParameter("type");
+				Pagination pagination = service.getMemPagination(cp,memberGrade);
+				
+				List<adminMember> adminMemberList = service.selectMember(pagination);	
+				request.setAttribute("pagination", pagination);
+				request.setAttribute("adminMemberList", adminMemberList);
 				request.getRequestDispatcher("/WEB-INF/views/admin/ComMemberDel.jsp").forward(request, response);
 			}else if(command.equals("ComMemberSel")) {
 				request.getRequestDispatcher("/WEB-INF/views/admin/ComMemberSel.jsp").forward(request, response);
