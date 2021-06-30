@@ -23,5 +23,4 @@ ORDER BY BOARD_NO DESC) A)
 WHERE RNUM BETWEEN ? AND ?
 </entry>
 
-
 </properties>
