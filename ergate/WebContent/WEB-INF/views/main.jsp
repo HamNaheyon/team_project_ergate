@@ -99,8 +99,8 @@
 	        <div class="content">
 	           <div class="bg-image"><img src="${contextPath}/resources/img/main.png" style="padding-left: 140px;">
 	                <!-- 로그인 버튼 -->
-	                <button class="btn-fre btn ">프리랜서</button>
-	                <button class="btn-com btn ">기업</button>
+	                <button class="btn-fre btn" onclick="location.href='${contextPath}/board/list?type=1'">프리랜서</button>
+	                <button class="btn-com btn" onclick="location.href='${contextPath}/board/list?type=2'">기업</button>
 	            </div>
 	        </div>
 	    </div>
