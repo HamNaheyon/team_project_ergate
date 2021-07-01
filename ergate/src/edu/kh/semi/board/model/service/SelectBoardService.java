@@ -1,13 +1,13 @@
 package edu.kh.semi.board.model.service;
 
-import static edu.kh.semi.common.JDBCTemplate.*;
+import static edu.kh.ergate.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
 
-import edu.kh.semi.board.model.dao.FREBoardDAO;
+import edu.kh.semi.board.model.dao.SelectBoardDAO;
 import edu.kh.semi.board.model.vo.Board;
 import edu.kh.semi.board.model.vo.Pagination;
 
@@ -15,9 +15,9 @@ import edu.kh.semi.board.model.vo.Pagination;
  * @author 함나현 hammcoder@gamil.com
  *
  */
-public class FREBoardService {
+public class SelectBoardService {
 
-	private FREBoardDAO dao = new FREBoardDAO();
+	private SelectBoardDAO dao = new SelectBoardDAO();
 
 	/** 게시판 페이징 처리 객체 생성용 Service
 	 * @param cp
@@ -33,7 +33,7 @@ public class FREBoardService {
 		
 		close(conn);
 		
-		int listCount = (int)map.get("listCount");
+		int listCount = map.get("listCount") != null ? (int)map.get("listCount") : 0;
 		String boardName = (String)map.get("boardName");
 		
 		return new Pagination(cp, listCount, boardType, boardName);

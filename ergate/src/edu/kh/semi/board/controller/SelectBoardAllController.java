@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.kh.semi.board.model.service.FREBoardService;
+import edu.kh.semi.board.model.service.SelectBoardService;
 import edu.kh.semi.board.model.vo.Board;
 import edu.kh.semi.board.model.vo.Pagination;
 
@@ -19,7 +19,7 @@ import edu.kh.semi.board.model.vo.Pagination;
  *
  */
 @WebServlet("/board/*")
-public class FREBoardAllController extends HttpServlet {
+public class SelectBoardAllController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,15 +38,18 @@ public class FREBoardAllController extends HttpServlet {
 		
 		try {
 			
-			FREBoardService service = new FREBoardService();
+			SelectBoardService service = new SelectBoardService();
 			
 			int cp = request.getParameter("cp") == null ? 1 :
 				Integer.parseInt(request.getParameter("cp"));
+//			int ca = request.getParameter("ca") == null ? 1 :
+//				Integer.parseInt(request.getParameter("ca"));
 			
 			if(command.equals("list")) {
 				int boardType = Integer.parseInt(request.getParameter("type"));
 				
 				Pagination pagination = service.getPagination(cp, boardType);
+//				Category category = service.getCategory(ca, categoryCode);
 				
 				List<Board> boardList = service.selectBoardList(pagination);
 				
@@ -67,6 +70,8 @@ public class FREBoardAllController extends HttpServlet {
 				view = request.getRequestDispatcher(path);
 				view.forward(request, response);
 				
+				
+				System.out.println(board);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
