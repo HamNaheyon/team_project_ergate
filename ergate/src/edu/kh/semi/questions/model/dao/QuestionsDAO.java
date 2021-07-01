@@ -35,7 +35,7 @@ public class QuestionsDAO {
 		}
 	}
 
-	public int freQuestionsSend(Connection conn, Questions questions) throws Exception {
+	public int freQuestionsSend(Connection conn, Questions frequestions) throws Exception {
 		
 		int result = 0;
 		
@@ -44,10 +44,30 @@ public class QuestionsDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, questions.getQuestionsTitle());
-			pstmt.setString(2, questions.getQuestionsContent());
+			pstmt.setString(1, frequestions.getQuestionsTitle());
+			pstmt.setString(2, frequestions.getQuestionsContent());
 //			pstmt.setInt(3, questions.getComNo());
-			pstmt.setInt(3, questions.getFreNo());
+			pstmt.setInt(3, frequestions.getFreNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int comQuestionsSend(Connection conn, Questions comLoginMember) throws Exception {
+int result = 0;
+		
+		String sql = prop.getProperty("questionsSend");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, comLoginMember.getQuestionsTitle());
+			pstmt.setString(2, comLoginMember.getQuestionsContent());
+			pstmt.setInt(3, comLoginMember.getComNo());
 			
 			result = pstmt.executeUpdate();
 			

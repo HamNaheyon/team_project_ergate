@@ -28,15 +28,21 @@ public class Questions {
 		this.questionsStatus = questionsStatus;
 	}
 
-	public Questions(int comNo, int freNo, String questionsTitle, String questionsContent) {
+
+
+	public Questions(String questionsTitle, String questionsContent, int freNo) {
 		super();
-		this.comNo = comNo;
-		this.freNo = freNo;
 		this.questionsTitle = questionsTitle;
 		this.questionsContent = questionsContent;
-		
+		this.freNo = freNo;
 	}
 
+	public Questions(int comNo, String questionsTitle, String questionsContent) {
+		super();
+		this.questionsTitle = questionsTitle;
+		this.questionsContent = questionsContent;
+		this.comNo = comNo;
+	}
 
 	public int getQuestionsNo() {
 		return questionsNo;
