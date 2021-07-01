@@ -11,7 +11,6 @@ ORDER BY BOARD_NO DESC
 SELECT COUNT(*)
 FROM ADMIN_BOARD_LIST
 WHERE BOARD_TYPE_NO =?
-AND BOARD_STATUS = 'Y'
 </entry>
 
 <entry key="selectBoardList">
@@ -23,4 +22,24 @@ ORDER BY BOARD_NO DESC) A)
 WHERE RNUM BETWEEN ? AND ?
 </entry>
 
+
+<entry key="getMemPagination">
+SELECT COUNT(*) FROM ADMIN_COM_MEMBER
+WHERE MEMBER_GRADE =?
+</entry>
+
+<entry key="selectMember">
+SELECT * FROM(
+SELECT ROWNUM RNUM, A.* FROM(
+SELECT * FROM ADMIN_COM_MEMBER
+WHERE MEMBER_GRADE = ?) A)
+WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+
+<entry key="adminSel">
+SELECT * FROM MEMBER
+LEFT JOIN COMPANY USING(MEMBER_NO)
+WHERE MEMBER_NO=?
+</entry>
 </properties>

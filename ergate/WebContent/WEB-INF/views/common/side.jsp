@@ -26,7 +26,7 @@ scope="application"/>
         	float : left;
             margin: 0;
             box-sizing: border-box;
-            width: 180px;
+            width: 10%;
             height: 100%;
 
         }
@@ -97,8 +97,8 @@ scope="application"/>
                 <ul class="second">
                     <li ><a class="menu-menu-color" href="${contextPath}/admin/ComBoardAll?type=2">-게시판 전체조회</a></li>
                     <li ><a class="menu-menu-color" href="${contextPath}/admin/ComBoardB?type=2">-게시판 블라인드</a></li>
-                    <li ><a class="menu-menu-color" href="${contextPath}/admin/ComMemberAll?type=2">-회원 전체 조회</a></li>
-                    <li ><a class="menu-menu-color" href="${contextPath}/admin/ComMemberDel?type=2">-회원 삭제</a></li>
+                    <li ><a class="menu-menu-color" href="${contextPath}/admin/ComMemberAll?type=G">-회원 전체 조회</a></li>
+                    <li ><a class="menu-menu-color" href="${contextPath}/admin/ComMemberDel?type=G">-회원 삭제</a></li>
                 </ul>
             </div>
 
@@ -107,8 +107,8 @@ scope="application"/>
                 <ul class="second">
                    <li ><a class="menu-menu-color" href="${contextPath}/admin/freBoardAll?type=1">-게시판 전체조회</a></li>
                     <li ><a class="menu-menu-color" href="${contextPath}/admin/freBoardB?type=1">-게시판 블라인드</a></li>
-                    <li ><a class="menu-menu-color" href="${contextPath}/admin/freMemberAll?type=1">-회원 전체 조회</a></li>
-                    <li ><a class="menu-menu-color" href="${contextPath}/admin/freMemberDel?type=1">-회원 삭제</a></li>
+                    <li ><a class="menu-menu-color" href="${contextPath}/admin/freMemberAll?type=F">-회원 전체 조회</a></li>
+                    <li ><a class="menu-menu-color" href="${contextPath}/admin/freMemberDel?type=F">-회원 삭제</a></li>
                 </ul>
             </div>
             <div id="inquiry" class="font cursor" style="margin-bottom: 20px;"><a class="menu-menu-color" herf=""${contextPath}/admin/qusetions"></a>▶ 문의 사항</div>

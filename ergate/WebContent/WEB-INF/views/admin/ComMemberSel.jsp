@@ -23,7 +23,7 @@
             margin: auto;
             border: 1px solid black;
             width: 85%;
-            height: 500px;
+            height: 800px;
             color: rgb(166  , 206, 231);
             float:left;
         
@@ -63,17 +63,19 @@
     <div id="main-sel">
         <div id="vlf">
             <h1>필수 사항</h1>
-            담당자 : <input type="text" value="백기훈" readonly> <br><br>
-            휴대폰 번호 : <input type="text" value="000-0000-0000" readonly><br><br>
-            이메일 : <input type="text" value="qqq@naver.com" readonly><br><br>
-            아이디 : <input type="text" value="acnb37" readonly><br><br>
-            상호명 : <input type="text" value="백기훈컴퍼니" readonly><br><br>
-            사업자 번호 : <input type="text" value="415-15-12345" readonly><br><br>
-            개인정보 유효기간 : <input type="text" value="x년" readonly>
+            아이디 : ${adminMember.memberId }<br><br>
+            담당자 : ${adminMember.manager }<br><br>
+            전화번호 : ${adminMember.memberPhone }<br><br>
+            이메일 : ${adminMember.memberEmail }<br><br>
+            가입일 : ${adminMember.enrollDate }<br><br>
+            탈퇴여부(정상:Y,탈퇴:N) : ${adminMember.memberStatus }<br><br>
+            상호명 : ${adminMember.companyName}<br><br>
+            사업자 번호 : ${adminMember.companyNo }<br><br>
+         
         </div>
         <div id="tjs">
             <h1>선택 사항</h1>
-            첨부파일 : <input type="text" value="제안서.hwp,본인 사진.hwp" readonly> <br><br>
+            첨부파일 :<br><br>
            
         </div>
     </div>
