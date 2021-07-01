@@ -55,7 +55,7 @@
                     <h4 class="mb-3">내 정보</h4>
                     <br>
                     <hr>
-                    <form class="validation-form" novalidate>
+                    <form class="validation-form" method="POST" action="fre_update">
                         <!-- 아이디 -->
                         <div class="row mb-5 form-row">
                             <div class="col-md-3">
@@ -94,29 +94,14 @@
 
                             <!-- 전화번호2 -->
                             <div class="col-md-3">
-                                <input type="number" class="form-control phone" id="phone2" name="phone" value="${phone[2]}">
+                                <input type="number" class="form-control phone" id="phone2" name="phone" value="${phone[1]}">
                             </div>
 
                             <!-- 전화번호3 -->
                             <div class="col-md-3">
-                                <input type="number" class="form-control phone" id="phone3" name="phone" value="${phone[3]}">
+                                <input type="number" class="form-control phone" id="phone3" name="phone" value="${phone[2]}">
                             </div>
                         </div>
-                        <!-- 주민번호 -->
-                        <div class="row mb-3 form-row">
-                    	<div class="col-md-3">
-                            <label for="juminNum1">주민번호</label>
-                        </div>
-                        <!-- 주민번호2 -->
-                        <div class="col-md-3">
-                            <input type="number" class="form-control jumin" id="juminNum1" name="juminNum" value="${jumin[1]}">
-                        </div>
-
-                        <!-- 주민번호3 -->
-                        <div class="col-md-3">
-                            <input type="number" class="form-control jumin" id="juminNum2" name="juminNum" value="${jumin[2]}">
-                        </div>
-                	    </div>
 
                         <!-- 이메일 -->
                         <div class="row mb-3 form-row">
@@ -125,7 +110,7 @@
                             </div>
 
                             <div class="col-md-6">
-								<input type="email" class="form-control" id="email" name="email" value=" ${freLoginMember.memberEmail} ">
+								<input type="email" class="form-control" id="email" name="email" value="${freLoginMember.memberEmail}">
 							</div>
                         </div>
                         <!-- 연락 가능 시간 1 -->
@@ -134,11 +119,11 @@
                                 <label for="time">연락 가능 시간</label>
                             </div>
                             <div class="col-md-3">
-                                <input type="time" class="form-control" id="time1" name="time1" value=" ${freLoginMember.minTime}">
+                                <input type="time" class="form-control" id="time1" name="time1" value="${freLoginMember.minTime}">
                             </div>
                             ~
                             <div class="col-md-3">
-                                <input type="time" class="form-control" id="time2" name="time2" value=" ${freLoginMember.maxTime} ">
+                                <input type="time" class="form-control" id="time2" name="time2" value="${freLoginMember.maxTime}">
                             </div>
                         </div>
                         <br>
@@ -155,7 +140,7 @@
                             ~
                             <!-- 희망급여 2 -->
                             <div class="col-md-3">
-                                <input type="number" class="form-control salary" id="salary2" name="salary2" value=" ${freLoginMember.maxSalary} ">
+                                <input type="number" class="form-control salary" id="salary2" name="salary2" value="${freLoginMember.maxSalary}">
                             </div>
 
                         </div>
@@ -171,18 +156,11 @@
 	                                    <option>test</option>
                                 </select>
                                 
-                                <script>
-                                	const field = "${freLoginMember.feild}";
-	                                	$("#field > option").each(function(index, item){
-                                		if($(item).text() == field){
-                                			$(item).prop("selected", true);
-                                		}
-                                	});
-                                </script>
+                                
                             </div>
                              <div class="col-md-6">
-								<h5 id="feild"> ${freLoginMember.feild}</h5>
 							</div>
+							<br>
 							<br>
                             <!-- 근무 형태 -->
                             <div class="col-md-3">
@@ -190,16 +168,14 @@
                             </div>
                             <div class="col-md-3">
                                 <select class="custom-select" id="work" name="work">
-                                <option value="none">=== 선택 ===</option>
                                     <option>자가</option>
                                     <option>회사</option>
                                 </select>
                             </div>
 							<div class="col-md-6">
-								<h5 id="work">${freLoginMember.work}</h5>
 							</div>
                         </div>
-                        <br>
+                       
                             <!-- 프리랜서 경험 -->
                         <div class="row mb-3 form-row">
                             <div class="col-md-3">
@@ -207,22 +183,19 @@
                             </div>
                             <div class="col-md-3">
                                 <select class="custom-select" id="experience" name="experience">
-                                <option value="none">=== 선택 ===</option>
                                     <option>있습니다</option>
                                     <option>없습니다</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-								<h5 id="experience">${freLoginMember.experience}</h5>
 							</div>
-							<br>
+							<br> <br>
                             <!-- 스킬 -->
                             <div class="col-md-3">
                                 <label for="skil">스킬</label>
                             </div>
                             <div class="col-md-3">
                                 <select class="custom-select" id="skil" name="skil">
-                                	<option value="none">=== 선택 ===</option>
                                     <option>C</option>
                                     <option>Python</option>
                                     <option>Java</option>
@@ -235,15 +208,6 @@
                                     <option>SQL</option>
                                 </select>
                             </div>
-                            <div class="col-md-6">
-								<h5 id="skil"> ${freLoginMember.skil}</h5>
-							</div>
-                        </div>
-                        <br> <br>
-                        <div>
-                            <label for="gender">성별</label> <br> <br>
-                            <input type="radio" name="gender" value="man"> 남
-                            <input type="radio" name="gender" value="girl"> 여
                         </div>
                         <hr>
                         <button class="btn btn-primary btn-lg btn-block" type="submit">수정하기</button>
@@ -252,5 +216,32 @@
             </div>
         </div>
     </body>
+   	 <script>
+    	const field = "${freLoginMember.feild}";
+     	$("#field > option").each(function(index, item){
+    		if($(item).text() == field){
+    			$(item).prop("selected", true);
+    		}
+    	});
+     	
+     	const work = "${freLoginMember.work}";
+     	$("#work > option").each(function(index, item){
+    		if($(item).text() == field){
+    			$(item).prop("selected", true);
+    		}
+    	});
+     	const experience = "${freLoginMember.experience}";
+     	$("#experience > option").each(function(index, item){
+    		if($(item).text() == field){
+    			$(item).prop("selected", true);
+    		}
+    	});
+     	const skil = "${freLoginMember.skil}";
+     	$("#skil > option").each(function(index, item){
+    		if($(item).text() == skil){
+    			$(item).prop("selected", true);
+    		}
+    	});
+    </script>
 
     </html>

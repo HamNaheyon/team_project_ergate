@@ -25,9 +25,6 @@ public class FreMember {
 	
 	public FreMember() {}
 
-	
-	
-	
 	public FreMember(int memberNo, String memberId, String memberName, String memberPhone, String memberEmail,
 			String memberGrade, String minTime, String maxTime, String minSalary, String maxSalary, String feild,
 			String work, String experience, String skil, Date enrollDate, String gender, String juminNum) {
@@ -91,7 +88,35 @@ public class FreMember {
 		this.juminNum = juminNum;
 	}
 
+	
 
+	/** 회원 정보 수정 VO
+	 * @param memberNo
+	 * @param memberPhone
+	 * @param memberEmail
+	 * @param minTime
+	 * @param maxTime
+	 * @param minSalary
+	 * @param maxSalary
+	 * @param feild
+	 * @param work
+	 * @param experience
+	 */
+	public FreMember(int memberNo, String memberPhone, String memberEmail, String minTime, String maxTime,
+			String minSalary, String maxSalary, String feild, String work, String experience, String skil) {
+		super();
+		this.memberNo = memberNo;
+		this.memberPhone = memberPhone;
+		this.memberEmail = memberEmail;
+		this.minTime = minTime;
+		this.maxTime = maxTime;
+		this.minSalary = minSalary;
+		this.maxSalary = maxSalary;
+		this.feild = feild;
+		this.work = work;
+		this.experience = experience;
+		this.skil = skil;
+	}
 
 	public int getMemberNo() {
 		return memberNo;
