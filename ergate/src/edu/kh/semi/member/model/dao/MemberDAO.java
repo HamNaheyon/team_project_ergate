@@ -68,10 +68,10 @@ public class MemberDAO {
 								rs.getString("MIN_SALARY"), 
 								rs.getString("MAX_SALARY"), 
 								rs.getString("FEILD"), 
-								rs.getString("WORK"), 
-								rs.getString("EXPERIENCE"), 
-								rs.getString("SKIL"), 
-								rs.getDate("ENROLL_DATE"), 
+								rs.getString("WORK"),
+								rs.getString("EXPERIENCE"),
+								rs.getString("SKIL"),
+								rs.getDate("ENROLL_DATE"),
 								rs.getString("MEMBER_GENDER"),
 								rs.getString("JUMINNUM"));
 			}
@@ -352,6 +352,94 @@ String sql = prop.getProperty("comSignUp");
 			close(pstmt);
 		}
 		
+		return result;
+	}
+
+	/** 기업 정보 수정 DAO
+	 * @param conn
+	 * @param comMember
+	 * @return
+	 * @throws Exception
+	 */
+	public int updateComMember(Connection conn, ComMember comMember)throws Exception {
+		
+		int result = 0;
+		
+		String sql = prop.getProperty("updateComMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, comMember.getComPhone());
+			pstmt.setString(2, comMember.getComEmail());
+			pstmt.setInt(3, comMember.getMemberNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	/** 프리 선택 정보 수정 DAO
+	 * @param conn
+	 * @param freMember
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateFreMember(Connection conn, FreMember freMember)throws Exception {
+		
+		int result = 0;
+		
+		String sql = prop.getProperty("updateFreMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, freMember.getMinTime());
+			pstmt.setString(2, freMember.getMaxTime());
+			pstmt.setString(3, freMember.getMinSalary());
+			pstmt.setString(4, freMember.getMaxSalary());
+			pstmt.setString(5, freMember.getFeild());
+			pstmt.setString(6, freMember.getWork());
+			pstmt.setString(7, freMember.getExperience());
+			pstmt.setString(8, freMember.getSkil());
+			pstmt.setInt(9, freMember.getMemberNo());
+		
+			result = pstmt.executeUpdate();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	/** 프리 필수 정보 수정 DAO
+	 * @param conn
+	 * @param freMember
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateMember(Connection conn, FreMember freMember)throws Exception {
+		
+		int result = 0;
+		
+		String sql = prop.getProperty("updateMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, freMember.getMemberPhone());
+			pstmt.setString(2, freMember.getMemberEmail());
+			pstmt.setInt(3, freMember.getMemberNo());
+			
+			result = pstmt.executeUpdate();
+		} finally {
+
+			close(pstmt);
+		}
 		return result;
 	}
 }

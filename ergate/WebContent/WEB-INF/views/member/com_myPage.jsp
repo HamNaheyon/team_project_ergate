@@ -44,15 +44,14 @@
 		<jsp:include page="../common/header.jsp"></jsp:include>
         
 		
-		<c:set var="phone" value="${ fn:split( freLoginMember.memberPhone, '-' ) }"/>
-		<c:set var="jumin" value="${ fn:split( freLoginMember.juminNum, '-' ) }"/>
+		<c:set var="phone" value="${ fn:split( comLoginMember.comPhone, '-' ) }"/>
 		<div class="row my-5">
              <jsp:include page="com_sideMenu.jsp"></jsp:include>
              <div class="col-sm-8">
                     <h4 class="mb-3">내 정보</h4>
                     <br>
                     <hr>
-                    <form class="validation-form" novalidate>
+                    <form class="validation-form" method="POST" action="com_update">
                         <!-- 아이디 -->
                         <div class="row mb-5 form-row">
                             <div class="col-md-3">
@@ -90,33 +89,18 @@
                             
                             <!-- 전화번호2 -->
                             <div class="col-md-3">
-                                <input type="number" class="form-control phone" id="phone2" name="phone" value="${phone[2]}">
+                                <input type="number" class="form-control phone" id="phone2" name="phone" value="${phone[1]}">
                             </div>
                             
                             <!-- 전화번호3 -->
                         <div class="col-md-3">
-                            <input type="number" class="form-control phone" id="phone3" name="phone" value="${phone[3]}">
+                            <input type="number" class="form-control phone" id="phone3" name="phone" value="${phone[2]}">
                         </div>
                         
                         <div class="col-md-6 offset-md-3">
                             <span id="checkPhone">&nbsp;</span>
                         </div>
                     </div>
-                    <!-- 주민번호 -->
-                        <div class="row mb-3 form-row">
-                    	<div class="col-md-3">
-                            <label for="juminNum1">주민번호</label>
-                        </div>
-                        <!-- 주민번호2 -->
-                        <div class="col-md-3">
-                            <input type="number" class="form-control jumin" id="juminNum1" name="juminNum" value="${juminNum[1]}">
-                        </div>
-
-                        <!-- 주민번호3 -->
-                        <div class="col-md-3">
-                            <input type="number" class="form-control jumin" id="juminNum2" name="juminNum" value="${juminNum[2]}">
-                        </div>
-                	    </div>
                     
                     <!-- 이메일 -->
                     <div class="row mb-3 form-row">
