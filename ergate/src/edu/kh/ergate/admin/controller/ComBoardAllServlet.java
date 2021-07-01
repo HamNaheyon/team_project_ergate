@@ -18,7 +18,7 @@ import edu.kh.ergate.admin.model.vo.adminMember;
 
 
 @WebServlet("/admin/*")
-public class ComBoardAll extends HttpServlet {
+public class ComBoardAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
@@ -77,13 +77,17 @@ public class ComBoardAll extends HttpServlet {
 			}else if(command.equals("ComMemberDel")) {
 				String memberGrade =request.getParameter("type");
 				Pagination pagination = service.getMemPagination(cp,memberGrade);
-				
 				List<adminMember> adminMemberList = service.selectMember(pagination);	
 				request.setAttribute("pagination", pagination);
 				request.setAttribute("adminMemberList", adminMemberList);
 				request.getRequestDispatcher("/WEB-INF/views/admin/ComMemberDel.jsp").forward(request, response);
 			}else if(command.equals("ComMemberSel")) {
+				int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+				adminMember adminMember = service.adminSel(memberNo);
+				request.setAttribute("adminMember", adminMember);
 				request.getRequestDispatcher("/WEB-INF/views/admin/ComMemberSel.jsp").forward(request, response);
+			
+			
 			}else if(command.equals("freBoardAll")) {
 				request.getRequestDispatcher("/WEB-INF/views/admin/FreBoardAll.jsp").forward(request, response);
 			}else if(command.equals("freBoardB")) {

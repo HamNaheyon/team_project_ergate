@@ -218,4 +218,41 @@ public class adminBoardDAO {
 		return map;
 	}
 
+	public adminMember adminSel(Connection conn, int memberNo) throws Exception{
+		// TODO Auto-generated method stub
+		adminMember am = new adminMember();
+		String sql = prop.getProperty("adminSel");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String memberId = rs.getString("MEMBER_ID");
+				String memberPhone = rs.getString("MEMBER_PHONE");
+				String memberEmail = rs.getString("MEMBER_EMAIL");
+				Date enrollDate = rs.getDate("ENROLL_DATE");
+				String memberStatus = rs.getString("MEMBER_STATUS");
+				String manager = rs.getString("MANAGER");
+				String companyName = rs.getString("COMPANY_NAME");
+				String companyNo = rs.getString("COMPANY_NO");
+				
+				System.out.println(memberId);
+				am.setMemberId(memberId);
+				am.setMemberPhone(memberPhone);
+				am.setMemberEmail(memberEmail);
+				am.setEnrollDate(enrollDate);
+				am.setMemberStatus(memberStatus);
+				am.setManager(manager);
+				am.setCompanyName(companyName);
+				am.setCompanyNo(companyNo);
+				
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return am;
+	}
+
 }

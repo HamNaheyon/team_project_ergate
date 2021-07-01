@@ -26,7 +26,7 @@
 <body>
     <div id="main-Member-All">
  
-    <table class="table">
+    <table class="table" id="tx">
       <thead style="background-color: rgb(166  , 206, 231); color: white; font-weight: bold;">
         
           <tr><th>회원번호</th><th>기업이름</th><th>사업자 번호</th><th>아이디</th><th>가입 날짜</th><th>이메일</th><td>탈퇴 여부</td><td>상세조회</td></>
@@ -48,7 +48,7 @@
 								<td>${member.enrollDate}</td>
 								<td>${member.memberEmail}</td>
 								<td>${member.memberStatus}</td>
-								<td></td>
+								<td><a class ="look">상세보기</a></td>
 							</tr>
 						
 						</c:forEach>
@@ -120,7 +120,19 @@
 
 
 
-
+<script>
+	
+		$('.look').on("click",function(){
+			let memberNo = $(this).parent().parent().children().eq(0).text().trim();
+			// $(this) : 클릭된 td 태그
+			// parent() : 부모 요소(tr)
+			// children() : 모든 자식요소 (td 4개)
+			// eq(0) : 모든 자식 요소 중 0번 째 인덱스 자식 (숫자 써진 td)			
+			// text() : 요소에 작성된 내용 얻어오기
+			location.href="${contextPath}/admin/ComMemberSel?memberNo="+memberNo;
+		});
+	
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>

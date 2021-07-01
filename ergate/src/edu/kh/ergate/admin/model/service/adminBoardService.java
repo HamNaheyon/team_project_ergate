@@ -38,7 +38,8 @@ public class adminBoardService {
 		Connection conn = getConnection();
 		Map<String,Object> map = dao.getPagination(conn,cp,boardTypeNo);
 		close(conn);
-		int listCount = (int)map.get("listCount");
+		int listCount = map.get("listCount") != null ? (int)map.get("listCount") : 0;
+
 		return new Pagination(cp, listCount, boardTypeNo);
 	}
 	/**기업 회원 전체 조회 페이징 처리
@@ -81,6 +82,19 @@ public class adminBoardService {
 		List<adminMember> adminMemberList = dao.selectMember(conn,pagination);
 		close(conn);
 		return adminMemberList;
+	}
+
+	/**기업 상세조회 정보 
+	 * @param memberNo
+	 * @return adminMember
+	 * @throws Exception
+	 */
+	public adminMember adminSel(int memberNo) throws Exception{
+		// TODO Auto-generated method stub
+		Connection conn =getConnection();
+		adminMember adminMember = dao.adminSel(conn,memberNo);
+		close(conn);
+		return adminMember;
 	}
 
 	

@@ -26,7 +26,7 @@ scope="application"/>
         	float : left;
             margin: 0;
             box-sizing: border-box;
-            width: 180px;
+            width: 10%;
             height: 100%;
 
         }
