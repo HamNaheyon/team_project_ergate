@@ -16,9 +16,30 @@ public class Pagination {
 	
 	private int boardTypeNo;
 	private String boardName;
+	private String memberGrade;
 	
 	
 
+
+
+	public int getBoardTypeNo() {
+		return boardTypeNo;
+	}
+
+
+	public void setBoardTypeNo(int boardTypeNo) {
+		this.boardTypeNo = boardTypeNo;
+	}
+
+
+	public String getMemberGrade() {
+		return memberGrade;
+	}
+
+
+	public void setMemberGrade(String memberGrade) {
+		this.memberGrade = memberGrade;
+	}
 
 
 	public Pagination(int currentPage, int listCount, int boardTypeNo) {
@@ -26,6 +47,13 @@ public class Pagination {
 		this.currentPage = currentPage;
 		this.listCount = listCount;
 		this.boardTypeNo = boardTypeNo;
+		makePagination();
+	}
+	public Pagination(int currentPage, int listCount, String memberGrade) {
+		super();
+		this.currentPage = currentPage;
+		this.listCount = listCount;
+		this.memberGrade = memberGrade;
 		makePagination();
 	}
 

@@ -63,4 +63,28 @@
 		WHERE MEMBER_PW= ? 
 		AND MEMBER_NO = ?
 	</entry>
+	<entry key="updateComMember">
+		UPDATE MEMBER SET
+		MEMBER_EMAIL = ?,
+		MEMBER_PHONE = ?
+		WHERE MEMBER_NO = ?		
+	</entry>
+	<entry key="updateMember">
+		UPDATE MEMBER SET
+		MEMBER_PHONE = ?,
+		MEMBER_EMAIL = ?
+		WHERE MEMBER_NO = ?
+	</entry>
+	<entry key="updateFreMember">
+		UPDATE FREELANCER SET
+        MIN_TIME = ?,
+        MAX_TIME = ?,
+        MIN_SALARY = ?,
+        MAX_SALARY = ?,
+        FEILD = ?,
+        WORK = ?,
+        EXPERIENCE = ?,
+        SKIL = ?
+		WHERE MEMBER_NO = ?
+	</entry>
 </properties>

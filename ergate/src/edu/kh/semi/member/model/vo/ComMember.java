@@ -61,6 +61,16 @@ public class ComMember {
 	}
 
 
+	
+
+	public ComMember(int memberNo, String comPhone, String comEmail) {
+		super();
+		this.memberNo = memberNo;
+		this.comPhone = comPhone;
+		this.comEmail = comEmail;
+	}
+
+
 	public int getMemberNo() {
 		return memberNo;
 	}

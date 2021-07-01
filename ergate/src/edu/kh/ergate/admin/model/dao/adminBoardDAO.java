@@ -2,6 +2,7 @@ package edu.kh.ergate.admin.model.dao;
 import java.io.FileInputStream;
 import java.io.Reader;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -14,7 +15,7 @@ import java.util.Properties;
 
 import edu.kh.ergate.admin.model.vo.Pagination;
 import edu.kh.ergate.admin.model.vo.adminBoard;
-
+import edu.kh.ergate.admin.model.vo.adminMember;
 
 import static edu.kh.ergate.common.JDBCTemplate.*;
 
@@ -141,6 +142,117 @@ public class adminBoardDAO {
 			close(pstmt);
 		}
 		return adminBoardList;
+	}
+	
+	/** 기업 회원 목록 조회
+	 * @param conn
+	 * @param pagination
+	 * @return
+	 * @throws Exception
+	 */
+	public List<adminMember> selectMember(Connection conn, Pagination pagination)throws Exception{
+		// TODO Auto-generated method stub
+		List<adminMember> adminMemberList= new ArrayList<adminMember>();
+		String sql = prop.getProperty("selectMember");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pagination.getMemberGrade());
+			int startRow=(pagination.getCurrentPage()-1)*pagination.getLimit()+1;
+			int endRow =startRow+pagination.getLimit()-1;
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int memberNo = rs.getInt("MEMBER_NO");
+				String memberId = rs.getString("MEMBER_ID");
+				String memberPhone = rs.getString("MEMBER_PHONE");
+				String memberEmail = rs.getString("MEMBER_EMAIL");
+				Date enrollDate = rs.getDate("ENROLL_DATE");
+				String memberStatus = rs.getString("MEMBER_STATUS");
+				String manager = rs.getString("MANAGER");
+				String companyName = rs.getString("COMPANY_NAME");
+				String companyNo = rs.getString("COMPANY_NO");
+				adminMember am = new adminMember();
+				am.setMemberNo(memberNo);
+				am.setMemberId(memberId);
+				am.setMemberPhone(memberPhone);
+				am.setMemberEmail(memberEmail);
+				am.setEnrollDate(enrollDate);
+				am.setMemberStatus(memberStatus);
+				am.setManager(manager);
+				am.setCompanyName(companyName);
+				am.setCompanyNo(companyNo);
+				adminMemberList.add(am);
+
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return adminMemberList;
+	}
+
+	/**기업 회원 조회 목록 페이징 처리
+	 * @param conn
+	 * @param cp
+	 * @param memberGrade
+	 * @return
+	 * @throws Exception
+	 */
+	public int getMemPagination(Connection conn, int cp, String memberGrade) throws Exception{
+		// TODO Auto-generated method stub
+		int map = 0;
+		String sql = prop.getProperty("getMemPagination");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, memberGrade);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				map=rs.getInt(1);
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return map;
+	}
+
+	public adminMember adminSel(Connection conn, int memberNo) throws Exception{
+		// TODO Auto-generated method stub
+		adminMember am = new adminMember();
+		String sql = prop.getProperty("adminSel");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String memberId = rs.getString("MEMBER_ID");
+				String memberPhone = rs.getString("MEMBER_PHONE");
+				String memberEmail = rs.getString("MEMBER_EMAIL");
+				Date enrollDate = rs.getDate("ENROLL_DATE");
+				String memberStatus = rs.getString("MEMBER_STATUS");
+				String manager = rs.getString("MANAGER");
+				String companyName = rs.getString("COMPANY_NAME");
+				String companyNo = rs.getString("COMPANY_NO");
+				
+				System.out.println(memberId);
+				am.setMemberId(memberId);
+				am.setMemberPhone(memberPhone);
+				am.setMemberEmail(memberEmail);
+				am.setEnrollDate(enrollDate);
+				am.setMemberStatus(memberStatus);
+				am.setManager(manager);
+				am.setCompanyName(companyName);
+				am.setCompanyNo(companyNo);
+				
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return am;
 	}
 
 }

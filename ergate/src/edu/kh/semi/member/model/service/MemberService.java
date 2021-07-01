@@ -187,7 +187,56 @@ public class MemberService {
 		
 		return result;
 	}
-	
+
+	/** 기업 정보 수정 Service
+	 * @param comMember
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateComMember(ComMember comMember)throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int result = dao.updateComMember(conn,comMember);
+		
+		if(result > 0)		commit(conn);
+		else				rollback(conn);
+		
+		
+		return result;
+	}
+
+	/** 프리 정보 수정 Service
+	 * @param freMember
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateFreMember(FreMember freMember)throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.updateMember(conn,freMember);
+		
+		if(result > 0) {
+			
+			result = dao.updateFreMember(conn, freMember);
+			
+			if(result == 0) {
+				rollback(conn);
+			}else {
+				commit(conn);
+			}
+			
+		}else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		
+		return result;
+	}
+
 	
 }
 

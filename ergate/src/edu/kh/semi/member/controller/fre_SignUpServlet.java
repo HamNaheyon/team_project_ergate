@@ -35,7 +35,6 @@ public class fre_SignUpServlet extends HttpServlet {
 		String minTime = request.getParameter("time1");
 		String maxTime = request.getParameter("time2");
 		
-		
 		String minSalary = request.getParameter("salary1");
 		String maxSalary = request.getParameter("salary2");
 		

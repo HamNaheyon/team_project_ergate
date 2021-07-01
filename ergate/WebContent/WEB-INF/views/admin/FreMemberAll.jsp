@@ -31,7 +31,7 @@
           <tr><th>회원번호</th><th>이름</th><th>주민번호</th><th>아이디</th><th>가입 날짜</th><th>이메일</th><td>탈퇴 여부</td><td>상세조회</td></>
       </thead>
       <tbody>
-        <tr><td>01</td><td>백기훈</td><td>123456-1234567</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button onclick="location.href='회원상세페이지.html'">상세보기</button></td></tr>
+        <tr><td>01</td><td>백기훈</td><td>123456-1234567</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button onclick="location.href='${contextPath}/admin/FreMemberSel'">상세보기</button></td></tr>
         <tr><td>02</td><td>백기훈</td><td>123456-1234567</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button onclick="location.href='회원상세페이지.html'">상세보기</button></td></tr>
         <tr><td>03</td><td>백기훈</td><td>123456-1234567</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button onclick="location.href='회원상세페이지.html'">상세보기</button></td></tr>
         <tr><td>04</td><td>백기훈</td><td>123456-1234567</td><td>acnb37</td><td>21-01-01</td><td>acnb37@naver.com</td><td>N</td><td><button onclick="location.href='회원상세페이지.html'">상세보기</button></td></tr>
