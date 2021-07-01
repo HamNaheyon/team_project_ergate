@@ -1,6 +1,6 @@
 package edu.kh.semi.board.model.dao;
 
-import static edu.kh.semi.common.JDBCTemplate.*;
+import static edu.kh.ergate.common.JDBCTemplate.*;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -21,7 +21,7 @@ import edu.kh.semi.board.model.vo.Pagination;
  * @author 함나현 hammcoder@gmail.com
  *
  */
-public class FREBoardDAO {
+public class SelectBoardDAO {
 
 	private Statement stmt = null;
 	private PreparedStatement pstmt = null;
@@ -29,9 +29,9 @@ public class FREBoardDAO {
 	private Properties prop = null;
 	
 
-	public FREBoardDAO() {
+	public SelectBoardDAO() {
 
-		String filePath = FREBoardDAO.class.getResource("/edu/kh/semi/sql/board/selectboard-query.xml").getPath();
+		String filePath = SelectBoardDAO.class.getResource("/edu/kh/semi/sql/board/selectboard-query.xml").getPath();
 		
 		try {
 			prop = new Properties();
@@ -62,6 +62,7 @@ public class FREBoardDAO {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, boardType);
+			pstmt.setInt(2, boardType);
 			
 			rs = pstmt.executeQuery();
 			
