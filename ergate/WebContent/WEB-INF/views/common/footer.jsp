@@ -81,7 +81,7 @@
                 </div>
                 <div class="footer1 tos">이용약관</div>
                 <div class="footer1 pp">개인정보처리방침</div>
-                <div class="footer1 questions"><a href="questions">문의사항</a></div>
+                <div class="footer1 questions"><a href="${contextPath}/questions">문의사항</a></div>
             </div>
             <div class="footer-2">
                 <h5>

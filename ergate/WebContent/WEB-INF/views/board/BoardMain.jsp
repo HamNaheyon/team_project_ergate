@@ -45,18 +45,19 @@
 						<c:forEach items ="${boardList}" var="board">
 							
 		                	<div id="pfthumbnail">
+		                	<a href="${board.boardNo}&cp=${pagination.currentPage}&type=${pagination.boardType}">
+		                	<%-- 썸네일 출력 --%>
 			                <c:choose>
+			                	<%-- 썸네일 있는 경우 --%>
 			                	<c:when test="${ empty board.fileName[0]}"> 
-			                		
 			                    		<img src="${contextPath}/resources/img/developer.png" style="width:95%;">
-			                		
 			                	</c:when>
-			     	
+			                	<%-- 썸네일 없는 경우 --%>
 			                	<c:otherwise>
-			                		
 			                    		<img src="${contextPath}/${board.filePath[0]}${board.fileName[0]}" style="width:95%;">
 			                	</c:otherwise>
 			                </c:choose>
+		                	</a>
 	                		</div>
 			                <div id="pftitle"><h4></h4></div>
 			                <div id="pfviews"><h6>${board.readCount}</h6></div>

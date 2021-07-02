@@ -66,10 +66,8 @@ public class QuestionsServelt extends HttpServlet {
 				session.setAttribute("title", title);
 				session.setAttribute("text", text);
 				
-				// 메인 페이지로 돌아간다 -> redirect 
-				// 메인 페이지를 응답하는 요청 주소로 재요청 하기
+
 				response.sendRedirect(request.getContextPath());
-				
 			}
 			
 			if(comLoginMember != null) {
