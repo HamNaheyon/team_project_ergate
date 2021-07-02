@@ -61,20 +61,8 @@ public class SelectBoardAllController extends HttpServlet {
 				view.forward(request, response);
 				
 				System.out.println(boardList);
-			}else if(command.contentEquals("view")) {
-				int boardNo = Integer.parseInt(request.getParameter("no"));
-				
-				Board board = service.selectBoard(boardNo);
-				
-				request.setAttribute("board", board);
-				
-				path = "/WEB-INF/views/board/BoardMain.jsp";
-				view = request.getRequestDispatcher(path);
-				view.forward(request, response);
-				
-				
-				System.out.println(board);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

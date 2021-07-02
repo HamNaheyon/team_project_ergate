@@ -116,11 +116,15 @@ public class InsertBoardController extends HttpServlet {
 				String boardContent = mpRequest.getParameter("boardContent");
 				int categoryCode = Integer.parseInt(mpRequest.getParameter("categoryCode"));
 				
+				
 				Board board = new Board();
 				board.setBoardTitle(boardTitle);
 				board.setBoardContent(boardContent);
-//				board.setCategoryCd(categoryCode);
-//				board.setMemberNo(memberNo);
+				//Category.setCategoryCode(categoryCode);
+//				String comLoginMember = (String) request.getAttribute("comLoginMember");
+//				String freLoginMember = (String) request.getAttribute("freLoginMember");
+				
+				
 				
 				int result = service.insertBoard(board, atList, boardType);
 				
