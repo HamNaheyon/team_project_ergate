@@ -48,7 +48,13 @@
 								<td>${member.enrollDate}</td>
 								<td>${member.memberEmail}</td>
 								<td>${member.memberStatus}</td>
-								<td></td>
+								<c:if test="${member.memberStatus eq 'N'}">
+								<td><a class='Del'>회원 삭제</a></td>
+								</c:if>
+								<c:if test="${member.memberStatus eq 'Y'}">
+								<td><a class='Re'>회원 복구</a></td>
+								</c:if>
+								
 							</tr>
 						
 						</c:forEach>
