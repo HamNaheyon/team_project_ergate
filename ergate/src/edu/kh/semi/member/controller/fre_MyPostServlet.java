@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.kh.semi.member.model.service.MyPostService;
-import edu.kh.semi.member.model.vo.ComMember;
+import edu.kh.semi.member.model.vo.FreMember;
 import edu.kh.semi.member.model.vo.MemberBoard;
 import edu.kh.semi.member.model.vo.MyPostPagination;
 
-@WebServlet("/com_myPost/*")
-public class com_MyPostServlet extends HttpServlet {
+@WebServlet("/fre_myPost/*")
+public class fre_MyPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
@@ -25,7 +25,7 @@ public class com_MyPostServlet extends HttpServlet {
 	
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String command = uri.substring( (contextPath + "/com_myPost/").length());
+		String command = uri.substring( (contextPath + "/fre_myPost/").length());
 		
 		String path = null;
 		RequestDispatcher view = null;
@@ -40,9 +40,9 @@ public class com_MyPostServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			
-			ComMember comLoginMember = (ComMember)session.getAttribute("comLoginMember");
+			FreMember freLoginMember = (FreMember)session.getAttribute("freLoginMember");
 			
-			int memberNo = comLoginMember.getMemberNo();
+			int memberNo = freLoginMember.getMemberNo();
 			
 			// 현재 페이지
 			int cp = request.getParameter("cp") == null ? 1 : Integer.parseInt(request.getParameter("cp"));
@@ -54,11 +54,10 @@ public class com_MyPostServlet extends HttpServlet {
 				List<MemberBoard> boardList = service.boardList(pagination,memberNo);
 				
 				pagination.setMemberNo(memberNo);
-				
 				session.setAttribute("pagination", pagination);
 				session.setAttribute("boardList", boardList);
 				
-				path = "/WEB-INF/views/member/com_myPost.jsp";
+				path = "/WEB-INF/views/member/fre_myPost.jsp";
 				view = request.getRequestDispatcher(path);
 				view.forward(request, response);
 				
