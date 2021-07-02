@@ -60,7 +60,12 @@
 								<td>${board.memberId }</td>
 								<td>${board.createDT}</td>
 								<td>${board.boardStatus}</td>
-								<td></td>
+								<c:if test="${board.boardStatus eq 'Y'}">
+								<td><a class='Del'>블라인드</a></td>
+								</c:if>
+								<c:if test="${board.boardStatus eq 'N'}">
+								<td><a class='Re'>블라인드 해제</a></td>
+								</c:if>
 							</tr>
 						
 						</c:forEach>
@@ -137,7 +142,19 @@
 
 
 
-
+<script>
+	
+		$('.Del').on("click",function(){
+			let boardNo = $(this).parent().parent().children().eq(0).text().trim();
+			// $(this) : 클릭된 td 태그
+			// parent() : 부모 요소(tr)
+			// children() : 모든 자식요소 (td 4개)
+			// eq(0) : 모든 자식 요소 중 0번 째 인덱스 자식 (숫자 써진 td)			
+			// text() : 요소에 작성된 내용 얻어오기
+			location.href="${contextPath}/admin2/comDel?boardNo="+baordNo+"&type=2";
+		});
+	
+</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
