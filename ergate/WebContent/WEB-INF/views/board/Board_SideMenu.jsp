@@ -105,7 +105,9 @@
             </div>
         </div>
         <div class="smbp">
-            <div class="posting"><a href="#" id="ifameposting" onclick="iframeposting('posting.html');" scrolling="no">게시글작성</a></div>
+        <c:if test="${!empty loginMember}">
+            <div class="posting"><a href="../board2/insertForm?type=${pagination.boardType}" id="ifameposting">게시글작성</a></div>
+        </c:if>
         </div>
     </div>
 

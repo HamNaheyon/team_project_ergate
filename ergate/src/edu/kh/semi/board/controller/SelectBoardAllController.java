@@ -59,6 +59,8 @@ public class SelectBoardAllController extends HttpServlet {
 				path = "/WEB-INF/views/board/BoardMain.jsp";
 				view = request.getRequestDispatcher(path);
 				view.forward(request, response);
+				
+				System.out.println(boardList);
 			}else if(command.contentEquals("view")) {
 				int boardNo = Integer.parseInt(request.getParameter("no"));
 				

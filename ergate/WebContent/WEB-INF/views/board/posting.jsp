@@ -100,11 +100,14 @@
             
         }
 
-
     </style>
 </head>
 <body>
     <div class="pcontainer">
+    
+		<form action="${contextPath}/board2/insert?type=${param.type}" method="post" 
+			  enctype="multipart/form-data" role="form" onsubmit="return boardValidate();">
+   
         <div class="posting">
             <h3>게시글 작성</h3>
         </div>
@@ -172,7 +175,59 @@
                 <button type="button">작성완료</button>
             </div> 
         </div>
+        </form>
     </div>
+
+	<script>
+		
+		(function printToday() {
+			var today = new Date();
+			var month = (today.getMonth() + 1);
+			var date = today.getDate();
+			var str = today.getFullYear() + "-"
+					+ (month < 10 ? "0" + month : month) + "-"
+					+ (date < 10 ? "0" + date : date);
+			$("#today").html(str);
+		})();
+
+		// 유효성 검사 
+		function boardValidate() {
+			if ($("#boardTitle").val().trim().length == 0) {
+				alert("제목을 입력해 주세요.");
+				$("#title").focus();
+				return false;
+			}
+
+			if ($("#boardContent").val().trim().length == 0) {
+				alert("내용을 입력해 주세요.");
+				$("#content").focus();
+				return false;
+			}
+		}
+
+		// 이미지 영역을 클릭할 때 파일 첨부 창이 뜨도록 설정하는 함수
+		$(function() {
+			$(".boardImg").on("click", function() {
+				var index = $(".boardImg").index(this);
+				$("#img" + index).click();
+			});
+
+		});
+		
+		// 각각의 영역에 파일을 첨부 했을 경우 미리 보기가 가능하도록 하는 함수
+		function LoadImg(value, num) {
+			if (value.files && value.files[0]) {
+				var reader = new FileReader();
+				reader.readAsDataURL(value.files[0]);
+				reader.onload = function(e) {
+
+					$(".boardImg").eq(num).children("img").attr("src",
+							e.target.result);
+				}
+
+			}
+		}
+	</script>
 
 </body>
 </html>

@@ -99,7 +99,7 @@ public class SelectBoardDAO {
 			int startRow = (pagination.getCurrentPage() -1 ) * pagination.getLimit() + 1;
 			int endRow = startRow + pagination.getLimit() -1;
 			
-			pstmt.setInt(2,  startRow);
+			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
 			
 			rs = pstmt.executeQuery();
@@ -122,6 +122,8 @@ public class SelectBoardDAO {
 				
 				board.setFilePath(filePath);
 				board.setFileName(fileName);
+				
+				System.out.println(filePath);
 				
 				boardList.add(board);
 			}

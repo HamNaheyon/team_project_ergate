@@ -17,6 +17,7 @@
 
 </head>
 <body>
+	
 	<jsp:include page="Board_Search_Form.jsp"/>
 	<%-- <jsp:include page="../common/Board_SideMenu.jsp"/> --%>
 	<jsp:include page="Board_SideMenu.jsp"/>
@@ -35,7 +36,7 @@
         <div class="pfboardcontents">
         	<div id="pfcontents">
 				<c:choose>
-					<c:when test="${empty boardlist}">
+					<c:when test="${empty boardList}">
 		                <div id="pfthumbnail">
 		                    <p>게시글이 존재하지 않습니다.</p>
 		                </div>
@@ -43,21 +44,21 @@
 					<c:otherwise>
 						<c:forEach items ="${boardList}" var="board">
 							
+		                	<div id="pfthumbnail">
 			                <c:choose>
-			                	
 			                	<c:when test="${ empty board.fileName[0]}"> 
-			                		<div id="pfthumbnail">
+			                		
 			                    		<img src="${contextPath}/resources/img/developer.png" style="width:95%;">
-			                		</div>
+			                		
 			                	</c:when>
 			     	
 			                	<c:otherwise>
-			                		<div id="pfthumbnail">
+			                		
 			                    		<img src="${contextPath}/${board.filePath[0]}${board.fileName[0]}" style="width:95%;">
-			                		</div>
 			                	</c:otherwise>
 			                </c:choose>
-			                <div id="pftitle"><h4>${board.boardType}</h4></div>
+	                		</div>
+			                <div id="pftitle"><h4></h4></div>
 			                <div id="pfviews"><h6>${board.readCount}</h6></div>
 						
 						</c:forEach>
