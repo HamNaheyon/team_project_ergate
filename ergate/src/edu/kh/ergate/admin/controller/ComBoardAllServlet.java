@@ -35,7 +35,7 @@ public class ComBoardAllServlet extends HttpServlet {
 		//sweetalert용 변수
 		String icon =null;
 		String title =null;
-		String text =null;
+		String text = null;
 		
 		try {
 			adminBoardService service = new adminBoardService();
