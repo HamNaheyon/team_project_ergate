@@ -87,4 +87,54 @@
         SKIL = ?
 		WHERE MEMBER_NO = ?
 	</entry>
+	<entry key="getListCount">
+	SELECT COUNT(*), BOARD_NM
+	FROM MYPOST_LIST
+	JOIN BOARD_TYPE USING(BOARD_TYPE_NO)
+	WHERE MEMBER_NO = ?
+	AND BOARD_STATUS = 'Y'
+	GROUP BY BOARD_NM
+	</entry>
+	
+	<entry key="boardList">
+	SELECT * FROM
+    	(SELECT ROWNUM RNUM, A.*FROM
+        	(SELECT * FROM MYPOST_LIST
+            	WHERE BOARD_STATUS = 'Y'
+            	AND MEMBER_NO = ?
+            ORDER BY BOARD_NO DESC)A)
+		WHERE RNUM BETWEEN ? AND ?
+	</entry>
 </properties>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

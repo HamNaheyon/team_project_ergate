@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="comMemberNo" value="${comLoginMember.memberNo}"/>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,13 +17,14 @@
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
     crossorigin="anonymous"></script>
 </head>
+
 <body>
 	<div class="col-sm-2 mt">
 	    <h3>사이드 메뉴</h3>
 	    <ul class="list-group">
 			<li class="list-group-item list-group-item-action"><a href="com_myPage">내정보</a></li>
-			<li class="list-group-item list-group-item-action"><a href="com_changePwd">내 게시물</a></li>
-			<li class="list-group-item list-group-item-action"><a href="secession">내 문의 사항</a></li>
+			<li class="list-group-item list-group-item-action"><a href="${contextPath}/MyPost/list?no=" + ${comMemberNo}>내 게시물</a></li>
+			<li class="list-group-item list-group-item-action"><a href="com">내 문의 사항</a></li>
 			<li class="list-group-item list-group-item-action"><a href="com_changePwd">비밀번호 수정</a></li>
 			<li class="list-group-item list-group-item-action"><a href="com_secession">회원 탈퇴</a></li>
 		</ul>
