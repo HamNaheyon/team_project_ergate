@@ -54,29 +54,5 @@ public class SelectBoardService {
 		
 		return boardList;
 	}
-
-	/** 게시글 상세 조회Service
-	 * @param boardNo
-	 * @return board
-	 * @throws Exception
-	 */
-	public Board selectBoard(int boardNo)throws Exception {
-
-		Connection conn = getConnection();
-		
-		Board board = dao.selectBoard(conn, boardNo);
-		
-		if(board.getBoardTitle() != null) {
-			int result = dao.increaseReadCount(conn, boardNo);
-			
-			if(result > 0) {
-				commit(conn);
-				
-				board.setReadCount(board.getReadCount() + 1);
-			}
-		}
-		
-		return board;
-	}
 	
 }
