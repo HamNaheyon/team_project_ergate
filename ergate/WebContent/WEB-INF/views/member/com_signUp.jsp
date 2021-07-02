@@ -162,7 +162,7 @@
                             <label for="companyNo">사업자 번호</label>
                         </div>
                         <div class="col-md-6">
-                            <input type="number" class="form-control" id="companyNo" name="companyNo" >
+                            <input type="text" class="form-control" id="companyNo" name="companyNo" >
                         </div>
 
                     </div>

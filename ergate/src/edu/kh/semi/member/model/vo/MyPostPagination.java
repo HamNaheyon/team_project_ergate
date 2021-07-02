@@ -16,6 +16,7 @@ public class MyPostPagination {
 	private int nextPage;
 	
 	private String boardName;
+	private int memberNo;
 	
 	/** pagination
 	 * @param currentPage
@@ -138,12 +139,26 @@ public class MyPostPagination {
 		this.boardName = boardName;
 	}
 
+	
 
-	@Override
+		public int getMemberNo() {
+		return memberNo;
+	}
+
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+	
+	
+	
+
+		@Override
 	public String toString() {
-		return "Pagination [currentPage=" + currentPage + ", listCount=" + listCount + ", limit=" + limit
+		return "MyPostPagination [currentPage=" + currentPage + ", listCount=" + listCount + ", limit=" + limit
 				+ ", pageSize=" + pageSize + ", maxPage=" + maxPage + ", startPage=" + startPage + ", endPage="
-				+ endPage + ", prevPage=" + prevPage + ", nextPage=" + nextPage + ", boardName=" + boardName + "]";
+				+ endPage + ", prevPage=" + prevPage + ", nextPage=" + nextPage + ", boardName=" + boardName
+				+ ", memberNo=" + memberNo + "]";
 	}
 
 
