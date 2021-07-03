@@ -29,7 +29,7 @@
     <table class="table" id="tx">
       <thead style="background-color: rgb(166  , 206, 231); color: white; font-weight: bold;">
         
-          <tr><th>회원번호</th><th>기업이름</th><th>사업자 번호</th><th>아이디</th><th>가입 날짜</th><th>이메일</th><td>탈퇴 여부</td><td>상세조회</td></>
+          <tr><th>회원번호</th><th>기업이름</th><th>사업자 번호</th><th>아이디</th><th>가입 날짜</th><th>이메일</th><td>탈퇴 여부(Y:정상,N:탈퇴)</td><td>상세조회</td></>
       </thead>
       <tbody>
      	<c:choose>

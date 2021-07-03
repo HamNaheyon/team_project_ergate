@@ -6,4 +6,20 @@ UPDATE BOARD
 SET BOARD_STATUS = 'N' 
 WHERE BOARD_NO=?</entry>
 
+
+<entry key="boardRe">
+UPDATE BOARD 
+SET BOARD_STATUS = 'Y' 
+WHERE BOARD_NO=?</entry>
+
+<entry key="memberDel">
+UPDATE MEMBER 
+SET MEMBER_STATUS = 'N' 
+WHERE MEMBER_NO=?</entry>
+
+<entry key="memberRe">
+UPDATE MEMBER 
+SET MEMBER_STATUS = 'Y' 
+WHERE MEMBER_NO=?</entry>
+
 </properties>
