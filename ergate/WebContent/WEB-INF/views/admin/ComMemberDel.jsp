@@ -29,7 +29,7 @@
     <table class="table">
       <thead style="background-color: rgb(166  , 206, 231); color: white; font-weight: bold;">
         
-          <tr><th>회원번호</th><th>기업이름</th><th>사업자 번호</th><th>아이디</th><th>가입 날짜</th><th>이메일</th><td>탈퇴 여부</td><td>회원 삭제</td></>
+          <tr><th>회원번호</th><th>기업이름</th><th>사업자 번호</th><th>아이디</th><th>가입 날짜</th><th>이메일</th><td>탈퇴 여부(Y:정상,N:탈퇴)</td><td>회원 삭제</td></>
       </thead>
       <tbody>
      <c:choose>
@@ -48,11 +48,11 @@
 								<td>${member.enrollDate}</td>
 								<td>${member.memberEmail}</td>
 								<td>${member.memberStatus}</td>
-								<c:if test="${member.memberStatus eq 'N'}">
-								<td><a class='Del'>회원 삭제</a></td>
-								</c:if>
 								<c:if test="${member.memberStatus eq 'Y'}">
-								<td><a class='Re'>회원 복구</a></td>
+								<td><button class='memDel'>회원 삭제</button></td>
+								</c:if>
+								<c:if test="${member.memberStatus eq 'N'}">
+								<td><button class='memRe'>회원 복구</button></td>
 								</c:if>
 								
 							</tr>
@@ -122,7 +122,27 @@
     
     </div>
 
+<script>
+$('.memDel').on("click",function(){
+	let memberNo = $(this).parent().parent().children().eq(0).text().trim();
+	// $(this) : 클릭된 td 태그
+	// parent() : 부모 요소(tr)
+	// children() : 모든 자식요소 (td 4개)
+	// eq(0) : 모든 자식 요소 중 0번 째 인덱스 자식 (숫자 써진 td)			
+	// text() : 요소에 작성된 내용 얻어오기
+	location.href="${contextPath}/admin2/comMemDel?memberNo="+memberNo+"&type=G&cp="+${pagination.currentPage};
+});
+$('.memRe').on("click",function(){
+	let memberNo = $(this).parent().parent().children().eq(0).text().trim();
+	// $(this) : 클릭된 td 태그
+	// parent() : 부모 요소(tr)
+	// children() : 모든 자식요소 (td 4개)
+	// eq(0) : 모든 자식 요소 중 0번 째 인덱스 자식 (숫자 써진 td)			
+	// text() : 요소에 작성된 내용 얻어오기
+	location.href="${contextPath}/admin2/comMemRe?memberNo="+memberNo+"&type=G&cp="+${pagination.currentPage};
+});
 
+</script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
