@@ -198,7 +198,7 @@
   		<div id="con-img">
 	        <div id="img-text">
 	            <lable id="la1">타이틀</lable>
-	            <lable id="la2">조회수 0</lable>
+	            <lable id="la2">조회수 ${board.readCount}</lable>
 	        </div>
 	        <div id="img-title">
 	            <img src="${contextPath}/resources/img/ergate_backgroundnone.png" width="auto" height="100%">

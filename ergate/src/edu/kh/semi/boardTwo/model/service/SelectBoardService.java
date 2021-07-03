@@ -28,7 +28,7 @@ public class SelectBoardService {
 			if(result > 0) {
 				commit(conn);
 				
-			board.setReadCount(board.getReadCount() + 1);
+				board.setReadCount(board.getReadCount() + 1);
 			}
 		}
 		
