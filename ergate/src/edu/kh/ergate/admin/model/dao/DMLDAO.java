@@ -16,7 +16,7 @@ public class DMLDAO {
 	public DMLDAO() {
 	prop = new Properties();
 	try {
-		String filePath = adminBoardDAO.class.getResource("/edu/kh/ergate/sql/adminBoard/board-query.xml").getPath();
+		String filePath = adminBoardDAO.class.getResource("/edu/kh/ergate/sql/adminBoard/DML-board-query.xml").getPath();
 		
 		prop.loadFromXML(new FileInputStream(filePath));
 	}catch(Exception e) {
@@ -38,6 +38,67 @@ public class DMLDAO {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, boardNo);
+			result = pstmt.executeUpdate();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	/** 게시글 블라인드 복구
+	 * @param conn
+	 * @param boardNo
+	 * @param boardTypeNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int boardSel(Connection conn, int boardNo, int boardTypeNo) throws Exception{
+		// TODO Auto-generated method stub
+		int result =0;
+		String sql = prop.getProperty("boardRe");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			result = pstmt.executeUpdate();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	/**회원 탈퇴 처리
+	 * @param conn
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int memberDel(Connection conn, int memberNo) throws Exception{
+		// TODO Auto-generated method stub
+		int result =0;
+		String sql = prop.getProperty("memberDel");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			result = pstmt.executeUpdate();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	/**회원 탈퇴 복구
+	 * @param conn
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int memberRe(Connection conn, int memberNo) throws Exception{
+		// TODO Auto-generated method stub
+		int result =0;
+		String sql = prop.getProperty("memberRe");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
 			result = pstmt.executeUpdate();
 		}finally {
 			close(pstmt);

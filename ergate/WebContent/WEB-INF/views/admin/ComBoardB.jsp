@@ -55,16 +55,16 @@
 					<c:otherwise>
 						<c:forEach items="${adminBoardList}" var="board">
 							<tr>
-								<td>${board.boardNo }</td>
+								<td>${board.boardNo}</td>
 								<td>${board.boardTitle }</td>
 								<td>${board.memberId }</td>
 								<td>${board.createDT}</td>
 								<td>${board.boardStatus}</td>
 								<c:if test="${board.boardStatus eq 'Y'}">
-								<td><a class='Del'>블라인드</a></td>
+								<td><button class='Del'>블라인드</button></td>
 								</c:if>
 								<c:if test="${board.boardStatus eq 'N'}">
-								<td><a class='Re'>블라인드 해제</a></td>
+								<td ><button class='Re'>블라인드 해제</button></td>
 								</c:if>
 							</tr>
 						
@@ -75,7 +75,7 @@
 		</table>
 	
 	
-			<c:set var="pageURL" value="ComBoardAll?type=${pagination.boardTypeNo }"/>
+			<c:set var="pageURL" value="ComBoardB?type=${pagination.boardTypeNo }"/>
 			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage }"/>
 			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage }"/>
 			
@@ -146,12 +146,23 @@
 	
 		$('.Del').on("click",function(){
 			let boardNo = $(this).parent().parent().children().eq(0).text().trim();
+			console.log(boardNo);
 			// $(this) : 클릭된 td 태그
 			// parent() : 부모 요소(tr)
 			// children() : 모든 자식요소 (td 4개)
 			// eq(0) : 모든 자식 요소 중 0번 째 인덱스 자식 (숫자 써진 td)			
 			// text() : 요소에 작성된 내용 얻어오기
-			location.href="${contextPath}/admin2/comDel?boardNo="+baordNo+"&type=2";
+			location.href="${contextPath}/admin2/comDel?boardNo="+boardNo+"&type=2&cp="+${pagination.currentPage};
+		});
+		$('.Re').on("click",function(){
+			let boardNo = $(this).parent().parent().children().eq(0).text().trim();
+			console.log(boardNo);
+			// $(this) : 클릭된 td 태그
+			// parent() : 부모 요소(tr)
+			// children() : 모든 자식요소 (td 4개)
+			// eq(0) : 모든 자식 요소 중 0번 째 인덱스 자식 (숫자 써진 td)			
+			// text() : 요소에 작성된 내용 얻어오기
+			location.href="${contextPath}/admin2/comRe?boardNo="+boardNo+"&type=2&cp="+${pagination.currentPage};
 		});
 	
 </script>

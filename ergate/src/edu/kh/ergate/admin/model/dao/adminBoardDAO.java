@@ -28,7 +28,7 @@ public class adminBoardDAO {
 	public adminBoardDAO() {
 	prop = new Properties();
 	try {
-		String filePath = adminBoardDAO.class.getResource("/edu/kh/ergate/sql/adminBoard/DML-board-query.xml").getPath();
+		String filePath = adminBoardDAO.class.getResource("/edu/kh/ergate/sql/adminBoard/board-query.xml").getPath();
 		
 		prop.loadFromXML(new FileInputStream(filePath));
 	}catch(Exception e) {
