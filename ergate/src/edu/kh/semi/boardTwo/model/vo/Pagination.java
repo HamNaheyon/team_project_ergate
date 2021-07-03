@@ -1,9 +1,5 @@
 package edu.kh.semi.boardTwo.model.vo;
 
-/**
- * @author 함나현 hammcoder@gamil.com
- *
- */
 public class Pagination {
 
 	private int currentPage;
@@ -11,6 +7,7 @@ public class Pagination {
 	
 	private int limit = 15;
 	private int pageSize = 10;
+
 	
 	private int maxPage;
 	private int startPage;
@@ -182,7 +179,5 @@ public class Pagination {
 			nextPage = maxPage;
 		}
 	}
-	
-	
 	
 }

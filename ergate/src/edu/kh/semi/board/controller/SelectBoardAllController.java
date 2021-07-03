@@ -60,7 +60,7 @@ public class SelectBoardAllController extends HttpServlet {
 				view = request.getRequestDispatcher(path);
 				view.forward(request, response);
 				
-				System.out.println(boardList);
+//				System.out.println(boardList);
 			}
 
 		} catch (Exception e) {

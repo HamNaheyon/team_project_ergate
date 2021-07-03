@@ -7,49 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>채팅목록</title>
 
-    <style>
-        
-        div{
-            /* border : 1px solid rgb(166,206,231); */
-            box-sizing: border-box;
-        }
-        .container {
-            width: 500px;
-            height: 700px;
-            margin: auto;
-        }
-        .body{
-            width : 100%;
-            height : 90%;
-            border:4px solid rgb(166,206,231);
-        }
-        .body > table {
-            width: 95%;
-            height: 95%;
-        }
-
-        .list{
-            width : 80%;
-            height : 15%;
-        }
-        .footer{
-            width:100%;
-            height:10%;
-        }
-        .footer > button{
-            width : 100%;
-            height : 100%;
-
-            font-size : 16px;
-            border:4px solid rgb(166,206,231);
-            background-color : rgb(166,206,231);
-        }
-        .footer > button:hover{
-            border:4px solid rgb(132, 176, 204);
-            background-color:rgb(132, 176, 204);
-        }
-
-    </style>
+	<link rel = "stylesheet" type = "text/css" href = "${contextPath}/resources/css/chattingList_style.css">
 </head>
 <body>
     <div class="container">

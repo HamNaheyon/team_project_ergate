@@ -12,14 +12,13 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <link rel = "stylesheet" type = "text/css" href = "${contextPath}/resources/css/BoardMain.css">
+    <link rel = "stylesheet" type = "text/css" href = "${contextPath}/resources/css/BoardMain_Style.css">
 	<jsp:include page="../common/header.jsp"/>
 
 </head>
 <body>
 	
 	<jsp:include page="Board_Search_Form.jsp"/>
-	<%-- <jsp:include page="../common/Board_SideMenu.jsp"/> --%>
 	<jsp:include page="Board_SideMenu.jsp"/>
     <div class="pfcontainer">
         <div class="boardroute"><h4 id="boardroute">${pagination.boardName} > ${category.categoryName}</h4></div>
@@ -44,22 +43,24 @@
 					<c:otherwise>
 						<c:forEach items ="${boardList}" var="board">
 							
-		                	<div id="pfthumbnail">
-		                	<a href="${board.boardNo}&cp=${pagination.currentPage}&type=${pagination.boardType}">
+		                	<a href="${contextPath}/detailBoard?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${pagination.boardType}">
 		                	<%-- 썸네일 출력 --%>
 			                <c:choose>
 			                	<%-- 썸네일 있는 경우 --%>
 			                	<c:when test="${ empty board.fileName[0]}"> 
+				                	<div id="pfthumbnail" style=float:left;>
 			                    		<img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+			                		</div>
 			                	</c:when>
 			                	<%-- 썸네일 없는 경우 --%>
 			                	<c:otherwise>
+				                	<div id="pfthumbnail">
 			                    		<img src="${contextPath}/${board.filePath[0]}${board.fileName[0]}" style="width:95%;">
+			                		</div>
 			                	</c:otherwise>
 			                </c:choose>
 		                	</a>
-	                		</div>
-			                <div id="pftitle"><h4></h4></div>
+			                <div id="pftitle"><h4>${board.boardTitle}</h4></div>
 			                <div id="pfviews"><h6>${board.readCount}</h6></div>
 						
 						</c:forEach>

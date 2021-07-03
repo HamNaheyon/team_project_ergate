@@ -12,6 +12,7 @@
         box-sizing:border-box;
     }
     .container{
+    	width:100%;
         position:absolute;
     }
 

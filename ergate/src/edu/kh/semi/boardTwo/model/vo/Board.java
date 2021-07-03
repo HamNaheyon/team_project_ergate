@@ -9,6 +9,7 @@ public class Board {
     
 	private int boardNo;
 	private String boardTitle;
+
 	private String categoryName;
 	private int readCount;
 	private String membeName;
@@ -86,6 +87,7 @@ public class Board {
 	public void setFileName(List<String> fileName) {
 		this.fileName = fileName;
 	}
+
 	
 // 	----------------------------------------------------------------
 	
@@ -129,6 +131,5 @@ public class Board {
 				+ filePath + ", fileName=" + fileName + ", boardContent=" + boardContent + ", memberNo=" + memberNo
 				+ ", modifyDate=" + modifyDate + ", atList=" + atList + "]";
 	}
-
 	
 }
