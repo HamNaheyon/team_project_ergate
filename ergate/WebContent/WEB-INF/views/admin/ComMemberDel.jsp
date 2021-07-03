@@ -63,7 +63,7 @@
       </tbody>
     </table>
    
- 	<c:set var="pageURL" value="ComMemberAll?type=${pagination.memberGrade }"/>
+ 	<c:set var="pageURL" value="ComMemberDel?type=${pagination.memberGrade }"/>
 			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage }"/>
 			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage }"/>
 			
