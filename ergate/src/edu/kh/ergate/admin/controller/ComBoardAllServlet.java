@@ -97,16 +97,40 @@ public class ComBoardAllServlet extends HttpServlet {
 				request.setAttribute("pagination", pagination);
 				request.setAttribute("adminBoardList", adminBoardList);
 				
-				
 				request.getRequestDispatcher("/WEB-INF/views/admin/FreBoardAll.jsp").forward(request, response);
 			}else if(command.equals("freBoardB")) {
+				int boardTypeNo = Integer.parseInt(request.getParameter("type"));
+				Pagination pagination = service.getPagination(cp,boardTypeNo);
+				System.out.println(pagination);
+				List<adminBoard> adminBoardList = service.selectBoardList(pagination);
+				
+				request.setAttribute("pagination", pagination);
+				request.setAttribute("adminBoardList", adminBoardList);
+				
 				request.getRequestDispatcher("/WEB-INF/views/admin/FreBoardB.jsp").forward(request, response);
 			}else if(command.equals("freMemberAll")) {
+				String memberGrade =request.getParameter("type");
+				Pagination pagination = service.getMemPagination2(cp,memberGrade);
+				
+				List<adminMember> adminMemberList = service.selectMember2(pagination);	
+				request.setAttribute("pagination", pagination);
+				request.setAttribute("adminMemberList", adminMemberList);
 				request.getRequestDispatcher("/WEB-INF/views/admin/FreMemberAll.jsp").forward(request, response);
 			}else if(command.equals("freMemberDel")) {
+				String memberGrade =request.getParameter("type");
+				Pagination pagination = service.getMemPagination2(cp,memberGrade);
+				List<adminMember> adminMemberList = service.selectMember2(pagination);	
+				request.setAttribute("pagination", pagination);
+				request.setAttribute("adminMemberList", adminMemberList);
 				request.getRequestDispatcher("/WEB-INF/views/admin/FreMemberDel.jsp").forward(request, response);
 			}else if(command.equals("FreMemberSel")) {
+				int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+				adminMember adminMember = service.adminSel2(memberNo);
+				request.setAttribute("adminMember", adminMember);
 				request.getRequestDispatcher("/WEB-INF/views/admin/FreMemberSel.jsp").forward(request, response);
+			}else if(command.equals("logout")) {
+				request.getSession().invalidate();
+				request.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(request, response);
 			}
 			
 		}catch(Exception e) {

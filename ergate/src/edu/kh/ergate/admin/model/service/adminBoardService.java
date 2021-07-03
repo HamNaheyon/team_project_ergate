@@ -97,6 +97,36 @@ public class adminBoardService {
 		return adminMember;
 	}
 
+	/**회원 전체 조회 2
+	 * @param pagination
+	 * @return
+	 * @throws Exception
+	 */
+	public List<adminMember> selectMember2(Pagination pagination)throws Exception {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		List<adminMember> adminMemberList = dao.selectMember2(conn,pagination);
+		close(conn);
+		return adminMemberList;
+	}
+
+	public Pagination getMemPagination2(int cp, String memberGrade) throws Exception{
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		int map = dao.getMemPagination2(conn,cp,memberGrade);
+		close(conn);
+		int listCount = map;
+		return new Pagination(cp,listCount,memberGrade);
+	}
+
+	public adminMember adminSel2(int memberNo)throws Exception {
+		// TODO Auto-generated method stub
+		Connection conn =getConnection();
+		adminMember adminMember = dao.adminSel2(conn,memberNo);
+		close(conn);
+		return adminMember;
+	}
+
 	
 
 

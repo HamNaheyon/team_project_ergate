@@ -116,7 +116,7 @@ scope="application"/>
             <div id="inquiry" class="font cursor" style="margin-bottom: 20px;"><a class="menu-menu-color" herf=""${contextPath}/admin/qusetions"></a>▶ 문의 사항</div>
         </div>
         <div id="logout-area">
-            <div style="text-align: center;"><a href="" style="text-decoration: none;"><img src="${contextPath}/resources/img/external-link-297789_640.png" width="50px"></a></div>
+            <div style="text-align: center;"><a href="${contextPath}/admin/logout" style="text-decoration: none;"><img src="${contextPath}/resources/img/external-link-297789_640.png" width="50px"></a></div>
         </div>
         </div>
     </div>

@@ -63,21 +63,24 @@
     <div id="main-sel">
         <div id="vlf">
             <h1>필수 사항</h1>
-            이름 : <input type="text" value="백기훈" readonly> <br><br>
-            휴대폰 번호 : <input type="text" value="000-0000-0000" readonly><br><br>
-            이메일 : <input type="text" value="qqq@naver.com" readonly><br><br>
-            아이디 : <input type="text" value="acnb37" readonly><br><br>
-            주민번호 : <input type="text" value="123456-1234567" readonly><br><br>
-            개인정보 유효기간 : <input type="text" value="x년" readonly>
+            아이디 : ${adminMember.memberId }<br><br>
+            이름 : ${adminMember.memberName }<br><br>
+            전화번호 : ${adminMember.memberPhone }<br><br>
+            이메일 : ${adminMember.memberEmail }<br><br>
+            가입일 : ${adminMember.enrollDate }<br><br>
+            탈퇴여부(정상:Y,탈퇴:N) : ${adminMember.memberStatus }<br><br>
+      
+           
         </div>
         <div id="tjs">
             <h1>선택 사항</h1>
-            경력 : <input type="text" value="0년" readonly> <br><br>
-            근무 형태 : <input type="text" value="자택근무" readonly> <br><br>
-            희망 급여 : <input type="text" value="천억우너" readonly> <br><br>
-            프로젝트 시작 가능일 : <input type="text" value="00/00/00~" readonly> <br><br>
-            스킬 : <input type="text" value="자바스크립트,자바,c언어,리눅스,유닉스,오라클sql" readonly> <br><br>
-            첨부파일 : <input type="text" value="포트폴리오.hwp" readonly> <br><br>
+         연락 가능 시간 :${adminMember.minTime}-${adminMember.maxTime}<br><br>
+     희망 연봉 : ${adminMember.minSalary}~${adminMember.maxSalary}<br><br>
+     분야 : ${adminMember.feild}<br><br>
+     경력 : ${adminMember.experience}<br><br>
+   근무 형태 : ${adminMember.work}<br><br>
+   스킬 : ${adminMember.skil}<br><br>
+     
            
         </div>
     </div>

@@ -67,8 +67,8 @@ public class adminBoardDAO {
 				int categoryCD = rs.getInt("CATEGORY_CD");
 				int boardTypeNo= rs.getInt("BOARD_TYPE_NO");
 				String memberId = rs.getString("MEMBER_ID");
-				
-				adminBoard board = new adminBoard(boardNo, boardTitle, boardContent, readCount, createDT, modifyDT, boardStatus, memberNo, categoryCD, boardTypeNo, memberId);
+				int boardStyle = rs.getInt("BOARD_STYLE");
+				adminBoard board = new adminBoard(boardNo, boardTitle, boardContent, readCount, createDT, modifyDT, boardStatus, memberNo, categoryCD, boardTypeNo, memberId,boardStyle);
 				adminBoardList.add(board);
 			}
 		}finally {
@@ -134,7 +134,8 @@ public class adminBoardDAO {
 				int categoryCD = rs.getInt("CATEGORY_CD");
 				int boardTypeNo= rs.getInt("BOARD_TYPE_NO");
 				String memberId = rs.getString("MEMBER_ID");
-				adminBoard board = new adminBoard(boardNo, boardTitle, boardContent, readCount, createDT, modifyDT, boardStatus, memberNo, categoryCD, boardTypeNo, memberId);
+				int boardStyle = rs.getInt("BOARD_STYLE");
+				adminBoard board = new adminBoard(boardNo, boardTitle, boardContent, readCount, createDT, modifyDT, boardStatus, memberNo, categoryCD, boardTypeNo, memberId,boardStyle);
 				adminBoardList.add(board);
 			}
 		}finally {
@@ -246,6 +247,135 @@ public class adminBoardDAO {
 				am.setManager(manager);
 				am.setCompanyName(companyName);
 				am.setCompanyNo(companyNo);
+				
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return am;
+	}
+
+	/** 회원 전체 조회2
+	 * @param conn
+	 * @param pagination
+	 * @return
+	 */
+	public List<adminMember> selectMember2(Connection conn, Pagination pagination) throws Exception{
+		// TODO Auto-generated method stub
+		List<adminMember> adminMemberList= new ArrayList<adminMember>();
+		String sql = prop.getProperty("selectMember2");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pagination.getMemberGrade());
+			int startRow=(pagination.getCurrentPage()-1)*pagination.getLimit()+1;
+			int endRow =startRow+pagination.getLimit()-1;
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int memberNo = rs.getInt("MEMBER_NO");
+				String memberId = rs.getString("MEMBER_ID");
+				String memberPhone = rs.getString("MEMBER_PHONE");
+				String memberEmail = rs.getString("MEMBER_EMAIL");
+				Date enrollDate = rs.getDate("ENROLL_DATE");
+				String memberStatus = rs.getString("MEMBER_STATUS");
+				String memberName = rs.getString("MEMBER_NAME");
+				String minTime = rs.getString("MIN_TIME");
+				String maxTime = rs.getString("MAX_TIME");
+				String minSalary = rs.getString("MIN_SALARY");
+				String maxSalary = rs.getString("MAX_SALARY");
+				String feild = rs.getString("FEILD");
+				String work = rs.getString("WORK");
+				String experience = rs.getString("EXPERIENCE");
+				String skil = rs.getString("SKIL");
+				adminMember am = new adminMember();
+				am.setMemberNo(memberNo);
+				am.setMemberId(memberId);
+				am.setMemberPhone(memberPhone);
+				am.setMemberEmail(memberEmail);
+				am.setEnrollDate(enrollDate);
+				am.setMemberStatus(memberStatus);
+				am.setMemberName(memberName);
+				am.setMinTime(minTime);
+				am.setMaxTime(maxTime);
+				am.setMinSalary(minSalary);
+				am.setMaxSalary(maxSalary);
+				am.setFeild(feild);
+				am.setWork(work);
+				am.setExperience(experience);
+				am.setSkil(skil);
+				
+				adminMemberList.add(am);
+
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return adminMemberList;
+	}
+
+	public int getMemPagination2(Connection conn, int cp, String memberGrade) throws Exception{
+		// TODO Auto-generated method stub
+		int map = 0;
+		String sql = prop.getProperty("getMemPagination2");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, memberGrade);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				map=rs.getInt(1);
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return map;
+	}
+
+	public adminMember adminSel2(Connection conn, int memberNo) throws Exception{
+		// TODO Auto-generated method stub
+		adminMember am = new adminMember();
+		String sql = prop.getProperty("adminSel2");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				String memberId = rs.getString("MEMBER_ID");
+				String memberPhone = rs.getString("MEMBER_PHONE");
+				String memberEmail = rs.getString("MEMBER_EMAIL");
+				Date enrollDate = rs.getDate("ENROLL_DATE");
+				String memberStatus = rs.getString("MEMBER_STATUS");
+				String memberName = rs.getString("MEMBER_NAME");
+				String minTime = rs.getString("MIN_TIME");
+				String maxTime = rs.getString("MAX_TIME");
+				String minSalary = rs.getString("MIN_SALARY");
+				String maxSalary = rs.getString("MAX_SALARY");
+				String feild = rs.getString("FEILD");
+				String work = rs.getString("WORK");
+				String experience = rs.getString("EXPERIENCE");
+				String skil = rs.getString("SKIL");
+			
+				am.setMemberNo(memberNo);
+				am.setMemberId(memberId);
+				am.setMemberPhone(memberPhone);
+				am.setMemberEmail(memberEmail);
+				am.setEnrollDate(enrollDate);
+				am.setMemberStatus(memberStatus);
+				am.setMemberName(memberName);
+				am.setMinTime(minTime);
+				am.setMaxTime(maxTime);
+				am.setMinSalary(minSalary);
+				am.setMaxSalary(maxSalary);
+				am.setFeild(feild);
+				am.setWork(work);
+				am.setExperience(experience);
+				am.setSkil(skil);
 				
 			}
 		}finally {
