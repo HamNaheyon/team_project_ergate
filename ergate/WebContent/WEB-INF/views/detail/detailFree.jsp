@@ -151,15 +151,16 @@
            text-decoration-line : none;
        }
        .menu-fixed {
-	  position: fixed;
-	  top: 0px;
-	  left:5%;
+		  position: fixed;
+		  top: 10px;
+		  left:5%;
 		}
 		/* 내용 들어갈 부분*/
 		#con-main-text{
 			width: 65%;
 			height: 69.9%;
 			float: left;
+			background-color: white;
 		}
 		.navi-name{
 			margin-top: 5px;
@@ -197,10 +198,10 @@
   		<div id="con-img">
 	        <div id="img-text">
 	            <lable id="la1">타이틀</lable>
-	            <lable id="la2">조회수 0</lable>
+	            <lable id="la2">조회수 ${board.readCount}</lable>
 	        </div>
 	        <div id="img-title">
-	            <img src="${contextPath}/resources/img/ergate_backgroundnone.png" width="auto" height="100%">
+	            <img src="${contextPath}/resources/img/developer.png" width="auto" height="100%">
 	        </div>
 	    </div>
 	    <div id="con-text">

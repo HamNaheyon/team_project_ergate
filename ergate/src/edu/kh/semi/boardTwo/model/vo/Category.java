@@ -1,9 +1,5 @@
 package edu.kh.semi.boardTwo.model.vo;
 
-/**
- * @author 함나현 hammcoder@gmail.com
- *
- */
 public class Category {
 	private int categoryCode;
 	private String categoryName;
