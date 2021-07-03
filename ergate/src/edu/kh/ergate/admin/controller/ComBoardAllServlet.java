@@ -89,6 +89,15 @@ public class ComBoardAllServlet extends HttpServlet {
 			
 			
 			}else if(command.equals("freBoardAll")) {
+				int boardTypeNo = Integer.parseInt(request.getParameter("type"));
+				Pagination pagination = service.getPagination(cp,boardTypeNo);
+				
+				List<adminBoard> adminBoardList = service.selectBoardList(pagination);
+				
+				request.setAttribute("pagination", pagination);
+				request.setAttribute("adminBoardList", adminBoardList);
+				
+				
 				request.getRequestDispatcher("/WEB-INF/views/admin/FreBoardAll.jsp").forward(request, response);
 			}else if(command.equals("freBoardB")) {
 				request.getRequestDispatcher("/WEB-INF/views/admin/FreBoardB.jsp").forward(request, response);

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="../common/side.jsp"></jsp:include> 
 <!DOCTYPE html>
 <html lang="ko">
@@ -28,34 +30,83 @@
     <table class="table">
       <thead style="background-color: rgb(166  , 206, 231); color: white; font-weight: bold;">
         
-          <tr><th>게시글 번호</th><th>게시글 제목</th><th>아이디</th><th>날짜</th><th>블라인드 처리 여부</th><td>탈퇴 여부</td><td>상세보기</td></>
+          <tr><th>게시글 번호</th><th>게시글 제목</th><th>아이디</th><th>날짜</th><th>블라인드 처리 여부</th><th>상세보기</th></tr>
       </thead>
       <tbody>
-        <tr><td>01</td><td>안녕하십니까</td><td>acnb37</td><td>21-01-01</td><td>N</td><td>N</td><td></td></tr>
-        <tr><td>02</td><td>안녕하십니까</td><td>acnb37</td><td>21-01-01</td><td>N</td><td>N</td><td></td></tr>
-        <tr><td>03</td><td>안녕하십니까</td><td>acnb37</td><td>21-01-01</td><td>N</td><td>N</td><td></td></tr>
-        <tr><td>04</td><td>안녕하십니까</td><td>acnb37</td><td>21-01-01</td><td>N</td><td>N</td><td></td></tr>
-        <tr><td>05</td><td>안녕하십니까</td><td>acnb37</td><td>21-01-01</td><td>N</td><td>N</td><td></td></tr>
-        <tr><td>06</td><td>안녕하십니까</td><td>acnb37</td><td>21-01-01</td><td>N</td><td>N</td><td></td></tr>
-        <tr><td>07</td><td>안녕하십니까</td><td>acnb37</td><td>21-01-01</td><td>N</td><td>N</td><td></td></tr>
-        <tr><td>08</td><td>안녕하십니까</td><td>acnb37</td><td>21-01-01</td><td>N</td><td>N</td><td></td></tr>
-        <tr><td>09</td><td>안녕하십니까</td><td>acnb37</td><td>21-01-01</td><td>N</td><td>N</td><td></td></tr>
-        <tr><td>10</td><td>안녕하십니까</td><td>acnb37</td><td>21-01-01</td><td>N</td><td>N</td><td></td></tr>
+				<c:choose>
+					<c:when test="${empty adminBoardList}">
+					<tr>
+						<td colspan="6"> 게시물이 없습니다.</td>
+					</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${adminBoardList}" var="board">
+							<tr>
+								<td>${board.boardNo}</td>
+								<td>${board.boardTitle }</td>
+								<td>${board.memberId }</td>
+								<td>${board.createDT}</td>
+								<td>${board.boardStatus}</td>
+								<c:if test="${board.boardStatus eq 'Y'}">
+								<td><button class='Del'>블라인드</button></td>
+								</c:if>
+								<c:if test="${board.boardStatus eq 'N'}">
+								<td ><button class='Re'>블라인드 해제</button></td>
+								</c:if>
+							</tr>
+						
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
       </tbody>
     </table>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
+    
+ 			<c:set var="pageURL" value="freBoardB?type=${pagination.boardTypeNo }"/>
+			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage }"/>
+			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage }"/>
+			
+			<div class="my-5">
+				<ul class="pagination" style="padding-left: 35%">
+				<%-- 현재 페이지가 10패이지 초과인 경우 --%>
+				<c:if test = "${pagination.currentPage >pagination.pageSize }">
+					<li><a class="page-link" href="${prev}">&lt;&lt;</a></li>
+				</c:if>	
+				<%--현재 페이지가 2페이지 초과인 경우 이전페이지 --%>			
+				<c:if test = "${pagination.currentPage >2 }">
+					<li><a class="page-link" href="${pageURL}&cp=${pagination.currentPage-1}">&lt;</a></li>
+				</c:if>
+				
+				
+				<%-- 페이지 목록 --%>
+				<c:forEach var="p" begin="${pagination.startPage}" end="${pagination.endPage}">
+					
+					<c:choose>
+						<c:when test="${p==pagination.currentPage}">
+						<li class="page-item active"><a class="page-link">${p}</a></li>
+						</c:when>
+						
+						<c:otherwise>
+						<li><a class="page-link" href="${pageURL}&cp=${p}">${p}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<%--현재 페이지가 마지막 페이지 미만인 경우 --%>			
+				<c:if test = "${pagination.currentPage <pagination.maxPage }">
+				<li><a class="page-link" href="${pageURL}&cp=${pagination.currentPage+1}">&gt;</a></li>
+				</c:if>		
+				
+				<%--현재 페이지가 마지막 페이지 미만인 경우 --%>			
+				<c:if test = "${pagination.currentPage-pagination.maxPage+pagination.pageSize<0 }">
+					<li><a class="page-link" href="${next}">&gt;&gt;</a></li>
+				</c:if>				
+				</ul>
+			</div>
+	
+	
+	
+	
+	
+	
       <div>
         <select aria-label="Default select example" style="margin-left: 35%;">
           <option value="1" selected>게시글 번호</option>
