@@ -61,7 +61,6 @@ public class com_SecessionServlet extends HttpServlet {
 			session.setAttribute("icon", icon);
 			session.setAttribute("title", title);
 			session.setAttribute("text", text);
-
 			response.sendRedirect(path);
 			
 			

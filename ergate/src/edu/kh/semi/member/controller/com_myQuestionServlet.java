@@ -51,12 +51,12 @@ public class com_myQuestionServlet extends HttpServlet {
 			if(command.equals("list")) {
 				
 				MyPostPagination pagination = service.getPagination(cp,memberNo);
-				List<MemberBoard> boardList = service.questionList(pagination,memberNo);
+				//List<MemberBoard> boardList = service.questionList(pagination,memberNo);
 				
 				pagination.setMemberNo(memberNo);
 				
 				session.setAttribute("pagination", pagination);
-				session.setAttribute("boardList", boardList);
+				//session.setAttribute("boardList", boardList);
 				
 				path = "/WEB-INF/views/member/com_myPost.jsp";
 				view = request.getRequestDispatcher(path);
