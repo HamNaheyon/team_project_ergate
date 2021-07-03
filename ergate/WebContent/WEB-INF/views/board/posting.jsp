@@ -56,16 +56,6 @@
         </div>
         <div class="uploadfile cborder">
             <div class="label">
-                <label for="uploadfile">첨부파일</label>
-            </div>
-            <div class="select">
-                <input name="uploadfile" id="uploadfile" type="file">
-                <!-- <img src="images/file.png" style="width:100px;" border="0" onclick='document.all.uploadfile.click(); document.all.uploadfile2.value=document.all.uploadfile.value'> -->
-                <!-- <input name="uploadfile2" id="uploadfile2" type="text" style="display:none;"> -->
-            </div>
-        </div>
-        <div class="uploadfile cborder">
-            <div class="label">
                 <label for="thumbnail">썸네일</label>
             </div>
             <div class="select">
@@ -74,13 +64,26 @@
                 <!-- <input name="uploadfile2" id="uploadfile2" type="text" style="display:none;"> -->
             </div>
         </div>
+        
+        <div class="uploadfile cborder">
+<!--             <div class="label">
+                <label for="uploadfile">첨부파일</label>
+            </div> -->
+            <div class="select">
+                    <button type="button" id="addvalue" onclick="add();">이미지 추가</button>
+    				<div id="addimg"></div>
+                <!-- <img src="images/file.png" style="width:100px;" border="0" onclick='document.all.uploadfile.click(); document.all.uploadfile2.value=document.all.uploadfile.value'> -->
+                <!-- <input name="uploadfile2" id="uploadfile2" type="text" style="display:none;"> -->
+            </div>
+        </div>
+        
         <div class="write cborder">
             <div class="select">
                 <div class="sbutton">
-                    <button type="button">작성취소</button>
+                    <button type="submit">작성취소</button>
                 </div>
                 <div class="sbutton">
-                    <button type="button">내용초기화</button>
+                    <button type="button" class="reset">내용초기화</button>
                 </div>
             </div>
         </div>
@@ -99,53 +102,43 @@
 
 	<script>
 		
-		(function printToday() {
-			var today = new Date();
-			var month = (today.getMonth() + 1);
-			var date = today.getDate();
-			var str = today.getFullYear() + "-"
-					+ (month < 10 ? "0" + month : month) + "-"
-					+ (date < 10 ? "0" + date : date);
-			$("#today").html(str);
-		})();
+		// 이미지 추가
+        let count = 1;
 
-		// 유효성 검사 
-		function boardValidate() {
-			if ($("#boardTitle").val().trim().length == 0) {
-				alert("제목을 입력해 주세요.");
-				$("#title").focus();
-				return false;
-			}
+        function add(){
+            var addValue = document.getElementById('addvalue');
 
-			if ($("#boardContent").val().trim().length == 0) {
-				alert("내용을 입력해 주세요.");
-				$("#content").focus();
-				return false;
-			}
-		}
+            var p = document.createElement("div");
 
-		// 이미지 영역을 클릭할 때 파일 첨부 창이 뜨도록 설정하는 함수
-		$(function() {
-			$(".boardImg").on("click", function() {
-				var index = $(".boardImg").index(this);
-				$("#img" + index).click();
-			});
+            p.innerHTML = addValue.value;
 
-		});
-		
-		// 각각의 영역에 파일을 첨부 했을 경우 미리 보기가 가능하도록 하는 함수
-		function LoadImg(value, num) {
-			if (value.files && value.files[0]) {
-				var reader = new FileReader();
-				reader.readAsDataURL(value.files[0]);
-				reader.onload = function(e) {
+            var ip = document.createElement("input");
+            var btn = document.createElement("button");
 
-					$(".boardImg").eq(num).children("img").attr("src",
-							e.target.result);
-				}
+            btn.innerHTML = "삭제";
 
-			}
-		}
+            ip.setAttribute("type", "file");
+            ip.setAttribute("name", "img" + count++);
+            ip.setAttribute("class", "boardImg");
+            btn.setAttribute("onclick", "deleteImage(this)");
+
+            p.appendChild(ip);
+            p.appendChild(btn);
+
+            document.getElementById('addimg').appendChild(p); 
+
+            addValue.value = ' ';
+        }
+
+        function deleteImage(el){
+            el.parentElement.remove();
+            count--;
+        }
+        
+        // 게시글 작성내용 지우기
+/*         $("#reset").on("click", function(){
+        	$(#contents").val("");
+        }); */
 	</script>
 
 </body>
