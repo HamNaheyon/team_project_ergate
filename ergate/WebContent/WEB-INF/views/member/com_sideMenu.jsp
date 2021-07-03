@@ -24,7 +24,7 @@
 	    <ul class="list-group">
 			<li class="list-group-item list-group-item-action"><a href="com_myPage">내정보</a></li>
 			<li class="list-group-item list-group-item-action"><a href="${contextPath}/com_myPost/list?no=${comMemberNo}">내 게시물</a></li>
-			<li class="list-group-item list-group-item-action"><a href="com">내 문의 사항</a></li>
+			<li class="list-group-item list-group-item-action"><a href="${contextPath}/com_myQuestion/list?no=${comMemberNo}">내 문의 사항</a></li>
 			<li class="list-group-item list-group-item-action"><a href="com_changePwd">비밀번호 수정</a></li>
 			<li class="list-group-item list-group-item-action"><a href="com_secession">회원 탈퇴</a></li>
 		</ul>

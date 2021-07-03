@@ -68,8 +68,8 @@ public class LoginServlet extends HttpServlet {
 	            view.forward(request, response);
 			}else if(freLoginMember != null) {
 				session.setAttribute("freLoginMember",freLoginMember );
-				response.sendRedirect(request.getContextPath());
-				
+				/* response.sendRedirect(request.getContextPath()); */
+				response.sendRedirect( request.getHeader("referer") );
 			}
 			
 			session.removeAttribute("icon");
@@ -88,7 +88,8 @@ public class LoginServlet extends HttpServlet {
 		            view.forward(request, response);
 				}else if(comLoginMember != null) {
 					session.setAttribute("comLoginMember",comLoginMember );
-					response.sendRedirect(request.getContextPath());
+					/* response.sendRedirect(request.getContextPath()); */
+					response.sendRedirect( request.getHeader("referer") );
 				}
 			}
 			if(freLoginMember == null && comLoginMember == null)

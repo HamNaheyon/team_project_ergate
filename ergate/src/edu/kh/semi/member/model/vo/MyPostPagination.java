@@ -18,7 +18,8 @@ public class MyPostPagination {
 	private String boardName;
 	private int memberNo;
 	
-	/** pagination
+	
+	/** 내 게시글 조회
 	 * @param currentPage
 	 * @param listCount
 	 * @param boardName
@@ -30,8 +31,7 @@ public class MyPostPagination {
 		this.boardName = boardName;
 		makePagination();
 	}
-
-
+	
 	public int getCurrentPage() {
 		return currentPage;
 	}
