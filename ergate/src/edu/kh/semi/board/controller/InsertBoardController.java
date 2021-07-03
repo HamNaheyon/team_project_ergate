@@ -64,10 +64,12 @@ public class InsertBoardController extends HttpServlet {
 				int boardType = Integer.parseInt(request.getParameter("type"));
 				
 				HttpSession session = request.getSession();
-				int memberNo = ((ComMember)session.getAttribute("loginMember")).getMemberNo();
+				int memberNo = ((ComMember)session.getAttribute("comLoginMember")).getMemberNo();
+				int memberNo2 = ((ComMember)session.getAttribute("freLoginMember")).getMemberNo();
 				
 				System.out.println(boardType);
 				System.out.println(memberNo);
+				System.out.println(memberNo2);
 
 				int maxSize = 1024 * 1024 * 20; 
 				
@@ -77,9 +79,8 @@ public class InsertBoardController extends HttpServlet {
 				String filePath = "resources/images/";
 				
 				switch(boardType) {
-				case 1 : filePath += "freeboard/"; break; 
-				case 2 : filePath += "infoboard/"; break; 
-				case 3 : filePath += "QnAboard/"; break;
+				case 1 : filePath += "freboard/"; break; 
+				case 2 : filePath += "comboard/"; break; 
 				}
 				
 				System.out.println("실제 저장경로 : " + root + filePath);
@@ -120,10 +121,8 @@ public class InsertBoardController extends HttpServlet {
 				Board board = new Board();
 				board.setBoardTitle(boardTitle);
 				board.setBoardContent(boardContent);
-				//Category.setCategoryCode(categoryCode);
-//				String comLoginMember = (String) request.getAttribute("comLoginMember");
-//				String freLoginMember = (String) request.getAttribute("freLoginMember");
-				
+				// board.setCategoryCode(categoryCode);
+				// board.setMemberNo(memberNo);
 				
 				
 				int result = service.insertBoard(board, atList, boardType);

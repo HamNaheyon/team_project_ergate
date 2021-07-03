@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,83 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board_SideMenu</title>
 
-	<%-- <link rel = "stylesheet" type = "text/css" href = "${contextPath}/resources/css/BoardSideMenu.css"> --%>
-	
-    <style>
-        div{
-            /* border:1px solid rgb(166,206,231); */
-            box-sizing:border-box;
-        }
-        .smcontainer{
-        	width:15%;
-        	height:100%;
-            border-right:1px solid rgb(166,206,231);
-            float:left;
-        }
-        /************* 웹개발자 앱개발자 게시글 작성 *************/
-        .smboardtypeNM{
-            width:50%;
-            float:left;
-
-            background-color:rgb(166,206,231);
-            border:1px solid white;
-            width:50%;
-            height:100%;
-            float:left;
-            text-align:center;
-        }
-
-        .smboardtypeNM a{
-            width:100%;
-            height:100%;
-            color:white;
-            display : inline-block;
-            text-decoration : none; 
-            text-align : center;
-
-            font-weight : 550;
-            font-size : 20px;
-
-            margin-top:4px;
-            margin-bottom:4px;
-        }
-        .smboardtypeNM a:hover{
-            background-color:rgb(132, 176, 204);
-        }
-
-        .boardcategory > div > a{
-            margin-top:5px;
-            font-size:23px;
-        }
-
-
-        /************* 웹개발자 앱개발자 게시글 작성 *************/
-
-        .boardcategory > div > a{
-            display:inline-block;
-            text-decoration:none; 
-            margin-left:10px;
-        }
-        .posting{
-            border:1px solid white;
-            width:100%;
-            height:4%;
-            float:left;
-            background:rgb(166,206,231);
-            text-align:center;
-            margin-top:20px;
-        }
-        .posting > a{
-            color:white;
-            
-            text-decoration : none; 
-            font-weight : 550;
-            font-size : 20px;
-        }
-        .posting:hover{
-            background-color:rgb(132, 176, 204);
-        }
-    </style>
+	<link rel = "stylesheet" type = "text/css" href = "${contextPath}/resources/css/Board_SideMenu_Style.css">
     
 </head>
 <body>
@@ -105,7 +32,7 @@
             </div>
         </div>
         <div class="smbp">
-        <c:if test="${!empty loginMember}">
+        <c:if test="${!empty freLoginMember || !empty comLoginMember}">
             <div class="posting"><a href="../board2/insertForm?type=${pagination.boardType}" id="ifameposting">게시글작성</a></div>
         </c:if>
         </div>

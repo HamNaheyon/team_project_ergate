@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+        div{
+        /* border : 1px solid rgb(49, 124, 236); */
+        box-sizing: border-box;
+        }
+        .pcontainer{
+            width:80%;
+            height:100%;
+            float:left;
+        }
+        .postingcs{
+            width:100%;
+            height:6%;
+            text-align:center;
+        }
+        .cborder{
+            width:100%;
+            height:3%;
+        }
+        /************* 카테고리 *************/   
+        
+        /************* 제목 *************/   
+        .title{
+            
+        }
+        /************* 내용 *************/   
+        .contents{
+            height:40%;
+        }
+        .cbselect{
+            height:100%;
+        }
+        #contents{
+            height:430px;
+        }
+        /************* 파일업로드 *************/   
+        .uploadfile{
+            
+        }
+        /************* 버튼 *************/   
+        .write{
+            
+        }
+        .sbutton{
+            width:250px;
+            float:left;
+        }
+
+
+        .label{
+            width:12%;
+            height:30px;
+            float:left;
+        }
+        #select{
+           width:85%;
+           height:3%;
+           float:left;
+        }
+        .complet{
+            width:500px;
+            float:left;
+        }
+        select{
+            width:510px;
+        }
+        input{
+            width:500px;
+        }
+        button{
+            width : 100%;
+            height : 100%;
+            box-sizing : border-box;
+
+            background-color:rgb(166,206,231);
+            color: white;
+            border-radius: 3px;
+            border: 2px solid white;
+        }
+        button:hover{
+            background-color: rgb(132, 176, 204);
+        }
+        input:focus, select:focus{
+            outline:none;
+            border-radius;
+            border: 3px solid rgb(132, 176, 204);
+        }
+        input, select, option{
+            border: 2px solid rgb(166,206,231);
+            
+        }
+        .finclude{
+        	float:left;
+        }

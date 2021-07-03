@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,108 +10,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>posting</title>
 
-	<%-- <link rel = "stylesheet" type = "text/css" href = "${contextPath}/resources/css/posting.css"> --%>
-
-    <style>
-        div{
-        /* border : 1px solid rgb(49, 124, 236); */
-        box-sizing: border-box;
-        }
-        .pcontainer{
-            width:716px;
-            height:1120px;
-        }
-        .posting{
-            width:100%;
-            height:6%;
-            text-align:center;
-        }
-        .cborder{
-            width:100%;
-            height:3%;
-        }
-        /************* 카테고리 *************/   
-        
-        /************* 제목 *************/   
-        .title{
-            
-        }
-        /************* 내용 *************/   
-        .contents{
-            height:40%;
-        }
-        .cbselect{
-            height:100%;
-        }
-        #contents{
-            height:430px;
-        }
-        /************* 파일업로드 *************/   
-        .uploadfile{
-            
-        }
-        /************* 버튼 *************/   
-        .write{
-            
-        }
-        .sbutton{
-            width:250px;
-            float:left;
-        }
-
-
-        .label{
-            width:12%;
-            height:30px;
-            float:left;
-        }
-        #select{
-           width:85%;
-           height:3%;
-           float:left;
-        }
-        .complet{
-            width:500px;
-            float:left;
-        }
-        select{
-            width:510px;
-        }
-        input{
-            width:500px;
-        }
-        button{
-            width : 100%;
-            height : 100%;
-            box-sizing : border-box;
-
-            background-color:rgb(166,206,231);
-            color: white;
-            border-radius: 3px;
-            border: 2px solid white;
-        }
-        button:hover{
-            background-color: rgb(132, 176, 204);
-        }
-        input:focus, select:focus{
-            outline:none;
-            border-radius;
-            border: 3px solid rgb(132, 176, 204);
-        }
-        input, select, option{
-            border: 2px solid rgb(166,206,231);
-            
-        }
-
-    </style>
+	<link rel = "stylesheet" type = "text/css" href = "${contextPath}/resources/css/posting_style.css">
+	<jsp:include page="../common/header.jsp"/>
 </head>
 <body>
-    <div class="pcontainer">
+
+	<jsp:include page="Board_Search_Form.jsp"/>
+	<jsp:include page="Board_SideMenu.jsp"/>
+	
+	
     
 		<form action="${contextPath}/board2/insert?type=${param.type}" method="post" 
 			  enctype="multipart/form-data" role="form" onsubmit="return boardValidate();">
+    <div class="pcontainer">
    
-        <div class="posting">
+        <div class="postingsc">
             <h3>게시글 작성</h3>
         </div>
         <div class="pcategory cborder">
@@ -159,7 +75,6 @@
             </div>
         </div>
         <div class="write cborder">
-            <div class="label"></div>
             <div class="select">
                 <div class="sbutton">
                     <button type="button">작성취소</button>
@@ -170,12 +85,16 @@
             </div>
         </div>
         <div>
-            <div class="label"></div>
             <div class="complet">
                 <button type="button">작성완료</button>
             </div> 
         </div>
-        </form>
+    </div>
+   </form>
+    
+    <div class="finclude">
+   		<br>
+		<jsp:include page="../common/footer.jsp"/>
     </div>
 
 	<script>
