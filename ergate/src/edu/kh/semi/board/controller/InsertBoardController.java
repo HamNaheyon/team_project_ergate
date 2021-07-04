@@ -21,6 +21,7 @@ import edu.kh.semi.board.model.vo.Board;
 import edu.kh.semi.board.model.vo.Category;
 import edu.kh.semi.common.MyFileRenamePolicy;
 import edu.kh.semi.member.model.vo.ComMember;
+import edu.kh.semi.member.model.vo.FreMember;
 
 /**
  * @author 함나현 hammcoder@gmail.com
@@ -61,24 +62,32 @@ public class InsertBoardController extends HttpServlet {
 				
 			}
 			else if(command.equals("insert")) {
-				int boardType = Integer.parseInt(request.getParameter("type"));
+				int boardStyle = Integer.parseInt(request.getParameter("type")); // 포트폴리오 / 제안서 (전 boardType)
 				
 				HttpSession session = request.getSession();
-				int memberNo = ((ComMember)session.getAttribute("comLoginMember")).getMemberNo();
-				int memberNo2 = ((ComMember)session.getAttribute("freLoginMember")).getMemberNo();
 				
-				System.out.println(boardType);
-				System.out.println(memberNo);
-				System.out.println(memberNo2);
+				int memberNo = 0; // 로그인한 회원 번호
+				int writerType = 0; // 글쓴 사람이 프리인가, 기업인가 (현 boardType)
+				
+				if( session.getAttribute("comLoginMember") != null  ) {
+					memberNo = ((ComMember)session.getAttribute("comLoginMember")).getMemberNo();
+					writerType = 2;
+					
+				}else {
+					memberNo = ((FreMember)session.getAttribute("freLoginMember")).getMemberNo();
+					writerType = 1;
+				}
+				
+				
 
 				int maxSize = 1024 * 1024 * 20; 
 				
 				String root = session.getServletContext().getRealPath("/");
 				System.out.println("root : " + root);
 				
-				String filePath = "resources/images/";
+				String filePath = "resources/img/";
 				
-				switch(boardType) {
+				switch(boardStyle) {
 				case 1 : filePath += "freboard/"; break; 
 				case 2 : filePath += "comboard/"; break; 
 				}
@@ -115,23 +124,23 @@ public class InsertBoardController extends HttpServlet {
 				
 				String boardTitle = mpRequest.getParameter("boardTitle");
 				String boardContent = mpRequest.getParameter("boardContent");
-				int categoryCode = Integer.parseInt(mpRequest.getParameter("categoryCode"));
+				int categoryCode = Integer.parseInt(mpRequest.getParameter("categoryCode")); // 웹 / 앱
 				
 				
 				Board board = new Board();
 				board.setBoardTitle(boardTitle);
 				board.setBoardContent(boardContent);
-				// board.setCategoryCode(categoryCode);
-				// board.setMemberNo(memberNo);
+				board.setMemberNo(memberNo);
 				
+				System.out.println(board);
 				
-				int result = service.insertBoard(board, atList, boardType);
+				int result = service.insertBoard(board, atList, categoryCode, boardStyle, writerType);
 				
 				if(result > 0) {
 					System.out.println(result);
 					icon = "success";
 					title = "게시글 등록 성공";
-					path = "../board/view?no=" + result + "&cp=1&type=" + boardType;
+					path = "../detailBoard/detailBoard?no=" + result + "&cp=1&type=" + boardStyle;
 					
 				}else {
 					icon = "error";

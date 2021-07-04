@@ -27,14 +27,25 @@
         <div class="postingsc">
             <h3>게시글 작성</h3>
         </div>
+        <div class="ptype tborder">
+            <div class="label">
+                <label for="ptype">게시판종류*</label>
+            </div>
+            <div class="select">
+                <select id="boardType" name="boardType">
+                    <option value="1">제안서</option>
+                    <option value="2">포트폴리오</option>
+                </select>
+            </div>
+        </div>
         <div class="pcategory cborder">
             <div class="label">
                 <label for="category">카테고리*</label>
             </div>
             <div class="select">
-                <select id="category" name="category">
-                    <option>웹 개발자</option>
-                    <option>앱 개발자</option>
+                <select id="categoryCode" name="categoryCode">
+                    <option value="1">웹 개발자</option>
+                    <option value="2">앱 개발자</option>
                 </select>
             </div>
         </div>
@@ -43,7 +54,7 @@
                 <label for="category">제목*</label>
             </div>
             <div class="select">
-                <input name="category" id="category" type="text" placeholder = "제목을 입력해주세요">  
+                <input name="boardTitle" id="boardTitle" type="text" placeholder = "제목을 입력해주세요">  
             </div>
         </div>
         <div class="contents cborder">
@@ -51,7 +62,7 @@
                 <label for="contents">내용*</label>
             </div>
             <div class="cbselect">
-                <input name="contents" id="contents" type="text" placeholder = "내용을 입력해주세요">
+                <input name="boardContent" id="contents" type="text" placeholder = "내용을 입력해주세요">
             </div>
         </div>
         <div class="uploadfile cborder">
@@ -59,7 +70,7 @@
                 <label for="thumbnail">썸네일</label>
             </div>
             <div class="select">
-                <input name="uploadfile" id="uploadfile" type="file">
+                <input name="img0" id="imgfile" type="file" accept="image/*">
                 <!-- <img src="images/file.png" style="width:100px;" border="0" onclick='document.all.uploadfile.click(); document.all.uploadfile2.value=document.all.uploadfile.value'> -->
                 <!-- <input name="uploadfile2" id="uploadfile2" type="text" style="display:none;"> -->
             </div>
@@ -89,7 +100,7 @@
         </div>
         <div>
             <div class="complet">
-                <button type="button">작성완료</button>
+                <button type="submit">작성완료</button>
             </div> 
         </div>
     </div>

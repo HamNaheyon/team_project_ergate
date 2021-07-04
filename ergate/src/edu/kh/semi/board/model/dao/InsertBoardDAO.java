@@ -41,7 +41,6 @@ public class InsertBoardDAO {
 		
 	}
 	
-	
 	/** 카테고리 목록조회 Service
 	 * @param conn
 	 * @return category
@@ -72,7 +71,6 @@ public class InsertBoardDAO {
 		return category;
 	}
 
-
 	/** 다음 게시글 번호 조회 DAO 
 	 * @param conn
 	 * @return
@@ -98,15 +96,16 @@ public class InsertBoardDAO {
 		return boardNo;
 	}
 
-
 	/** 게시글 삽입 DAO
 	 * @param conn
 	 * @param board
 	 * @param boardType
+	 * @param writerType 
+	 * @param writerType2 
 	 * @return result
 	 * @throws Exception
 	 */
-	public int insertBoard(Connection conn, Board board, int boardType)throws Exception {
+	public int insertBoard(Connection conn, Board board, int categoryCode, int boardType, int writerType)throws Exception {
 
 		int result = 0;
 		
@@ -118,9 +117,10 @@ public class InsertBoardDAO {
 			pstmt.setInt(1, board.getBoardNo());
 			pstmt.setString(2, board.getBoardTitle());
 			pstmt.setString(3, board.getBoardContent());
-//			pstmt.setInt(4, board.getMemberNo());
-//			pstmt.setInt(5, board.getCategoryCode());
+			pstmt.setInt(4, board.getMemberNo());
+			pstmt.setInt(5, categoryCode);
 			pstmt.setInt(6, boardType);
+			pstmt.setInt(7, writerType);
 			
 			
 			result = pstmt.executeUpdate();
