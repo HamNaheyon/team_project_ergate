@@ -12,7 +12,7 @@ public class Board {
 
 	private String categoryName;
 	private int readCount;
-	private String membeName;
+	private String memberId;
 	
 	private Timestamp createDt;	
 	private List<String> filePath;
@@ -21,6 +21,21 @@ public class Board {
 	private int memberNo; 		   		// 작성 회원 번호
 	private Timestamp modifyDate;  		// 마지막 수정일
 	private List<Attachment> atList;
+	private String memberEmail;
+	
+	//----------------------------------------------------------- 포트폴리오
+	private String minTime; // 최소 연락 가능 시간
+	private String maxTime; // 최대 연락 가능 시간
+	private String minSalary; // 최소 희망 급여 
+	private String maxSalary; // 최대 희망 급여
+	private String work;  // 근무 형태
+	private String experience; // 경험
+	private String skil; // 스킬
+	
+	//---------------------------------------------------------------- 제안서
+	
+	private String manager;
+	private String companyName;
 	
 	public Board() {}
 
@@ -92,16 +107,17 @@ public class Board {
 // 	----------------------------------------------------------------
 	
 	
-	public String getMembeName() {
-		return membeName;
-	}
-	
-	public void setMembeName(String membeName) {
-		this.membeName = membeName;
-	}
 	
 	public int getMemberNo() {
 		return memberNo;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
 	public void setMemberNo(int memberNo) {
@@ -123,13 +139,102 @@ public class Board {
 	public void setAtList(List<Attachment> atList) {
 		this.atList = atList;
 	}
+	
+	// ----------------------------------------------
+
+	public String getMinTime() {
+		return minTime;
+	}
+
+	public void setMinTime(String minTime) {
+		this.minTime = minTime;
+	}
+
+	public String getMaxTime() {
+		return maxTime;
+	}
+
+	public void setMaxTime(String maxTime) {
+		this.maxTime = maxTime;
+	}
+
+	public String getMinSalary() {
+		return minSalary;
+	}
+
+	public void setMinSalary(String minSalary) {
+		this.minSalary = minSalary;
+	}
+
+	public String getMaxSalary() {
+		return maxSalary;
+	}
+
+	public void setMaxSalary(String maxSalary) {
+		this.maxSalary = maxSalary;
+	}
+
+	public String getWork() {
+		return work;
+	}
+
+	public void setWork(String work) {
+		this.work = work;
+	}
+
+	public String getExperience() {
+		return experience;
+	}
+
+	public void setExperience(String experience) {
+		this.experience = experience;
+	}
+
+	public String getSkil() {
+		return skil;
+	}
+
+	public void setSkil(String skil) {
+		this.skil = skil;
+	}
+	
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
+	}
+	
+	//-------------------------------------------------------------------
+
+	public String getManager() {
+		return manager;
+	}
+
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
 
 	@Override
 	public String toString() {
 		return "Board [boardNo=" + boardNo + ", boardTitle=" + boardTitle + ", categoryName=" + categoryName
-				+ ", readCount=" + readCount + ", membeName=" + membeName + ", createDt=" + createDt + ", filePath="
+				+ ", readCount=" + readCount + ", memberId=" + memberId + ", createDt=" + createDt + ", filePath="
 				+ filePath + ", fileName=" + fileName + ", boardContent=" + boardContent + ", memberNo=" + memberNo
-				+ ", modifyDate=" + modifyDate + ", atList=" + atList + "]";
+				+ ", modifyDate=" + modifyDate + ", atList=" + atList + ", memberEmail=" + memberEmail + ", minTime="
+				+ minTime + ", maxTime=" + maxTime + ", minSalary=" + minSalary + ", maxSalary=" + maxSalary + ", work="
+				+ work + ", experience=" + experience + ", skil=" + skil
+				+ ", manager="  + manager+ ", companyName="
+				 + companyName  + ", companyNo=" + "]";
 	}
 	
 }

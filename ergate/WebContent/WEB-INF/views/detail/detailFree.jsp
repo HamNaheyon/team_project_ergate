@@ -1,13 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>기업 상세</title>
+	<title>포트폴리오 상세</title>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    	<style>
+   	@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+	}
 	/* div{
 		border: 1px solid black;
 	} */
@@ -17,7 +25,6 @@
 		width:90%;
 		height:2500px;
 	}
-	
 	/* 타이틀, 조회수, 썸네일 */
 	#con-img{
 		width : 65%;
@@ -29,23 +36,23 @@
 		height : 10%;
 	}
 	#la1{
-           float: left;
-           font-size: 30px;
-           font-weight: bold;
-           line-height : 57px;
+        float: left;
+        font-size: 30px;
+        font-weight: bold;
+        line-height : 57px;
        }
-       #la2{
-           float: right;
-           font-size: 23px;
-           line-height : 57px;
-       }
-	#img-title{
+    #la2{
+       float: right;
+       font-size: 23px;
+       line-height : 57px;
+    }
+	.img-title{
 		width : 100%;
 		height: 90%;
 	}
 	img{
-           display: block; 
-           margin: 0px auto; 
+       display: block; 
+       margin: 0px auto; 
        }
 	
 	/* 작성자 설명  */
@@ -57,9 +64,15 @@
        /* 내용 */
        #detail-text{
        	margin-top: 60px;
+       	padding-top : 40px;
+       	padding-left : 20px;
        	width: 100%;
        	height: 80%;
 		background-color: rgba(166, 206, 231, 0.2);
+		font-size : 25px;
+		color: balck;
+		font-family: "Cafe24SsurroundAir";
+		
        }
        /* 채팅 버튼 */
        #chat-btn{
@@ -131,7 +144,6 @@
            text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
            border:3px outset rgb(152, 203, 235);
        }
-       
        /* 제안서, 제안서 설명, 댓글 바 */
        #main-btn{
        	width:60%;
@@ -154,6 +166,7 @@
 		  position: fixed;
 		  top: 10px;
 		  left:5%;
+		  background-color: white;
 		}
 		/* 내용 들어갈 부분*/
 		#con-main-text{
@@ -165,8 +178,8 @@
 		.navi-name{
 			margin-top: 5px;
 		 	float: left;
-	           font-size: 25px;
-	           font-weight: bold;
+	        font-size: 25px;
+	        font-weight: bold;
 		}
 		#name-con{
 			margin-top: 45px;
@@ -182,6 +195,7 @@
 			width: 100%;
 			height: 43%;
 			border: 2px solid rgba(166, 206, 231, 0.7);
+			font-size : 30px;
 		}
 		#comment-con{
 			margin-top: 65px;
@@ -197,17 +211,86 @@
   	<div id="container">
   		<div id="con-img">
 	        <div id="img-text">
-	            <lable id="la1">타이틀</lable>
+	            <lable id="la1">${board.boardTitle}</lable>
 	            <lable id="la2">조회수 ${board.readCount}</lable>
 	        </div>
-	        <div id="img-title">
-	            <img src="${contextPath}/resources/img/developer.png" width="auto" height="100%">
-	        </div>
+	        <c:choose>
+	        	<c:when test="${ empty board.fileName[0]}"> 
+		        	<div class="img-title">
+		            	<img src="${contextPath}/resources/img/developer.png" width="auto" height="100%">
+		        	</div>
+	        	</c:when>
+	        	<c:otherwise>
+	        		<div class="img-title">
+		            	<img src="${contextPath}/${board.filePath[0]}${board.fileName[0]}" height="100%">
+		        	</div>
+	        	</c:otherwise>
+	        </c:choose>
+	        
 	    </div>
 	    <div id="con-text">
 	    	<div id="detail-text">
-	    		설명 설명~ <br>
-	    		
+		    	아이디 : ${board.memberId} <br>
+		    	희망 근무 시간 : 
+		    	<c:choose>
+		    		<c:when test = "${!empty board.minTime}" >
+		    		${board.minTime}
+		    		</c:when>
+		    		<c:otherwise>
+		    		00:00
+		    		</c:otherwise>
+		    	</c:choose>  ~ 
+		    	<c:choose>
+		    		<c:when test = "${!empty board.maxTime}" >
+		    		${board.maxTime}
+		    		</c:when>
+		    		<c:otherwise>
+		    		00:00
+		    		</c:otherwise>
+		    	</c:choose>
+		    	<br>
+		    	희망 급여 : 
+		    	<c:choose>
+		    		<c:when test = "${!empty board.minSalary}" >
+		    		${board.minSalary}
+		    		</c:when>
+		    		<c:otherwise>
+		    		0
+		    		</c:otherwise>
+		    	</c:choose>  ~ 
+		    	<c:choose>
+		    		<c:when test = "${!empty board.maxSalary}" >
+		    		${board.maxSalary}
+		    		</c:when>
+		    		<c:otherwise>
+		    		0
+		    		</c:otherwise>
+		    	</c:choose>
+		    	<br>
+		    	분야 : 
+	    		<c:if test = "${!empty board.categoryName}" >
+	    			${board.categoryName} 
+		    	<br>
+	    		</c:if>
+		    	근무 형태 : 
+		    	<c:choose>
+		    		<c:when test = "${!empty board.work}" >
+		    		${board.work} 
+		    		</c:when>
+		    		<c:otherwise>
+		    		희망 형태 없음
+		    		</c:otherwise>
+		    	</c:choose>
+		    	<br>
+		    	<c:if test = "${!empty board.experience}" >
+	    			프리랜서 경험 : ${board.experience} 
+		    	 <br>
+	    		</c:if>
+		    	<c:if test = "${!empty board.skil}" >
+	    		스킬 : ${board.skil}
+	    		<br>
+	    		</c:if>
+	    		이메일 : ${board.memberEmail} 
 	    	</div>
 	    	<div id="chat-btn">
 	    		<button>1:1 채팅하기</button>
@@ -215,27 +298,29 @@
 	    </div>
 	    
 	    <div id="etc-btn">
-	    	<div id="btn-size1">
-	    		<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
-	    		<button id="delete-btn" onclick="btnDeletion();">게시글 삭제</button>
-	    	</div>
+		    <c:if test="${loginMember.memberNo == board.memberNo }"> 
+		    	<div id="btn-size1">
+		    		<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
+		    		<button id="delete-btn" onclick="btnDeletion();">게시글 삭제</button>
+		    	</div>
+		    </c:if> 
 	    	<div id="btn-size2">
-	    		<button id="return-btn">이전 페이지로 이동</button>
+	    		<a href="board/list?type=${param.type}&cp=${param.cp}"><button id="return-btn">이전 페이지로 이동</button></a>
 	    	</div>
 	    </div>
   		<div id="main-btn">
-  			<a id="name-btn" href="#con-main-text">프리랜서</a>
-  			<a id="plan-btn" href="#plan-text">프리랜서 설명</a>
+  			<a id="name-btn" href="#con-main-text">포트폴리오</a>
+  			<a id="plan-btn" href="#plan-text">포트폴리오 설명</a>
   			<a id="comment-btn" href="#comment-text">댓글</a>
   		</div>
   		<div id="con-main-text">
-  			<label id="name-text" class="navi-name">프리랜서</label>
+  			<label id="name-text" class="navi-name">포트폴리오</label>
   			<div id="name-con"></div>
   			
   			<hr id="plan-text">
   			
-  			<label class="navi-name">프리랜서 설명</label>
-  			<div id="plan-con"></div>
+  			<label class="navi-name">포트폴리오 설명</label>
+  			<div id="plan-con">${board.boardContent}</div>
   			
   			<hr id="comment-text">
   			
@@ -259,61 +344,30 @@
        });
       
         function btnAmend(){
-        	/*// 작성자 본인
         	swal({
         		  title: "게시글을 수정하시겠습니까?",
         		  icon: "warning",
         		  buttons: true,
         		  dangerMode: true,
         		})
-        		.then((willDelete) => {
-        		  if (willDelete) {
-        		    swal("게시글 수정!", {
-        		      icon: "success",
-        		    });
-        		  } else {
-        		    swal("게시글 수정을 취소 하였습니다", {
-        		      icon: "error",
-        		    });
-        		  }
-        		});
-        	*/
-        	
-        	// 로그인X , 작성자X
-        	swal({
-			  title: "게시글 작성자만 수정할수 있습니다.",
-			  icon: "error",
-			  button: "확인",
-			});
-        	
         };
         function btnDeletion(){
-        	/* 작성자 삭제
         	swal({
-      		  title: "게시글을 정말 삭제하시겠습니까?",
+      		  title: "정말로 삭제하시겠습니까?",
       		  icon: "warning",
       		  buttons: true,
       		  dangerMode: true,
       		})
       		.then((willDelete) => {
       		  if (willDelete) {
-      		    swal("게시글이 삭제되었습니다", {
+      		    swal("게시글이 삭제되었습니다.", {
       		      icon: "success",
       		    });
       		  } else {
-      		    swal("게시글 삭제를 취소 하였습니다", {
-      		      icon: "error",
-      		    });
+      		    swal("게시글 삭제를 취소 하였습니다.");
       		  }
-      		}); */
-      		
-        	// 로그인X , 작성자X
-        	swal({
-			  title: "게시글 작성자만 삭제할수 있습니다.",
-			  icon: "error",
-			  button: "확인",
-			});
-        };
+      		});
+        }
     </script>
 	<jsp:include page="../common/footer.jsp"/>
 </body>
