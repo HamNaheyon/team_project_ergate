@@ -12,20 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.kh.semi.member.model.service.MyPostService;
-import edu.kh.semi.member.model.vo.ComMember;
+import edu.kh.semi.member.model.vo.FreMember;
 import edu.kh.semi.member.model.vo.MemberBoard;
 import edu.kh.semi.member.model.vo.MyPostPagination;
+import edu.kh.semi.member.model.vo.Question;
 
-@WebServlet("/com_myQuestion/*")
-public class com_myQuestionServlet extends HttpServlet {
+@WebServlet("/fre_myPost/*")
+public class FreMyPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String command = uri.substring( (contextPath + "/com_myQuestion/").length());
+		String command = uri.substring( (contextPath + "/fre_myPost/").length());
 		
 		String path = null;
 		RequestDispatcher view = null;
@@ -40,9 +41,9 @@ public class com_myQuestionServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			
-			ComMember comLoginMember = (ComMember)session.getAttribute("comLoginMember");
+			FreMember freLoginMember = (FreMember)session.getAttribute("freLoginMember");
 			
-			int memberNo = comLoginMember.getMemberNo();
+			int memberNo = freLoginMember.getMemberNo();
 			
 			// 현재 페이지
 			int cp = request.getParameter("cp") == null ? 1 : Integer.parseInt(request.getParameter("cp"));
@@ -51,21 +52,20 @@ public class com_myQuestionServlet extends HttpServlet {
 			if(command.equals("list")) {
 				
 				MyPostPagination pagination = service.getPagination(cp,memberNo);
-				//List<MemberBoard> boardList = service.questionList(pagination,memberNo);
+				List<MemberBoard> boardList = service.boardList(pagination,memberNo);
 				
 				pagination.setMemberNo(memberNo);
-				
 				session.setAttribute("pagination", pagination);
-				//session.setAttribute("boardList", boardList);
+				session.setAttribute("boardList", boardList);
 				
-				path = "/WEB-INF/views/member/com_myPost.jsp";
+				path = "/WEB-INF/views/member/fre_myPost.jsp";
 				view = request.getRequestDispatcher(path);
 				view.forward(request, response);
 				
 			// 게시글 상세 조회
 			}else if(command.equals("view")) {
 				
-				
+
 				
 			}
 			

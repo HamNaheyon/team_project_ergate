@@ -9,6 +9,7 @@ public class Question {
 	private Timestamp questionDate;
 	private int memberNo;
 	private String questionStatus;
+	private String questionContent;
 	
 	public Question() {}
 
@@ -51,12 +52,24 @@ public class Question {
 	public void setQuestionStatus(String questionStatus) {
 		this.questionStatus = questionStatus;
 	}
+	
+	
+	
+	public String getQuestionContent() {
+		return questionContent;
+	}
+
+	public void setQuestionContent(String questionContent) {
+		this.questionContent = questionContent;
+	}
 
 	@Override
 	public String toString() {
 		return "Question [questionNo=" + questionNo + ", questionTitle=" + questionTitle + ", questionDate="
-				+ questionDate + ", memberNo=" + memberNo + ", questionStatus=" + questionStatus + "]";
+				+ questionDate + ", memberNo=" + memberNo + ", questionStatus=" + questionStatus + ", questionContent="
+				+ questionContent + "]";
 	}
 
+	
 	
 }

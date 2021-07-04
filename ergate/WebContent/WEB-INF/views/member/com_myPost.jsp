@@ -59,7 +59,6 @@
         <div class="fre_mb-form">
             <div class="myboard">
                 <h4 class="fre_mbtitle">내 게시글</h4>
-                ${MyPostPagination}
                 <br>
                 <hr>
             </div>

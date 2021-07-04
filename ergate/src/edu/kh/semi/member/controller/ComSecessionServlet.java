@@ -12,7 +12,7 @@ import edu.kh.semi.member.model.service.MemberService;
 import edu.kh.semi.member.model.vo.ComMember;
 
 @WebServlet("/member/com_secession")
-public class com_SecessionServlet extends HttpServlet {
+public class ComSecessionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

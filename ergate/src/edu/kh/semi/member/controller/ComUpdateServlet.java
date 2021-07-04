@@ -12,63 +12,45 @@ import com.sun.net.httpserver.HttpsConfigurator;
 
 import edu.kh.semi.member.model.service.MemberService;
 import edu.kh.semi.member.model.vo.ComMember;
-import edu.kh.semi.member.model.vo.FreMember;
 
-@WebServlet("/member/fre_update")
-public class fre_updateServlet extends HttpServlet {
+@WebServlet("/member/com_update")
+public class ComUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
 		
-		FreMember freLoginMember = (FreMember)session.getAttribute("freLoginMember");
+		ComMember comLoginMember = (ComMember)session.getAttribute("comLoginMember");
 				
-		int memberNo = freLoginMember.getMemberNo();
+		int memberNo = comLoginMember.getMemberNo();
 		
-		String freEmail = request.getParameter("email");
+		String comEmail = request.getParameter("email");
 		String[] phone = request.getParameterValues("phone");
-		String frePhone = String.join("-", phone);
-		String minTime = request.getParameter("time1");
-		String maxTime = request.getParameter("time2");
-		String minSalary = request.getParameter("salary1");
-		String maxSalary = request.getParameter("salary2");
-		String feild = request.getParameter("feild");
-		String work = request.getParameter("work");
-		String experience = request.getParameter("experience");
-		String skil = request.getParameter("skil");
+		String comPhone = String.join("-", phone);
 		
 		
-		FreMember freMember = new FreMember(memberNo, frePhone, freEmail, minTime, maxTime, minSalary, maxSalary, feild, work, experience,skil);		
+		ComMember comMember = new ComMember(memberNo,comEmail,comPhone);		
 		try {
 			MemberService service = new MemberService();
 			
-			int result = service.updateFreMember(freMember);
+			int result = service.updateComMember(comMember);
 			
-			System.out.println(result);
+			
 			if(result > 0) {
 				session.setAttribute("icon", "success"); // success, warning, error, info
 				session.setAttribute("title", "수정 성공");	
 				session.setAttribute("text", "회원 정보 수정에 성공하였습니다");	
-				
-				freLoginMember.setMemberPhone(frePhone);
-				freLoginMember.setMemberEmail(freEmail);
-				freLoginMember.setMinTime(minTime);
-				freLoginMember.setMaxTime(maxTime);
-				freLoginMember.setMinSalary(minSalary);
-				freLoginMember.setMaxSalary(maxSalary);
-				freLoginMember.setFeild(feild);
-				freLoginMember.setWork(work);
-				freLoginMember.setExperience(experience);
-				freLoginMember.setSkil(skil);
-				
+
+				comLoginMember.setComPhone(comPhone);
+				comLoginMember.setComEmail(comEmail);
 			}else {
 				session.setAttribute("icon", "error"); // success, warning, error, info
 				session.setAttribute("title", "수정 실패");	
 				session.setAttribute("text", "회원 정보 수정에 실패하였습니다.");	
 			}
 			
-			response.sendRedirect("fre_myPage");
+			response.sendRedirect( "com_myPage" );
 			
 		} catch (Exception e) {
 			e.printStackTrace();

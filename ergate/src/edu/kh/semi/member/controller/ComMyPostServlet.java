@@ -17,7 +17,7 @@ import edu.kh.semi.member.model.vo.MemberBoard;
 import edu.kh.semi.member.model.vo.MyPostPagination;
 
 @WebServlet("/com_myPost/*")
-public class com_MyPostServlet extends HttpServlet {
+public class ComMyPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
@@ -29,10 +29,6 @@ public class com_MyPostServlet extends HttpServlet {
 		
 		String path = null;
 		RequestDispatcher view = null;
-		
-		String icon = null;
-		String title = null;
-		String text = null;
 		
 		try {
 			

@@ -1,6 +1,8 @@
 package edu.kh.semi.member.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,62 +13,59 @@ import javax.servlet.http.HttpSession;
 import edu.kh.semi.member.model.service.MemberService;
 import edu.kh.semi.member.model.vo.FreMember;
 
-@WebServlet("/member/fre_secession")
-public class fre_SecessionServlet extends HttpServlet {
+@WebServlet("/member/fre_changePwd")
+public class FreChangePwdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/WEB-INF/views/member/fre_secession.jsp").forward(request, response);
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/fre_changePwd.jsp");
+		
+		view.forward(request, response);
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String currentPwd = request.getParameter("currentPwd");
+		String newPwd1 = request.getParameter("newPwd1");
 		
 		HttpSession session = request.getSession();
 		
 		FreMember freLoginMember = (FreMember)session.getAttribute("freLoginMember");
 		
 		int freNo = freLoginMember.getMemberNo();
-		String frePw = request.getParameter("currentPwd");
+		
+		String frePw = freLoginMember.getMemberPw();
 		
 		try {
 			
-			int result = new MemberService().freSecession(freNo,frePw);
+			int result = new MemberService().freChangePwd(currentPwd, newPwd1, freNo);
 			
-			String path = null;
-			String icon = null;
-			String title = null;
-			String text = null;
-			
-			if (result > 0) { 
-				icon = "success";
-				title = "회원 탈퇴 성공";
-				text = "이용해 주셔서 감사합니다.";
-
-				path = request.getContextPath();
-				session.invalidate();
+			if(currentPwd.equals(frePw) ) {
 				
-			} else {
-				icon = "error";
-				title = "회원 탈퇴 실패";
-				text = "비밀번호가 일치하지 않습니다.";
+				session.setAttribute("icon","warning");
+				session.setAttribute("title", "현재 비밀번호가 같지 않습니다.");	
 				
-				path = "fre_secession";
+			}else if(result>0) {
+				
+				session.setAttribute("icon", "success"); 
+				session.setAttribute("title", "비밀번호 변경 성공");	
+				
+			}else {
+				
+				session.setAttribute("icon", "error"); 
+				session.setAttribute("title", "비밀번호 변경 실패");	
+				
 			}
 			
-			session = request.getSession();
-			
-			session.setAttribute("icon", icon);
-			session.setAttribute("title", title);
-			session.setAttribute("text", text);
-
-			response.sendRedirect(path);
-			
+			response.sendRedirect("fre_myPage");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 
 }

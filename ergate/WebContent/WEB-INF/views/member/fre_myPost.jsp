@@ -55,7 +55,7 @@
 <body>
     <jsp:include page="../common/header.jsp"></jsp:include>
       <div id="fre_container">
-       		<jsp:include page="com_sideMenu.jsp"></jsp:include>
+       		<jsp:include page="sideMenu.jsp"></jsp:include>
         <div class="fre_mb-form">
             <div class="myboard">
                 <h4 class="fre_mbtitle">내 게시글</h4>
