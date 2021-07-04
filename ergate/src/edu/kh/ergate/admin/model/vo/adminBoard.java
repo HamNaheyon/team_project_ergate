@@ -14,11 +14,12 @@ public class adminBoard {
 	private int categoryCD;
 	private int boardTypeNo;
 	private String memberId;
+	private int boardStyle;
 	public adminBoard() {
 		// TODO Auto-generated constructor stub
 	}
 	public adminBoard(int boardNo, String boardTitle, String boardContent, int readCount, Timestamp createDT,
-			Timestamp modifyDT, String boardStatus, int memberNo, int categoryCD, int boardTypeNo, String memberId) {
+			Timestamp modifyDT, String boardStatus, int memberNo, int categoryCD, int boardTypeNo, String memberId, int boardStyle) {
 		super();
 		this.boardNo = boardNo;
 		this.boardTitle = boardTitle;
@@ -31,6 +32,7 @@ public class adminBoard {
 		this.categoryCD = categoryCD;
 		this.boardTypeNo = boardTypeNo;
 		this.memberId = memberId;
+		this.boardStyle = boardStyle;
 	}
 	public int getBoardNo() {
 		return boardNo;
@@ -98,13 +100,20 @@ public class adminBoard {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
+	public int getBoardStyle() {
+		return boardStyle;
+	}
+	public void setBoardStyle(int boardStyle) {
+		this.boardStyle = boardStyle;
+	}
 	@Override
 	public String toString() {
 		return "adminBoard [boardNo=" + boardNo + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
 				+ ", readCount=" + readCount + ", createDT=" + createDT + ", modifyDT=" + modifyDT + ", boardStatus="
 				+ boardStatus + ", memberNo=" + memberNo + ", categoryCD=" + categoryCD + ", boardTypeNo=" + boardTypeNo
-				+ ", memberId=" + memberId + "]";
+				+ ", memberId=" + memberId + ", boardStyle=" + boardStyle + "]";
 	}
+	
 	
 	
 }

@@ -147,6 +147,111 @@ public class DMLServlet extends HttpServlet {
 				
 				response.sendRedirect(request.getContextPath()+"/admin/ComMemberDel?type=G&cp="+cp);
 			}
+			else if(command.equals("freDel")) {
+				int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+				int boardTypeNo = Integer.parseInt(request.getParameter("type"));
+				System.out.println("freDel:   "+boardTypeNo);
+				int result = service.boardDel(boardNo,boardTypeNo);
+				if(result>0) {
+					icon="success";
+					title="블라인드 성공";
+				}
+				else {
+					icon="error";
+					title="블라인드 실패";
+				}
+				
+				Pagination pagination = new adminBoardService().getPagination(cp,boardTypeNo);
+				System.out.println("pagination :   "+pagination);
+				List<adminBoard> adminBoardList = new adminBoardService().selectBoardList(pagination);
+				System.out.println("adminBoardList :   "+adminBoardList);
+				HttpSession session = request.getSession();
+				session.setAttribute("icon", icon);
+				session.setAttribute("title", title);
+				session.setAttribute("pagination", pagination);
+				session.setAttribute("adminBoardList", adminBoardList);
+				
+				response.sendRedirect(request.getContextPath()+"/admin/freBoardB?type=1&cp="+cp);
+				
+			}
+			else if(command.equals("freRe")) {
+				int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+				int boardTypeNo = Integer.parseInt(request.getParameter("type"));
+				
+				int result = service.boardRe(boardNo,boardTypeNo);
+				if(result>0) {
+					icon="success";
+					title="블라인드 복구 성공";
+				}
+				else {
+					icon="error";
+					title="블라인드 복구 실패";
+				}
+				
+				Pagination pagination = new adminBoardService().getPagination(cp,boardTypeNo);
+				List<adminBoard> adminBoardList = new adminBoardService().selectBoardList(pagination);
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("icon", icon);
+				session.setAttribute("title", title);
+				session.setAttribute("pagination", pagination);
+				session.setAttribute("adminBoardList", adminBoardList);
+				
+				response.sendRedirect(request.getContextPath()+"/admin/freBoardB?type=1&cp="+cp);
+			}
+			else if(command.equals("freMemDel")) {
+				int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+				String memberGrade =request.getParameter("type");
+				
+				int result = service.memberDel(memberNo);
+				if(result>0) {
+					icon="success";
+					title="회원 탈퇴 성공";
+				}
+				else {
+					icon="error";
+					title="회원 탈퇴 실패";
+				}
+				
+				
+				Pagination pagination = new adminBoardService().getMemPagination2(cp,memberGrade);
+				
+				List<adminMember> adminMemberList = new adminBoardService().selectMember2(pagination);	
+				System.out.println("adminMemberList ::::::"+adminMemberList);
+				HttpSession session = request.getSession();
+				session.setAttribute("icon", icon);
+				session.setAttribute("title", title);
+				request.setAttribute("pagination", pagination);
+				request.setAttribute("adminMemberList", adminMemberList);
+				
+				response.sendRedirect(request.getContextPath()+"/admin/freMemberDel?type=F&cp="+cp);
+			}
+			else if(command.equals("freMemRe")) {
+				int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+				String memberGrade =request.getParameter("type");
+				
+				int result = service.memberRe(memberNo);
+				if(result>0) {
+					icon="success";
+					title="회원 복구 성공";
+				}
+				else {
+					icon="error";
+					title="회원 복구 실패";
+				}
+				
+				
+				Pagination pagination = new adminBoardService().getMemPagination2(cp,memberGrade);
+				
+				List<adminMember> adminMemberList = new adminBoardService().selectMember2(pagination);	
+				HttpSession session = request.getSession();
+				session.setAttribute("icon", icon);
+				session.setAttribute("title", title);
+				request.setAttribute("pagination", pagination);
+				request.setAttribute("adminMemberList", adminMemberList);
+				
+				response.sendRedirect(request.getContextPath()+"/admin/freMemberDel?type=F&cp="+cp);
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

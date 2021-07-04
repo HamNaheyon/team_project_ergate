@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.kh.ergate.admin.model.dao.adminBoardDAO;
+import edu.kh.ergate.admin.model.vo.AdminQuestion;
 import edu.kh.ergate.admin.model.vo.Pagination;
 import edu.kh.ergate.admin.model.vo.adminBoard;
 import edu.kh.ergate.admin.model.vo.adminMember;
@@ -95,6 +96,53 @@ public class adminBoardService {
 		adminMember adminMember = dao.adminSel(conn,memberNo);
 		close(conn);
 		return adminMember;
+	}
+
+	/**회원 전체 조회 2
+	 * @param pagination
+	 * @return
+	 * @throws Exception
+	 */
+	public List<adminMember> selectMember2(Pagination pagination)throws Exception {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		List<adminMember> adminMemberList = dao.selectMember2(conn,pagination);
+		close(conn);
+		return adminMemberList;
+	}
+
+	public Pagination getMemPagination2(int cp, String memberGrade) throws Exception{
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		int map = dao.getMemPagination2(conn,cp,memberGrade);
+		close(conn);
+		int listCount = map;
+		return new Pagination(cp,listCount,memberGrade);
+	}
+
+	public adminMember adminSel2(int memberNo)throws Exception {
+		// TODO Auto-generated method stub
+		Connection conn =getConnection();
+		adminMember adminMember = dao.adminSel2(conn,memberNo);
+		close(conn);
+		return adminMember;
+	}
+
+	public Pagination getQuestionPagination(int cp) throws Exception{
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		int map = dao.getQuestionPagination(conn,cp);
+		close(conn);
+		int listCount = map;
+		return new Pagination(cp,listCount);
+	}
+
+	public List<AdminQuestion> selectQuestion(Pagination pagination)throws Exception {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		List<AdminQuestion> adminBoardList = dao.selectQuestion(conn,pagination);
+		close(conn);
+		return adminBoardList;
 	}
 
 	
