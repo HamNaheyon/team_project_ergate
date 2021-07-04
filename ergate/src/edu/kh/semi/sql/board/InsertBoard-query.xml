@@ -15,7 +15,7 @@
 	<!-- 게시글 삽입 SLQ -->
 	<entry key="insertBoard">
 		INSERT INTO BOARD 
-		VALUES(?, ?, ?, 0, DEFAULT, DEFAULT, DEFAULT, ?, ?, ?)
+		VALUES(?, ?, ?, 0, DEFAULT, DEFAULT, DEFAULT, ?,?,?,?)
 	</entry>
 
 	<!-- Attachment 테이블 삽입 SLQ -->

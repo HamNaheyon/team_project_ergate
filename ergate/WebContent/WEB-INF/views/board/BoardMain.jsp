@@ -11,27 +11,54 @@
     <title>portfolio_list</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
     <link rel = "stylesheet" type = "text/css" href = "${contextPath}/resources/css/BoardMain_Style.css">
 	<jsp:include page="../common/header.jsp"/>
 
 </head>
 <body>
-	
+
 	<jsp:include page="Board_Search_Form.jsp"/>
 	<jsp:include page="Board_SideMenu.jsp"/>
     <div class="pfcontainer">
-        <div class="boardroute"><h4 id="boardroute">${pagination.boardName} > ${category.categoryName}</h4></div>
+	
+    		<div class="boardroute">
+    			<c:if test="${pagination.boardStyle==1 && pagination.categoryCd==''}">
+    				<h4 id="boardroute">제안서 > 전체</h4>	
+    			</c:if>
+    			<c:if test="${pagination.boardStyle==1 && pagination.categoryCd==1}">
+    				<h4 id="boardroute">제안서 > 웹개발자</h4>	
+    			</c:if>
+    			<c:if test="${pagination.boardStyle==1 && pagination.categoryCd==2}">
+    				<h4 id="boardroute">제안서 > 앱개발자</h4>	
+    			</c:if>
+    			<c:if test="${pagination.boardStyle==2 && pagination.categoryCd==''}">
+    				<h4 id="boardroute">포트폴리오 > 전체</h4>	
+    			</c:if>
+    			<c:if test="${pagination.boardStyle==2 && pagination.categoryCd==1}">
+    				<h4 id="boardroute">포트폴리오 > 웹개발자</h4>	
+    			</c:if>
+    			<c:if test="${pagination.boardStyle==2 && pagination.categoryCd==2}">
+    				<h4 id="boardroute">포트폴리오 > 앱개발자</h4>	
+    			</c:if>
+    		</div>
+    
+        
+        
         <div class="pftitle">
-            <h3 id="portfoliotitle">${pagination.boardName}</h3>
+        	<c:if test="${pagination.boardStyle == 1}">
+            	<h3 id="portfoliotitle">제안서 게시판</h3>
+            </c:if>
+        	<c:if test="${pagination.boardStyle == 2}">
+            	<h3 id="portfoliotitle">포트폴리오 게시판</h3>
+            </c:if>
         </div>
-        <div class="pfsort">
+<!--         <div class="pfsort">
             <select id="pfsort" name="pfsort">
                 <option name="sort" value="최신순">최신순</option>
                 <option name="sort" value="경력">경력</option>
                 <option name="sort" value="언어">언어</option>
             </select>
-        </div>
+        </div> -->
         <div class="pfboardcontents">
         	<div id="pfcontents">
 				<c:choose>
@@ -43,24 +70,35 @@
 					<c:otherwise>
 						<c:forEach items ="${boardList}" var="board">
 							
-		                	<a href="${contextPath}/detailBoard?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${pagination.boardType}">
-		                	<%-- 썸네일 출력 --%>
-			                <c:choose>
-			                	<%-- 썸네일 있는 경우 --%>
-			                	<c:when test="${ empty board.fileName[0]}"> 
-				                	<div id="pfthumbnail" style=float:left;>
-			                    		<img src="${contextPath}/resources/img/developer.png" style="width:95%;">
-			                		</div>
-			                	</c:when>
-			                	<%-- 썸네일 없는 경우 --%>
-			                	<c:otherwise>
-				                	<div id="pfthumbnail">
-			                    		<img src="${contextPath}/${board.filePath[0]}${board.fileName[0]}" style="width:95%;">
-			                		</div>
-			                	</c:otherwise>
-			                </c:choose>
+		                	<a href="${contextPath}/detailBoard?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${pagination.boardStyle}">
+
+				                <c:choose>
+	
+				                	<c:when test="${ empty board.fileName[0]}"> 
+					                	<div id="pfthumbnail" style=float:left;>
+				                    		<img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+				                		</div>
+				                	</c:when>
+	
+				                	<c:otherwise>
+					                	<div id="pfthumbnail">
+				                    		<img src="${contextPath}/${board.filePath[0]}${board.fileName[0]}" style="width:95%;">
+				                		</div>
+				                	</c:otherwise>
+	
+				                </c:choose>
+				                
 		                	</a>
+		                	
 			                <div id="pftitle"><h4>${board.boardTitle}</h4></div>
+			                <div id="pfwriter">
+				                <c:if test="${board.boardType == 1}">
+				                	<h4>프리랜서 회원</h4>
+				                </c:if>
+				                <c:if test="${board.boardType == 2}">
+				                	<h4>기업 회원</h4>
+				                </c:if>
+			                </div>
 			                <div id="pfviews"><h6>${board.readCount}</h6></div>
 						
 						</c:forEach>
@@ -73,7 +111,7 @@
             			<%---------------------- Pagination start----------------------%>
 			<%-- 페이징 처리 시 주소를 쉽게 작성할 수 있도록 필요한 변수를 미리 선언 --%>
 			
-			<c:set var="pageURL" value="list?type=${pagination.boardType}"/>
+			<c:set var="pageURL" value="list?type=${pagination.boardStyle}"/>
 			
 			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage}"/><%-- &ca=${category.prevPage} --%>
 			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage}"/><%-- &ca=${category.nextPage} --%>

@@ -17,23 +17,21 @@
     <div class="smcontainer">
         <div class="smbt">
             <div class="smboardtypeNM proposal">
-                <a href = "${contextPath}/board/list?type=1" id="iframeposting">
-                    제안서</a>
+                <a href = "${contextPath}/board/list?type=1" id="iframeposting">제안서</a>
             </div>
             <div class="smboardtypeNM portfolio">
-                <a href = "${contextPath}/board/list?type=2" id="iframeposting">
-                    포트폴리오</a>
+                <a href = "${contextPath}/board/list?type=2" id="iframeposting">포트폴리오</a>
             </div>
         </div>
         <div class="smbc">
             <div class="boardcategory">
-                <div class="webdeveloper"><a href="#">웹개발자</a></div>
-                <div class="appdeveloper"><a href="#">앱개발자</a></div>
+                <div class="webdeveloper"><a href="${contextPath}/board/list?cp=${pagination.currentPage}&type=${pagination.boardStyle}&cg=1">웹개발자</a></div>
+                <div class="appdeveloper"><a href="${contextPath}/board/list?cp=${pagination.currentPage}&type=${pagination.boardStyle}&cg=2">앱개발자</a></div>
             </div>
         </div>
         <div class="smbp">
         <c:if test="${!empty freLoginMember || !empty comLoginMember}">
-            <div class="posting"><a href="../board2/insertForm?type=${pagination.boardType}" id="ifameposting">게시글작성</a></div>
+            <div class="posting"><a href="../board2/insertForm?type=${param.type}">게시글작성</a></div>
         </c:if>
         </div>
     </div>

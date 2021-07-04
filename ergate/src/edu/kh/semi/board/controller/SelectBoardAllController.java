@@ -42,25 +42,38 @@ public class SelectBoardAllController extends HttpServlet {
 			
 			int cp = request.getParameter("cp") == null ? 1 :
 				Integer.parseInt(request.getParameter("cp"));
-//			int ca = request.getParameter("ca") == null ? 1 :
-//				Integer.parseInt(request.getParameter("ca"));
 			
 			if(command.equals("list")) {
-				int boardType = Integer.parseInt(request.getParameter("type"));
+				int boardStyle = Integer.parseInt(request.getParameter("type"));
 				
-				Pagination pagination = service.getPagination(cp, boardType);
-//				Category category = service.getCategory(ca, categoryCode);
+				if(request.getParameter("cg")  == null) {
+
+					Pagination pagination = service.getPagination(cp, boardStyle);
+
+					List<Board> boardList = service.selectBoardList(pagination);
+					
+					request.setAttribute("pagination", pagination);
+					request.setAttribute("boardList", boardList);
+					
+					path = "/WEB-INF/views/board/BoardMain.jsp";
+					view = request.getRequestDispatcher(path);
+					view.forward(request, response);
+					
+				}else {
+					int boardCategory = Integer.parseInt(request.getParameter("cg"));
+
+					Pagination pagination = service.getPagination(cp, boardStyle, boardCategory);
+
+					List<Board> boardList = service.selectBoardList(pagination);
+					
+					request.setAttribute("pagination", pagination);
+					request.setAttribute("boardList", boardList);
+					
+					path = "/WEB-INF/views/board/BoardMain.jsp";
+					view = request.getRequestDispatcher(path);
+					view.forward(request, response);
+				}
 				
-				List<Board> boardList = service.selectBoardList(pagination);
-				
-				request.setAttribute("pagination", pagination);
-				request.setAttribute("boardList", boardList);
-				
-				path = "/WEB-INF/views/board/BoardMain.jsp";
-				view = request.getRequestDispatcher(path);
-				view.forward(request, response);
-				
-//				System.out.println(boardList);
 			}
 
 		} catch (Exception e) {

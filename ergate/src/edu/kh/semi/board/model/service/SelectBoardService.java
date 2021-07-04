@@ -21,22 +21,41 @@ public class SelectBoardService {
 
 	/** 게시판 페이징 처리 객체 생성용 Service
 	 * @param cp
-	 * @param boardType
+	 * @param boardStyle
 	 * @return pagination
 	 * @throws Exception
 	 */
-	public Pagination getPagination(int cp, int boardType)throws Exception {
+	public Pagination getPagination(int cp, int boardStyle)throws Exception {
 
 		Connection conn = getConnection();
 		
-		Map<String, Object> map = dao.getListCount(conn, cp, boardType);
+		Map<String, Object> map = dao.getListCount(conn, cp, boardStyle);
 		
 		close(conn);
 		
 		int listCount = map.get("listCount") != null ? (int)map.get("listCount") : 0;
-		String boardName = (String)map.get("boardName");
 		
-		return new Pagination(cp, listCount, boardType, boardName);
+		return new Pagination(cp, listCount, boardStyle);
+	}
+	
+	/** 카테고리별 게시판 페이징 처리 객체 생성용 Service
+	 * @param cp
+	 * @param boardStyle
+	 * @param boardCategory
+	 * @return pagination
+	 * @throws Exception
+	 */
+	public Pagination getPagination(int cp, int boardStyle, int boardCategory) throws Exception{
+		Connection conn = getConnection();
+		
+		Map<String, Object> map = dao.getListCount(conn, cp, boardStyle, boardCategory);
+		
+		close(conn);
+		
+		int listCount = map.get("listCount") != null ? (int)map.get("listCount") : 0;
+		String categoryNm = (String)map.get("categoryNm");
+		
+		return new Pagination(cp, listCount, boardStyle, boardCategory, categoryNm);
 	}
 
 	/** 게시글 목록 조회 Service
@@ -48,11 +67,20 @@ public class SelectBoardService {
 		
 		Connection conn = getConnection();
 		
-		List<Board> boardList = dao.selectBoardList(conn, pagination);
+		List<Board> boardList = null;
+		
+		
+		if(pagination.getCategoryNm() == null) { // 카테고리가 선택되지 않았을 
+			boardList = dao.selectBoardList(conn, pagination);
+		}else { // 카테고리가 선택 되었을 때
+			boardList = dao.selectCategoryList(conn, pagination);
+		}
 		
 		close(conn);
 		
 		return boardList;
 	}
+
+
 	
 }

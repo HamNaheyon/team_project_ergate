@@ -20,10 +20,14 @@ public class Board {
 //	private char boardStatus;
 //	private int memberNo;
 //	private int categoryCd;
-//	private int boardTypeNo;
+	private int boardType;
 	
 	private List<String> filePath;
 	private List<String> fileName;
+	
+	private int memberNo;
+	private String memberId;
+	private String memberGrade;
 	
 	public Board() {}
 
@@ -89,6 +93,38 @@ public class Board {
 
 	public void setFileName(List<String> fileName) {
 		this.fileName = fileName;
+	}
+
+	public int getBoardType() {
+		return boardType;
+	}
+
+	public void setBoardType(int boardType) {
+		this.boardType = boardType;
+	}
+
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+	public String getMemberGrade() {
+		return memberGrade;
+	}
+
+	public void setMemberGrade(String memberGrade) {
+		this.memberGrade = memberGrade;
 	}
 
 	@Override
