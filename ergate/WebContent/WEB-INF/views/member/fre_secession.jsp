@@ -47,7 +47,7 @@
         <jsp:include page="../common/header.jsp"></jsp:include>
 
 		<div class="row my-5">
-			<jsp:include page="com_sideMenu.jsp"></jsp:include>
+			<jsp:include page="sideMenu.jsp"></jsp:include>
 
 			<div class="col-sm-offset-2 col-sm-8">
                 <form class="dropOut-form" action="fre_secession" method="POST" onsubmit="return secessionValidate();">

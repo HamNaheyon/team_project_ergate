@@ -105,6 +105,23 @@
             ORDER BY BOARD_NO DESC)A)
 		WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key="QuestionList">
+	SELECT * FROM
+    (SELECT ROWNUM RNUM, A.*FROM
+        (SELECT * FROM QUESTION_LIST
+            WHERE QUESTION_STATUS = 'N'
+            AND MEMBER_NO = ?
+        ORDER BY QUESTION_NO DESC)A)
+    WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="getQuestionList">
+		SELECT COUNT(*) FROM QUESTIONS
+	</entry>
+	<entry key="selectQuestion">
+		SELECT QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_DATE,MEMBER_NO,QUESTION_STATUS
+		FROM QUESTIONS
+		WHERE QUESTION_NO = ?
+	</entry>
 </properties>
 
 

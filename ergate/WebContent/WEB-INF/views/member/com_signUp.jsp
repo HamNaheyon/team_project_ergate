@@ -183,9 +183,6 @@
                         </div>
 
                         <!-- ajax 중복검사 시 필요없음 -->
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-primary" id="idDupCheck">중복검사</button>
-                        </div>
 
                         <div class="col-md-6 offset-md-3">
                             <span id="checkId">&nbsp;</span>

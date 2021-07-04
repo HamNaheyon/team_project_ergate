@@ -47,7 +47,7 @@
         <jsp:include page="../common/header.jsp"></jsp:include>
 
 		<div class="row my-5">
-			<jsp:include page="sideMenu.jsp"></jsp:include>
+			<jsp:include page="com_sideMenu.jsp"></jsp:include>
 
 			<div class="col-sm-8">
                 <h4 class="mb-3">비밀 번호 변경</h4>

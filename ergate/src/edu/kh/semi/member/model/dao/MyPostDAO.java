@@ -15,6 +15,7 @@ import java.util.Properties;
 
 import edu.kh.semi.member.model.vo.MemberBoard;
 import edu.kh.semi.member.model.vo.MyPostPagination;
+import edu.kh.semi.member.model.vo.Question;
 
 public class MyPostDAO {
 
@@ -109,8 +110,8 @@ public class MyPostDAO {
 			
 			rs = pstmt.executeQuery();
 			
+			MemberBoard board = new MemberBoard();
 			while(rs.next()) {
-				MemberBoard board = new MemberBoard();
 				
 				board.setBoardNo(rs.getInt("BOARD_NO"));
 				board.setBoardTitle(rs.getString("BOARD_TITLE"));
@@ -128,6 +129,141 @@ public class MyPostDAO {
 		
 		
 		return boardList;
+	}
+
+
+
+
+	/** 내 문의사항 목록 조회 DAO
+	 * @param conn
+	 * @param pagination
+	 * @param memberNo
+	 * @return questionList
+	 * @throws Exception
+	 */
+	public List<Question> QuestionList(Connection conn, MyPostPagination pagination, int memberNo)throws Exception {
+		
+		List<Question> questionList = new ArrayList<Question>();
+		
+		String sql = prop.getProperty("QuestionList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memberNo);
+			
+			// 조회할 범위를 지정할 변수
+			int startRow = (pagination.getCurrentPage() - 1) * pagination.getLimit() + 1;
+			int endRow = startRow + pagination.getLimit() - 1;
+			
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rs = pstmt.executeQuery();
+			
+			Question question = new Question();
+			while(rs.next()) {
+				
+				question.setQuestionNo(rs.getInt("QUESTION_NO"));
+				question.setQuestionStatus(rs.getString("QUESTION_STATUS"));
+				question.setQuestionTitle(rs.getString("QUESTION_TITLE"));
+				question.setQuestionDate(rs.getTimestamp("QUESTION_DATE"));
+				
+				questionList.add(question);
+				
+			}
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		return questionList;
+	}
+
+
+
+
+	/** 문의 사항 pagination
+	 * @param conn
+	 * @param cp
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> getQuestionPagination(Connection conn, int cp, int memberNo)throws Exception {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		String sql = prop.getProperty("getQuestionList");
+		
+	
+		try {
+			
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				map.put("listCount",rs.getInt(1));
+				
+			}
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		return map;
+	}
+
+
+
+
+	/** 내 문의사항 상세 조회 DAO
+	 * @param conn 
+	 * @param questionNo
+	 * @return question
+	 * @throws Exception
+	 */
+	public Question selectQuestion(Connection conn, int questionNo)throws Exception {
+		
+		Question question = null;
+		
+		String sql = prop.getProperty("selectQuestion");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, questionNo);
+			
+			rs = pstmt.executeQuery();
+			
+			question = new Question();
+			
+			if(rs.next()) {
+				
+				question.setQuestionNo(rs.getInt("QUESTION_NO"));
+				question.setQuestionTitle(rs.getString("QUESTION_TITLE"));
+				question.setQuestionDate(rs.getTimestamp("QUESTION_DATE"));
+				question.setQuestionContent(rs.getString("QUESTION_CONTENT"));
+				question.setQuestionStatus(rs.getString("QUESTION_STATUS"));
+				question.setMemberNo(rs.getInt("MEMBER_NO"));
+				
+			}
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		
+		return question;
 	}
 
 }

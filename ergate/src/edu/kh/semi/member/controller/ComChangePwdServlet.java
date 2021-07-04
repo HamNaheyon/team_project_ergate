@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.kh.semi.member.model.service.MemberService;
-import edu.kh.semi.member.model.vo.FreMember;
+import edu.kh.semi.member.model.vo.ComMember;
 
-@WebServlet("/member/fre_changePwd")
-public class fre_changePwdServlet extends HttpServlet {
+@WebServlet("/member/com_changePwd")
+public class ComChangePwdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/fre_changePwd.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/com_changePwd.jsp");
 		
 		view.forward(request, response);
 		
@@ -33,17 +33,17 @@ public class fre_changePwdServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		FreMember freLoginMember = (FreMember)session.getAttribute("freLoginMember");
+		ComMember comLoginMember = (ComMember)session.getAttribute("comLoginMember");
 		
-		int freNo = freLoginMember.getMemberNo();
+		int comNo = comLoginMember.getMemberNo();
 		
-		String frePw = freLoginMember.getMemberPw();
-		
+		String comPw = comLoginMember.getComPw();
+		 
 		try {
 			
-			int result = new MemberService().freChangePwd(currentPwd, newPwd1, freNo);
+			int result = new MemberService().comChangePwd(currentPwd, newPwd1, comNo);
 			
-			if(currentPwd.equals(frePw) ) {
+			if(currentPwd.equals(comPw) ) {
 				
 				session.setAttribute("icon","warning");
 				session.setAttribute("title", "현재 비밀번호가 같지 않습니다.");	
@@ -60,7 +60,7 @@ public class fre_changePwdServlet extends HttpServlet {
 				
 			}
 			
-			response.sendRedirect("fre_myPage");
+			response.sendRedirect("com_myPage");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
