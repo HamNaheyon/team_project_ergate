@@ -24,12 +24,22 @@ ORDER BY BOARD_NO DESC) A)
 WHERE RNUM BETWEEN ? AND ?
 </entry>
 
+<entry key="selectQuestion">
+SELECT * FROM(
+SELECT ROWNUM RNUM, A.* FROM(
+SELECT * FROM ADMIN_QUESTION
+ORDER BY QUESTION_NO DESC) A)
+WHERE RNUM BETWEEN ? AND ?
+</entry>
 <!-- 페이징 처리 SQL -->
 <entry key="getMemPagination">
 SELECT COUNT(*) FROM ADMIN_COM_MEMBER
 WHERE MEMBER_GRADE =?
 </entry>
-
+<entry key="getQuestionPagination">
+SELECT COUNT(*) FROM ADMIN_QUESTION
+ORDER BY QUESTION_NO DESC
+</entry>
 <!-- 회원조회 SQL -->
 <entry key="selectMember">
 SELECT * FROM(

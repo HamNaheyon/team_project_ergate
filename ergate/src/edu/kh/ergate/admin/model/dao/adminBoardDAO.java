@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import edu.kh.ergate.admin.model.vo.AdminQuestion;
 import edu.kh.ergate.admin.model.vo.Pagination;
 import edu.kh.ergate.admin.model.vo.adminBoard;
 import edu.kh.ergate.admin.model.vo.adminMember;
@@ -383,6 +384,58 @@ public class adminBoardDAO {
 			close(pstmt);
 		}
 		return am;
+	}
+
+	public int getQuestionPagination(Connection conn, int cp) throws Exception{
+		// TODO Auto-generated method stub
+		int map = 0;
+		String sql = prop.getProperty("getQuestionPagination");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				map=rs.getInt(1);
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return map;
+	}
+
+	public List<AdminQuestion> selectQuestion(Connection conn, Pagination pagination) throws Exception {
+		// TODO Auto-generated method stub
+		List<AdminQuestion>  aq= null;
+		String sql = prop.getProperty("selectQuestion");
+		try {
+			pstmt= conn.prepareStatement(sql);
+			int startRow=(pagination.getCurrentPage()-1)*pagination.getLimit()+1;
+			int endRow =startRow+pagination.getLimit()-1;
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			aq = new ArrayList<AdminQuestion>();
+			while(rs.next()) {
+				int questionNo = rs.getInt("QUESTION_NO");
+				String questionTitle = rs.getString("QUESTION_TITLE");
+				String questionContent = rs.getString("QUESTION_CONTENT");
+				Date questionDate = rs.getDate("QUESTION_DATE");
+				int memberNo = rs.getInt("MEMBER_NO");
+				String questionStatus = rs.getString("QUESTION_STATUS");
+				String memberId = rs.getString("MEMBER_ID");
+				String memberEmail = rs.getString("MEMBER_EMAIL");
+				String memberGrade = rs.getString("MEMBER_GRADE");
+				
+				AdminQuestion a = new AdminQuestion(questionNo, questionTitle, questionContent, memberId, questionDate, memberEmail, memberGrade, memberNo, questionStatus);
+				aq.add(a);
+						
+				
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return aq;
 	}
 
 }

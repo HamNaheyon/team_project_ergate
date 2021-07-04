@@ -56,6 +56,12 @@ public class Pagination {
 		this.memberGrade = memberGrade;
 		makePagination();
 	}
+	public Pagination(int currentPage, int listCount) {
+		super();
+		this.currentPage = currentPage;
+		this.listCount = listCount;
+		makePagination();
+	}
 
 
 	public int getCurrentPage() {

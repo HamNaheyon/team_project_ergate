@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.kh.ergate.admin.model.service.adminBoardService;
+import edu.kh.ergate.admin.model.vo.AdminQuestion;
 import edu.kh.ergate.admin.model.vo.Pagination;
 import edu.kh.ergate.admin.model.vo.adminBoard;
 import edu.kh.ergate.admin.model.vo.adminMember;
@@ -131,6 +132,12 @@ public class ComBoardAllServlet extends HttpServlet {
 			}else if(command.equals("logout")) {
 				request.getSession().invalidate();
 				request.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(request, response);
+			}else if(command.equals("qusetions")) {
+				Pagination pagination = service.getQuestionPagination(cp);
+				List<AdminQuestion> adminMemberList = service.selectQuestion(pagination);
+				request.setAttribute("pagination", pagination);
+				request.setAttribute("adminMemberList", adminMemberList);
+			    request.getRequestDispatcher("/WEB-INF/views/admin/qusetions.jsp").forward(request, response);
 			}
 			
 		}catch(Exception e) {

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.kh.ergate.admin.model.dao.adminBoardDAO;
+import edu.kh.ergate.admin.model.vo.AdminQuestion;
 import edu.kh.ergate.admin.model.vo.Pagination;
 import edu.kh.ergate.admin.model.vo.adminBoard;
 import edu.kh.ergate.admin.model.vo.adminMember;
@@ -125,6 +126,23 @@ public class adminBoardService {
 		adminMember adminMember = dao.adminSel2(conn,memberNo);
 		close(conn);
 		return adminMember;
+	}
+
+	public Pagination getQuestionPagination(int cp) throws Exception{
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		int map = dao.getQuestionPagination(conn,cp);
+		close(conn);
+		int listCount = map;
+		return new Pagination(cp,listCount);
+	}
+
+	public List<AdminQuestion> selectQuestion(Pagination pagination)throws Exception {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		List<AdminQuestion> adminBoardList = dao.selectQuestion(conn,pagination);
+		close(conn);
+		return adminBoardList;
 	}
 
 	

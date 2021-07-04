@@ -38,31 +38,33 @@
 			<thead
 				style="background-color: rgb(166, 206, 231); color: white; font-weight: bold;">
 				<tr>
-					<th>게시글 번호</th>
+					<th>문의사항 번호</th>
 					<th>문의사항 제목</th>
 					<th>아이디</th>
 					<th>문의 날짜</th>
-					<th>회원 아이디</th>
 					<th>이메일</th>
+					<th>회원 구분(G:기업,F:프리랜서")</th>
 					<th>상세조회</th>
 					<th>처리여부</th>
 					</tr>
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${empty adminBoardList}">
+					<c:when test="${empty adminMemberList}">
 					<tr>
 						<td colspan="6"> 게시물이 없습니다.</td>
 					</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${adminBoardList}" var="board">
+						<c:forEach items="${adminMemberList}" var="board">
 							<tr>
-								<td>${board.boardNo }</td>
-								<td>${board.boardTitle }</td>
+								<td>${board.questionNo }</td>
+								<td>${board.questionTitle }</td>
 								<td>${board.memberId }</td>
-								<td>${board.createDT}</td>
-								<td>${board.boardStatus}</td>
+								<td>${board.questionDate}</td>
+								<td>${board.memberEmail}</td>
+								<td>${board.memberGrade}</td>
+								<td></td>
 								<td></td>
 							</tr>
 						
@@ -73,7 +75,7 @@
 		</table>
 	
 	
-			<c:set var="pageURL" value="ComBoardAll?type=${pagination.boardTypeNo }"/>
+			<c:set var="pageURL" value="qusetions?type=${pagination.memberGrade }"/>
 			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage }"/>
 			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage }"/>
 			
