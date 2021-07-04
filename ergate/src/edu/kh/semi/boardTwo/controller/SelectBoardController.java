@@ -43,13 +43,19 @@ public class SelectBoardController extends HttpServlet {
 			if(command.equals("detailBoard")) {
 				
 				int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+				int type = Integer.parseInt(request.getParameter("type"));
 				
-				Board board = service.selectBoard(boardNo);
-				
-				request.setAttribute("board", board);
-				
-				path = "/WEB-INF/views/detail/detailFree.jsp";
-				
+				if(type == 1) {
+					Board board = service.freeSelectBoard(boardNo);
+					request.setAttribute("board", board);
+					
+					path = "/WEB-INF/views/detail/detailFree.jsp";
+				}else if(type == 2){
+					Board board = service.ComSelectBoard(boardNo);
+					request.setAttribute("board", board);
+					
+					path = "/WEB-INF/views/detail/detailCompany.jsp";
+				}
 				view = request.getRequestDispatcher(path);
 				view.forward(request, response);
 			}
