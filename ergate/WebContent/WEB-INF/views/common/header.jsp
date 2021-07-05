@@ -153,11 +153,14 @@
     .header-2 {
         width: 100%;
         height: 72%;
+        padding: 10px;
     }
 
     #maintitle {
-        margin-top: 25px;
-        margin-left: 320px;
+    
+    	margin-top : 50px;
+        display: block; 
+        margin: 0px auto; 
     }
     .login{
         margin-left: 65px;

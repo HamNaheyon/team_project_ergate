@@ -2,9 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<entry key="questionsSend">
-		INSERT INTO QUSETIONS
+		INSERT INTO QUESTIONS
 		VALUES(SEQ_QNO.NEXTVAL, ?, ?, DEFAULT, ?, DEFAULT)
 	</entry>
-
-	
 </properties>

@@ -1,7 +1,7 @@
 package edu.kh.semi.boardTwo.model.dao;
 
 
-import static edu.kh.semi.common.JDBCTemplate.close;
+import static edu.kh.ergate.common.JDBCTemplate.*;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
