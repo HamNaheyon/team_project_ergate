@@ -70,7 +70,7 @@
           
         </tbody>
       </table>
-   			<c:set var="pageURL" value="freMemberDel?type=${pagination.memberGrade }"/>
+   			<c:set var="pageURL" value="freMemberDel?type=${pagination.memberGrade }${searchStr}"/>
 			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage }"/>
 			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage }"/>
 			
@@ -113,16 +113,19 @@
 			</div>
 	
       <div>
-        <select aria-label="Default select example" style="margin-left: 35%;">
-          <option value="1" selected>회원 번호</option>
-          <option value="2">이름</option>
-          <option value="3">주민번호</option>
-          <option value="4">아이디</option>
-          <option value="5">가입 날짜</option>
-          <option value="6">이메일</option>
-          <option value="7">탈퇴여부</option>
-        </select>
-      <input type="search"> <button id="searchbtn" class="but-style">검색</button>
+         <form action="#" method="GET" id="searchForm">
+			<input type="hidden" name="type" value="F">
+			<select name="sk"aria-label="Default select example" style="margin-left: 35%;">
+ 			<option value="comMemberNo" selected>회원 번호</option>
+          <option value="freMemName">이름</option>
+          <option value="id">아이디</option>
+          <option value="comMemDt">가입 날짜</option>
+          <option value="comMemEmail">이메일</option>
+          <option value="comMemGrade">탈퇴여부</option>
+			</select> <input name="sv"type="search">
+			<button id="searchbtn" class="but-style">검색</button>
+			
+			</form>
     </div>
     
     
@@ -151,7 +154,29 @@ $('.memRe').on("click",function(){
 
 </script>
 
-
+<script>
+    // 검색 내용이 있을 경우 검색창에 해당 내용을 작성해두는 기능
+    (function(){
+       var searchKey = "${param.sk}"; 
+       // 파라미터 중 sk가 있을 경우   ex)  "abc"
+       // 파라미터 중 sk가 없을 경우   ex)  ""
+       var searchValue = "${param.sv}";
+       
+       // 검색창 select의 option을 반복 접근
+       $("select[name=sk] > option").each(function(index, item){
+          // index : 현재 접근중인 요소의 인덱스
+          // item : 현재 접근중인 요소
+                   // content            content
+          if( $(item).val() == searchKey  ){
+             $(item).prop("selected", true);
+          }
+       });      
+       
+       // 검색어 입력창에 searcValue 값 출력
+       $("input[name=sv]").val(searchValue);
+    })();
+    
+	</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

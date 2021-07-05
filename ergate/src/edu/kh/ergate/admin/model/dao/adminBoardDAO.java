@@ -516,4 +516,191 @@ public class adminBoardDAO {
 		}
 		return adminBoardList;
 	}
+	public int getMemPagination(Connection conn, int cp, String memberGrade,String condition) throws Exception{
+		// TODO Auto-generated method stub
+		int map = 0;
+		String sql = prop.getProperty("getMemPagination")+condition;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, memberGrade);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				map=rs.getInt(1);
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return map;
+	}
+	
+	public List<adminMember> selectMember(Connection conn, Pagination pagination,String condition)throws Exception{
+		// TODO Auto-generated method stub
+		List<adminMember> adminMemberList= new ArrayList<adminMember>();
+		String sql = prop.getProperty("selectMember3")+condition+prop.getProperty("selectMember4");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pagination.getMemberGrade());
+			int startRow=(pagination.getCurrentPage()-1)*pagination.getLimit()+1;
+			int endRow =startRow+pagination.getLimit()-1;
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int memberNo = rs.getInt("MEMBER_NO");
+				String memberId = rs.getString("MEMBER_ID");
+				String memberPhone = rs.getString("MEMBER_PHONE");
+				String memberEmail = rs.getString("MEMBER_EMAIL");
+				Date enrollDate = rs.getDate("ENROLL_DATE");
+				String memberStatus = rs.getString("MEMBER_STATUS");
+				String manager = rs.getString("MANAGER");
+				String companyName = rs.getString("COMPANY_NAME");
+				String companyNo = rs.getString("COMPANY_NO");
+				adminMember am = new adminMember();
+				am.setMemberNo(memberNo);
+				am.setMemberId(memberId);
+				am.setMemberPhone(memberPhone);
+				am.setMemberEmail(memberEmail);
+				am.setEnrollDate(enrollDate);
+				am.setMemberStatus(memberStatus);
+				am.setManager(manager);
+				am.setCompanyName(companyName);
+				am.setCompanyNo(companyNo);
+				adminMemberList.add(am);
+
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return adminMemberList;
+	}
+	
+	
+	public int getMemPagination2(Connection conn, int cp, String memberGrade,String condition) throws Exception{
+		// TODO Auto-generated method stub
+		int map = 0;
+		String sql = prop.getProperty("getMemPagination2")+condition;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, memberGrade);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				map=rs.getInt(1);
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return map;
+	}
+	public List<adminMember> selectMember2(Connection conn, Pagination pagination,String condition) throws Exception{
+		// TODO Auto-generated method stub
+		List<adminMember> adminMemberList= new ArrayList<adminMember>();
+		String sql = prop.getProperty("selectMember3")+condition+prop.getProperty("selectMember4");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pagination.getMemberGrade());
+			int startRow=(pagination.getCurrentPage()-1)*pagination.getLimit()+1;
+			int endRow =startRow+pagination.getLimit()-1;
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int memberNo = rs.getInt("MEMBER_NO");
+				String memberId = rs.getString("MEMBER_ID");
+				String memberPhone = rs.getString("MEMBER_PHONE");
+				String memberEmail = rs.getString("MEMBER_EMAIL");
+				Date enrollDate = rs.getDate("ENROLL_DATE");
+				String memberStatus = rs.getString("MEMBER_STATUS");
+				String memberName = rs.getString("MEMBER_NAME");
+				String minTime = rs.getString("MIN_TIME");
+				String maxTime = rs.getString("MAX_TIME");
+				String minSalary = rs.getString("MIN_SALARY");
+				String maxSalary = rs.getString("MAX_SALARY");
+				String feild = rs.getString("FEILD");
+				String work = rs.getString("WORK");
+				String experience = rs.getString("EXPERIENCE");
+				String skil = rs.getString("SKIL");
+				adminMember am = new adminMember();
+				am.setMemberNo(memberNo);
+				am.setMemberId(memberId);
+				am.setMemberPhone(memberPhone);
+				am.setMemberEmail(memberEmail);
+				am.setEnrollDate(enrollDate);
+				am.setMemberStatus(memberStatus);
+				am.setMemberName(memberName);
+				am.setMinTime(minTime);
+				am.setMaxTime(maxTime);
+				am.setMinSalary(minSalary);
+				am.setMaxSalary(maxSalary);
+				am.setFeild(feild);
+				am.setWork(work);
+				am.setExperience(experience);
+				am.setSkil(skil);
+				
+				adminMemberList.add(am);
+
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return adminMemberList;
+	}
+	
+	public int getQuestionPagination(Connection conn, int cp,String condition) throws Exception{
+		// TODO Auto-generated method stub
+		int map = 0;
+		System.out.println("qu"+condition);
+		String sql = prop.getProperty("getQuestionPagination1")+condition;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				map=rs.getInt(1);
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return map;
+	}
+
+	public List<AdminQuestion> selectQuestion(Connection conn, Pagination pagination,String condition) throws Exception {
+		// TODO Auto-generated method stub
+		List<AdminQuestion>  aq= null;
+		String sql = prop.getProperty("selectQuestion1")+condition+prop.getProperty("selectQuestion2");
+		try {
+			pstmt= conn.prepareStatement(sql);
+			int startRow=(pagination.getCurrentPage()-1)*pagination.getLimit()+1;
+			int endRow =startRow+pagination.getLimit()-1;
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			aq = new ArrayList<AdminQuestion>();
+			while(rs.next()) {
+				int questionNo = rs.getInt("QUESTION_NO");
+				String questionTitle = rs.getString("QUESTION_TITLE");
+				String questionContent = rs.getString("QUESTION_CONTENT");
+				Date questionDate = rs.getDate("QUESTION_DATE");
+				int memberNo = rs.getInt("MEMBER_NO");
+				String questionStatus = rs.getString("QUESTION_STATUS");
+				String memberId = rs.getString("MEMBER_ID");
+				String memberEmail = rs.getString("MEMBER_EMAIL");
+				String memberGrade = rs.getString("MEMBER_GRADE");
+				
+				AdminQuestion a = new AdminQuestion(questionNo, questionTitle, questionContent, memberId, questionDate, memberEmail, memberGrade, memberNo, questionStatus);
+				aq.add(a);
+						
+				
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return aq;
+	}
 }
