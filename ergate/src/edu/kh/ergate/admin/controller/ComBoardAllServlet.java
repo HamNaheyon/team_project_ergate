@@ -97,16 +97,48 @@ public class ComBoardAllServlet extends HttpServlet {
 				view.forward(request, response);
 			}else if(command.equals("ComMemberAll")) {
 				String memberGrade =request.getParameter("type");
-				Pagination pagination = service.getMemPagination(cp,memberGrade);
 				
-				List<adminMember> adminMemberList = service.selectMember(pagination);	
+				//------------검색 추가---------------
+				Pagination pagination=null;
+				List<adminMember> adminMemberList =null;
+				
+				if(request.getParameter("sv")==null) {
+					pagination = service.getMemPagination(cp,memberGrade);
+					
+					adminMemberList = service.selectMember(pagination);	
+				}else {// 검색어가 있을 경우
+					String searchKey = request.getParameter("sk");
+					String searchValue = request.getParameter("sv");
+					
+					pagination = service.getMemPagination(cp,memberGrade,searchKey,searchValue);
+					adminMemberList = service.selectMember(pagination,searchKey,searchValue);
+					
+				}
+				
+				
+				
+				
 				request.setAttribute("pagination", pagination);
 				request.setAttribute("adminMemberList", adminMemberList);
 				request.getRequestDispatcher("/WEB-INF/views/admin/ComMemberAll.jsp").forward(request, response);
 			}else if(command.equals("ComMemberDel")) {
 				String memberGrade =request.getParameter("type");
-				Pagination pagination = service.getMemPagination(cp,memberGrade);
-				List<adminMember> adminMemberList = service.selectMember(pagination);	
+				//------------검색 추가---------------
+				Pagination pagination=null;
+				List<adminMember> adminMemberList =null;
+				
+				if(request.getParameter("sv")==null) {
+					pagination = service.getMemPagination(cp,memberGrade);
+					
+					adminMemberList = service.selectMember(pagination);	
+				}else {// 검색어가 있을 경우
+					String searchKey = request.getParameter("sk");
+					String searchValue = request.getParameter("sv");
+					
+					pagination = service.getMemPagination(cp,memberGrade,searchKey,searchValue);
+					adminMemberList = service.selectMember(pagination,searchKey,searchValue);
+					
+				}	
 				request.setAttribute("pagination", pagination);
 				request.setAttribute("adminMemberList", adminMemberList);
 				request.getRequestDispatcher("/WEB-INF/views/admin/ComMemberDel.jsp").forward(request, response);
@@ -119,9 +151,23 @@ public class ComBoardAllServlet extends HttpServlet {
 			
 			}else if(command.equals("freBoardAll")) {
 				int boardTypeNo = Integer.parseInt(request.getParameter("type"));
-				Pagination pagination = service.getPagination(cp,boardTypeNo);
+				//------------검색 추가---------------
+				Pagination pagination=null;
+				List<adminBoard> adminBoardList =null;
 				
-				List<adminBoard> adminBoardList = service.selectBoardList(pagination);
+				if(request.getParameter("sv")==null) {
+					pagination = service.getPagination(cp,boardTypeNo);
+					
+					adminBoardList = service.selectBoardList(pagination);
+				}else {// 검색어가 있을 경우
+					String searchKey = request.getParameter("sk");
+					String searchValue = request.getParameter("sv");
+					
+					pagination = service.getPagination(cp,boardTypeNo,searchKey,searchValue);
+					adminBoardList = service.selectBoardList(pagination,searchKey,searchValue);
+					
+				}
+				
 				
 				request.setAttribute("pagination", pagination);
 				request.setAttribute("adminBoardList", adminBoardList);
@@ -129,26 +175,69 @@ public class ComBoardAllServlet extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/views/admin/FreBoardAll.jsp").forward(request, response);
 			}else if(command.equals("freBoardB")) {
 				int boardTypeNo = Integer.parseInt(request.getParameter("type"));
-				Pagination pagination = service.getPagination(cp,boardTypeNo);
-				System.out.println(pagination);
-				List<adminBoard> adminBoardList = service.selectBoardList(pagination);
+				//------------검색 추가---------------
+				Pagination pagination=null;
+				List<adminBoard> adminBoardList =null;
 				
+				if(request.getParameter("sv")==null) {
+					pagination = service.getPagination(cp,boardTypeNo);
+					
+					adminBoardList = service.selectBoardList(pagination);
+				}else {// 검색어가 있을 경우
+					String searchKey = request.getParameter("sk");
+					String searchValue = request.getParameter("sv");
+					
+					pagination = service.getPagination(cp,boardTypeNo,searchKey,searchValue);
+					adminBoardList = service.selectBoardList(pagination,searchKey,searchValue);
+					
+				}
+
 				request.setAttribute("pagination", pagination);
 				request.setAttribute("adminBoardList", adminBoardList);
 				
 				request.getRequestDispatcher("/WEB-INF/views/admin/FreBoardB.jsp").forward(request, response);
 			}else if(command.equals("freMemberAll")) {
 				String memberGrade =request.getParameter("type");
-				Pagination pagination = service.getMemPagination2(cp,memberGrade);
+				//------------검색 추가---------------
+				Pagination pagination=null;
+				List<adminMember> adminMemberList =null;
 				
-				List<adminMember> adminMemberList = service.selectMember2(pagination);	
+				if(request.getParameter("sv")==null) {
+					pagination = service.getMemPagination2(cp,memberGrade);
+					
+					adminMemberList = service.selectMember2(pagination);	
+				}else {// 검색어가 있을 경우
+					String searchKey = request.getParameter("sk");
+					String searchValue = request.getParameter("sv");
+					
+					pagination = service.getMemPagination2(cp,memberGrade,searchKey,searchValue);
+					
+					adminMemberList = service.selectMember2(pagination,searchKey,searchValue);
+					
+				}	
+					
 				request.setAttribute("pagination", pagination);
 				request.setAttribute("adminMemberList", adminMemberList);
 				request.getRequestDispatcher("/WEB-INF/views/admin/FreMemberAll.jsp").forward(request, response);
 			}else if(command.equals("freMemberDel")) {
 				String memberGrade =request.getParameter("type");
-				Pagination pagination = service.getMemPagination2(cp,memberGrade);
-				List<adminMember> adminMemberList = service.selectMember2(pagination);	
+				//------------검색 추가---------------
+				Pagination pagination=null;
+				List<adminMember> adminMemberList =null;
+				
+				if(request.getParameter("sv")==null) {
+					pagination = service.getMemPagination2(cp,memberGrade);
+					
+					adminMemberList = service.selectMember2(pagination);	
+				}else {// 검색어가 있을 경우
+					String searchKey = request.getParameter("sk");
+					String searchValue = request.getParameter("sv");
+					
+					pagination = service.getMemPagination2(cp,memberGrade,searchKey,searchValue);
+					
+					adminMemberList = service.selectMember2(pagination,searchKey,searchValue);
+					
+				}	
 				request.setAttribute("pagination", pagination);
 				request.setAttribute("adminMemberList", adminMemberList);
 				request.getRequestDispatcher("/WEB-INF/views/admin/FreMemberDel.jsp").forward(request, response);
@@ -161,8 +250,20 @@ public class ComBoardAllServlet extends HttpServlet {
 				request.getSession().invalidate();
 				request.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(request, response);
 			}else if(command.equals("qusetions")) {
-				Pagination pagination = service.getQuestionPagination(cp);
-				List<AdminQuestion> adminMemberList = service.selectQuestion(pagination);
+				Pagination pagination=null;
+				List<AdminQuestion> adminMemberList=null;
+				if(request.getParameter("sv")==null) {
+					pagination = service.getQuestionPagination(cp);
+					adminMemberList = service.selectQuestion(pagination);
+				}else {// 검색어가 있을 경우
+					String searchKey = request.getParameter("sk");
+					String searchValue = request.getParameter("sv");
+					pagination = service.getQuestionPagination(cp,searchKey,searchValue);
+					adminMemberList = service.selectQuestion(pagination,searchKey,searchValue);
+					
+					
+				}	
+			
 				request.setAttribute("pagination", pagination);
 				request.setAttribute("adminMemberList", adminMemberList);
 			    request.getRequestDispatcher("/WEB-INF/views/admin/qusetions.jsp").forward(request, response);

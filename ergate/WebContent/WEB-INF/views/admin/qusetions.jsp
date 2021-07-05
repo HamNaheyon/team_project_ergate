@@ -87,7 +87,7 @@
 		</table>
 	
 	
-			<c:set var="pageURL" value="qusetions?type=${pagination.memberGrade }"/>
+			<c:set var="pageURL" value="qusetions?type=${pagination.memberGrade }${searchStr}"/>
 			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage }"/>
 			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage }"/>
 			
@@ -139,16 +139,19 @@
 	
 	
 		<div>
-			<select aria-label="Default select example" style="margin-left: 35%;">
-
-				<option value="1" selected>게시글 번호</option>
-				<option value="2">게시글 제목</option>
-				<option value="3">아이디</option>
-				<option value="4">날짜</option>
-				<option value="5">블라인드 처리여부</option>
-
-			</select> <input type="search">
+			  <form action="#" method="GET" id="searchForm">
+			
+			<select name="sk"aria-label="Default select example" style="margin-left: 35%;">
+ 				<option value="qNo" selected>문의사항 번호</option>
+				<option value="qTitle">문의사항 제목</option>
+				<option value="qId">아이디</option>
+				<option value="qDate">문의 날짜</option>
+				<option value="qEmail">이메일</option>
+				<option value="qStyle">회원 구분</option>
+			</select> <input name="sv"type="search">
 			<button id="searchbtn" class="but-style">검색</button>
+			
+			</form>
 		</div>
 	</div>
 
@@ -173,7 +176,29 @@ $('.memRe').on("click",function(){
 	location.href="${contextPath}/admin2/questionF?qNo="+qNo+"&type=&cp="+${pagination.currentPage};
 });
 </script>
-
+<script>
+    // 검색 내용이 있을 경우 검색창에 해당 내용을 작성해두는 기능
+    (function(){
+       var searchKey = "${param.sk}"; 
+       // 파라미터 중 sk가 있을 경우   ex)  "abc"
+       // 파라미터 중 sk가 없을 경우   ex)  ""
+       var searchValue = "${param.sv}";
+       
+       // 검색창 select의 option을 반복 접근
+       $("select[name=sk] > option").each(function(index, item){
+          // index : 현재 접근중인 요소의 인덱스
+          // item : 현재 접근중인 요소
+                   // content            content
+          if( $(item).val() == searchKey  ){
+             $(item).prop("selected", true);
+          }
+       });      
+       
+       // 검색어 입력창에 searcValue 값 출력
+       $("input[name=sv]").val(searchValue);
+    })();
+    
+	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"

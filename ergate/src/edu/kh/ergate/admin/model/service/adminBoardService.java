@@ -173,6 +173,58 @@ public class adminBoardService {
 		return adminBoardList;
 	}
 	
+	public Pagination getMemPagination(int cp, String memberGrade,String searchKey,String searchValue)throws Exception {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		String condition = createCondition(searchKey, searchValue);
+		int map = dao.getMemPagination(conn,cp,memberGrade,condition);
+		close(conn);
+		int listCount = map;
+		return new Pagination(cp,listCount,memberGrade);
+	}
+	public List<adminMember> selectMember(Pagination pagination,String searchKey,String searchValue)throws Exception{
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		String condition = createCondition(searchKey, searchValue);
+		List<adminMember> adminMemberList = dao.selectMember(conn,pagination,condition);
+		close(conn);
+		return adminMemberList;
+	}
+	
+	public Pagination getMemPagination2(int cp, String memberGrade,String searchKey,String searchValue) throws Exception{
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		String condition = createCondition(searchKey, searchValue);
+		int map = dao.getMemPagination2(conn,cp,memberGrade,condition);
+		close(conn);
+		int listCount = map;
+		return new Pagination(cp,listCount,memberGrade);
+	}
+	public List<adminMember> selectMember2(Pagination pagination,String searchKey,String searchValue)throws Exception {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		String condition = createCondition(searchKey, searchValue);
+		List<adminMember> adminMemberList = dao.selectMember2(conn,pagination,condition);
+		close(conn);
+		return adminMemberList;
+	}
+	public Pagination getQuestionPagination(int cp,String searchKey,String searchValue) throws Exception{
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		String condition = createCondition(searchKey, searchValue);
+		int map = dao.getQuestionPagination(conn,cp,condition);
+		close(conn);
+		int listCount = map;
+		return new Pagination(cp,listCount);
+	}
+	public List<AdminQuestion> selectQuestion(Pagination pagination,String searchKey,String searchValue)throws Exception {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		String condition = createCondition(searchKey, searchValue);
+		List<AdminQuestion> adminBoardList = dao.selectQuestion(conn,pagination,condition);
+		close(conn);
+		return adminBoardList;
+	}
 	private String createCondition(String searchKey,String searchValue) {
 		String condition = null;
 		//condition 양끝에는 띄어쓰기를 반드시 추가하여
@@ -193,6 +245,46 @@ public class adminBoardService {
 		case "bl":
 			condition = "AND BOARD_STATUS LIKE '%" + searchValue + "%'";
 			break;
+		case "comMemberNo":
+			condition = "AND MEMBER_NO LIKE '%" + searchValue + "%'";
+			break;
+		case "comMemName":
+			condition = "AND COMPANY_NAME LIKE '%" + searchValue + "%'";
+			break;
+		case "freMemName":
+			condition = "AND MEMBER_NAME LIKE '%" + searchValue + "%'";
+			break;
+		case "comMemNum":
+			condition = "AND COMPANY_NO LIKE '%" + searchValue + "%'";
+			break;
+		case "comMemDt":
+			condition = "AND ENROLL_DATE LIKE '%" + searchValue + "%'";
+			break;
+		case "comMemEmail":
+			condition = "AND MEMBER_EMAIL LIKE '%" + searchValue + "%'";
+			break;
+		case "comMemGrade":
+			condition = " MEMBER_STATUS LIKE '%" + searchValue + "%'";
+			break;
+		case "qNo":
+			condition = " QUESTION_NO LIKE '%" + searchValue + "%'";
+			break;
+		case "qTitle":
+			condition = " QUESTION_TITLE LIKE '%" + searchValue + "%'";
+			break;
+		case "qDate":
+			condition = " QUESTION_DATE LIKE '%" + searchValue + "%'";
+			break;
+		case "qStyle":
+			condition = " MEMBER_GRADE LIKE '%" + searchValue + "%'";
+			break;
+		case "qId":
+			condition = " MEMBER_ID LIKE '%" + searchValue + "%'";
+			break;
+		case "qEmail":
+			condition = " MEMBER_Email LIKE '%" + searchValue + "%'";
+			break;
+		
 		}
 		return condition;
 	

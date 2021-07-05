@@ -114,16 +114,16 @@
 			</div>
 			
       <div>
-         <form action="#" method="GET" class="text-center" id="searchForm">
-			<input type="hidden" name="type" value="2">
+          <form action="#" method="GET" id="searchForm">
+			<input type="hidden" name="type" value="G">
 			<select name="sk"aria-label="Default select example" style="margin-left: 35%;">
- 			<option value="memberNo" selected>회원 번호</option>
-          	<option value="comName">기업 이름</option>
-          	<option value="comNum">사업자 번호</option>
-         	<option value="comId">아이디</option>
-        	<option value="comDt">가입 날짜</option>
-        	<option value="comEmail">이메일</option>
-      	    <option value="comGrade">탈퇴여부</option>
+ 			<option value="comMemberNo" selected>회원 번호</option>
+          <option value="comMemName">기업 이름</option>
+          <option value="comMemNum">사업자 번호</option>
+          <option value="id">아이디</option>
+          <option value="comMemDt">가입 날짜</option>
+          <option value="comMemEmail">이메일</option>
+          <option value="comMemGrade">탈퇴여부</option>
 			</select> <input name="sv"type="search">
 			<button id="searchbtn" class="but-style">검색</button>
 			
@@ -133,7 +133,29 @@
     
     
     </div>
-
+<script>
+    // 검색 내용이 있을 경우 검색창에 해당 내용을 작성해두는 기능
+    (function(){
+       var searchKey = "${param.sk}"; 
+       // 파라미터 중 sk가 있을 경우   ex)  "abc"
+       // 파라미터 중 sk가 없을 경우   ex)  ""
+       var searchValue = "${param.sv}";
+       
+       // 검색창 select의 option을 반복 접근
+       $("select[name=sk] > option").each(function(index, item){
+          // index : 현재 접근중인 요소의 인덱스
+          // item : 현재 접근중인 요소
+                   // content            content
+          if( $(item).val() == searchKey  ){
+             $(item).prop("selected", true);
+          }
+       });      
+       
+       // 검색어 입력창에 searcValue 값 출력
+       $("input[name=sv]").val(searchValue);
+    })();
+    
+	</script>
 <script>
 $('.memDel').on("click",function(){
 	let memberNo = $(this).parent().parent().children().eq(0).text().trim();
