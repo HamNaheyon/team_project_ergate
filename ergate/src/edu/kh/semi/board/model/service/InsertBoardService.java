@@ -35,13 +35,13 @@ public class InsertBoardService {
 	/** 게시글 삽입 Service
 	 * @param board
 	 * @param atList
-	 * @param boardType
+	 * @param boardStyle
 	 * @param writerType 
 	 * @param writerType2 
 	 * @return result
 	 * @throws Exception
 	 */
-	public int insertBoard(Board board, List<Attachment> atList, int categoryCode, int boardType, int writerType)throws Exception {
+	public int insertBoard(Board board, List<Attachment> atList, int categoryCode, int boardStyle, int writerType)throws Exception {
 		Connection conn = getConnection();
 		
 		int boardNo = dao.nextBoardNo(conn);
@@ -58,7 +58,7 @@ public class InsertBoardService {
 			
 			board.setBoardContent(boardContent);
 			
-			result = dao.insertBoard(conn, board, categoryCode, boardType, writerType);
+			result = dao.insertBoard(conn, board, categoryCode, boardStyle, writerType);
 			
 			if(result > 0) {
 				

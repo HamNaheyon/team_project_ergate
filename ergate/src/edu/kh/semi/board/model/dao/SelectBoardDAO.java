@@ -81,7 +81,9 @@ public class SelectBoardDAO {
 			pstmt.setInt(1, boardCategory);
 			pstmt.setInt(2, boardStyle);
 			pstmt.setInt(3, boardCategory);
+			
 			rs = pstmt.executeQuery();
+			
 			if(rs.next()) {
 				map.put("listCount", rs.getInt(1));
 				map.put("categoryNm", rs.getString(2));

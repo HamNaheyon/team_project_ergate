@@ -76,7 +76,7 @@
 					<c:otherwise>
 						<c:forEach items ="${boardList}" var="board">
 							
-		                	<a href="${contextPath}/detailBoard?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${pagination.boardStyle}${searchStr}">
+		                	<a href="${contextPath}/detailBoard?boardNo=${board.boardNo}&cp=${pagination.currentPage}&style=${pagination.boardStyle}${searchStr}">
 
 				                <c:choose>
 	
