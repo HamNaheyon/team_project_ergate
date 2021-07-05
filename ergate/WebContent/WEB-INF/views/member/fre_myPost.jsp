@@ -80,7 +80,7 @@
             		<c:forEach items="${boardList}" var="board">
                 <ul>
                     <li id="mbn">${board.boardNo}</li>
-                    <li id="mbt">${board.boardTitle}</li>
+                    <li class="boardNo" id="mbt">${board.boardTitle}</li>
                     <li id="mbw">${board.memberId}</li>
                     <li id="mbc">${board.readCount }</li>
                     <li id="mbd">${board.createDate }</li>
@@ -153,4 +153,14 @@
 			</div>
         <jsp:include page="../common/footer.jsp"/>
 </body>
+
+	<script>
+	$('.boardNo').on("click",function(){
+		
+		let boardNo = $(this).parent().children().eq(0).text();
+        
+		location.href="${contextPath}/detailBoard?boardNo="+boardNo+"&cp=1&type=1";
+        
+     });
+	</script>
 </html>
