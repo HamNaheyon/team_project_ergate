@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
+<link rel="shortcut icon" href="#">
+
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>포트폴리오 상세</title>
@@ -202,6 +205,7 @@
 			width: 100%;
 			height: 20%;
 			border: 2px solid rgba(166, 206, 231, 0.7);
+			overflow: auto;
 		}
 	</style>
 </head>

@@ -30,6 +30,8 @@ public class SelectBoardService {
 				rollback(conn);
 			}
 		}
+		
+		close(conn);
 		return board;
 	}
 
@@ -48,6 +50,7 @@ public class SelectBoardService {
 				rollback(conn);
 			}
 		}
+		close(conn);
 		return board;
 	}
 }

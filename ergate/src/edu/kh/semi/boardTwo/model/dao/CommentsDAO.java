@@ -36,6 +36,12 @@ public class CommentsDAO {
 	
 	}
 
+	/** 댓글 조회
+	 * @param conn
+	 * @param boardNo
+	 * @return list
+	 * @throws Exception
+	 */
 	public List<Comments> selectList(Connection conn, int boardNo) throws Exception {
 		
 		List<Comments> list = new ArrayList<Comments>();
@@ -66,6 +72,12 @@ public class CommentsDAO {
 		return list;
 	}
 
+	/** 댓글 작성
+	 * @param conn
+	 * @param comments
+	 * @return result
+	 * @throws Exception
+	 */
 	public int insertComments(Connection conn, Comments comments) throws Exception {
 		int result = 0;
 		
@@ -75,16 +87,24 @@ public class CommentsDAO {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, comments.getCommentsContent());
-			pstmt.setInt(2, comments.getMemberNo());
-			pstmt.setInt(3, comments.getBoardNo());
+			pstmt.setInt(3, comments.getMemberNo());
+			pstmt.setInt(2, comments.getBoardNo());
 			
 			result = pstmt.executeUpdate();
+			
+			System.out.println("result : "+result);
 		}finally {
 			close(pstmt);
 		}
 		return result;
 	}
 
+	/** 댓글 삭제
+	 * @param conn
+	 * @param comments
+	 * @return result
+	 * @throws Exception
+	 */
 	public int updateComments(Connection conn, Comments comments) throws Exception {
 		int result = 0;
 		
@@ -104,6 +124,12 @@ public class CommentsDAO {
 		return result;
 	}
 
+	/** 댓글 삭제
+	 * @param conn
+	 * @param commentsNo
+	 * @return result
+	 * @throws Exception
+	 */
 	public int deleteComments(Connection conn, int commentsNo) throws Exception {
 		int result = 0;
 		

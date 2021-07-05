@@ -28,6 +28,7 @@ public class CommentsController extends HttpServlet {
 			
 			CommentsService service = new CommentsService();
 			
+			// 조회
 			if(command.equals("list")) {
 				
 				int boardNo = Integer.parseInt(request.getParameter("boardNo"));
@@ -36,7 +37,8 @@ public class CommentsController extends HttpServlet {
 				
 				Gson gson = new GsonBuilder().setDateFormat("yyyy년 MM월 dd일 HH:mm").create();
 				gson.toJson(list, response.getWriter());
-				
+			
+				// 작성
 			}else if(command.equals("insertComments")) {
 				int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 				int boardNo = Integer.parseInt(request.getParameter("boardNo"));
@@ -45,10 +47,16 @@ public class CommentsController extends HttpServlet {
 				Comments comments = new Comments();
 				
 				comments.setMemberNo(memberNo);
+				System.out.println("memberNo : " + memberNo);
 				comments.setBoardNo(boardNo);
 				comments.setCommentsContent(commentsContent);
 				
 				int result = service.insertComments(comments);
+				System.out.println(result);
+				
+				response.getWriter().print(result);
+			
+			// 수정
 			}else if(command.equals("updateComments")) {
 				int commentsNo = Integer.parseInt(request.getParameter("commentsNo"));
 				String commentsContent = request.getParameter("commentsContent");
@@ -61,6 +69,8 @@ public class CommentsController extends HttpServlet {
 				int result = service.updateComments(comments);
 				
 				response.getWriter().print(result);
+				
+				// 삭제
 			}else if(command.equals("deleteComments")) {
 				int commentsNo = Integer.parseInt(request.getParameter("commentsNo"));
 				

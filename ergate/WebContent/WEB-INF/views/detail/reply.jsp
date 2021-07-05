@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <style>
 /*댓글*/
-.replyWrite>table {	margin-top: 20px; }
+.commentsWrite>table {	margin-top: 10px; }
 .rWriter {
 	display: inline-block;
 	vertical-align: top;
@@ -11,31 +12,31 @@
 	font-weight: bold;
 }
 .rDate { display: inline-block; }
-.rContent, .replyBtnArea {
+.rContent, .commentsBtnArea {
 	height: 100%;
 	width: 100%;
 }
-.replyBtnArea { text-align: right; }
-.replyUpdateContent {
+.commentsBtnArea { text-align: right; }
+.commentsUpdateContent {
 	resize: none;
 	width: 100%;
 }
-.reply-row{
+.comments-row{
 	border-top : 1px solid #ccc;
 	padding : 15px 0;
 }
 </style>
 
-<div id="reply-area ">
+<div id="comments-area ">
 	<!-- 댓글 작성 부분 -->
-	<div class="replyWrite">
+	<div class="commentsWrite">
 		<table align="center">
 			<tr>
-				<td id="replyContentArea">
-					<textArea rows="3" id="replyContent"></textArea>
+				<td id="commentsContentArea">
+					<textArea rows="3" id="commentsContent"></textArea>
 				</td>
-				<td id="replyBtnArea">
-					<button class="btn btn-primary" id="addReply" onclick="addReply();">
+				<td id="commentsBtnArea">
+					<button class="btn btn-primary" id="addcomments" onclick="addcomments();">
 						댓글<br>등록
 					</button>
 				</td>
@@ -45,24 +46,31 @@
 
 
 	<!-- 댓글 출력 부분 -->
-	<div class="replyList mt-5 pt-2">
-		<ul id="replyListArea">
-			<c:forEach items="${rList}" var="reply">
-				<li class="reply-row">
+	<div class="commentsList mt-5 pt-2">
+		<ul id="commentsListArea">
+			<c:forEach items="${rList}" var="comments">
+				<li class="comments-row">
 					<div>
-						<p class="rWriter"></p>
-						<p class="rDate">작성일 : <fmt:formatDate value="${comments.commentsDt }" pattern="yyyy년 MM월 dd일 HH:mm"/></p>
+						<p class="rWriter">${comments.memberId}</p>
+						<p class="rDate">작성일 : <fmt:formatDate value="${comments.commentsDt}" pattern="yyyy년 MM월 dd일 HH:mm"/></p>
 					</div>
 	
 					<p class="rContent">${comments.commentsContent }</p>
 					
-					
-					<c:if test="${reply.memberNo == loginMember.memberNo}">
-						<div class="replyBtnArea">
-							<button class="btn btn-primary btn-sm ml-1" id="updateReply" onclick="showUpdateReply(${comments.commentsNo}, this)">수정</button>
-							<button class="btn btn-primary btn-sm ml-1" id="deleteReply" onclick="deleteReply(${comments.commentsNo})">삭제</button>
+					<c:choose>
+					<c:when test="${comments.memberNo == comLoginMember.memberNo}">
+						<div class="commentsBtnArea">
+							<button class="btn btn-primary btn-sm ml-1" id="updatecomments" onclick="showUpdatecomments(${comments.commentsNo}, this)">수정</button>
+							<button class="btn btn-primary btn-sm ml-1" id="deletecomments" onclick="deletecomments(${comments.commentsNo})">삭제</button>
 						</div>
-					</c:if>
+					</c:when>
+					<c:when test="${comments.memberNo == freLoginMember.memberNo}">
+					<div class="commentsBtnArea">
+							<button class="btn btn-primary btn-sm ml-1" id="updatecomments" onclick="showUpdatecomments(${comments.commentsNo}, this)">수정</button>
+							<button class="btn btn-primary btn-sm ml-1" id="deletecomments" onclick="deletecomments(${comments.commentsNo})">삭제</button>
+						</div>
+					</c:when>
+					</c:choose>
 				</li>
 			</c:forEach>
 		</ul>
@@ -79,13 +87,13 @@ const loginMemberNo = "${freLoginMember.memberNo}" || "${comLoginMember.memberNo
 const boardNo = ${board.boardNo};
 
 // 수정 전 댓글 요소를 저장할 변수 (댓글 수정 시 사용)
-let beforeReplyRow;
+let beforecommentsRow;
 
 //-----------------------------------------------------------------------------------------
 // 댓글 등록
-function addReply()	{
+function addcomments()	{
 	// 작성된 댓글 내용 얻어오기 
-	const commentsContent = $("#replyContent").val();
+	const commentsContent = $("#commentsContent").val();
 	
 	// 로그인이 되어있지 않은 경우
 	if(loginMemberNo == ""){
@@ -100,7 +108,9 @@ function addReply()	{
 				let arr = ['욕욕욕욕'];
 				for(){}
 			*/
-			
+			console.log(loginMemberNo);
+			console.log(boardNo);
+			console.log(commentsContent);
 			// 로그인 O, 댓글 작성 O
 			$.ajax({
 				url : "${contextPath}/comments/insertComments", // 필수 속성(반드시 ajax안에 써야하는 코드)
@@ -113,11 +123,17 @@ function addReply()	{
 						"commentsContent" : commentsContent},
 						
 				success : function(result){
+					console.log(result);
 					if(result > 0){ // 댓글 삽입이 성공한 경우
 						swal({"icon" : "success" , "title" : "댓글 등록 성공"});
 					
-						$("#replyContent").val("");  // 댓글 작성 내용 삭제
-						selectReplyList(); // 비동기로 댓글 목록 갱신
+						$("#commentsContent").val("");  // 댓글 작성 내용 삭제
+						selectcommentsList(); // 비동기로 댓글 목록 갱신
+					}else{
+						swal({"icon" : "error" , "title" : "댓글 실패"});
+						
+						$("#commentsContent").val("");  // 댓글 작성 내용 삭제
+						selectcommentsList(); // 비동기로 댓글 목록 갱신
 					}
 				},
 				error : function(){console.log("댓글 삽입 실패");}
@@ -129,7 +145,7 @@ function addReply()	{
 
 //-----------------------------------------------------------------------------------------
 //해당 게시글 댓글 목록 조회
-function selectReplyList(){
+function selectcommentsList(){
 	$.ajax({
 		url : "${contextPath}/comments/list",
 		data : {"boardNo" : boardNo},
@@ -137,7 +153,7 @@ function selectReplyList(){
 		dataType : "JSON", // 응답되는 데이터의 형식이 JSON임을 알려줌 -> 자바스크립트의 객체로 변환됨.
 		success : function(rList){
 			console.log(rList);
-	        $("#replyListArea").html(""); // 기존 정보 초기화
+	        $("#commentsListArea").html(""); // 기존 정보 초기화
 			// 왜? 새로 읽어온 댓글 목록으로 다시 만들어서 출력하려고
 			 
 			$.each(rList, function(index, item){
@@ -146,35 +162,35 @@ function selectReplyList(){
 				// 
 				// item : 순차 접근 시 현재 접근한 배열 요소(댓글 객체 하나)
 					 
-				var li = $("<li>").addClass("reply-row");
+				var li = $("<li>").addClass("comments-row");
 				
 				// 작성자, 작성일, 수정일 영역 
 				var div = $("<div>");
 				var rWriter = $("<p>").addClass("rWriter").text(item.memberName);
-				var rDate = $("<p>").addClass("rDate").text("작성일 : " + item.createDt);
+				var rDate = $("<p>").addClass("rDate").text("작성일 : " + item.commentsDt);
 				div.append(rWriter).append(rDate)
 				   
 				// 댓글 내용
 				var rContent = $("<p>").addClass("rContent").html(item.commentsContent);
 				   
 				// 대댓글, 수정, 삭제 버튼 영역
-				var replyBtnArea = $("<div>").addClass("replyBtnArea");
+				var commentsBtnArea = $("<div>").addClass("commentsBtnArea");
 				   
 				// 현재 댓글의 작성자와 로그인한 멤버의 아이디가 같을 때 버튼 추가
 				if(item.memberNo == loginMemberNo){
 				      
 					// ** 추가되는 댓글에 onclick 이벤트를 부여하여 버튼 클릭 시 수정, 삭제를 수행할 수 있는 함수를 이벤트 핸들러로 추가함. 
-					var showUpdate = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("수정").attr("onclick", "showUpdateReply("+item.replyNo+", this)");
-					var deleteReply = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("삭제").attr("onclick", "deleteReply("+item.replyNo+")");
+					var showUpdate = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("수정").attr("onclick", "showUpdatecomments("+item.commentsNo+", this)");
+					var deletecomments = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("삭제").attr("onclick", "deletecomments("+item.commentsNo+")");
 					      
-					replyBtnArea.append(showUpdate).append(deleteReply);
+					commentsBtnArea.append(showUpdate).append(deletecomments);
 				}
 				    
 				// 댓글 요소 하나로 합치기
-				li.append(div).append(rContent).append(replyBtnArea);
+				li.append(div).append(rContent).append(commentsBtnArea);
 				    
 				// 합쳐진 댓글을 화면에 배치
-				$("#replyListArea").append(li);
+				$("#commentsListArea").append(li);
 			});
 		},
 		error : function(){console.log("댓글 목록 조회 실패");}
@@ -185,22 +201,22 @@ function selectReplyList(){
 
 // -----------------------------------------------------------------------------------------
 // 일정 시간마다 댓글 목록 갱신
- /* const replyInterval = setInterval(function(){
-	 selectReplyList();
+ /* const commentsInterval = setInterval(function(){
+	 selectcommentsList();
  },5000); */
  
 
 // -----------------------------------------------------------------------------------------
 // 댓글 수정 폼
 
-function showUpdateReply(replyNo, el){
+function showUpdatecomments(commentsNo, el){
 	// 이미 열려있는 댓글 수정 창이 있을 경우 닫아주기
-	if($(".replyUpdateContent").length > 0){
-		$(".replyUpdateContent").eq(0).parent().html(beforeReplyRow);
+	if($(".commentsUpdateContent").length > 0){
+		$(".commentsUpdateContent").eq(0).parent().html(beforecommentsRow);
 	}
 	
 	// 댓글 수정화면 출력 전 요소를 저장해둠.
-	beforeReplyRow = $(el).parent().parent().html();
+	beforecommentsRow = $(el).parent().parent().html();
 	
 	   
    // 작성되어있던 내용(수정 전 댓글 내용) 
@@ -218,48 +234,44 @@ function showUpdateReply(replyNo, el){
    
    // 기존 댓글 영역을 삭제하고 textarea를 추가 
    $(el).parent().prev().remove();
-   var textarea = $("<textarea>").addClass("replyUpdateContent").attr("rows", "3").val(beforeContent);
+   var textarea = $("<textarea>").addClass("commentsUpdateContent").attr("rows", "3").val(beforeContent);
    $(el).parent().before(textarea);
    
-   
    // 수정 버튼
-   var updateReply = $("<button>").addClass("btn btn-primary btn-sm ml-1 mb-4").text("댓글 수정").attr("onclick", "updateReply(" + replyNo + ", this)");
+   var updatecomments = $("<button>").addClass("btn btn-primary btn-sm ml-1 mb-4").text("댓글 수정").attr("onclick", "updatecomments(" + commentsNo + ", this)");
    
    // 취소 버튼
    var cancelBtn = $("<button>").addClass("btn btn-primary btn-sm ml-1 mb-4").text("취소").attr("onclick", "updateCancel(this)");
    
-   var replyBtnArea = $(el).parent();
+   var commentsBtnArea = $(el).parent();
    
-   $(replyBtnArea).empty(); 
-   $(replyBtnArea).append(updateReply); 
-   $(replyBtnArea).append(cancelBtn); 
-
-	
-	
+   $(commentsBtnArea).empty(); 
+   $(commentsBtnArea).append(updatecomments); 
+   $(commentsBtnArea).append(cancelBtn); 
 }
 
 //-----------------------------------------------------------------------------------------
 //댓글 수정 취소 시 원래대로 돌아가기
 function updateCancel(el){
-	$(el).parent().parent().html(beforeReplyRow);
+	$(el).parent().parent().html(beforecommentsRow);
 }
 
 //-----------------------------------------------------------------------------------------
 // 댓글 수정
-function updateReply(replyNo, el){
+function updatecomments(commentsNo, el){
 
 	// 수정된 댓글 내용
-	const replyContent = $(el).parent().prev().val();
+	const commentsContent = $(el).parent().prev().val();
 	
 	$.ajax({
-		url : "${contextPath}/reply/updateReply",
+		url : "${contextPath}/comments/updateComments",
 		type : "POST",
-		data : {"replyNo" : replyNo,
-				"replyContent" : replyContent},
+		data : {"commentsNo" : commentsNo,
+				"commentsContent" : commentsContent},
 		success : function(result){
 			if(result > 0){
 				swal({"icon" : "success" , "title" : "댓글 수정 성공"});
-				selectReplyList();
+				selectcommentsList();
 			}
 		},
 		error : function(){
@@ -271,17 +283,17 @@ function updateReply(replyNo, el){
 
 //-----------------------------------------------------------------------------------------
 //댓글 삭제
-function deleteReply(replyNo){
+function deletecomments(commentsNo){
 	
 	   if(confirm("정말로 삭제하시겠습니까?")){
-		      var url = "${contextPath}/reply/deleteReply";
+		      var url = "${contextPath}/comments/deleteComments";
 		      
 		      $.ajax({
 		         url : url,
-		         data : {"replyNo" : replyNo},
+		         data : {"commentsNo" : commentsNo},
 		         success : function(result){
 		            if(result > 0){
-		               selectReplyList(boardNo);
+		               selectcommentsList(boardNo);
 		               
 		               swal({"icon" : "success" , "title" : "댓글 삭제 성공"});
 		            }
@@ -295,4 +307,5 @@ function deleteReply(replyNo){
 
 
 </script>
+
 
