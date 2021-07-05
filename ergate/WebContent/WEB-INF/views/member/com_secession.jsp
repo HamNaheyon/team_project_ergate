@@ -112,9 +112,10 @@
                 </form>
 				</div>
             </div>
+<jsp:include page="../common/footer.jsp"/>
         </div>
 
-    <!-- 콘솔 창으로 회원 탈퇴 시 yes,or 팝업 띄우기 -->
+</body>
     
     <script>
 		// 약관 동의가 체크 되었을 때에만 탈퇴 진행
@@ -126,7 +127,5 @@
 		    }
 		}
 	</script>
-
-</body>
 
 </html>

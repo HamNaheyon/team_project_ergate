@@ -53,17 +53,15 @@
     </style>
 </head>
 <body>
-    <jsp:include page="../common/header.jsp"></jsp:include>
       <div id="fre_container">
+    <jsp:include page="../common/header.jsp"></jsp:include>
+        <div class="row my-5">
        		<jsp:include page="sideMenu.jsp"></jsp:include>
-        <div class="fre_mb-form">
-            <div class="myboard">
+            <div class="col-sm-8">
                 <h4 class="fre_mbtitle">내 게시글</h4>
-                ${MyPostPagination}
                 <br>
                 <hr>
-            </div>
-            <div class="fre_mblist">
+            <div class="fre_mblist col-sm-8">
                 <ul>
                     <li id="fre_mblistno">게시글 번호</li>
                     <li id="fre_mblisttitle">제목</li>
@@ -71,8 +69,7 @@
                     <li id="fre_mblistcontents">조회수</li>
                     <li id="fre_mblistdt">작성일자</li>
                 </ul>
-            </div>
-            <div class="fre_mbcontents">
+            <div class="fre_mbcontents" class="row my-5">
             <c:choose>
             	<c:when test="${empty boardList }">
             		<ul>
@@ -91,7 +88,10 @@
             		</c:forEach>
             	</c:otherwise>
             </c:choose>
+            </div>
+            </div>
             <div>
+                ${MyPostPagination}
           	<%-- 페이징 처리 시 주소를 쉽게 작성할 수 있도록 필요한 변수를 미리 선언 --%>
 			<c:set var="pageURL" value="list?no=${pagination.memberNo}"/>
 			
@@ -143,7 +143,6 @@
 
 
 				</ul>
-			</div>
 			<%---------------------- Pagination end----------------------%>
           	
           	
@@ -151,5 +150,7 @@
             </div>
             </div>
         </div>
+			</div>
+        <jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

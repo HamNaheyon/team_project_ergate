@@ -48,6 +48,8 @@ public class MemberService {
 			rollback(conn);
 		}
 		
+		close(conn);
+		
 		return result;
 	}
 
@@ -82,6 +84,7 @@ public class MemberService {
 			rollback(conn);
 		}
 		
+		close(conn);
 		return result;
 	}
 
@@ -119,6 +122,7 @@ public class MemberService {
 		if(result > 0) commit(conn);
 		else rollback(conn);
 		
+		close(conn);
 		return result;
 	}
 
@@ -137,6 +141,7 @@ public class MemberService {
 		if(result > 0) commit(conn);
 		else rollback(conn);
 		
+		close(conn);
 		return result;
 	}
 
@@ -202,7 +207,7 @@ public class MemberService {
 		if(result > 0)		commit(conn);
 		else				rollback(conn);
 		
-		
+		close(conn);
 		return result;
 	}
 

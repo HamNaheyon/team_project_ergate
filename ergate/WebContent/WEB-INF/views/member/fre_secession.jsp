@@ -112,8 +112,10 @@
                 </form>
 				</div>
             </div>
+	<jsp:include page="../common/footer.jsp"/>
         </div>
 
+</body>
     <!-- 콘솔 창으로 회원 탈퇴 시 yes,or 팝업 띄우기 -->
     
     <script>
@@ -126,7 +128,5 @@
 		    }
 		}
 	</script>
-
-</body>
 
 </html>

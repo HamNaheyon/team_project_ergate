@@ -246,7 +246,7 @@
 						<!-- 분야 -->
 						<div class="col-md-3">
 							<select class="custom-select" id="feild" name="feild">
-							<option value="none">=== 선택 ===</option>
+								<option value="none">=== 선택 ===</option>
 								<option>웹개발</option>
 								<option>앱개발</option>
 							</select>

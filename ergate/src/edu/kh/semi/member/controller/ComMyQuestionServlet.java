@@ -46,6 +46,7 @@ public class ComMyQuestionServlet extends HttpServlet {
 			
 			int memberNo = comLoginMember.getMemberNo();
 
+			System.out.println(memberNo);
 			// 현재 페이지
 			int cp = request.getParameter("cp") == null ? 1 : Integer.parseInt(request.getParameter("cp"));
 
@@ -70,9 +71,16 @@ public class ComMyQuestionServlet extends HttpServlet {
 				// 문의사항 상세 조회
 			} else if (command.equals("view")) {
 				
-				int QuestionNo = Integer.parseInt(request.getParameter("no"));
-
+				int questionNo = Integer.parseInt(request.getParameter("questionNo"));
 				
+				Question question = service.selectQuestion(questionNo);
+				
+				request.setAttribute("question", question);
+				
+				path = "/WEB-INF/views/member/Question.jsp"; 
+				 view = request.getRequestDispatcher(path); 
+				 view.forward(request, response);
+
 				
 				
 			}

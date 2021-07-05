@@ -101,7 +101,6 @@ public class MyPostDAO {
 			
 			pstmt.setInt(1, memberNo);
 			
-			// 조회할 범위를 지정할 변수
 			int startRow = (pagination.getCurrentPage() - 1) * pagination.getLimit() + 1;
 			int endRow = startRow + pagination.getLimit() - 1;
 			
@@ -110,8 +109,8 @@ public class MyPostDAO {
 			
 			rs = pstmt.executeQuery();
 			
-			MemberBoard board = new MemberBoard();
 			while(rs.next()) {
+				MemberBoard board = new MemberBoard();
 				
 				board.setBoardNo(rs.getInt("BOARD_NO"));
 				board.setBoardTitle(rs.getString("BOARD_TITLE"));
@@ -161,18 +160,20 @@ public class MyPostDAO {
 			
 			rs = pstmt.executeQuery();
 			
-			Question question = new Question();
 			while(rs.next()) {
+				Question question = new Question();
 				
 				question.setQuestionNo(rs.getInt("QUESTION_NO"));
 				question.setQuestionStatus(rs.getString("QUESTION_STATUS"));
 				question.setQuestionTitle(rs.getString("QUESTION_TITLE"));
 				question.setQuestionDate(rs.getTimestamp("QUESTION_DATE"));
+				question.setMemberNo(rs.getInt("MEMBER_NO"));
 				
 				questionList.add(question);
 				
 			}
 			
+			System.out.println(questionList);
 		} finally {
 			close(rs);
 			close(pstmt);
@@ -186,7 +187,7 @@ public class MyPostDAO {
 
 
 
-	/** 문의 사항 pagination
+	/** 문의 사항  pagination
 	 * @param conn
 	 * @param cp
 	 * @param memberNo
