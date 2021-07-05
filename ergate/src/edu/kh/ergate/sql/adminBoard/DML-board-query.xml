@@ -21,5 +21,6 @@ WHERE MEMBER_NO=?</entry>
 UPDATE MEMBER 
 SET MEMBER_STATUS = 'Y' 
 WHERE MEMBER_NO=?</entry>
-
+<entry key="questionF">
+UPDATE QUESTIONS SET QUESTION_STATUS = 'Y' WHERE QUESTION_NO = ?</entry>
 </properties>

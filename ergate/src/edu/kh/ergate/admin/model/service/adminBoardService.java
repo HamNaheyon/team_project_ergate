@@ -145,7 +145,57 @@ public class adminBoardService {
 		return adminBoardList;
 	}
 
-	
+	public AdminQuestion selectQuestionView(int qNo) throws Exception{
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		AdminQuestion aq = dao.selectQuestionView(conn,qNo);
+		close(conn);
+		return aq;
+	}
 
+	
+	public Pagination getPagination(int cp, int boardTypeNo,String searchKey,String searchValue) throws Exception{
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		String condition = createCondition(searchKey, searchValue);
+		Map<String,Object> map = dao.getPagination(conn,cp,boardTypeNo,condition);
+		close(conn);
+		int listCount = map.get("listCount") != null ? (int)map.get("listCount") : 0;
+
+		return new Pagination(cp, listCount, boardTypeNo);
+	}
+	public List<adminBoard> selectBoardList(Pagination pagination,String searchKey,String searchValue)throws Exception {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		String condition = createCondition(searchKey, searchValue);
+		List<adminBoard> adminBoardList = dao.selectBoardList(conn,pagination,condition);
+		close(conn);
+		return adminBoardList;
+	}
+	
+	private String createCondition(String searchKey,String searchValue) {
+		String condition = null;
+		//condition 양끝에는 띄어쓰기를 반드시 추가하여
+		//sql구문이 연속되서 작성되는 것을 반지함
+		switch(searchKey) {
+		case "title":
+			condition = "AND BOARD_TITLE LIKE '%" + searchValue + "%'";
+			break;
+		case "number":
+			condition = "AND BOARD_NO LIKE '%" + searchValue + "%'";
+			break;
+		case "id":
+			condition = "AND MEMBER_ID LIKE '%" + searchValue + "%'";
+			break;
+		case "date":
+			condition = "AND CREATE_DT LIKE '%" + searchValue + "%'";
+			break;
+		case "bl":
+			condition = "AND BOARD_STATUS LIKE '%" + searchValue + "%'";
+			break;
+		}
+		return condition;
+	
+	}
 
 }

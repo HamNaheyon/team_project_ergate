@@ -26,18 +26,26 @@
      
 </head>
 <body>
+	<%-- 검색 상태 유지를 위한 쿼리스트링용 변수선언 --%>
+					<c:if test="${!empty param.sk && !empty param.sv}">
+					<%--검색은 게시글 목록 조회에 단순히 sk,sv 파라미터를 추가한것 
+						->목록 조회 결과 환면을 만들기 위해 boardList.jsp로 요청 위임 되기 때문에
+						request객체가 유지되고, 파라미터도 유지된다.
+					--%>
+					<c:set var="searchStr" value="&sk=${param.sk}&sv=${param.sv}"/>
+					</c:if>
     <div id="main-FreBoardAll">
   
     <table class="table">
       <thead style="background-color: rgb(166  , 206, 231); color: white; font-weight: bold;">
         
-          <tr><th>게시글 번호</th><th>게시글 제목</th><th>아이디</th><th>날짜</th><th>블라인드 처리 여부</th><th>상세보기</th></tr>
+          <tr><th>게시글 번호</th><th>게시글 제목</th><th>아이디</th><th>날짜</th><th>스타일</th><th>블라인드 처리 여부</th><th>상세보기</th></tr>
       </thead>
       <tbody>
  <c:choose>
 					<c:when test="${empty adminBoardList}">
 					<tr>
-						<td colspan="6"> 게시물이 없습니다.</td>
+						<td colspan="7"> 게시물이 없습니다.</td>
 					</tr>
 					</c:when>
 					<c:otherwise>
@@ -47,8 +55,9 @@
 								<td>${board.boardTitle }</td>
 								<td>${board.memberId }</td>
 								<td>${board.createDT}</td>
+								<td>${board.boardStyle}</td>
 								<td>${board.boardStatus}</td>
-								<td></td>
+								<td><a class ="look">상세보기</a></td>
 							</tr>
 						
 						</c:forEach>
@@ -121,7 +130,19 @@
     
     </div>
 
-
+<script>
+	
+		$('.look').on("click",function(){
+			let boardNo = $(this).parent().parent().children().eq(0).text().trim();
+			// $(this) : 클릭된 td 태그
+			// parent() : 부모 요소(tr)
+			// children() : 모든 자식요소 (td 4개)
+			// eq(0) : 모든 자식 요소 중 0번 째 인덱스 자식 (숫자 써진 td)			
+			// text() : 요소에 작성된 내용 얻어오기
+			location.href="${contextPath}/detailBoard?boardNo="+boardNo+"&cp=1&type=2";
+		});
+	
+</script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
