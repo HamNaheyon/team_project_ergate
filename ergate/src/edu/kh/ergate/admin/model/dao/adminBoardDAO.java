@@ -438,4 +438,82 @@ public class adminBoardDAO {
 		return aq;
 	}
 
+	public AdminQuestion selectQuestionView(Connection conn, int qNo) throws Exception {
+		// TODO Auto-generated method stub
+		AdminQuestion aq = null;
+		String sql = prop.getProperty("selectQuestionView");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qNo);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				int questionNo = rs.getInt(1);
+				String questionTitle =rs.getString(2);
+				String questionContent =rs.getString(3);
+				Date questionDate = rs.getDate(4);
+				String questionStatus = rs.getString(5);
+				String memberId =rs.getString(6);
+				String memberEmail = rs.getString(7);
+				String memberGrade = rs.getString(8);
+				
+				aq = new AdminQuestion(questionNo, questionTitle, questionContent, memberId, questionDate, memberEmail, memberGrade, questionStatus);
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return aq;
+	}
+	public Map<String, Object> getPagination(Connection conn, int cp, int boardTypeNo,String condition)throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		String sql = prop.getProperty("getListCount")+condition;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardTypeNo);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				map.put("listCount",rs.getInt(1));
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return map;
+	}
+	public List<adminBoard> selectBoardList(Connection conn, Pagination pagination,String condition) throws Exception{
+		// TODO Auto-generated method stub
+		List<adminBoard> adminBoardList = new ArrayList<adminBoard>();
+		String sql = prop.getProperty("selectBoardList1")+condition+prop.getProperty("selectBoardList2");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pagination.getboardTypeNo());
+			int startRow=(pagination.getCurrentPage()-1)*pagination.getLimit()+1;
+			int endRow =startRow+pagination.getLimit()-1;
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int boardNo =rs.getInt("BOARD_NO");
+				String boardTitle = rs.getString("BOARD_TITLE");
+				String boardContent = rs.getString("BOARD_CONTENT");
+				int readCount = rs.getInt("READ_COUNT");
+				Timestamp createDT = rs.getTimestamp("CREATE_DT");
+				Timestamp modifyDT = rs.getTimestamp("MODIFY_DT");
+				String boardStatus = rs.getString("BOARD_STATUS");
+				int memberNo=rs.getInt("MEMBER_NO");
+				int categoryCD = rs.getInt("CATEGORY_CD");
+				int boardTypeNo= rs.getInt("BOARD_TYPE_NO");
+				String memberId = rs.getString("MEMBER_ID");
+				int boardStyle = rs.getInt("BOARD_STYLE");
+				adminBoard board = new adminBoard(boardNo, boardTitle, boardContent, readCount, createDT, modifyDT, boardStatus, memberNo, categoryCD, boardTypeNo, memberId,boardStyle);
+				adminBoardList.add(board);
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return adminBoardList;
+	}
 }

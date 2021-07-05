@@ -24,12 +24,20 @@
      
 </head>
 <body>
+	<%-- 검색 상태 유지를 위한 쿼리스트링용 변수선언 --%>
+					<c:if test="${!empty param.sk && !empty param.sv}">
+					<%--검색은 게시글 목록 조회에 단순히 sk,sv 파라미터를 추가한것 
+						->목록 조회 결과 환면을 만들기 위해 boardList.jsp로 요청 위임 되기 때문에
+						request객체가 유지되고, 파라미터도 유지된다.
+					--%>
+					<c:set var="searchStr" value="&sk=${param.sk}&sv=${param.sv}"/>
+					</c:if>
     <div id="main-Member-All">
  
     <table class="table" id="tx">
       <thead style="background-color: rgb(166  , 206, 231); color: white; font-weight: bold;">
         
-          <tr><th>회원번호</th><th>기업이름</th><th>사업자 번호</th><th>아이디</th><th>가입 날짜</th><th>이메일</th><td>탈퇴 여부(Y:정상,N:탈퇴)</td><td>상세조회</td></>
+          <tr><th>회원번호</th><th>기업이름</th><th>사업자 번호</th><th>아이디</th><th>가입 날짜</th><th>이메일</th><td>탈퇴 여부(Y:정상,N:탈퇴)</td><td>상세조회</td></tr>
       </thead>
       <tbody>
      	<c:choose>
@@ -56,7 +64,7 @@
 				</c:choose>
       </tbody>
     </table>
-   			<c:set var="pageURL" value="ComMemberAll?type=${pagination.memberGrade }"/>
+   			<c:set var="pageURL" value="ComMemberAll?type=${pagination.memberGrade }${searchStr}"/>
 			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage }"/>
 			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage }"/>
 			
@@ -102,16 +110,20 @@
 	
 	
       <div>
-        <select aria-label="Default select example" style="margin-left: 35%;">
-          <option value="1" selected>회원 번호</option>
-          <option value="2">기업 이름</option>
-          <option value="3">사업자 번호</option>
-          <option value="4">아이디</option>
-          <option value="5">가입 날짜</option>
-          <option value="6">이메일</option>
-          <option value="7">탈퇴여부</option>
-        </select>
-      <input type="search"> <button id="searchbtn" class=" but-style">검색</button>
+      <form action="#" method="GET" class="text-center" id="searchForm">
+			<input type="hidden" name="type" value="2">
+			<select name="sk"aria-label="Default select example" style="margin-left: 35%;">
+ 			<option value="memberNo" selected>회원 번호</option>
+          	<option value="comName">기업 이름</option>
+          	<option value="comNum">사업자 번호</option>
+         	<option value="comId">아이디</option>
+        	<option value="comDt">가입 날짜</option>
+        	<option value="comEmail">이메일</option>
+      	    <option value="comGrade">탈퇴여부</option>
+			</select> <input name="sv"type="search">
+			<button id="searchbtn" class="but-style">검색</button>
+			
+			</form>
     </div>
     
     

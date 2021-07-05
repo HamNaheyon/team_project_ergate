@@ -45,9 +45,23 @@ public class ComBoardAllServlet extends HttpServlet {
 			System.out.println(cp);
 			if(command.equals("ComBoardAll")) {
 				int boardTypeNo = Integer.parseInt(request.getParameter("type"));
-				Pagination pagination = service.getPagination(cp,boardTypeNo);
+				//------------검색 추가---------------
+				Pagination pagination=null;
+				List<adminBoard> adminBoardList =null;
 				
-				List<adminBoard> adminBoardList = service.selectBoardList(pagination);
+				if(request.getParameter("sv")==null) {
+					pagination = service.getPagination(cp,boardTypeNo);
+					
+					adminBoardList = service.selectBoardList(pagination);
+				}else {// 검색어가 있을 경우
+					String searchKey = request.getParameter("sk");
+					String searchValue = request.getParameter("sv");
+					
+					pagination = service.getPagination(cp,boardTypeNo,searchKey,searchValue);
+					adminBoardList = service.selectBoardList(pagination,searchKey,searchValue);
+					
+				}
+				
 				
 				request.setAttribute("pagination", pagination);
 				request.setAttribute("adminBoardList", adminBoardList);
@@ -57,9 +71,23 @@ public class ComBoardAllServlet extends HttpServlet {
 				view.forward(request, response);
 			}else if(command.equals("ComBoardB")) {
 				int boardTypeNo = Integer.parseInt(request.getParameter("type"));
-				Pagination pagination = service.getPagination(cp,boardTypeNo);
-				System.out.println(pagination);
-				List<adminBoard> adminBoardList = service.selectBoardList(pagination);
+				//------------검색 추가---------------
+				Pagination pagination=null;
+				List<adminBoard> adminBoardList =null;
+				
+				if(request.getParameter("sv")==null) {
+					pagination = service.getPagination(cp,boardTypeNo);
+					
+					adminBoardList = service.selectBoardList(pagination);
+				}else {// 검색어가 있을 경우
+					String searchKey = request.getParameter("sk");
+					String searchValue = request.getParameter("sv");
+					
+					pagination = service.getPagination(cp,boardTypeNo,searchKey,searchValue);
+					adminBoardList = service.selectBoardList(pagination,searchKey,searchValue);
+					
+				}
+				
 				
 				request.setAttribute("pagination", pagination);
 				request.setAttribute("adminBoardList", adminBoardList);
@@ -138,6 +166,12 @@ public class ComBoardAllServlet extends HttpServlet {
 				request.setAttribute("pagination", pagination);
 				request.setAttribute("adminMemberList", adminMemberList);
 			    request.getRequestDispatcher("/WEB-INF/views/admin/qusetions.jsp").forward(request, response);
+			}
+			else if(command.equals("qSel")) {
+				int qNo = Integer.parseInt(request.getParameter("questionNo"));
+				AdminQuestion aq = service.selectQuestionView(qNo);
+				request.setAttribute("aq", aq);
+				request.getRequestDispatcher("/WEB-INF/views/admin/qusetionsSel.jsp").forward(request, response);
 			}
 			
 		}catch(Exception e) {

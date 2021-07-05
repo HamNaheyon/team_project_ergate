@@ -80,4 +80,18 @@ public class DMLService {
 		close(conn);
 		return result;
 	}
+
+	public int questionF(int qNo)throws Exception {
+		// TODO Auto-generated method stub
+		Connection conn =getConnection();
+		int result = dao.questionF(conn,qNo);
+		if(result>0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

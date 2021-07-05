@@ -32,7 +32,14 @@
 
 </head>
 <body>
-	
+		<%-- 검색 상태 유지를 위한 쿼리스트링용 변수선언 --%>
+					<c:if test="${!empty param.sk && !empty param.sv}">
+					<%--검색은 게시글 목록 조회에 단순히 sk,sv 파라미터를 추가한것 
+						->목록 조회 결과 환면을 만들기 위해 boardList.jsp로 요청 위임 되기 때문에
+						request객체가 유지되고, 파라미터도 유지된다.
+					--%>
+					<c:set var="searchStr" value="&sk=${param.sk}&sv=${param.sv}"/>
+					</c:if>
 	<div id="main-ComBoradAll">
 		<table class="table">
 			<thead
@@ -64,8 +71,13 @@
 								<td>${board.questionDate}</td>
 								<td>${board.memberEmail}</td>
 								<td>${board.memberGrade}</td>
-								<td></td>
-								<td></td>
+								<td><a class ="look">상세보기</a></td>
+								<c:if test="${board.questionStatus eq 'Y'}">
+								<td>문의사항 답변 완료</td>
+								</c:if>
+								<c:if test="${board.questionStatus eq 'N'}">
+								<td><button class='memRe'>답변하기</button></td>
+								</c:if>
 							</tr>
 						
 						</c:forEach>
@@ -141,7 +153,26 @@
 	</div>
 
 
-
+<script>
+$('.look').on("click",function(){
+	let qNo = $(this).parent().parent().children().eq(0).text().trim();
+	// $(this) : 클릭된 td 태그
+	// parent() : 부모 요소(tr)
+	// children() : 모든 자식요소 (td 4개)
+	// eq(0) : 모든 자식 요소 중 0번 째 인덱스 자식 (숫자 써진 td)			
+	// text() : 요소에 작성된 내용 얻어오기
+	location.href="${contextPath}/admin/qSel?questionNo="+qNo;
+});
+$('.memRe').on("click",function(){
+	let qNo = $(this).parent().parent().children().eq(0).text().trim();
+	// $(this) : 클릭된 td 태그
+	// parent() : 부모 요소(tr)
+	// children() : 모든 자식요소 (td 4개)
+	// eq(0) : 모든 자식 요소 중 0번 째 인덱스 자식 (숫자 써진 td)			
+	// text() : 요소에 작성된 내용 얻어오기
+	location.href="${contextPath}/admin2/questionF?qNo="+qNo+"&type=&cp="+${pagination.currentPage};
+});
+</script>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import edu.kh.ergate.admin.model.service.DMLService;
 import edu.kh.ergate.admin.model.service.adminBoardService;
+import edu.kh.ergate.admin.model.vo.AdminQuestion;
 import edu.kh.ergate.admin.model.vo.Pagination;
 import edu.kh.ergate.admin.model.vo.adminBoard;
 import edu.kh.ergate.admin.model.vo.adminMember;
@@ -251,6 +252,27 @@ public class DMLServlet extends HttpServlet {
 				request.setAttribute("adminMemberList", adminMemberList);
 				
 				response.sendRedirect(request.getContextPath()+"/admin/freMemberDel?type=F&cp="+cp);
+			}
+			else if(command.equals("questionF")) {
+				int qNo = Integer.parseInt(request.getParameter("qNo"));
+				int result = service.questionF(qNo);
+			
+				if(result>0) {
+					icon="success";
+					title="문의사항 답변 완료";
+				}
+				else {
+					icon="error";
+					title="문의사항 답변 실패";
+				}
+				Pagination pagination = new adminBoardService().getQuestionPagination(cp);
+				List<AdminQuestion> adminMemberList = new adminBoardService().selectQuestion(pagination);
+				HttpSession session = request.getSession();
+				session.setAttribute("icon", icon);
+				session.setAttribute("title", title);
+				request.setAttribute("pagination", pagination);
+				request.setAttribute("adminMemberList", adminMemberList);
+				response.sendRedirect(request.getContextPath()+"/admin/qusetions?type=F&cp="+cp);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

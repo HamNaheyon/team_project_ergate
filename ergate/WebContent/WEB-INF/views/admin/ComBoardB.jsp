@@ -32,7 +32,14 @@
 
 </head>
 <body>
-	
+		<%-- 검색 상태 유지를 위한 쿼리스트링용 변수선언 --%>
+					<c:if test="${!empty param.sk && !empty param.sv}">
+					<%--검색은 게시글 목록 조회에 단순히 sk,sv 파라미터를 추가한것 
+						->목록 조회 결과 환면을 만들기 위해 boardList.jsp로 요청 위임 되기 때문에
+						request객체가 유지되고, 파라미터도 유지된다.
+					--%>
+					<c:set var="searchStr" value="&sk=${param.sk}&sv=${param.sv}"/>
+					</c:if>
 	<div id="main-ComBoradAll">
 		<table class="table">
 			<thead
@@ -43,7 +50,7 @@
 					<th>아이디</th>
 					<th>날짜</th>
 					<th>블라인드 처리 여부</th>
-					<td>블라인드</td></>
+					<td>블라인드</td></tr>
 			</thead>
 			<tbody>
 				<c:choose>
@@ -75,7 +82,7 @@
 		</table>
 	
 	
-			<c:set var="pageURL" value="ComBoardB?type=${pagination.boardTypeNo }"/>
+			<c:set var="pageURL" value="ComBoardB?type=${pagination.boardTypeNo }${searchStr}"/>
 			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage }"/>
 			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage }"/>
 			
@@ -127,16 +134,20 @@
 	
 	
 		<div>
-			<select aria-label="Default select example" style="margin-left: 35%;">
+		<form action="#" method="GET" class="text-center" id="searchForm">
+			<input type="hidden" name="type" value="2">
+			<select name="sk"aria-label="Default select example" style="margin-left: 35%;">
 
-				<option value="1" selected>게시글 번호</option>
-				<option value="2">게시글 제목</option>
-				<option value="3">아이디</option>
-				<option value="4">날짜</option>
-				<option value="5">블라인드 처리여부</option>
+				<option value="number" selected>게시글 번호</option>
+				<option value="title">게시글 제목</option>
+				<option value="id">아이디</option>
+				<option value="date">날짜</option>
+				<option value="bl">블라인드 처리여부</option>
 
-			</select> <input type="search">
+			</select> <input name="sv"type="search">
 			<button id="searchbtn" class="but-style">검색</button>
+			
+			</form>
 		</div>
 	</div>
 

@@ -23,6 +23,17 @@ WHERE BOARD_TYPE_NO=?
 ORDER BY BOARD_NO DESC) A)
 WHERE RNUM BETWEEN ? AND ?
 </entry>
+<entry key="selectBoardList1">
+SELECT * FROM(
+SELECT ROWNUM RNUM, A.* FROM(
+SELECT * FROM ADMIN_BOARD_LIST
+WHERE BOARD_TYPE_NO=?
+
+</entry>
+<entry key="selectBoardList2">
+ORDER BY BOARD_NO DESC) A)
+WHERE RNUM BETWEEN ? AND ?
+</entry>
 
 <entry key="selectQuestion">
 SELECT * FROM(
@@ -74,5 +85,16 @@ WHERE MEMBER_NO=?
 <entry key="getMemPagination2">
 SELECT COUNT(*) FROM ADMIN_FRE_MEMBER
 WHERE MEMBER_GRADE =?
+</entry>
+
+<entry key="selectQuestionView">
+SELECT * FROM ADMIN_QUESTION_VIEW
+WHERE QUESTION_NO=?
+</entry>
+
+<entry key="getListCount">
+SELECT COUNT(*)
+FROM ADMIN_BOARD_LIST
+WHERE BOARD_TYPE_NO =?
 </entry>
 </properties>

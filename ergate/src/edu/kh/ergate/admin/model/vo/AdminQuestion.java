@@ -29,6 +29,19 @@ public class AdminQuestion {
 		this.memberNo = memberNo;
 		this.questionStatus = questionStatus;
 	}
+	
+	public AdminQuestion(int questionNo, String questionTitle, String questionContent, String memberId,
+			Date questionDate, String memberEmail, String memberGrade, String questionStatus) {
+		super();
+		this.questionNo = questionNo;
+		this.questionTitle = questionTitle;
+		this.questionContent = questionContent;
+		this.memberId = memberId;
+		this.questionDate = questionDate;
+		this.memberEmail = memberEmail;
+		this.memberGrade = memberGrade;
+		this.questionStatus = questionStatus;
+	}
 	public int getQuestionNo() {
 		return questionNo;
 	}

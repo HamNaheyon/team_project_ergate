@@ -105,4 +105,18 @@ public class DMLDAO {
 		}
 		return result;
 	}
+
+	public int questionF(Connection conn, int qNo)throws Exception {
+		// TODO Auto-generated method stub
+		int result = 0;
+		String sql = prop.getProperty("questionF");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, qNo);
+			result=pstmt.executeUpdate();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }
