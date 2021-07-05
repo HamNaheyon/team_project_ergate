@@ -39,30 +39,29 @@
             float:left;
         }
 
-        #fre_mblistno{width:11%;}
+        #fre_mblistno{width:20%;}
         #fre_mblisttitle{width:20%;}
-        #fre_mblistwriter{width:15%;}
-        #fre_mblistcontents{width:35%;}
-        #fre_mblistdt{width:15%;}
+        #fre_mblistwriter{width:20%;}
+        #fre_mblistcontents{width:20%;}
+        #fre_mblistdt{width:20%;}
 
-        #mbn{width:11%;}
+        #mbn{width:20%;}
         #mbt{width:20%;}
-        #mbw{width:15%;}
-        #mbc{width:35%;}
-        #mbd{width:15%;}
+        #mbw{width:20%;}
+        #mbc{width:20%;}
+        #mbd{width:20%;}
     </style>
 </head>
 <body>
-    <jsp:include page="../common/header.jsp"></jsp:include>
       <div id="fre_container">
+    <jsp:include page="../common/header.jsp"></jsp:include>
+        <div class="row my-5">
        		<jsp:include page="com_sideMenu.jsp"></jsp:include>
-        <div class="fre_mb-form">
-            <div class="myboard">
+            <div class="col-sm-8">
                 <h4 class="fre_mbtitle">내 게시글</h4>
                 <br>
                 <hr>
-            </div>
-            <div class="fre_mblist">
+            <div class="fre_mblist col-sm-8">
                 <ul>
                     <li id="fre_mblistno">게시글 번호</li>
                     <li id="fre_mblisttitle">제목</li>
@@ -70,8 +69,7 @@
                     <li id="fre_mblistcontents">조회수</li>
                     <li id="fre_mblistdt">작성일자</li>
                 </ul>
-            </div>
-            <div class="fre_mbcontents">
+            <div class="fre_mbcontents" class="row my-5">
             <c:choose>
             	<c:when test="${empty boardList }">
             		<ul>
@@ -82,7 +80,7 @@
             		<c:forEach items="${boardList}" var="board">
                 <ul>
                     <li id="mbn">${board.boardNo}</li>
-                    <li id="mbt">${board.boardTitle}</li>
+                    <li class="boardNo" id="mbt">${board.boardTitle}</li>
                     <li id="mbw">${board.memberId}</li>
                     <li id="mbc">${board.readCount }</li>
                     <li id="mbd">${board.createDate }</li>
@@ -90,7 +88,10 @@
             		</c:forEach>
             	</c:otherwise>
             </c:choose>
+            </div>
+            </div>
             <div>
+                ${MyPostPagination}
           	<%-- 페이징 처리 시 주소를 쉽게 작성할 수 있도록 필요한 변수를 미리 선언 --%>
 			<c:set var="pageURL" value="list?no=${pagination.memberNo}"/>
 			
@@ -142,7 +143,6 @@
 
 
 				</ul>
-			</div>
 			<%---------------------- Pagination end----------------------%>
           	
           	
@@ -150,6 +150,20 @@
             </div>
             </div>
         </div>
+			</div>
         <jsp:include page="../common/footer.jsp"/>
 </body>
+
+	<script>
+	$('.boardNo').on("click",function(){
+		
+		let boardNo = $(this).parent().children().eq(0).text();
+        
+		location.href="${contextPath}/detailBoard?boardNo="+boardNo+"&cp=1&type=1";
+        
+     });
+
+
+	</script>
+
 </html>

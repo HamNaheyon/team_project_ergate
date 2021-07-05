@@ -206,7 +206,7 @@
        
        
        		<c:choose>
-       				<c:when test="${empty freLoginMember && empty comLoginMember}">
+       				<c:when test="${empty freLoginMember && empty comLoginMember && empty admin}">
                     <li> <a data-bs-toggle="modal" data-bs-target="#exampleModal">로그인/회원가입</a> </li>
                 	</c:when>
                 	<c:when test="${!(empty freLoginMember)}">

@@ -45,7 +45,7 @@
         #fre_mblistcontents{width:25%;}
 
         #mbn{width:25%;}
-        #mbt{width:25%;}
+        #mbt{width:25%; font-size : 15px; cursor : pointer;}
         #mbw{width:25%;}
         #mbc{width:25%;}
     </style>
@@ -77,7 +77,7 @@
             		<c:forEach items="${questionList}" var="question">
                 <ul>
                     <li id="mbn">${question.questionNo}</li>
-                    <li id="mbt">${question.questionTitle}</li>
+                    <li class="questions" id="mbt">${question.questionTitle}</li>
                     <li id="mbw">${question.questionDate}</li>
                     <li id="mbc">${question.questionStatus }</li>
                 </ul>
@@ -93,6 +93,10 @@
 			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage}"/><%-- &ca=${category.prevPage} --%>
 			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage}"/><%-- &ca=${category.nextPage} --%>
 			
+            </div>
+            </div>
+     		   </div>
+			</div>
 			<div class="my-5">
 				<ul class="pagination">
 					
@@ -142,10 +146,18 @@
           	
           	
             </div>
-            </div>
-            </div>
-        </div>
-			</div>
         <jsp:include page="../common/footer.jsp"/>
 </body>
+
+	<script>
+	$('.questions').on("click",function(){
+		
+		let questionNo = $(this).parent().children().eq(0).text();
+        
+		location.href="${contextPath}/fre_myQuestion/view?questionNo="+questionNo;
+        
+     });
+
+
+	</script>
 </html>

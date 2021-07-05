@@ -39,17 +39,17 @@
             float:left;
         }
 
-        #fre_mblistno{width:11%;}
+        #fre_mblistno{width:20%;}
         #fre_mblisttitle{width:20%;}
-        #fre_mblistwriter{width:15%;}
-        #fre_mblistcontents{width:35%;}
-        #fre_mblistdt{width:15%;}
+        #fre_mblistwriter{width:20%;}
+        #fre_mblistcontents{width:20%;}
+        #fre_mblistdt{width:20%;}
 
-        #mbn{width:11%;}
+        #mbn{width:20%;}
         #mbt{width:20%;}
-        #mbw{width:15%;}
-        #mbc{width:35%;}
-        #mbd{width:15%;}
+        #mbw{width:20%;}
+        #mbc{width:20%;}
+        #mbd{width:20%;}
     </style>
 </head>
 <body>
