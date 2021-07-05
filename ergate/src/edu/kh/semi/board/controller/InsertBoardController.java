@@ -140,7 +140,8 @@ public class InsertBoardController extends HttpServlet {
 					System.out.println(result);
 					icon = "success";
 					title = "게시글 등록 성공";
-					path = "../detailBoard/detailBoard?no=" + result + "&cp=1&type=" + boardStyle;
+					path = "../detailBoard?boardNo=" + result + "&cp=1&type=" + boardStyle;
+//					path = "../detailBoard/detailBoard?no=" + result + "&cp=1&type=" + boardStyle;
 					
 				}else {
 					icon = "error";

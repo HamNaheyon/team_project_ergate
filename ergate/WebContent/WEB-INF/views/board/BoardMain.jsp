@@ -61,6 +61,12 @@
         </div> -->
         <div class="pfboardcontents">
         	<div id="pfcontents">
+        	
+        		<c:if test="${!empty param.sk && !empty param.sv}">
+        			<c:set var="searchstr" value="&sk=${param.sk}$sv=${param.sv}" />
+        		</c:if>
+        		
+        	
 				<c:choose>
 					<c:when test="${empty boardList}">
 		                <div id="pfthumbnail">
@@ -70,7 +76,7 @@
 					<c:otherwise>
 						<c:forEach items ="${boardList}" var="board">
 							
-		                	<a href="${contextPath}/detailBoard?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${pagination.boardStyle}">
+		                	<a href="${contextPath}/detailBoard?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${pagination.boardStyle}${searchStr}">
 
 				                <c:choose>
 	
@@ -113,8 +119,8 @@
 			
 			<c:set var="pageURL" value="list?type=${pagination.boardStyle}"/>
 			
-			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage}"/><%-- &ca=${category.prevPage} --%>
-			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage}"/><%-- &ca=${category.nextPage} --%>
+			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage}${searchStr}"/><%-- &ca=${category.prevPage} --%>
+			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage}${searchStr}"/><%-- &ca=${category.nextPage} --%>
 			
 			<div class="my-5">
 				<ul class="pagination">
@@ -126,7 +132,7 @@
 					
 					<%-- 현재 페이지가 2페이지 초과인 경우 --%>
 					<c:if test="${pagination.currentPage > 2}">
-						<li><a class="page-link" href="${pageURL}&cp=${pagination.currentPage-1}">&lt;</a></li>
+						<li><a class="page-link" href="${pageURL}&cp=${pagination.currentPage-1}${searchStr}">&lt;</a></li>
 					</c:if>
 					
 					<%-- 페이지 목록 --%>
@@ -140,7 +146,7 @@
 								</c:when>
 								
 								<c:otherwise>
-									<li><a class="page-link" href="${pageURL}&cp=${p}">${p}</a></li>
+									<li><a class="page-link" href="${pageURL}&cp=${p}${searchStr}">${p}</a></li>
 								</c:otherwise>
 							</c:choose>
 						
@@ -151,7 +157,7 @@
 					
 					<%-- 현재 페이지가 마지막페이지 미만인 경우 --%>
 					<c:if test="${pagination.currentPage < pagination.maxPage}">
-						<a class="page-link" href="${pageURL}&cp=${pagination.currentPage+1}">&gt;</a>
+						<a class="page-link" href="${pageURL}&cp=${pagination.currentPage+1}${searchStr}">&gt;</a>
 					</c:if>
 					
 					<%-- 현재 페이지가 마지막페이지 미만인 경우 --%>
