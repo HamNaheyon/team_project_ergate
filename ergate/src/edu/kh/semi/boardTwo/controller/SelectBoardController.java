@@ -48,7 +48,7 @@ public class SelectBoardController extends HttpServlet {
 				int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 				int type = Integer.parseInt(request.getParameter("style"));
 				
-				if(type == 1) {
+				if(type == 2) {
 					Board board = service.freeSelectBoard(boardNo);
 					
 					List<Comments> rList = new CommentsService().selectList(boardNo);
@@ -57,7 +57,7 @@ public class SelectBoardController extends HttpServlet {
 					request.setAttribute("rList", rList);
 					
 					path = "/WEB-INF/views/detail/detailFree.jsp";
-				}else if(type == 2){
+				}else if(type == 1){
 					Board board = service.ComSelectBoard(boardNo);
 
 					List<Comments> rList = new CommentsService().selectList(boardNo);
