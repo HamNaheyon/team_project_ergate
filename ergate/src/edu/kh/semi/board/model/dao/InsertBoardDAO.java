@@ -99,13 +99,13 @@ public class InsertBoardDAO {
 	/** 게시글 삽입 DAO
 	 * @param conn
 	 * @param board
-	 * @param boardType
+	 * @param boardStyle
 	 * @param writerType 
 	 * @param writerType2 
 	 * @return result
 	 * @throws Exception
 	 */
-	public int insertBoard(Connection conn, Board board, int categoryCode, int boardType, int writerType)throws Exception {
+	public int insertBoard(Connection conn, Board board, int categoryCode, int boardStyle, int writerType)throws Exception {
 
 		int result = 0;
 		
@@ -119,8 +119,8 @@ public class InsertBoardDAO {
 			pstmt.setString(3, board.getBoardContent());
 			pstmt.setInt(4, board.getMemberNo());
 			pstmt.setInt(5, categoryCode);
-			pstmt.setInt(6, boardType);
-			pstmt.setInt(7, writerType);
+			pstmt.setInt(6, writerType);
+			pstmt.setInt(7, boardStyle);
 			
 			
 			result = pstmt.executeUpdate();

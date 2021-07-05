@@ -20,8 +20,9 @@
 	
 	
     
-		<form action="${contextPath}/board2/insert?type=${param.type}" method="post" 
-			  enctype="multipart/form-data" role="form" onsubmit="return boardValidate();">
+		<%-- <form action="${contextPath}/board2/insert?style=${pagination.boardStyle}" method="post"  --%>
+		<form action="${contextPath}/board2/insert" method="post" 
+			  name="insertFrm" enctype="multipart/form-data" role="form" onsubmit="return boardValidate();">
     <div class="pcontainer">
    
         <div class="postingsc">
@@ -32,7 +33,7 @@
                 <label for="ptype">게시판종류*</label>
             </div>
             <div class="select">
-                <select id="boardType" name="boardType">
+                <select id="boardStyle" name="boardStyle">
                     <option value="1">제안서</option>
                     <option value="2">포트폴리오</option>
                 </select>
@@ -43,7 +44,7 @@
                 <label for="category">카테고리*</label>
             </div>
             <div class="select">
-                <select id="categoryCode" name="categoryCode">
+                <select id="categoryCode" name="categoryCd">
                     <option value="1">웹 개발자</option>
                     <option value="2">앱 개발자</option>
                 </select>
@@ -145,6 +146,17 @@
             el.parentElement.remove();
             count--;
         }
+        
+        
+        function boardValidate(){
+        	
+        	
+        	document.insertFrm.action = "${contextPath}/board2/insert?style=" + $("#boardStyle").val();
+        	document.insertFrm.submit();
+        	
+        }
+        
+        
         
         // 게시글 작성내용 지우기
 /*         $("#reset").on("click", function(){

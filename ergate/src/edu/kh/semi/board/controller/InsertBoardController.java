@@ -62,7 +62,10 @@ public class InsertBoardController extends HttpServlet {
 				
 			}
 			else if(command.equals("insert")) {
-				int boardStyle = Integer.parseInt(request.getParameter("type")); // 포트폴리오 / 제안서 (전 boardType)
+				int boardStyle = Integer.parseInt(request.getParameter("style")); // 포트폴리오 / 제안서 (전 boardType)
+				
+				//int type = Integer.parseInt(request.getParameter("type")); // 포트폴리오 / 제안서 (전 boardType)
+				
 				
 				HttpSession session = request.getSession();
 				
@@ -88,8 +91,8 @@ public class InsertBoardController extends HttpServlet {
 				String filePath = "resources/img/";
 				
 				switch(boardStyle) {
-				case 1 : filePath += "freboard/"; break; 
-				case 2 : filePath += "comboard/"; break; 
+				case 1 : filePath += "pfboard/"; break; 
+				case 2 : filePath += "ppboard/"; break; 
 				}
 				
 				System.out.println("실제 저장경로 : " + root + filePath);
@@ -124,7 +127,8 @@ public class InsertBoardController extends HttpServlet {
 				
 				String boardTitle = mpRequest.getParameter("boardTitle");
 				String boardContent = mpRequest.getParameter("boardContent");
-				int categoryCode = Integer.parseInt(mpRequest.getParameter("categoryCode")); // 웹 / 앱
+				
+				int categoryCode = Integer.parseInt(mpRequest.getParameter("categoryCd")); // 웹 / 앱
 				
 				
 				Board board = new Board();
@@ -140,7 +144,7 @@ public class InsertBoardController extends HttpServlet {
 					System.out.println(result);
 					icon = "success";
 					title = "게시글 등록 성공";
-					path = "../detailBoard?boardNo=" + result + "&cp=1&type=" + boardStyle;
+					path = "../detailBoard?boardNo=" + result + "&cp=1&style=" + boardStyle;
 //					path = "../detailBoard/detailBoard?no=" + result + "&cp=1&type=" + boardStyle;
 					
 				}else {

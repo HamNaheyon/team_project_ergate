@@ -44,7 +44,7 @@ public class SelectBoardAllController extends HttpServlet {
 				Integer.parseInt(request.getParameter("cp"));
 			
 			if(command.equals("list")) {
-				int boardStyle = Integer.parseInt(request.getParameter("type"));
+				int boardStyle = Integer.parseInt(request.getParameter("style"));
 				
 				if(request.getParameter("cg")  == null) {
 
