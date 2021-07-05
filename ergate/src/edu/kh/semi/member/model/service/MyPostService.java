@@ -99,6 +99,7 @@ public class MyPostService {
 		
 		Question question = dao.selectQuestion(conn,questionNo);
 		
+		close(conn);
 		
 		return question;
 	}

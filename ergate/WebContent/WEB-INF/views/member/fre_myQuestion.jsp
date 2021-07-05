@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fre_myQuestion</title>
+    <title>fre_myPost</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
@@ -39,39 +39,34 @@
             float:left;
         }
 
-        #fre_mblistno{width:11%;}
-        #fre_mblisttitle{width:20%;}
-        #fre_mblistwriter{width:15%;}
-        #fre_mblistcontents{width:35%;}
-        #fre_mblistdt{width:15%;}
+        #fre_mblistno{width:25%;}
+        #fre_mblisttitle{width:25%;}
+        #fre_mblistwriter{width:25%;}
+        #fre_mblistcontents{width:25%;}
 
-        #mbn{width:11%;}
-        #mbt{width:20%;}
-        #mbw{width:15%;}
-        #mbc{width:35%;}
-        #mbd{width:15%;}
+        #mbn{width:25%;}
+        #mbt{width:25%;}
+        #mbw{width:25%;}
+        #mbc{width:25%;}
     </style>
 </head>
 <body>
-    <jsp:include page="../common/header.jsp"></jsp:include>
       <div id="fre_container">
+    <jsp:include page="../common/header.jsp"></jsp:include>
+        <div class="row my-5">
        		<jsp:include page="sideMenu.jsp"></jsp:include>
-       		${questionList}
-        <div class="fre_mb-form">
-            <div class="myboard">
+            <div class="col-sm-8">
                 <h4 class="fre_mbtitle">내 게시글</h4>
                 <br>
                 <hr>
-            </div>
-            <div class="fre_mblist">
+            <div class="fre_mblist col-sm-8">
                 <ul>
                     <li id="fre_mblistno">문의글 번호</li>
                     <li id="fre_mblisttitle">제목</li>
                     <li id="fre_mblistwriter">문의 날짜</li>
                     <li id="fre_mblistcontents">문의 상태</li>
                 </ul>
-            </div>
-            <div class="fre_mbcontents">
+            <div class="fre_mbcontents" class="row my-5">
             <c:choose>
             	<c:when test="${empty questionList}">
             		<ul>
@@ -82,13 +77,15 @@
             		<c:forEach items="${questionList}" var="question">
                 <ul>
                     <li id="mbn">${question.questionNo}</li>
-                    <li class="questions" id="mbt">${question.questionTitle}</li>
-                    <li id="mbd">${question.questionDate}</li>
-                    <li id="mbw">${question.questionStatus}</li>
+                    <li id="mbt">${question.questionTitle}</li>
+                    <li id="mbw">${question.questionDate}</li>
+                    <li id="mbc">${question.questionStatus }</li>
                 </ul>
             		</c:forEach>
             	</c:otherwise>
             </c:choose>
+            </div>
+            </div>
             <div>
           	<%-- 페이징 처리 시 주소를 쉽게 작성할 수 있도록 필요한 변수를 미리 선언 --%>
 			<c:set var="pageURL" value="list?no=${pagination.memberNo}"/>
@@ -126,6 +123,9 @@
 						
 					</c:forEach>
 					
+					
+					
+					
 					<%-- 현재 페이지가 마지막페이지 미만인 경우 --%>
 					<c:if test="${pagination.currentPage < pagination.maxPage}">
 						<a class="page-link" href="${pageURL}&cp=${pagination.currentPage+1}">&gt;</a>
@@ -138,7 +138,6 @@
 
 
 				</ul>
-			</div>
 			<%---------------------- Pagination end----------------------%>
           	
           	
@@ -146,21 +145,7 @@
             </div>
             </div>
         </div>
-	<script>
-	
-		$(".questions").on("click",function(){
-		    let questionNo = $(this).parent().children().eq(0).text();
-				    
-		    console.log(questionNo);
-		    location.href="${contextPath}/fre_myQuestion/view?questionNo="+questionNo;
-		    
-		 });
-	
-	</script>
+			</div>
+        <jsp:include page="../common/footer.jsp"/>
 </body>
-
-	
-	
-	
-	
 </html>
