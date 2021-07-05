@@ -65,7 +65,7 @@ public class ComMyPostServlet extends HttpServlet {
 				
 				int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 				
-				path = "/WEB-INF/views/detail/Question.jsp"; 
+				path = "/WEB-INF/views/detail?" + boardNo; 
 				 view = request.getRequestDispatcher(path); 
 				 view.forward(request, response);
 

@@ -65,7 +65,12 @@ public class FreMyPostServlet extends HttpServlet {
 			// 게시글 상세 조회
 			}else if(command.equals("view")) {
 				
+				int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 				
+				path = "/WEB-INF/views/detail?" + boardNo; 
+				 view = request.getRequestDispatcher(path); 
+				 view.forward(request, response);
+
 			}
 			
 		} catch (Exception e) {

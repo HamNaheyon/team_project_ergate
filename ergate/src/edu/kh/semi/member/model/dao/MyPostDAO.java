@@ -199,7 +199,6 @@ public class MyPostDAO {
 		
 		String sql = prop.getProperty("getQuestionList");
 		
-		System.out.println(memberNo);
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
@@ -216,7 +215,6 @@ public class MyPostDAO {
 			close(pstmt);
 		}
 		
-		System.out.println(sql);
 		
 		return map;
 	}

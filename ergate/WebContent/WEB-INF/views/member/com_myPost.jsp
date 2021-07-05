@@ -162,8 +162,6 @@
 		location.href="${contextPath}/detailBoard?boardNo="+boardNo+"&cp=1&type=1";
         
      });
-
-
 	</script>
 
 </html>
