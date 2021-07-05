@@ -238,14 +238,28 @@
 	    </div>
 	    
 	    <div id="etc-btn">
-		    <c:if test="${loginMember.memberNo == board.memberNo }">
-		    	<div id="btn-size1">
+	    	<div id="btn-size1">
+		    	<c:if test="${loginMember.memberNo == board.memberNo}">
 		    		<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
+		    	</c:if>
+		    	<c:if test="${loginMember.memberNo == board.memberNo || memeber.memberId.val('admin')}">
 		    		<button id="delete-btn" onclick="btnDeletion();">게시글 삭제</button>
-		    	</div>
-		    </c:if>
+		    	</c:if>
+		    </div>
+		   
 	    	<div id="btn-size2">
-	    		<a href="board/list?type=${param.type}&cp=${param.cp}"><button id="return-btn">이전 페이지로 이동</button></a>
+	    	<c:choose>
+	    	<c:when test="${memeber.memberId.eq('admin')}">
+		    	<a href="admin/ComBoardAll?type=${param.type}&cp=${param.cp}">
+		    		<button id="return-btn">이전 페이지로 이동</button>
+		    	</a>
+	    	</c:when>
+	    	<c:otherwise>
+		    	<a href="board/list?type=${param.type}&cp=${param.cp}">
+		    		<button id="return-btn">이전 페이지로 이동</button>
+		    	</a>
+	    	</c:otherwise>
+	    	</c:choose>
 	    	</div>
 	    </div>
   		<div id="main-btn">
@@ -265,7 +279,9 @@
   			<hr id="comment-text">
   			
   			<label  class="navi-name">댓글</label>
-  			<div id="comment-con"></div>
+  			<div id="comment-con">
+  			<jsp:include page="reply.jsp"></jsp:include>
+  			</div>
   		
   		</div>
   	</div>

@@ -233,7 +233,7 @@
 		    	아이디 : ${board.memberId} <br>
 		    	희망 근무 시간 : 
 		    	<c:choose>
-		    		<c:when test = "${!empty board.minTime}" >
+		    		<c:when test = "${ board.minTime}" >
 		    		${board.minTime}
 		    		</c:when>
 		    		<c:otherwise>
@@ -300,12 +300,27 @@
 	    <div id="etc-btn">
 		    <c:if test="${loginMember.memberNo == board.memberNo }"> 
 		    	<div id="btn-size1">
-		    		<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
-		    		<button id="delete-btn" onclick="btnDeletion();">게시글 삭제</button>
+			    	<c:if test="${loginMember.memberNo == board.memberNo}">
+			    		<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
+			    	</c:if>
+			    	<c:if test="${loginMember.memberNo == board.memberNo || memeber.memberId.val('admin')}">
+			    		<button id="delete-btn" onclick="btnDeletion();">게시글 삭제</button>
+			    	</c:if>
 		    	</div>
 		    </c:if> 
 	    	<div id="btn-size2">
-	    		<a href="board/list?type=${param.type}&cp=${param.cp}"><button id="return-btn">이전 페이지로 이동</button></a>
+	    	<c:choose>
+	    	<c:when test="${memeber.memberId.val('admin')}">
+		    	<a href="admin/ComBoardAll?type=${param.type}&cp=${param.cp}">
+		    		<button id="return-btn">이전 페이지로 이동</button>
+		    	</a>
+	    	</c:when>
+	    	<c:otherwise>
+		    	<a href="board/list?type=${param.type}&cp=${param.cp}">
+		    		<button id="return-btn">이전 페이지로 이동</button>
+		    	</a>
+	    	</c:otherwise>
+	    	</c:choose>
 	    	</div>
 	    </div>
   		<div id="main-btn">
@@ -316,7 +331,6 @@
   		<div id="con-main-text">
   			<label id="name-text" class="navi-name">포트폴리오</label>
   			<div id="name-con"></div>
-  			
   			<hr id="plan-text">
   			
   			<label class="navi-name">포트폴리오 설명</label>
@@ -325,7 +339,9 @@
   			<hr id="comment-text">
   			
   			<label  class="navi-name">댓글</label>
-  			<div id="comment-con"></div>
+  			<div id="comment-con">
+  			<jsp:include page="reply.jsp"></jsp:include>
+  			</div>
   		
   		</div>
   	</div>

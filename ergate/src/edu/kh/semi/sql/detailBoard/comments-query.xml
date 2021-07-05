@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<entry key="selectList">
+	SELECT COMMENT_NO, COMMENT_CONTENT, COMMENT_DT, BOARD_NO, MEMBER_NO, MEMBER_ID
+	FROM COMMENTS
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE BOARD_NO = ?
+	ORDER BY COMMENT_NO DESC
+</entry>
+
+<entry key="insertComments">
+	INSERT INTO COMMENTS
+	VALUES(SEQ_CMNO.NEXTVAL, ?, SYSTIMESTAMP, ?, ?)
+</entry>
+
+<entry key="updateComments">
+	UPDATE COMMENTS SET
+	COMMENT_CONTENT = ?
+	WHERE COMMENT_NO= ?
+</entry>
+
+<entry key="deleteComments">
+	DELETE FROM COMMENTS WHERE COMMENT_NO =?
+</entry>
+
+
+</properties>
