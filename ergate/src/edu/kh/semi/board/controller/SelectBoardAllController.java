@@ -48,9 +48,20 @@ public class SelectBoardAllController extends HttpServlet {
 				
 				if(request.getParameter("cg")  == null) {
 
-					Pagination pagination = service.getPagination(cp, boardStyle);
+					Pagination pagination = null;
 
-					List<Board> boardList = service.selectBoardList(pagination);
+					List<Board> boardList = null;
+					
+					if(request.getParameter("sv") == null) { // 검색x
+						pagination = service.getPagination(cp, boardStyle);
+						boardList = service.selectBoardList(pagination);
+					}else {
+						String searchKey = request.getParameter("sk");
+						String searchValue = request.getParameter("sv");
+						
+						pagination = service.getPagination(cp, boardStyle, searchKey, searchValue);
+						boardList = service.selectBoardList(pagination, searchKey, searchValue);
+					}
 					
 					request.setAttribute("pagination", pagination);
 					request.setAttribute("boardList", boardList);
@@ -61,10 +72,26 @@ public class SelectBoardAllController extends HttpServlet {
 					
 				}else {
 					int boardCategory = Integer.parseInt(request.getParameter("cg"));
+					
+					Pagination pagination = null;
+					
+					List<Board> boardList = null;
 
-					Pagination pagination = service.getPagination(cp, boardStyle, boardCategory);
-
-					List<Board> boardList = service.selectBoardList(pagination);
+					if(request.getParameter("sv") == null) {
+						
+						String searchKey = request.getParameter("sk");
+						String searchValue = request.getParameter("sv");
+						
+						pagination = service.getPagination(cp, boardStyle, boardCategory);
+						boardList = service.selectBoardList(pagination);
+					}else {
+						String searchKey = request.getParameter("sk");
+						String searchValue = request.getParameter("sv");
+						
+						pagination = service.getPagination(cp, boardStyle, boardCategory, searchKey, searchValue);
+						boardList = service.selectBoardList(pagination, searchKey, searchValue);
+						
+					}
 					
 					request.setAttribute("pagination", pagination);
 					request.setAttribute("boardList", boardList);

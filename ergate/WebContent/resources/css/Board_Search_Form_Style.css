@@ -20,14 +20,19 @@
             float:left;
             position:relative;
         }
+        .searchcategory{
+        	width:20%;
+            height:100%;
+            float:left;
+        }
 
         .iparea{
-            width:70%;
+            width:60%;
             height:100%;
             float:left;
         }
         .btnarea{
-            width:30%;
+            width:20%;
             height:100%;
             float:left;
         }
