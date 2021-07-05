@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.kh.semi.member.model.service.MemberService;
+import edu.kh.semi.member.model.vo.Admin;
 import edu.kh.semi.member.model.vo.ComMember;
 import edu.kh.semi.member.model.vo.FreMember;
 
@@ -47,6 +48,8 @@ public class LoginServlet extends HttpServlet {
 			
 			ComMember comLoginMember = null;
 			
+			Admin admin = null;
+			
 			if(freId != null) {
 				freLoginMember = service.freLogin(freId,frePw);
 			}else {
@@ -57,18 +60,27 @@ public class LoginServlet extends HttpServlet {
 			session.removeAttribute("icon");
 			session.removeAttribute("title");
 			session.removeAttribute("text");
+			
 			if(freLoginMember == null) {
 				session.setAttribute("icon", "error"); // success, warning, error,
 				session.setAttribute("title", "로그인 실패");
 				session.setAttribute("text","아이디 또는 비밀번호가 일치하지 않습니다.");
 				
 			} else if(freLoginMember.getMemberGrade().equals("A")) {
+				
+				session.setAttribute("admin", admin);
+				
+				System.out.println("admin : " + admin);
+				
 				String path="/WEB-INF/views/admin/adminmain.jsp";
 	            RequestDispatcher view = request.getRequestDispatcher(path);
 	            view.forward(request, response);
+	            
 			}else if(freLoginMember != null) {
 				session.setAttribute("freLoginMember",freLoginMember );
-				/* response.sendRedirect(request.getContextPath()); */
+					
+				
+				System.out.println("freLoginMember : " + freLoginMember);
 				response.sendRedirect( request.getHeader("referer") );
 			}
 			
@@ -83,11 +95,18 @@ public class LoginServlet extends HttpServlet {
 					
 				}
 				else if(comLoginMember.getMemberGrade().equals("A")) {
+					
+					session.setAttribute("admin", admin);
+					
+					System.out.println("admin : " + admin);
+					
 					String path="/WEB-INF/views/admin/adminmain.jsp";
 		            RequestDispatcher view = request.getRequestDispatcher(path);
 		            view.forward(request, response);
 				}else if(comLoginMember != null) {
 					session.setAttribute("comLoginMember",comLoginMember );
+					
+					System.out.println("comLoginMember : " + comLoginMember);
 					/* response.sendRedirect(request.getContextPath()); */
 					response.sendRedirect( request.getHeader("referer") );
 				}

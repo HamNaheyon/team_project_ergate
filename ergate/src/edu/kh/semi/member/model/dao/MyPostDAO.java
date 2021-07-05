@@ -173,7 +173,6 @@ public class MyPostDAO {
 				
 			}
 			
-			System.out.println(questionList);
 		} finally {
 			close(rs);
 			close(pstmt);
@@ -200,16 +199,16 @@ public class MyPostDAO {
 		
 		String sql = prop.getProperty("getQuestionList");
 		
-	
+		System.out.println(memberNo);
 		try {
 			
-			stmt = conn.createStatement();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
 			
-			rs = stmt.executeQuery(sql);
+			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				map.put("listCount",rs.getInt(1));
-				
 			}
 			
 		} finally {
@@ -217,6 +216,7 @@ public class MyPostDAO {
 			close(pstmt);
 		}
 		
+		System.out.println(sql);
 		
 		return map;
 	}

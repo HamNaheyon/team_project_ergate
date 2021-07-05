@@ -46,7 +46,6 @@ public class ComMyQuestionServlet extends HttpServlet {
 			
 			int memberNo = comLoginMember.getMemberNo();
 
-			System.out.println(memberNo);
 			// 현재 페이지
 			int cp = request.getParameter("cp") == null ? 1 : Integer.parseInt(request.getParameter("cp"));
 

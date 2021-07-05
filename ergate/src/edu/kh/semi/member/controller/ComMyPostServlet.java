@@ -15,6 +15,7 @@ import edu.kh.semi.member.model.service.MyPostService;
 import edu.kh.semi.member.model.vo.ComMember;
 import edu.kh.semi.member.model.vo.MemberBoard;
 import edu.kh.semi.member.model.vo.MyPostPagination;
+import edu.kh.semi.member.model.vo.Question;
 
 @WebServlet("/com_myPost/*")
 public class ComMyPostServlet extends HttpServlet {
@@ -40,6 +41,7 @@ public class ComMyPostServlet extends HttpServlet {
 			
 			int memberNo = comLoginMember.getMemberNo();
 			
+			System.out.println(memberNo);
 			// 현재 페이지
 			int cp = request.getParameter("cp") == null ? 1 : Integer.parseInt(request.getParameter("cp"));
 			
@@ -61,8 +63,12 @@ public class ComMyPostServlet extends HttpServlet {
 			// 게시글 상세 조회
 			}else if(command.equals("view")) {
 				
+				int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 				
-				
+				path = "/WEB-INF/views/detail/Question.jsp"; 
+				 view = request.getRequestDispatcher(path); 
+				 view.forward(request, response);
+
 			}
 			
 		} catch (Exception e) {
