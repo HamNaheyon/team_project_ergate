@@ -17,10 +17,10 @@
     <div class="smcontainer">
         <div class="smbt">
             <div class="smboardtypeNM proposal">
-                <a href = "${contextPath}/board/list?type=1" id="iframeposting">제안서</a>
+                <a href = "${contextPath}/board/list?style=1" id="iframeposting">제안서</a>
             </div>
             <div class="smboardtypeNM portfolio">
-                <a href = "${contextPath}/board/list?type=2" id="iframeposting">포트폴리오</a>
+                <a href = "${contextPath}/board/list?style=2" id="iframeposting">포트폴리오</a>
             </div>
         </div>
         <div class="smbc">
