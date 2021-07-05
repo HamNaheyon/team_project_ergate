@@ -24,6 +24,8 @@ public class CommentsService {
 		
 		List<Comments> list = dao.selectList(conn, boardNo);
 		
+		close(conn); 
+		
 		return list;
 	}
 
@@ -48,6 +50,11 @@ public class CommentsService {
 		return result;
 	}
 	
+	/** 댓글 수정
+	 * @param comments
+	 * @return result
+	 * @throws Exception
+	 */
 	public int updateComments(Comments comments) throws Exception {
 		
 		Connection conn = getConnection();
@@ -65,6 +72,11 @@ public class CommentsService {
 		return result;
 	}
 
+	/** 댓글 삭제
+	 * @param commentsNo
+	 * @return result
+	 * @throws Exception
+	 */
 	public int deleteComments(int commentsNo) throws Exception {
 		
 		Connection conn = getConnection();

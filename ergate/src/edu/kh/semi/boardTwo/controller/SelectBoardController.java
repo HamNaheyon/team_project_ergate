@@ -1,6 +1,7 @@
 package edu.kh.semi.boardTwo.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.kh.semi.boardTwo.model.service.CommentsService;
 import edu.kh.semi.boardTwo.model.service.SelectBoardService;
 import edu.kh.semi.boardTwo.model.vo.Board;
 import edu.kh.semi.boardTwo.model.vo.Category;
+import edu.kh.semi.boardTwo.model.vo.Comments;
 
 
 @WebServlet("/detailBoard/*")
@@ -43,16 +46,24 @@ public class SelectBoardController extends HttpServlet {
 			if(command.equals("detailBoard")) {
 				
 				int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-				int type = Integer.parseInt(request.getParameter("type"));
+				int type = Integer.parseInt(request.getParameter("style"));
 				
 				if(type == 1) {
 					Board board = service.freeSelectBoard(boardNo);
+					
+					List<Comments> rList = new CommentsService().selectList(boardNo);
+					
 					request.setAttribute("board", board);
+					request.setAttribute("rList", rList);
 					
 					path = "/WEB-INF/views/detail/detailFree.jsp";
 				}else if(type == 2){
 					Board board = service.ComSelectBoard(boardNo);
+
+					List<Comments> rList = new CommentsService().selectList(boardNo);
+					
 					request.setAttribute("board", board);
+					request.setAttribute("rList", rList);
 					
 					path = "/WEB-INF/views/detail/detailCompany.jsp";
 				}

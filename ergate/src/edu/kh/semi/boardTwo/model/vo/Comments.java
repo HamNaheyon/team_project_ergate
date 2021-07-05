@@ -8,6 +8,7 @@ public class Comments {
 	private Timestamp commentsDt;
 	private int boardNo;
 	private int memberNo;
+	private String memberId;
 	
 	public Comments() {	}
 	
@@ -46,10 +47,17 @@ public class Comments {
 		this.memberNo = memberNo;
 	}
 
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
 	@Override
 	public String toString() {
 		return "Comments [commentsNo=" + commentsNo + ", commentsContent=" + commentsContent + ", commentsDt="
-				+ commentsDt + ", boardNo=" + boardNo + ", memberNo=" + memberNo + "]";
+				+ commentsDt + ", boardNo=" + boardNo + ", memberNo=" + memberNo + ", memberId=" + memberId + "]";
 	}
 	
 }

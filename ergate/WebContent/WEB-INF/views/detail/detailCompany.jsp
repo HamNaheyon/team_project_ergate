@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
+<link rel="shortcut icon" href="#">
+
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>제안서 상세</title>
@@ -70,6 +73,7 @@
        	height: 80%;
 		background-color: rgba(166, 206, 231, 0.2);
 		font-size : 25px;
+		color: balck;
 		font-family: "Cafe24SsurroundAir";
 		
        }
@@ -201,6 +205,7 @@
 			width: 100%;
 			height: 20%;
 			border: 2px solid rgba(166, 206, 231, 0.7);
+			overflow: auto;
 		}
 	</style>
 </head>
@@ -225,31 +230,33 @@
 		        	</div>
 	        	</c:otherwise>
 	        </c:choose>
+	        
 	    </div>
 	    <div id="con-text">
 	    	<div id="detail-text">
-		    	기업 명 : ${board.companyName}  <br>
-		    	담당자 :  ${board.manager} <br>
-		    	이메일 : ${board.memberEmail} 
- 	    	</div>
+		             기업 명 : ${board.companyName}  <br>
+		             담당자 :  ${board.manager} <br>
+		             이메일 : ${board.memberEmail} 
+           </div>
 	    	<div id="chat-btn">
 	    		<button>1:1 채팅하기</button>
 	    	</div>
 	    </div>
 	    
 	    <div id="etc-btn">
-	    	<div id="btn-size1">
-		    	<c:if test="${loginMember.memberNo == board.memberNo}">
-		    		<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
-		    	</c:if>
-		    	<c:if test="${loginMember.memberNo == board.memberNo || memeber.memberId.val('admin')}">
-		    		<button id="delete-btn" onclick="btnDeletion();">게시글 삭제</button>
-		    	</c:if>
-		    </div>
-		   
+		    <c:if test="${loginMember.memberNo == board.memberNo }"> 
+		    	<div id="btn-size1">
+			    	<c:if test="${loginMember.memberNo == board.memberNo}">
+			    		<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
+			    	</c:if>
+			    	<c:if test="${loginMember.memberNo == board.memberNo || memeber.memberId.val('admin')}">
+			    		<button id="delete-btn" onclick="btnDeletion();">게시글 삭제</button>
+			    	</c:if>
+		    	</div>
+		    </c:if> 
 	    	<div id="btn-size2">
 	    	<c:choose>
-	    	<c:when test="${memeber.memberId.eq('admin')}">
+	    	<c:when test="${memeber.memberId.val('admin')}">
 		    	<a href="admin/ComBoardAll?type=${param.type}&cp=${param.cp}">
 		    		<button id="return-btn">이전 페이지로 이동</button>
 		    	</a>
@@ -270,7 +277,6 @@
   		<div id="con-main-text">
   			<label id="name-text" class="navi-name">제안서</label>
   			<div id="name-con"></div>
-  			
   			<hr id="plan-text">
   			
   			<label class="navi-name">제안서 설명</label>
@@ -300,61 +306,30 @@
        });
       
         function btnAmend(){
-        	/*// 작성자 본인
         	swal({
         		  title: "게시글을 수정하시겠습니까?",
         		  icon: "warning",
         		  buttons: true,
         		  dangerMode: true,
         		})
-        		.then((willDelete) => {
-        		  if (willDelete) {
-        		    swal("게시글 수정!", {
-        		      icon: "success",
-        		    });
-        		  } else {
-        		    swal("게시글 수정을 취소 하였습니다", {
-        		      icon: "error",
-        		    });
-        		  }
-        		});
-        	*/
-        	
-        	// 로그인X , 작성자X
-        	swal({
-			  title: "게시글 작성자만 수정할수 있습니다.",
-			  icon: "error",
-			  button: "확인",
-			});
-        	
         };
         function btnDeletion(){
-        	/* 작성자 삭제
         	swal({
-      		  title: "게시글을 정말 삭제하시겠습니까?",
+      		  title: "정말로 삭제하시겠습니까?",
       		  icon: "warning",
       		  buttons: true,
       		  dangerMode: true,
       		})
       		.then((willDelete) => {
       		  if (willDelete) {
-      		    swal("게시글이 삭제되었습니다", {
+      		    swal("게시글이 삭제되었습니다.", {
       		      icon: "success",
       		    });
       		  } else {
-      		    swal("게시글 삭제를 취소 하였습니다", {
-      		      icon: "error",
-      		    });
+      		    swal("게시글 삭제를 취소 하였습니다.");
       		  }
-      		}); */
-      		
-        	// 로그인X , 작성자X
-        	swal({
-			  title: "게시글 작성자만 삭제할수 있습니다.",
-			  icon: "error",
-			  button: "확인",
-			});
-        };
+      		});
+        }
     </script>
 	<jsp:include page="../common/footer.jsp"/>
 </body>
