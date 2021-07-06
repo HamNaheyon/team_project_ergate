@@ -53,12 +53,14 @@ public class InsertBoardController extends HttpServlet {
 			
 			if(command.equals("insertForm")) {
 				int style = Integer.parseInt(request.getParameter("style"));
+//				int categoryCode = Integer.parseInt(request.getParameter("cd"));
 				
 				System.out.println(style);
 				List<Category> category = service.selectCategoryList();
 				
 				request.setAttribute("category", category);
 				request.setAttribute("style", style);
+//				request.setAttribute("categoryCode", categoryCode);
 				
 				path = "/WEB-INF/views/board/posting.jsp";
 				view = request.getRequestDispatcher(path);
@@ -133,6 +135,7 @@ public class InsertBoardController extends HttpServlet {
 				
 				int categoryCode = Integer.parseInt(mpRequest.getParameter("categoryCd")); // 웹 / 앱
 				
+				
 				Board board = new Board();
 				board.setBoardTitle(boardTitle);
 				board.setBoardContent(boardContent);
@@ -146,7 +149,7 @@ public class InsertBoardController extends HttpServlet {
 					System.out.println(result);
 					icon = "success";
 					title = "게시글 등록 성공";
-					path = "../detailBoard?boardNo=" + result + "&cp=1&style=" + boardStyle;
+					path = "../detailBoard?boardNo=" + result + "&cp=1&style=" + boardStyle + "&type=" + writerType;
 //					path = "../detailBoard/detailBoard?no=" + result + "&cp=1&type=" + boardStyle;
 					
 				}else {

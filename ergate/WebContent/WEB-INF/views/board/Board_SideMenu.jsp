@@ -14,7 +14,9 @@
     
 </head>
 <body>
+
     <div class="smcontainer">
+    
         <div class="smbt">
             <div class="smboardtypeNM proposal">
                 <a href = "${contextPath}/board/list?style=1" id="iframeposting">제안서</a>
@@ -31,7 +33,7 @@
         </div>
         <div class="smbp">
         <c:if test="${(!empty freLoginMember || !empty comLoginMember) && pagination.boardStyle == 1}">
-            <div class="posting"><a href="../board2/insertForm?style=${pagination.boardStyle}">게시글작성</a></div>
+            <div class="posting"><a href="../board2/insertForm?cp=${pagination.currentPage}&style=${pagination.boardStyle}&cg=1">게시글작성</a></div>
         </c:if>
         <c:if test="${!empty freLoginMember && pagination.boardStyle == 2}">
             <div class="posting"><a href="../board2/insertForm?style=${pagination.boardStyle}">게시글작성</a></div>
