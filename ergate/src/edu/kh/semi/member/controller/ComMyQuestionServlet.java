@@ -32,10 +32,6 @@ public class ComMyQuestionServlet extends HttpServlet {
 		String path = null;
 		RequestDispatcher view = null;
 
-		String icon = null;
-		String title = null;
-		String text = null;
-
 		try {
 
 			MyPostService service = new MyPostService();
@@ -78,10 +74,8 @@ public class ComMyQuestionServlet extends HttpServlet {
 				
 				// 왜 안가
 				path = "/WEB-INF/views/member/Question.jsp"; 
-				 view = request.getRequestDispatcher(path); 
-				 view.forward(request, response);
-
-				
+				view = request.getRequestDispatcher(path); 
+				view.forward(request, response);  
 				
 			}
 

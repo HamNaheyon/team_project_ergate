@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.kh.semi.member.model.service.MyPostService;
-import edu.kh.semi.member.model.vo.ComMember;
 import edu.kh.semi.member.model.vo.FreMember;
-import edu.kh.semi.member.model.vo.MemberBoard;
 import edu.kh.semi.member.model.vo.MyPostPagination;
 import edu.kh.semi.member.model.vo.Question;
 
@@ -31,10 +29,6 @@ public class FreMyQuestionServlet extends HttpServlet {
 
 		String path = null;
 		RequestDispatcher view = null;
-
-		String icon = null;
-		String title = null;
-		String text = null;
 
 		try {
 
@@ -76,9 +70,10 @@ public class FreMyQuestionServlet extends HttpServlet {
 				
 				request.setAttribute("question", question);
 				
+				// 왜 안가
 				path = "/WEB-INF/views/member/Question.jsp"; 
-				 view = request.getRequestDispatcher(path); 
-				 view.forward(request, response);
+				view = request.getRequestDispatcher(path); 
+				view.forward(request, response);  
 
 			}
 

@@ -199,7 +199,6 @@
                 	<c:when test="${!(empty comLoginMember)}">
                     <li><a href="${contextPath}/member/logout">로그아웃</a></li>
 	                    <li><a href="${contextPath}/member/com_myPage">마이페이지</a></li>
-	                    <li><a href="#">채팅</a></li>
                 	</c:when>
                 	
                 </c:choose>
