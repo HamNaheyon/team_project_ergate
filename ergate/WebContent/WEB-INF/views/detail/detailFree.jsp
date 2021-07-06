@@ -211,8 +211,6 @@
 	</style>
 </head>
 <body id = "body-top">
-${board}
-${Attachment}
 	<jsp:include page="../common/header.jsp"/>
   	<div id="container">
   		<div id="con-img">
