@@ -140,12 +140,13 @@
 	
 		$('.look').on("click",function(){
 			let boardNo = $(this).parent().parent().children().eq(0).text().trim();
+			let style = $(this).parent().parent().children().eq(4).text().trim();
 			// $(this) : 클릭된 td 태그
 			// parent() : 부모 요소(tr)
 			// children() : 모든 자식요소 (td 4개)
 			// eq(0) : 모든 자식 요소 중 0번 째 인덱스 자식 (숫자 써진 td)			
 			// text() : 요소에 작성된 내용 얻어오기
-			location.href="${contextPath}/detailBoard?boardNo="+boardNo+"&cp=1&type=2";
+			location.href="${contextPath}/detailBoard?boardNo="+boardNo+"&cp=1&style="+style;
 		});
 	
 </script>

@@ -248,7 +248,7 @@ public class ComBoardAllServlet extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/views/admin/FreMemberSel.jsp").forward(request, response);
 			}else if(command.equals("logout")) {
 				request.getSession().invalidate();
-				request.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(request, response);
+				response.sendRedirect(request.getContextPath());
 			}else if(command.equals("qusetions")) {
 				Pagination pagination=null;
 				List<AdminQuestion> adminMemberList=null;

@@ -155,7 +155,7 @@
 			// children() : 모든 자식요소 (td 4개)
 			// eq(0) : 모든 자식 요소 중 0번 째 인덱스 자식 (숫자 써진 td)			
 			// text() : 요소에 작성된 내용 얻어오기
-			location.href="${contextPath}/detailBoard?boardNo="+boardNo+"&cp=1&type=1";
+			location.href="${contextPath}/detailBoard?boardNo="+boardNo+"&cp=1&style=1";
 		});
 	
 </script>
