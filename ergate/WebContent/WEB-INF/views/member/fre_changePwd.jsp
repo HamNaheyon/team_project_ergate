@@ -101,23 +101,21 @@
 
 	<script>
 		function pwdValidate(){
+			const regExp = /^[a-zA-Z0-9\#\-\_]{6,20}$/;
 			
-		    const regExp = /^[a-zA-Z0-9\#\-\_]{6,20}$/;
-		
-		    const newPwd1 = $("#newPwd1").val().trim();
-		    const newPwd2 = $("#newPwd2").val().trim();
-		    
-		    
-		    // 새 비밀번호가 유효하지 않거나 새 비밀번호와 새 비밀번호 확인이 같지않은 경우 true
-		    if (!regExp.test(newPwd1) || (!newPwd1 == newPwd2)) {
+			const newPwd1 = $("#newPwd1").val().trim();
+			const newPwd2 = $("#newPwd2").val().trim();
+			
+			if( !regExp.test(newPwd1)  || ( newPwd1 != newPwd2 )  ){
+				swal({ 
+					"icon" : "error",
+					"title" : "비밀번호가 유효하지 않습니다"
+				});
 				
-		    	swal({
-		    		"icon" : "error",
-		    		"title" : "비밀번호가 유효하지않습니다."
-		    	});
-		    	return false;
+				return false;
 			}
 		}
+	
 	</script>
 
 </html>

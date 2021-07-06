@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -78,7 +79,19 @@
                 <ul>
                     <li id="mbn">${question.questionNo}</li>
                     <li class="questions" id="mbt">${question.questionTitle}</li>
-                    <li id="mbw">${question.questionDate}</li>
+                    <li id="mbw">
+	                    <fmt:formatDate var="createDate" value="${question.questionDate}"/>
+		                <fmt:formatDate var="today" value="<%= new java.util.Date() %>"  pattern="yyyy-MM-dd"/>
+	                    <c:choose>
+							<c:when test="${createDate != today}">
+								${createDate}
+							</c:when>
+							
+							<c:otherwise>
+								<fmt:formatDate value="${question.questionDate}"  pattern="HH:mm"/>                          
+							</c:otherwise>
+						</c:choose>
+                    </li>
                     <li id="mbc">${question.questionStatus }</li>
                 </ul>
             		</c:forEach>

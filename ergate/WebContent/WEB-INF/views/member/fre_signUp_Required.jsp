@@ -22,16 +22,12 @@
 		}
         body {
             min-height: 100vh;
-
             background-color: rgb(166, 206, 231);
         }
-
         .input-form {
             max-width: 680px;
-
             margin-top: 80px;
             padding: 32px;
-
             background: #fff;
             -webkit-border-radius: 10px;
             -moz-border-radius: 10px;
@@ -45,7 +41,6 @@
             color: black;
             border-radius: 3px;
             border: 2px solid rgb(107, 140, 172);
-
         }
         .btn:hover{
             background-color: rgb(132, 176, 204);
@@ -64,7 +59,7 @@
 <body>
     <div class="container">
         <div class="input-form-backgroud row">
-                <form class="validation-form" method="POST" action="fre_signUp_Required" onsubmit="return signUpValidate();">
+                <form class="validation-form" method="POST" action="fre_signUp_Required" onsubmit="return validate();">
             <div class="input-form col-md-12 mx-auto" id="signUp1">
                 <h4 class="mb-3">회원가입(필수)</h4>
                 <br> <hr>
@@ -343,22 +338,8 @@
 		
 	});
 	
-	function signUpValidate(){
-				
-			    if(!$("#agree").prop("checked")){
-			    	swal({"icon" : "info", "title" : "개인정보 동의를 체크해주세요"})
-				    return false;
-			    }
-			}
-
 	
 	</script>
-
-
-
-
-
-
 
 
 
