@@ -168,7 +168,7 @@
 		
 		let questionNo = $(this).parent().children().eq(0).text();
         
-		location.href="${contextPath}/_myQuestion/view?questionNo="+questionNo;
+		location.href="${contextPath}/com_myQuestion/view?questionNo="+questionNo;
         
      });
 

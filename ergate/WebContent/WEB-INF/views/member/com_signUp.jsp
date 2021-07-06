@@ -65,7 +65,7 @@
                 <h4 class="mb-3">회원가입(필수)</h4>
                 <br>
                 <hr>
-                <form class="validation-form" method="POST" action="com_signUp" onsubmit="return signUpValidate();">
+                <form class="validation-form" method="POST" action="com_signUp" onsubmit="return validate();">
                     <!-- 담당자 -->
                     <div class="row mb-3 form-row">
                         <div class="col-md-3">
