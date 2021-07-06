@@ -15,9 +15,7 @@
 </head>
 <body>
 	<jsp:include page="Board_Search_Form.jsp"/>
-	<jsp:include page="Board_SideMenu.jsp"/>
-	
-
+	<%-- <jsp:include page="Board_SideMenu.jsp"/> --%>
 	
     
 		<%-- <form action="${contextPath}/board2/insert?style=${pagination.boardStyle}" method="post"  --%>
