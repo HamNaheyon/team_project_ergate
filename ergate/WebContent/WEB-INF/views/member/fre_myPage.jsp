@@ -152,11 +152,10 @@
                             <!-- 분야 -->
                             <div class="col-md-3">
                                 <select class="custom-select" id="field" name="feild">
+                                   		<option>===선택===</option>
                                    		<option>웹개발</option>
-	                                    <option>test</option>
+	                                    <option>앱개발</option>
                                 </select>
-                                
-                                
                             </div>
                              <div class="col-md-6">
 							</div>
@@ -168,6 +167,7 @@
                             </div>
                             <div class="col-md-3">
                                 <select class="custom-select" id="work" name="work">
+                              		<option>===선택===</option>
                                     <option>자가</option>
                                     <option>회사</option>
                                 </select>
@@ -183,6 +183,7 @@
                             </div>
                             <div class="col-md-3">
                                 <select class="custom-select" id="experience" name="experience">
+                                	<option>===선택===</option>	
                                     <option>있습니다</option>
                                     <option>없습니다</option>
                                 </select>
@@ -196,6 +197,7 @@
                             </div>
                             <div class="col-md-3">
                                 <select class="custom-select" id="skil" name="skil">
+                   		            <option>===선택===</option>
                                     <option>C</option>
                                     <option>Python</option>
                                     <option>Java</option>
@@ -227,13 +229,13 @@
      	
      	const work = "${freLoginMember.work}";
      	$("#work > option").each(function(index, item){
-    		if($(item).text() == field){
+    		if($(item).text() == work){
     			$(item).prop("selected", true);
     		}
     	});
      	const experience = "${freLoginMember.experience}";
      	$("#experience > option").each(function(index, item){
-    		if($(item).text() == field){
+    		if($(item).text() == experience){
     			$(item).prop("selected", true);
     		}
     	});

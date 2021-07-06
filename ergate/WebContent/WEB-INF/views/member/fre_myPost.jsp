@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -83,7 +84,19 @@
                     <li class="boardNo" id="mbt">${board.boardTitle}</li>
                     <li id="mbw">${board.memberId}</li>
                     <li id="mbc">${board.readCount }</li>
-                    <li id="mbd">${board.createDate }</li>
+                    <li id="mbd">
+	                    <fmt:formatDate var="createDate" value="${board.createDate}"/>
+	                    <fmt:formatDate var="today" value="<%= new java.util.Date() %>"  pattern="yyyy-MM-dd"/>
+	                    <c:choose>
+							<c:when test="${createDate != today}">
+								${createDate}
+							</c:when>
+							
+							<c:otherwise>
+								<fmt:formatDate value="${board.createDate}"  pattern="HH:mm"/>                          
+							</c:otherwise>
+						</c:choose>
+                    </li>
                 </ul>
             		</c:forEach>
             	</c:otherwise>
