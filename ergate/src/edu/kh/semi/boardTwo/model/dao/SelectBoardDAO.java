@@ -123,7 +123,7 @@ public class SelectBoardDAO {
 	 * @return board
 	 * @throws Exception
 	 */
-	public Board ComSelectBoard(Connection conn, int boardNo) throws Exception {
+	public Board comSelectBoard(Connection conn, int boardNo) throws Exception {
 
 		Board board = null;
 
@@ -154,18 +154,64 @@ public class SelectBoardDAO {
 					flag = false;
 				}
 
+//				// 조회된 파일 관련 정보를 저장할 객체 선언(경로, 이름, 레벨)
+				Attachment at = new Attachment();
+				at.setFilePath(rs.getString("FILE_PATH"));
+				at.setFileName(rs.getString("FILE_NM"));
+				at.setFileLevel(rs.getInt("FILE_LEVEL"));
 
-				/*
-				 * List<String> filePath = new ArrayList<String>(); List<String> fileName = new
-				 * ArrayList<String>(); List<String> fileLevel = new ArrayList<String>();
-				 * 
-				 * filePath.add(rs.getString("FILE_PATH"));
-				 * fileName.add(rs.getString("FILE_NM"));
-				 * fileLevel.add(rs.getString("FILE_LEVEL"));
-				 * 
-				 * board.setFilePath(filePath); board.setFileName(fileName);
-				 * board.setFileLevel(fileLevel);
-				 */
+				// 값 세팅이 완료된 Attachment 객체를
+				// board의 atList에 추가
+				board.getAtList().add(at);
+			}
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return board;
+	}
+	
+	public Board comFreeSelectBoard(Connection conn, int boardNo) throws Exception {
+
+		Board board = null;
+
+		String sql = prop.getProperty("freeSelectBoard");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+
+			rs = pstmt.executeQuery();
+			
+			board = new Board();
+			board.setAtList(new ArrayList<Attachment>());
+			
+			boolean flag = true;
+			
+			while (rs.next()) {
+				if (flag) {
+					board.setBoardNo(rs.getInt("BOARD_NO"));
+					board.setCategoryName(rs.getString("CATEGORY_NM"));
+					board.setBoardTitle(rs.getString("BOARD_TITLE"));
+					board.setMemberId(rs.getString("MEMBER_ID"));
+					board.setReadCount(rs.getInt("READ_COUNT"));
+
+					board.setMinTime(rs.getString("MIN_TIME"));
+					board.setMaxTime(rs.getString("MAX_TIME"));
+					board.setMinSalary(rs.getString("MIN_SALARY"));
+					board.setMaxSalary(rs.getString("MAX_SALARY"));
+					board.setWork(rs.getString("WORK"));
+					board.setExperience(rs.getString("EXPERIENCE"));
+					board.setSkil(rs.getString("SKIL"));
+					board.setMemberGrade(rs.getString("MEMBER_GRADE"));
+
+					board.setBoardContent(rs.getString("BOARD_CONTENT"));
+					board.setMemberNo(rs.getInt("MEMBER_NO"));
+					board.setMemberEmail(rs.getString("MEMBER_EMAIL"));
+					flag = false;
+				}
+
 
 //				// 조회된 파일 관련 정보를 저장할 객체 선언(경로, 이름, 레벨)
 				Attachment at = new Attachment();
@@ -210,5 +256,7 @@ public class SelectBoardDAO {
 		}
 		return result;
 	}
+
+	
 
 }

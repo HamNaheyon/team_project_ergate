@@ -24,11 +24,8 @@ public class SelectBoardController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String uri = request.getRequestURI();  			
-		System.out.println("uri : "+uri);
 		String contextPath = request.getContextPath(); 	
-		System.out.println("contextPath : "+contextPath);
 		String command = uri.substring((contextPath).length()+1); 
-		System.out.println("command :"+command);
 		String path = null; 
 		RequestDispatcher view = null; 
 		
@@ -47,6 +44,7 @@ public class SelectBoardController extends HttpServlet {
 				
 				int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 				int type = Integer.parseInt(request.getParameter("style"));
+				int memberType = Integer.parseInt(request.getParameter("type"));
 				
 				if(type == 2) {
 					Board board = service.freeSelectBoard(boardNo);
@@ -59,16 +57,28 @@ public class SelectBoardController extends HttpServlet {
 					path = "/WEB-INF/views/detail/detailFree.jsp";
 					
 				}else if(type == 1){
+					if(memberType == 1) {
+						Board board = service.comFreeSelectBoard(boardNo);
+						
+						List<Comments> rList = new CommentsService().selectList(boardNo);
+						
+						request.setAttribute("board", board);
+						request.setAttribute("rList", rList);
+						
+						path = "/WEB-INF/views/detail/detailCompany.jsp";
+						
+					}else if(memberType == 2){
+						Board board = service.comSelectBoard(boardNo);
+						
+						List<Comments> rList = new CommentsService().selectList(boardNo);
+						
+						request.setAttribute("board", board);
+						request.setAttribute("rList", rList);
+						
+						path = "/WEB-INF/views/detail/detailCompany.jsp";
+					}
 					
-					Board board = service.ComSelectBoard(boardNo);
-					
-					List<Comments> rList = new CommentsService().selectList(boardNo);
-					request.setAttribute("board", board);
-					request.setAttribute("rList", rList);
-					
-					path = "/WEB-INF/views/detail/detailCompany.jsp";
 				}
-				
 				view = request.getRequestDispatcher(path);
 				view.forward(request, response);
 			}

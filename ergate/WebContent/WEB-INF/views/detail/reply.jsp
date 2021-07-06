@@ -131,7 +131,6 @@ function addcomments()	{
 				data : {"memberNo" : loginMemberNo,  
 						"boardNo" : boardNo,
 						"commentsContent" : commentsContent},
-						
 				success : function(result){
 					console.log(result);
 					if(result > 0){ // 댓글 삽입이 성공한 경우
