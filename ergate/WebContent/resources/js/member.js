@@ -221,6 +221,7 @@ function validate() {
                     break;
                 case "jumin2":
                     msg = "주민번호가 유효하지 않습니다."
+					break;
             }
             swal(msg).then(function () {
 
