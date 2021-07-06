@@ -7,7 +7,7 @@ var checkObj = {
     "pwd2": false,
     "name": false,
     "phone2": false,
-    "jumin1": false,
+    "jumin2": false,
     "email": false,
 };
 
@@ -217,7 +217,7 @@ function validate() {
                     msg = "비밀번호가 일치하지 않습니다. ";
                     break;
                 case "name":
-                    msg = "이름이 유효하지 않습니다.";
+                    msg = "담당자 이름이 유효하지 않습니다.";
                     break;
                 case "phone2":
                     msg = "전화번호가 유효하지 않습니다. ";
@@ -225,10 +225,9 @@ function validate() {
                 case "email":
                     msg = "이메일이 유효하지 않습니다.";
                     break;
-                case "jumin1":
+                case "jumin2":
                     msg = "주민번호가 유효하지 않습니다."
-                case "담당자":
-                    msg = "담당자가 유효하지 않습니다."
+					break;
             }
             swal(msg).then(function () {
 
