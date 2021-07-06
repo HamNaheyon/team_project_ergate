@@ -70,35 +70,14 @@
        	padding-top : 40px;
        	padding-left : 20px;
        	width: 100%;
-       	height: 80%;
+       	height: 100%;
 		background-color: rgba(166, 206, 231, 0.2);
 		font-size : 25px;
 		color: balck;
 		font-family: "Cafe24SsurroundAir";
 		
        }
-       /* 채팅 버튼 */
-       #chat-btn{
-       	width: 100%;
-       	height: 10%;
-       }
-       #chat-btn > button {
-       	background-color: rgb(166, 206, 231);
-           border: 5px solid white;
-           width: 100%;
-           height: 100%;
-           font-weight: bold;
-           font-family: 'MaplestoryOTFBold';
-           text-shadow: 1px 1px 5px #000;
-           color: white;
-       }
-       #chat-btn > button:hover{
-       	background-color: rgb(152, 203, 235);
-           text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-           border:3px outset rgb(152, 203, 235);
-       }
        #etc-btn{
-       
        	margin-top: 30px;
        	float: right;
        	width: 30%;
@@ -307,13 +286,9 @@
 		    	</c:choose>
 				             이메일 : ${board.memberEmail} 
            </div>
-	    	<div id="chat-btn">
-	    		<button>1:1 채팅하기</button>
-	    	</div>
 	    </div>
-	    
 	    <div id="etc-btn">
-		    	<c:if test="${comLoginMember.memberNo == board.memberNo  || freLoginMember.memberNo == board.memberNo }"> 
+		    	<c:if test="${comLoginMember.memberNo == board.memberNo || freLoginMember.memberNo == board.memberNo }"> 
 			    	<div id="btn-size1">
 				    	<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
 				    	<button id="delete-btn" onclick="btnDeletion();">게시글 삭제</button>
