@@ -76,7 +76,7 @@
 					<c:otherwise>
 						<c:forEach items ="${boardList}" var="board">
 							
-		                	<a href="${contextPath}/detailBoard?boardNo=${board.boardNo}&cp=${pagination.currentPage}&style=${pagination.boardStyle}${searchStr}">
+		                	<a href="${contextPath}/detailBoard?boardNo=${board.boardNo}&cp=${pagination.currentPage}&style=${pagination.boardStyle}&type=${board.boardType}${searchStr}">
 
 				                <c:choose>
 	
@@ -117,7 +117,7 @@
             			<%---------------------- Pagination start----------------------%>
 			<%-- 페이징 처리 시 주소를 쉽게 작성할 수 있도록 필요한 변수를 미리 선언 --%>
 			
-			<c:set var="pageURL" value="list?type=${pagination.boardStyle}"/>
+			<c:set var="pageURL" value="list?style=${pagination.boardStyle}"/>
 			
 			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage}${searchStr}"/><%-- &ca=${category.prevPage} --%>
 			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage}${searchStr}"/><%-- &ca=${category.nextPage} --%>

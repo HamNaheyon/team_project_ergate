@@ -55,7 +55,7 @@
                 <label for="category">제목*</label>
             </div>
             <div class="select">
-                <input name="boardTitle" id="boardTitle" type="text" placeholder = "제목을 입력해주세요">  
+                <input name="boardTitle" id="boardTitle" type="text" placeholder = "제목을 입력해주세요" required>  
             </div>
         </div>
         <div class="contents cborder">
@@ -63,7 +63,7 @@
                 <label for="contents">내용*</label>
             </div>
             <div class="cbselect">
-                <input name="boardContent" id="contents" type="text" placeholder = "내용을 입력해주세요">
+            	<textarea name="boardContent" id="contents" placeholder = "내용을 입력해주세요" required></textarea>
             </div>
         </div>
         <div class="uploadfile cborder">
@@ -81,12 +81,14 @@
 <!--             <div class="label">
                 <label for="uploadfile">첨부파일</label>
             </div> -->
-            <div class="select">
-                    <button type="button" id="addvalue" onclick="add();">이미지 추가</button>
-    				<div id="addimg"></div>
-                <!-- <img src="images/file.png" style="width:100px;" border="0" onclick='document.all.uploadfile.click(); document.all.uploadfile2.value=document.all.uploadfile.value'> -->
-                <!-- <input name="uploadfile2" id="uploadfile2" type="text" style="display:none;"> -->
-            </div>
+
+	            <div class="select">
+	                    <button type="button" id="addvalue" onclick="add();">이미지 추가</button>
+	    				<div id="addimg"></div>
+	                <!-- <img src="images/file.png" style="width:100px;" border="0" onclick='document.all.uploadfile.click(); document.all.uploadfile2.value=document.all.uploadfile.value'> -->
+	                <!-- <input name="uploadfile2" id="uploadfile2" type="text" style="display:none;"> -->
+	            </div>
+
         </div>
         
         <div class="write cborder">
@@ -147,16 +149,12 @@
             count--;
         }
         
-        
         function boardValidate(){
-        	
         	
         	document.insertFrm.action = "${contextPath}/board2/insert?style=" + $("#boardStyle").val();
         	document.insertFrm.submit();
         	
         }
-        
-        
         
         // 게시글 작성내용 지우기
 /*         $("#reset").on("click", function(){
