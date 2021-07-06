@@ -52,9 +52,13 @@ public class InsertBoardController extends HttpServlet {
 				Integer.parseInt(request.getParameter("cp"));
 			
 			if(command.equals("insertForm")) {
+				int style = Integer.parseInt(request.getParameter("style"));
+				
+				System.out.println(style);
 				List<Category> category = service.selectCategoryList();
 				
 				request.setAttribute("category", category);
+				request.setAttribute("style", style);
 				
 				path = "/WEB-INF/views/board/posting.jsp";
 				view = request.getRequestDispatcher(path);
@@ -63,9 +67,8 @@ public class InsertBoardController extends HttpServlet {
 			}
 			else if(command.equals("insert")) {
 				int boardStyle = Integer.parseInt(request.getParameter("style")); // 포트폴리오 / 제안서 (전 boardType)
-				
+				//System.out.println("gsdfsdfsd :     "+boardStyle);
 				//int type = Integer.parseInt(request.getParameter("type")); // 포트폴리오 / 제안서 (전 boardType)
-				
 				
 				HttpSession session = request.getSession();
 				
@@ -130,7 +133,6 @@ public class InsertBoardController extends HttpServlet {
 				
 				int categoryCode = Integer.parseInt(mpRequest.getParameter("categoryCd")); // 웹 / 앱
 				
-				
 				Board board = new Board();
 				board.setBoardTitle(boardTitle);
 				board.setBoardContent(boardContent);
@@ -151,7 +153,7 @@ public class InsertBoardController extends HttpServlet {
 					icon = "error";
 					title = "게시글 등록 실패";
 					path = request.getHeader("referer");
-
+					
 				}
 				session.setAttribute("icon", icon);
 				session.setAttribute("title", title);
