@@ -76,6 +76,7 @@ public class ComMyQuestionServlet extends HttpServlet {
 				
 				request.setAttribute("question", question);
 				
+				// 왜 안가
 				path = "/WEB-INF/views/member/Question.jsp"; 
 				 view = request.getRequestDispatcher(path); 
 				 view.forward(request, response);

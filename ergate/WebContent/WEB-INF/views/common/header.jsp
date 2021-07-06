@@ -187,23 +187,6 @@
  	        
             <div class="header-1">
                 <ul id="header-menu">
-             <%--    <c:choose>
-                	<c:when test="${empty freLoginMember}">
-                    <li> <a data-bs-toggle="modal" data-bs-target="#exampleModal">로그인/회원가입</a> </li>
-                	</c:when>
-                	<c:when test="${!(empty freLoginMember)}">
-                    <li> <a data-bs-toggle="modal" data-bs-target="#exampleModal">로그인/회원가입</a> </li>
-                	</c:when>
-                	<c:otherwise>
-	                    <li><a href="${contextPath}/member/logout">로그아웃</a></li>
-	                    <li><a href="${contextPath}/member/fre_myPage">마이페이지</a></li>
-	                    <li><a href="#">채팅</a></li>
-                	</c:otherwise>
-                </c:choose> --%>
-       
-       
-       		
-       
        
        		<c:choose>
        				<c:when test="${empty freLoginMember && empty comLoginMember && empty admin}">

@@ -9,7 +9,6 @@ var checkObj = {
     "phone2": false,
     "jumin1": false,
     "email": false,
-    "manager" : false
 };
 
 // 아이디가 입력될 때 마다 유효성 검사
@@ -80,7 +79,6 @@ $("#manager").on("input", function () {
 
     const regExp = /^[가-힣]{2,5}$/;
 
-    // 이벤트 핸들러 내부에 작성된 this == 이벤트가 발생한 요소 == $("#name")
     const inputManager = $("#manager").val().trim();
 
     if (regExp.test(inputManager)) {
@@ -197,7 +195,12 @@ $(".phone").on("input", function () {
 // 회원가입 버튼 클릭 시 전체 유효성 검사 여부 확인
 function validate() {
 
-
+	 if(!$("#agree").prop("checked")){
+    	swal({"icon" : "info", "title" : "개인정보 동의를 체크해주세요"})
+	    return false;
+    }
+	
+	
     for (const key in checkObj) {
 
         if (!checkObj[key]) { //  false 값을 가진 속성이 있을 경우
@@ -233,7 +236,8 @@ function validate() {
 
                 $(selector).focus();
             });
-
+			
+			// 주석			
             return false; // submit 이벤트 제거(회원가입 실행 X)
         }
     }
