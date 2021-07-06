@@ -142,18 +142,13 @@
 							<c:choose>
 								<c:when test="${p == pagination.currentPage}">
 									<li class="page-item active"><a class="page-link">${p}</a></li>
-									
 								</c:when>
-								
 								<c:otherwise>
 									<li><a class="page-link" href="${pageURL}&cp=${p}${searchStr}">${p}</a></li>
 								</c:otherwise>
 							</c:choose>
 						
 					</c:forEach>
-					
-					
-					
 					
 					<%-- 현재 페이지가 마지막페이지 미만인 경우 --%>
 					<c:if test="${pagination.currentPage < pagination.maxPage}">
@@ -164,7 +159,6 @@
 					<c:if test="${pagination.currentPage - pagination.maxPage + pagination.pageSize < 0}">
 						<a class="page-link" href="${next}">&gt;&gt;</a>
 					</c:if>
-
 
 				</ul>
 			</div>

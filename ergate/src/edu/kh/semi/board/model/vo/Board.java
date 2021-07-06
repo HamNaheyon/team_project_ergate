@@ -21,6 +21,7 @@ public class Board {
 //	private int memberNo;
 //	private int categoryCd;
 	private int boardType;
+	/* private int boardStyle; */
 	
 	private List<String> filePath;
 	private List<String> fileName;
@@ -131,9 +132,18 @@ public class Board {
 	public String toString() {
 		return "Board [boardNo=" + boardNo + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
 				+ ", categoryName=" + categoryName + ", readCount=" + readCount + ", createDt=" + createDt
-				+ ", filePath=" + filePath + ", fileName=" + fileName + "]";
+				+ ", boardType=" + boardType + ", filePath=" + filePath + ", fileName=" + fileName + ", memberNo="
+				+ memberNo + ", memberId=" + memberId + ", memberGrade=" + memberGrade + "]";
 	}
 
+	/*
+	 * public int getBoardStyle() { return boardStyle; }
+	 * 
+	 * public void setBoardStyle(int boardStyle) { this.boardStyle = boardStyle; }
+	 */
 
+	
+	
+	
 	
 }

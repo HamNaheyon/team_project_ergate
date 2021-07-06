@@ -125,6 +125,7 @@ public class SelectBoardDAO {
 				board.setReadCount(rs.getInt("READ_COUNT"));
 				board.setCreateDt(rs.getTimestamp("CREATE_DT"));
 				board.setBoardType(rs.getInt("BOARD_TYPE_NO"));
+				//board.setBoardStyle(rs.getInt("BOARD_STYLE"));
 				
 				List<String> filePath = new ArrayList<String>();
 				List<String> fileName = new ArrayList<String>();
