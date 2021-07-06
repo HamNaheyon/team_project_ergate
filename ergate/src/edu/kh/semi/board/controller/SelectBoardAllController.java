@@ -60,9 +60,11 @@ public class SelectBoardAllController extends HttpServlet {
 					if(request.getParameter("sv") == null) { // 검색x
 						pagination = service.getPagination(cp, boardStyle);
 						boardList = service.selectBoardList(pagination);
+						
 					}else {
 						String searchKey = request.getParameter("sk");
 						String searchValue = request.getParameter("sv");
+						
 						
 						pagination = service.getPagination(cp, boardStyle, searchKey, searchValue);
 						boardList = service.selectBoardList(pagination, searchKey, searchValue);
