@@ -57,16 +57,18 @@ public class SelectBoardController extends HttpServlet {
 					request.setAttribute("rList", rList);
 					
 					path = "/WEB-INF/views/detail/detailFree.jsp";
-				}else if(type == 1){
-					Board board = service.ComSelectBoard(boardNo);
-
-					List<Comments> rList = new CommentsService().selectList(boardNo);
 					
+				}else if(type == 1){
+					
+					Board board = service.ComSelectBoard(boardNo);
+					
+					List<Comments> rList = new CommentsService().selectList(boardNo);
 					request.setAttribute("board", board);
 					request.setAttribute("rList", rList);
 					
 					path = "/WEB-INF/views/detail/detailCompany.jsp";
 				}
+				
 				view = request.getRequestDispatcher(path);
 				view.forward(request, response);
 			}

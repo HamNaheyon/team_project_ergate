@@ -3,20 +3,23 @@ package edu.kh.semi.boardTwo.model.vo;
 import java.sql.Timestamp;
 import java.util.List;
 
-import edu.kh.semi.board.model.vo.Attachment;
-
 public class Board {
     
 	private int boardNo;
 	private String boardTitle;
-
+	
+	private String memberGrade;
+	
 	private String categoryName;
 	private int readCount;
 	private String memberId;
 	
 	private Timestamp createDt;	
+	
 	private List<String> filePath;
 	private List<String> fileName;
+	private List<String> fileLevel;
+	
 	private String boardContent;   		// 글 내용
 	private int memberNo; 		   		// 작성 회원 번호
 	private Timestamp modifyDate;  		// 마지막 수정일
@@ -140,6 +143,14 @@ public class Board {
 		this.atList = atList;
 	}
 	
+	/*public List<Attachment> getAtList() {
+		return atList;
+	}
+
+	public void setAtList(List<Attachment> atList) {
+		this.atList = atList;
+	}*/
+	
 	// ----------------------------------------------
 
 	public String getMinTime() {
@@ -223,18 +234,32 @@ public class Board {
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
+	
+	public String getMemberGrade() {
+		return memberGrade;
+	}
 
+	public void setMemberGrade(String memberGrade) {
+		this.memberGrade = memberGrade;
+	}
+
+	public List<String> getFileLevel() {
+		return fileLevel;
+	}
+
+	public void setFileLevel(List<String> fileLevel) {
+		this.fileLevel = fileLevel;
+	}
 
 	@Override
 	public String toString() {
-		return "Board [boardNo=" + boardNo + ", boardTitle=" + boardTitle + ", categoryName=" + categoryName
-				+ ", readCount=" + readCount + ", memberId=" + memberId + ", createDt=" + createDt + ", filePath="
-				+ filePath + ", fileName=" + fileName + ", boardContent=" + boardContent + ", memberNo=" + memberNo
-				+ ", modifyDate=" + modifyDate + ", atList=" + atList + ", memberEmail=" + memberEmail + ", minTime="
-				+ minTime + ", maxTime=" + maxTime + ", minSalary=" + minSalary + ", maxSalary=" + maxSalary + ", work="
-				+ work + ", experience=" + experience + ", skil=" + skil
-				+ ", manager="  + manager+ ", companyName="
-				 + companyName  + ", companyNo=" + "]";
+		return "Board [boardNo=" + boardNo + ", boardTitle=" + boardTitle + ", memberGrade=" + memberGrade
+				+ ", categoryName=" + categoryName + ", readCount=" + readCount + ", memberId=" + memberId
+				+ ", createDt=" + createDt + ", filePath=" + filePath + ", fileName=" + fileName + ", fileLevel="
+				+ fileLevel + ", boardContent=" + boardContent + ", memberNo=" + memberNo + ", modifyDate=" + modifyDate
+				+ ", atList=" + atList + ", memberEmail=" + memberEmail + ", minTime=" + minTime + ", maxTime="
+				+ maxTime + ", minSalary=" + minSalary + ", maxSalary=" + maxSalary + ", work=" + work + ", experience="
+				+ experience + ", skil=" + skil + ", manager=" + manager + ", companyName=" + companyName + "]";
 	}
-	
+
 }
