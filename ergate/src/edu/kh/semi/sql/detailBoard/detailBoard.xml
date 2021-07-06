@@ -11,7 +11,7 @@
 	
 	<!-- 기업 게시글 상세 조회 -->
 	<entry key="ComSelectBoard">
-		SELECT * FROM COM_BOARD_DETAIL
+		SELECT * FROM COM_BOARD_DETAIL 
 		WHERE BOARD_NO= ?
 		AND BOARD_STATUS='Y'
 	</entry>

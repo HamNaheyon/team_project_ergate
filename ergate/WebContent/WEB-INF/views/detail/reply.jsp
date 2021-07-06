@@ -4,7 +4,10 @@
 
 <style>
 /*댓글*/
-.commentsWrite>table {	margin-top: 10px; }
+.commentsWrite >table {	
+	width: 100%;
+	margin-top: 10px; 
+}
 .rWriter {
 	display: inline-block;
 	vertical-align: top;
@@ -15,6 +18,7 @@
 .rContent, .commentsBtnArea {
 	height: 100%;
 	width: 100%;
+	font-size: 20px;
 }
 .commentsBtnArea { text-align: right; }
 .commentsUpdateContent {
@@ -25,12 +29,19 @@
 	border-top : 1px solid #ccc;
 	padding : 15px 0;
 }
+#commentsContentArea{
+	width: 90%;
+}
+#commentsContentArea > textArea{
+	width: 100%;
+}
 </style>
 
 <div id="comments-area ">
+
 	<!-- 댓글 작성 부분 -->
 	<div class="commentsWrite">
-		<table align="center">
+		<table >
 			<tr>
 				<td id="commentsContentArea">
 					<textArea rows="3" id="commentsContent"></textArea>
@@ -44,7 +55,7 @@
 		</table>
 	</div>
 
-
+ 	
 	<!-- 댓글 출력 부분 -->
 	<div class="commentsList mt-5 pt-2">
 		<ul id="commentsListArea">
@@ -55,7 +66,7 @@
 						<p class="rDate">작성일 : <fmt:formatDate value="${comments.commentsDt}" pattern="yyyy년 MM월 dd일 HH:mm"/></p>
 					</div>
 	
-					<p class="rContent">${comments.commentsContent }</p>
+					<p class="rContent">${comments.commentsContent}</p>
 					
 					<c:choose>
 					<c:when test="${comments.memberNo == comLoginMember.memberNo}">
@@ -75,7 +86,6 @@
 			</c:forEach>
 		</ul>
 	</div>
-
 </div>
 
 <script>

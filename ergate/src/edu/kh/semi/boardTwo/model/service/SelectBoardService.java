@@ -18,13 +18,15 @@ public class SelectBoardService {
 	 */
 	public Board freeSelectBoard(int boardNo) throws Exception{
 		Connection conn = getConnection();
-		Board board = dao.freeSelectBoard(conn, boardNo);
+		Board board  = dao.freeSelectBoard(conn, boardNo);
 		
 		if(board.getBoardTitle() != null) {
+			
 			int result = dao.increaseReadCount(conn, boardNo);
 			
 			if(result > 0) {
 				commit(conn);
+				System.out.println("boards : "+board);
 				board.setReadCount(board.getReadCount() + 1);
 			}else {
 				rollback(conn);
@@ -37,7 +39,6 @@ public class SelectBoardService {
 
 	public Board ComSelectBoard(int boardNo) throws Exception {
 		Connection conn = getConnection();
-		
 		Board board = dao.ComSelectBoard(conn, boardNo);
 		
 		if(board.getBoardTitle() != null) {

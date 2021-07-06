@@ -62,6 +62,7 @@ public class CommentsDAO {
 				comments.setCommentsDt(rs.getTimestamp("COMMENT_DT"));
 				comments.setBoardNo(rs.getInt("BOARD_NO"));
 				comments.setMemberNo(rs.getInt("MEMBER_NO"));
+				comments.setMemberId(rs.getString("MEMBER_ID"));
 				
 				list.add(comments);
 			}

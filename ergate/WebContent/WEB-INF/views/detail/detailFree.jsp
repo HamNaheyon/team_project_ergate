@@ -210,6 +210,8 @@
 	</style>
 </head>
 <body id = "body-top">
+${board}
+<hr>
 	<jsp:include page="../common/header.jsp"/>
 
   	<div id="container">
@@ -234,67 +236,75 @@
 	    </div>
 	    <div id="con-text">
 	    	<div id="detail-text">
-		    	아이디 : ${board.memberId} <br>
-		    	희망 근무 시간 : 
-		    	<c:choose>
-		    		<c:when test = "${ board.minTime}" >
-		    		${board.minTime}
-		    		</c:when>
-		    		<c:otherwise>
-		    		00:00
-		    		</c:otherwise>
-		    	</c:choose>  ~ 
-		    	<c:choose>
-		    		<c:when test = "${!empty board.maxTime}" >
-		    		${board.maxTime}
-		    		</c:when>
-		    		<c:otherwise>
-		    		00:00
-		    		</c:otherwise>
+		    <c:choose>
+			    	<c:when test="${empty board.companyName}">
+				    	아이디 : ${board.memberId} <br>
+				    	희망 근무 시간 : 
+				    	<c:choose>
+				    		<c:when test = "${ board.minTime}" >
+				    		${board.minTime}
+				    		</c:when>
+				    		<c:otherwise>
+				    		00:00
+				    		</c:otherwise>
+				    	</c:choose>  ~ 
+				    	<c:choose>
+				    		<c:when test = "${!empty board.maxTime}" >
+				    		${board.maxTime}
+				    		</c:when>
+				    		<c:otherwise>
+				    		00:00
+				    		</c:otherwise>
+				    	</c:choose>
+				    	<br>
+				    	희망 급여 : 
+				    	<c:choose>
+				    		<c:when test = "${!empty board.minSalary}" >
+				    		${board.minSalary}
+				    		</c:when>
+				    		<c:otherwise>
+				    		0
+				    		</c:otherwise>
+				    	</c:choose>  ~ 
+				    	<c:choose>
+				    		<c:when test = "${!empty board.maxSalary}" >
+				    		${board.maxSalary}
+				    		</c:when>
+				    		<c:otherwise>
+				    		0
+				    		</c:otherwise>
+				    	</c:choose>
+				    	<br>
+				    	분야 : 
+			    		<c:if test = "${!empty board.categoryName}" >
+			    			${board.categoryName} 
+				    	<br>
+			    		</c:if>
+				    	근무 형태 : 
+				    	<c:choose>
+				    		<c:when test = "${!empty board.work}" >
+				    		${board.work} 
+				    		</c:when>
+				    		<c:otherwise>
+				    		희망 형태 없음
+				    		</c:otherwise>
+				    	</c:choose>
+				    	<br>
+				    	<c:if test = "${!empty board.experience}" >
+			    			프리랜서 경험 : ${board.experience} 
+				    	 <br>
+			    		</c:if>
+				    	<c:if test = "${!empty board.skil}" >
+			    			스킬 : ${board.skil}
+			    		<br>
+			    		</c:if>
+				    	</c:when>
+			    	<c:otherwise>
+			    		기업 명 : ${board.companyName}  <br>
+			    		담당자 :  ${board.manager} <br>
+			    	</c:otherwise>
 		    	</c:choose>
-		    	<br>
-		    	희망 급여 : 
-		    	<c:choose>
-		    		<c:when test = "${!empty board.minSalary}" >
-		    		${board.minSalary}
-		    		</c:when>
-		    		<c:otherwise>
-		    		0
-		    		</c:otherwise>
-		    	</c:choose>  ~ 
-		    	<c:choose>
-		    		<c:when test = "${!empty board.maxSalary}" >
-		    		${board.maxSalary}
-		    		</c:when>
-		    		<c:otherwise>
-		    		0
-		    		</c:otherwise>
-		    	</c:choose>
-		    	<br>
-		    	분야 : 
-	    		<c:if test = "${!empty board.categoryName}" >
-	    			${board.categoryName} 
-		    	<br>
-	    		</c:if>
-		    	근무 형태 : 
-		    	<c:choose>
-		    		<c:when test = "${!empty board.work}" >
-		    		${board.work} 
-		    		</c:when>
-		    		<c:otherwise>
-		    		희망 형태 없음
-		    		</c:otherwise>
-		    	</c:choose>
-		    	<br>
-		    	<c:if test = "${!empty board.experience}" >
-	    			프리랜서 경험 : ${board.experience} 
-		    	 <br>
-	    		</c:if>
-		    	<c:if test = "${!empty board.skil}" >
-	    		스킬 : ${board.skil}
-	    		<br>
-	    		</c:if>
-	    		이메일 : ${board.memberEmail} 
+				             이메일 : ${board.memberEmail} 
 	    	</div>
 	    	<div id="chat-btn">
 	    		<button>1:1 채팅하기</button>
@@ -315,12 +325,12 @@
 	    	<div id="btn-size2">
 	    	<c:choose>
 	    	<c:when test="${memeber.memberId.val('admin')}">
-		    	<a href="admin/ComBoardAll?type=${param.type}&cp=${param.cp}">
+		    	<a href="admin/ComBoardAll?style=${param.style}&cp=${param.cp}">
 		    		<button id="return-btn">이전 페이지로 이동</button>
 		    	</a>
 	    	</c:when>
 	    	<c:otherwise>
-		    	<a href="board/list?type=${param.type}&cp=${param.cp}">
+		    	<a href="board/list?style=${param.style}&cp=${param.cp}">
 		    		<button id="return-btn">이전 페이지로 이동</button>
 		    	</a>
 	    	</c:otherwise>
@@ -334,7 +344,11 @@
   		</div>
   		<div id="con-main-text">
   			<label id="name-text" class="navi-name">포트폴리오</label>
-  			<div id="name-con"></div>
+  			<div id="name-con">
+				<c:if test="${!empty board.filePath}">
+					<img id="contentfile" src="${contextPath}/${board.filePath}${board.fileName}">
+				</c:if>
+  			</div>
   			<hr id="plan-text">
   			
   			<label class="navi-name">포트폴리오 설명</label>
