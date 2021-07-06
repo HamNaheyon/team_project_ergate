@@ -233,16 +233,6 @@
         <jsp:include page="../common/footer.jsp"/>
     </div>
     <script src="${contextPath}/resources/js/com_member.js"></script>
-<script>
-	function signUpValidate(){
-				
-			    if(!$("#agree").prop("checked")){
-			    	swal({"icon" : "info", "title" : "개인정보 동의를 체크해주세요"})
-				    return false;
-			    }
-			}
-
-</script>
 </body>
 
 </html>

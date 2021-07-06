@@ -1,13 +1,13 @@
 // 회원 가입 유호성 검사
 
 // 각 유효성 검사 결과를 저장할 객체
-var checkObj = {
+const checkObj = {
     "id": false,
     "pwd1": false,
     "pwd2": false,
     "name": false,
     "phone2": false,
-    "jumin1": false,
+    "jumin2": false,
     "email": false
 };
 
@@ -23,13 +23,6 @@ $("#id").on("input", function () {
 
     // 입력된 아이디가 정규식에 일치하는 경우 == 유효한 값인 경우
     if (regExp.test(inputId)) {
-        // $("#checkId").text("유효한 아이디입니다.").css("color", "green");
-        // checkObj.id = true;
-
-        // Ajax를 이용하여 비동기적으로 아이디 중복 검사를 진행
-
-        // jQuery를 이용한 Ajax
-        /* $.ajax({url : "주소", 선택속성 }); */
 
         $.ajax({
             url: "idDupCheck", // 요청 주소(필수로 작성!)
@@ -156,8 +149,8 @@ $(".jumin").on("input", function () {
         $("#juminNum2").val($("#juminNum2").val().slice(0, 7));
     }
 
-    const regExp1 = /^\d{6}$/; // 숫자 3~4 글자
-    const regExp2 = /^\d{7}$/; // 숫자 3~4 글자
+    const regExp1 = /^\d{6}$/; 
+    const regExp2 = /^\d{7}$/; 
 
     const jm1 = $("#juminNum1").val();
     const jm2 = $("#juminNum2").val();
@@ -165,6 +158,7 @@ $(".jumin").on("input", function () {
     if (regExp1.test(jm1) && regExp2.test(jm2)) {
         $("#checkJumin").text("유효한 주민번호 형식입니다.").css("color", "green");
         checkObj.jumin2 = true;
+
     } else {
         $("#checkJumin").text("주민번호가 유효하지않습니다..").css("color", "red");
         checkObj.jumin2 = false;
@@ -195,7 +189,11 @@ $(".phone").on("input", function () {
 
 // 회원가입 버튼 클릭 시 전체 유효성 검사 여부 확인
 function validate() {
-
+			
+    if(!$("#agree").prop("checked")){
+    	swal({"icon" : "info", "title" : "개인정보 동의를 체크해주세요"})
+	    return false;
+    }
 
     for (const key in checkObj) {
 
@@ -221,7 +219,7 @@ function validate() {
                 case "email":
                     msg = "이메일이 유효하지 않습니다.";
                     break;
-                case "jumin1":
+                case "jumin2":
                     msg = "주민번호가 유효하지 않습니다."
             }
             swal(msg).then(function () {
@@ -234,9 +232,4 @@ function validate() {
             return false; // submit 이벤트 제거(회원가입 실행 X)
         }
     }
-
-
-
-
-
 }
