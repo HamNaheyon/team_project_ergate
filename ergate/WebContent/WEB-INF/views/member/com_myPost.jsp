@@ -91,7 +91,6 @@
             </div>
             </div>
             <div>
-                ${MyPostPagination}
           	<%-- 페이징 처리 시 주소를 쉽게 작성할 수 있도록 필요한 변수를 미리 선언 --%>
 			<c:set var="pageURL" value="list?no=${pagination.memberNo}"/>
 			
@@ -159,7 +158,7 @@
 		
 		let boardNo = $(this).parent().children().eq(0).text();
         
-		location.href="${contextPath}/detailBoard?boardNo="+boardNo+"&cp=1&type=1";
+		location.href="${contextPath}/detailBoard?boardNo="+boardNo+"&cp=1&style=1";
         
      });
 	</script>

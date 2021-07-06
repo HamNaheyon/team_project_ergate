@@ -29,7 +29,6 @@ public class ComUpdateServlet extends HttpServlet {
 		String[] phone = request.getParameterValues("phone");
 		String comPhone = String.join("-", phone);
 		
-		
 		ComMember comMember = new ComMember(memberNo,comEmail,comPhone);		
 		try {
 			MemberService service = new MemberService();
