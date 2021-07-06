@@ -168,7 +168,7 @@
 		
 		let boardNo = $(this).parent().children().eq(0).text();
         
-		location.href="${contextPath}/detailBoard?boardNo="+boardNo+"&cp=1&style=1";
+		location.href="${contextPath}/detailBoard?boardNo="+boardNo+"&cp=1&style=1&type=2";
         
      });
 	</script>

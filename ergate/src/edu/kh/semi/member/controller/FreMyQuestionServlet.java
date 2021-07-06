@@ -69,6 +69,7 @@ public class FreMyQuestionServlet extends HttpServlet {
 				// 문의사항 상세 조회
 			} else if (command.equals("view")) {
 				
+				// 가라
 				int questionNo = Integer.parseInt(request.getParameter("questionNo"));
 				
 				Question question = service.selectQuestion(questionNo);
