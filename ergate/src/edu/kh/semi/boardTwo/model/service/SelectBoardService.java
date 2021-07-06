@@ -37,9 +37,33 @@ public class SelectBoardService {
 		return board;
 	}
 
-	public Board ComSelectBoard(int boardNo) throws Exception {
+	public Board comSelectBoard(int boardNo) throws Exception {
 		Connection conn = getConnection();
-		Board board = dao.ComSelectBoard(conn, boardNo);
+		Board board = dao.comSelectBoard(conn, boardNo);
+		
+		if(board.getBoardTitle() != null) {
+			int result = dao.increaseReadCount(conn, boardNo);
+			
+			if(result > 0) {
+				commit(conn);
+				board.setReadCount(board.getReadCount() + 1);
+			}else {
+				rollback(conn);
+			}
+		}
+		close(conn);
+		return board;
+	}
+
+	/** 제안서 -프리랜서 상세조회
+	 * @param boardNo
+	 * @return board
+	 * @throws Exception
+	 */
+	public Board comFreeSelectBoard(int boardNo) throws Exception {
+		Connection conn = getConnection();
+		
+		Board board = dao.comFreeSelectBoard(conn, boardNo);
 		
 		if(board.getBoardTitle() != null) {
 			int result = dao.increaseReadCount(conn, boardNo);

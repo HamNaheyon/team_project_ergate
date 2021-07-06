@@ -190,6 +190,7 @@
 			width: 100%;
 			height:30%;
 			border: 2px solid rgba(166, 206, 231, 0.7);
+			overflow: auto;
 		}	
 		
 		#plan-con{
@@ -211,7 +212,6 @@
 </head>
 <body id = "body-top">
 ${board}
-${Attachment}
 	<jsp:include page="../common/header.jsp"/>
   	<div id="container">
   		<div id="con-img">
@@ -219,23 +219,22 @@ ${Attachment}
 	            <lable id="la1">${board.boardTitle}</lable>
 	            <lable id="la2">조회수 ${board.readCount}</lable>
 	        </div>
+	       
+	       <c:forEach items="${board.atList}" var="at">
 	       <c:choose>
-	        	<c:when test="${empty at.filePath}"> 
+	        	<c:when test="${at.fileLevel == 0 && !empty at.fileName}">
 		        	<div class="img-title">
-		            	<img src="${contextPath}/resources/img/developer.png" width="auto" height="100%">
+		        		<c:set var="img0" value="${contextPath}/${at.filePath}${at.fileName}"/>
+						<img src="${img0}" width="auto" height="100%">
 		        	</div>
 	        	</c:when>
 	        	<c:otherwise>
-	        		<c:forEach items="${board.atList}" var="at">
-						<c:choose>
-							<c:when test="${at.fileLevel == 0 && !empty at.fileName}">
-								<c:set var="img0" value="${contextPath}/${at.filePath}${at.fileName}"/>
-							</c:when>
-						</c:choose>
-					</c:forEach>
+		        	<div class="img-title">
+						<img src="${contextPath}/resources/img/developer.png" width="auto" height="100%">
+		        	</div>
 	        	</c:otherwise>
 	        </c:choose>
-	        
+	       </c:forEach>
 	    </div>
 	    <div id="con-text">
 	    	<div id="detail-text">
@@ -315,16 +314,12 @@ ${Attachment}
 	    </div>
 	    
 	    <div id="etc-btn">
-		    <c:if test="${loginMember.memberNo == board.memberNo }"> 
+    		<c:if test="${comLoginMember.memberNo == board.memberNo}"> 
 		    	<div id="btn-size1">
-			    	<c:if test="${loginMember.memberNo == board.memberNo}">
-			    		<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
-			    	</c:if>
-			    	<c:if test="${loginMember.memberNo == board.memberNo || memeber.memberId.val('admin')}">
-			    		<button id="delete-btn" onclick="btnDeletion();">게시글 삭제</button>
-			    	</c:if>
+			    	<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
+			    	<button id="delete-btn" onclick="btnDeletion();">게시글 삭제</button>
 		    	</div>
-		    </c:if> 
+			</c:if> 
 	    	<div id="btn-size2">
 	    	<c:choose>
 	    	<c:when test="${memeber.memberId.val('admin')}">
@@ -348,19 +343,12 @@ ${Attachment}
   		<div id="con-main-text">
   			<label id="name-text" class="navi-name">제안서</label>
 			<div id="name-con">
+				<%-- <a class="btn" href="${contextPath}/${at.filePath}${at.fileName}" download>제안서 다운로드</a> --%>
 				<c:forEach items="${board.atList}" var="at">
-						<c:choose>
-							<c:when test="${at.fileLevel == 1 && !empty at.fileName}">
-								<c:set var="img1" value="${contextPath}/${at.filePath}${at.fileName}"/>
-							</c:when>
-							<c:when test="${at.fileLevel == 2 && !empty at.fileName}">
-								<c:set var="img2" value="${contextPath}/${at.filePath}${at.fileName}"/>
-							</c:when>
-							<c:when test="${at.fileLevel == 3 && !empty at.fileName}">
-								<c:set var="img3" value="${contextPath}/${at.filePath}${at.fileName}"/>
-							</c:when>
-						</c:choose>
-					</c:forEach>
+					<a href="${contextPath}/${at.filePath}${at.fileName}" download="${at.fileName}">
+						파일 다운로드
+					</a>
+				</c:forEach>
   			</div>
   			<hr id="plan-text">
   			

@@ -147,7 +147,7 @@
            text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
            border:3px outset rgb(152, 203, 235);
        }
-       /* 제안서, 제안서 설명, 댓글 바 */
+       /* 포트폴리오, 포트폴리오 설명, 댓글 바 */
        #main-btn{
        	width:60%;
        	/* height: 3%; */
@@ -190,6 +190,7 @@
 			width: 100%;
 			height:30%;
 			border: 2px solid rgba(166, 206, 231, 0.7);
+			overflow: auto;
 		}	
 		
 		#plan-con{
@@ -211,32 +212,34 @@
 </head>
 <body id = "body-top">
 ${board}
-<hr>
+${Attachment}
 	<jsp:include page="../common/header.jsp"/>
-
   	<div id="container">
   		<div id="con-img">
 	        <div id="img-text">
 	            <lable id="la1">${board.boardTitle}</lable>
 	            <lable id="la2">조회수 ${board.readCount}</lable>
 	        </div>
-	        <c:choose>
-	        	<c:when test="${ empty board.fileName[0]}"> 
+	       
+	       <c:forEach items="${board.atList}" var="at">
+	       <c:choose>
+	        	<c:when test="${at.fileLevel == 0 && !empty at.fileName}">
 		        	<div class="img-title">
-		            	<img src="${contextPath}/resources/img/developer.png" width="auto" height="100%">
+		        		<c:set var="img0" value="${contextPath}/${at.filePath}${at.fileName}"/>
+						<img src="${img0}" width="auto" height="100%">
 		        	</div>
 	        	</c:when>
 	        	<c:otherwise>
-	        		<div class="img-title">
-		            	<img src="${contextPath}/${board.filePath[0]}${board.fileName[0]}" height="100%">
+		        	<div class="img-title">
+						<img src="${contextPath}/resources/img/developer.png" width="auto" height="100%">
 		        	</div>
 	        	</c:otherwise>
 	        </c:choose>
-	        
+	       </c:forEach>
 	    </div>
 	    <div id="con-text">
 	    	<div id="detail-text">
-		    <c:choose>
+			    <c:choose>
 			    	<c:when test="${empty board.companyName}">
 				    	아이디 : ${board.memberId} <br>
 				    	희망 근무 시간 : 
@@ -305,23 +308,19 @@ ${board}
 			    	</c:otherwise>
 		    	</c:choose>
 				             이메일 : ${board.memberEmail} 
-	    	</div>
+           </div>
 	    	<div id="chat-btn">
 	    		<button>1:1 채팅하기</button>
 	    	</div>
 	    </div>
 	    
 	    <div id="etc-btn">
-		    <c:if test="${loginMember.memberNo == board.memberNo }"> 
-		    	<div id="btn-size1">
-			    	<c:if test="${loginMember.memberNo == board.memberNo}">
-			    		<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
-			    	</c:if>
-			    	<c:if test="${loginMember.memberNo == board.memberNo || memeber.memberId.val('admin')}">
-			    		<button id="delete-btn" onclick="btnDeletion();">게시글 삭제</button>
-			    	</c:if>
-		    	</div>
-		    </c:if> 
+		    	<c:if test="${comLoginMember.memberNo == board.memberNo  || freLoginMember.memberNo == board.memberNo }"> 
+			    	<div id="btn-size1">
+				    	<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
+				    	<button id="delete-btn" onclick="btnDeletion();">게시글 삭제</button>
+			    	</div>
+			</c:if> 
 	    	<div id="btn-size2">
 	    	<c:choose>
 	    	<c:when test="${memeber.memberId.val('admin')}">
@@ -344,10 +343,15 @@ ${board}
   		</div>
   		<div id="con-main-text">
   			<label id="name-text" class="navi-name">포트폴리오</label>
-  			<div id="name-con">
-				<c:if test="${!empty board.filePath}">
-					<img id="contentfile" src="${contextPath}/${board.filePath}${board.fileName}">
-				</c:if>
+			<div id="name-con">
+				<c:forEach items="${board.atList}" var="at" varStatus="status">
+					<c:choose>
+						<c:when test="${!empty at.fileName}">
+							<c:set var="img0" value="${contextPath}/${at.filePath}${at.fileName}"/>
+							<img src="${img0}" width="auto" height="100%">
+						</c:when>
+					</c:choose>
+				</c:forEach>
   			</div>
   			<hr id="plan-text">
   			
@@ -355,7 +359,6 @@ ${board}
   			<div id="plan-con">${board.boardContent}</div>
   			
   			<hr id="comment-text">
-  			
   			<label  class="navi-name">댓글</label>
   			<div id="comment-con">
   			<jsp:include page="reply.jsp"></jsp:include>
