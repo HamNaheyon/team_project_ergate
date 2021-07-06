@@ -55,7 +55,7 @@
                     <h4 class="mb-3">내 정보</h4>
                     <br>
                     <hr>
-                    <form class="validation-form" method="POST" action="fre_update">
+                    <form class="validation-form" method="POST" action="fre_update" onsubmit="return memberUpdateValidate();">
                         <!-- 아이디 -->
                         <div class="row mb-5 form-row">
                             <div class="col-md-3">
@@ -243,6 +243,45 @@
     			$(item).prop("selected", true);
     		}
     	});
+     	
+    	(function(){
+    			$("#phone1 > option").each( function(index, item){ 
+    				
+    				if( $(item).text() == "${phone[0]}"){
+    					
+    					$(item).prop("selected", true);
+    				}
+    				
+    			});
+    		})();
+    	function memberUpdateValidate(){
+    	    const regExp1 = /^[0-9]{3,4}$/;
+    	    const regExp2 = /^[0-9]{4}$/;
+    	    const ph2 = $("#phone2").val();
+    	    const ph3 = $("#phone3").val();
+
+    	    if( !regExp1.test(ph2)  || !regExp2.test(ph3)  ){
+    	    	swal({ "icon"  : "warning",
+    	    		   "title" : "전화번호가 유효하지 않습니다."  ,
+    	    		   "text"  : "중간 자리는 3~4, 마지막 자리는 4글자로 작성해주세요." });
+    	    	
+    	    	return false;
+    	    }
+    	    
+    	    const regExp = /^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/;
+
+    	    const inputEmail = $("#email").val().trim();
+
+    	    if( !regExp.test(inputEmail) ){
+    	    	swal({ "icon"  : "warning",
+    	    		   "title" : "이메일이 유효하지 않습니다."  ,
+    	    		   "text"  : "아이디 4글자 이상의 이메일 형식으로 작성해주세요." });
+    	    	
+    	    	return false;
+    	    }
+    	    
+    	}
+     	
     </script>
 
     </html>

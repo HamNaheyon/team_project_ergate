@@ -48,14 +48,12 @@ public class LoginServlet extends HttpServlet {
 			
 			ComMember comLoginMember = null;
 			
-			Admin admin = null;
-			
 			if(freId != null) {
 				freLoginMember = service.freLogin(freId,frePw);
 			}else {
 				comLoginMember = service.comLogin(comId,comPw);
-				
 			}
+			
 			
 			session.removeAttribute("icon");
 			session.removeAttribute("title");
@@ -67,10 +65,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("text","아이디 또는 비밀번호가 일치하지 않습니다.");
 				
 			} else if(freLoginMember.getMemberGrade().equals("A")) {
-				
-				session.setAttribute("admin", admin);
-				
-				System.out.println("admin : " + admin);
+
 				
 				String path="/WEB-INF/views/admin/adminmain.jsp";
 	            RequestDispatcher view = request.getRequestDispatcher(path);
@@ -96,9 +91,6 @@ public class LoginServlet extends HttpServlet {
 				}
 				else if(comLoginMember.getMemberGrade().equals("A")) {
 					
-					session.setAttribute("admin", admin);
-					
-					System.out.println("admin : " + admin);
 					
 					String path="/WEB-INF/views/admin/adminmain.jsp";
 		            RequestDispatcher view = request.getRequestDispatcher(path);
