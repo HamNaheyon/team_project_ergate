@@ -23,7 +23,7 @@
     }
     .footer-1{
         width:100%;
-        height:30%;
+        height:25%;
         border-bottom:2px solid white;
     }
     /************* 서브로고 이용약관 개인정보처리방침 *************/
@@ -33,20 +33,23 @@
         margin: 10px;      
     }
     .tos{
-        font-size: 140%;
+        font-size: 18px;
         font-weight: bold;
+        font-color:white;
     }
     .pp{
-        font-size: 140%;
+        font-size: 18px;
         font-weight: bold;
+        font-color:white;
     }
 
     /************* 문의사항 *************/
     .questions{
         float:right;
         text-align:center;
-        font-size: 140%;
+        font-size: 18px;
         font-weight: bold;
+        font-color:white;
     }
     /* .questions h4{
         margin-top:21.280px;
@@ -55,13 +58,12 @@
     /************* 사업자정보 *************/
     .footer-2{
         width:100%;
-        height:70%;
+        height:80%;
     }
-    .footer-2 h5{
+    .companyinfo{
         margin-left:15px;
         /* margin-top:22.178px; */
-        margin-top:13px;
-        margin-bottom:13px;
+        font-size:15px;
     }
     a{
     	color: black;
@@ -85,12 +87,13 @@
                 <div class="footer1 questions"><a href="${contextPath}/questions">문의사항</a></div>
             </div>
             <div class="footer-2">
-                <h5>
-                    ㈜일개미 (대표이사:일개미) | 서울특별시 중구 남대문로 120 대일빌딩 2F, 3F<br>
-                    사업자등록번호 : 851-87-00622<br>
-                    서비스 및 기업문의 1544-9970<br>
-                    © 2021 Ergate, Inc.<br>
-                </h5>
+	          				<p class="companyinfo" style="text-align:left;">
+	          					<br>
+								㈜일개미 (대표이사:일개미) | 서울특별시 중구 남대문로 120 대일빌딩 2F, 3F<br>
+			               		사업자등록번호 : 851-87-00622<br>
+			               		서비스 및 기업문의 1544-9970<br>
+			               		© 2021 Ergate, Inc.<br>
+	                		</p>
             </div>
         </div>
     </div>

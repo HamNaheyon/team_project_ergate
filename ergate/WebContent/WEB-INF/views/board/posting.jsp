@@ -14,117 +14,99 @@
 	<jsp:include page="../common/header.jsp"/>
 </head>
 <body>
-	<jsp:include page="Board_Search_Form.jsp"/>
-	<%-- <jsp:include page="Board_SideMenu.jsp"/> --%>
+	<%-- <jsp:include page="Board_Search_Form.jsp"/> --%>
+ 	<%-- <jsp:include page="Board_SideMenu.jsp"/> --%>
 	
     
-		<%-- <form action="${contextPath}/board2/insert?style=${pagination.boardStyle}" method="post"  --%>
-		<form action="${contextPath}/board2/insert" method="post" 
-			  name="insertFrm" enctype="multipart/form-data" role="form" onsubmit="return boardValidate();">
+	<%-- <form action="${contextPath}/board2/insert?style=${pagination.boardStyle}" method="post"  --%>
+	<form action="${contextPath}/board2/insert" method="post" 
+		  name="insertFrm" enctype="multipart/form-data" role="form" onsubmit="return boardValidate();">
     <div class="pcontainer">
-        <div class="postingsc">
-            <h3>게시글 작성</h3>
-        </div>
-        <div class="ptype tborder">
-            <div class="label">
-                <label for="ptype">게시판종류*</label>
-            </div>
-            <div class="select">
-            	<c:if test="${style == 1}">
-                <select id="boardStyle" name="boardStyle">
-                    <option value="1">제안서</option>
-                </select>
-                </c:if>
+    			<h3 class="boardinsert">게시글 작성</h3></td>
+    	<table>
+    		<tr>
+    			
+    		</tr>
+    		<tr>
+    			<td><label for="ptype">게시판종류*</label></td>
+    			<td>
+	   				<c:if test="${style == 1}">
+	                <select id="boardStyle" name="boardStyle">
+	                    <option value="1">제안서</option>
+	                </select>
+	                </c:if>
+	            	<c:if test="${style == 2}">
+	                <select id="boardStyle" name="boardStyle">
+	                    <option value="2">포트폴리오</option>
+	                </select>
+	                </c:if>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td><label for="category">카테고리*</label></td>
+    			<td>
+    				<select id="categoryCode" name="categoryCd" onsubmit="return boardCategory();">
+	                    <option value="0" selected>=== 카테고리를 선택해주세요 ===</option>
+	                    <option value="1">웹 개발자</option>
+	                    <option value="2">앱 개발자</option>
+                	</select>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td><label for="category">제목*</label></td>
+    			<td><input name="boardTitle" id="boardTitle" type="text" placeholder = "제목을 입력해주세요" required>  </td>
+    		</tr>
+    		<tr>
+    			<td><label for="contents">내용*</label></td>
+    			<td><textarea name="boardContent" id="contentsarea" placeholder = "내용을 입력해주세요" required style="resize: none;"></textarea></td>
+    		</tr>
+    		<tr>
+    			<td><label for="thumbnail">썸네일</label></td>
+    			<td><input name="img0" id="imgfile" type="file" accept="image/*"></td>
+    		</tr>
+    		<tr>
+    			
+				<c:if test="${style == 1}">
+		            <td>
+		                <label for="thumbnail">첨부파일(최대 40MB)</label>
+		            </td>
+		            <td>
+	                    <input name="chumbufile" type="file" accept=".pdf, .doc, .docx, .hwp">
+		            </td>
+	            </c:if>
             	<c:if test="${style == 2}">
-                <select id="boardStyle" name="boardStyle">
-                    <option value="2">포트폴리오</option>
-                </select>
-                </c:if>
-            </div>
-        </div>
-        <div class="pcategory cborder" >
-            <div class="label">
-                <label for="category">카테고리*</label>
-            </div>
-            <div class="select">
-                <select id="categoryCode" name="categoryCd" onsubmit="return boardCategory();">
-                    <option value="0" selected>=== 카테고리를 선택해주세요 ===</option>
-                    <option value="1">웹 개발자</option>
-                    <option value="2">앱 개발자</option>
-                </select>
-            </div>
-        </div>
-        <div class="title cborder">
-            <div class="label">
-                <label for="category">제목*</label>
-            </div>
-            <div class="select">
-                <input name="boardTitle" id="boardTitle" type="text" placeholder = "제목을 입력해주세요" required>  
-            </div>
-        </div>
-	   	
-        <div class="contents cborder">
-            <div class="label">
-                <label for="contents">내용*</label>
-            </div>
-           <div class="cbselect">
-            	<textarea name="boardContent" id="contents" placeholder = "내용을 입력해주세요" required></textarea>
-            </div>
-        </div>
-        <div class="uploadfile cborder">
-            <div class="label">
-                <label for="thumbnail">썸네일</label>
-            </div>
-            <div class="select">
-                <input name="img0" id="imgfile" type="file" accept="image/*">
-                <!-- <img src="images/file.png" style="width:100px;" border="0" onclick='document.all.uploadfile.click(); document.all.uploadfile2.value=document.all.uploadfile.value'> -->
-                <!-- <input name="uploadfile2" id="uploadfile2" type="text" style="display:none;"> -->
-            </div>
-        </div>
-        <div class="uploadfile cborder">
-<!--             <div class="label">
-                <label for="uploadfile">첨부파일</label>
-            </div> -->
-            <c:if test="${style == 1}">
-	            <div class="label">
-	                <label for="thumbnail">첨부파일</label>
-	            </div>
-	            <div class="select">
-                    <input type="file" accept=".pdf, .doc, .docx, .hwp">
-	            </div>
-            </c:if>
-            <c:if test="${style == 2}">
-	            <div class="select">
+	            	<td>
 	                    <button type="button" id="addvalue" onclick="add();">이미지 추가</button>
+	    			</td>
+	    			<td>	
 	    				<div id="addimg"></div>
-	                <!-- <img src="images/file.png" style="width:100px;" border="0" onclick='document.all.uploadfile.click(); document.all.uploadfile2.value=document.all.uploadfile.value'> -->
-	                <!-- <input name="uploadfile2" id="uploadfile2" type="text" style="display:none;"> -->
-	            </div>
+	    			</td>
             </c:if>
-        </div>
-        
-        <div class="write cborder">
-            <div class="select">
-                <div class="sbutton">
-                    <button type="button" name="boardback" onclick="history.back();">작성취소</button>
-                </div>
-                <div class="sbutton">
-                    <button type="reset" class="reset">내용초기화</button>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="complet">
-                <button type="submit">작성완료</button>
-            </div> 
-        </div>
-    </div>
-   </form>
-    
-    <div class="finclude">
-   		<br>
+    			
+    		</tr>
+    		
+    		
+    		<tr>
+    			<td></td>
+    			<td>
+    				<button type="button" id="backkk" name="boardback" onclick="history.back();">작성취소</button>
+    				<button type="reset" id="resettt" class="reset">내용초기화</button>
+    			</td>
+    		</tr>
+    		
+    		<tr>
+    			<td></td>
+    			<td><button type="submit">작성완료</button></td>
+    		</tr>
+
+    	</table>
+    	<br>
 		<jsp:include page="../common/footer.jsp"/>
-    </div>
+   	</div>
+	</form>
+
+        
+  
 
 	<script>
 		
