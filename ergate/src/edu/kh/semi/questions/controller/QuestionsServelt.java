@@ -34,12 +34,9 @@ public class QuestionsServelt extends HttpServlet {
 		ComMember comLoginMember = (ComMember)session.getAttribute("comLoginMember");
 		FreMember freLoginMember = (FreMember)session.getAttribute("freLoginMember");
 		
-		
-		
 		String questionsTitle = request.getParameter("title");
 		String questionsContent = request.getParameter("contents");
 
-		
 		try {
 			
 			if(freLoginMember != null) {

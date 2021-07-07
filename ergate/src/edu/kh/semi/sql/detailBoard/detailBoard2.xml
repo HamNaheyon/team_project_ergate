@@ -2,10 +2,29 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-<!-- 게시글  삭제 -->
-<entry key="deleteBoard">
-	UPDATE BOARD SET 
-	BOARD_STATUS = 'N'
-	WHERE BOARD_NO = ?
-</entry>
+	<!-- 게시글  삭제 -->
+	<entry key="deleteBoard">
+		UPDATE BOARD SET 
+		BOARD_STATUS = 'N'
+		WHERE BOARD_NO = ?
+	</entry>
+	
+	<!-- 게시글 삽입 SLQ -->
+	<entry key="updateBoard1">
+		UPDATE BOARD SET
+		CATEGORY_CD = ?,
+		BOARD_TITLE = ?,
+		BOARD_CONTENT = ?
+		WHERE  BOARD_NO = ?
+	</entry>
+
+	<!-- Attachment 테이블 삽입 SLQ -->
+	<entry key="insertAttachment">
+		UPDATE ATTACHMENT SET
+		FILE_NM = ?,
+		FILE_LEVEL= ?
+		WHERE  BOARD_NO = ? AND FILE_LEVEL = ?
+	</entry>
+
+
 </properties>

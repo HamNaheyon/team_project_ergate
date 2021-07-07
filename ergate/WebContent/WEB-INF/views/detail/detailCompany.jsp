@@ -203,22 +203,23 @@
 	            <lable id="la1">${board.boardTitle}</lable>
 	            <lable id="la2">조회수 ${board.readCount}</lable>
 	        </div>
-	       
-	       <c:forEach items="${board.atList}" var="at">
-	       <c:choose>
-	        	<c:when test="${at.fileLevel == 0 && !empty at.fileName}">
-		        	<div class="img-title">
-		        		<c:set var="img0" value="${contextPath}/${at.filePath}${at.fileName}"/>
-						<img src="${img0}" width="auto" height="100%">
-		        	</div>
-	        	</c:when>
-	        	<c:otherwise>
-		        	<div class="img-title">
-						<img src="${contextPath}/resources/img/developer.png" width="auto" height="100%">
-		        	</div>
-	        	</c:otherwise>
-	        </c:choose>
-	       </c:forEach>
+	       <c:set var ="stop" value="false"/>
+		       <c:forEach items="${board.atList}" var="at">
+		       	<c:if test = "${not stop}">
+			       <c:choose>
+			        	<c:when test="${at.fileLevel == 0 && !empty at.fileName}">
+			        		<c:set var="img0" value="${contextPath}/${at.filePath}${at.fileName}"/>
+			        		<c:set var ="stop" value="true"/>
+			        	</c:when>
+			        	<c:otherwise>
+				        	<c:set var="img0" value="${contextPath}/resources/img/developer.png"/>
+			        	</c:otherwise>
+			        </c:choose>
+		       	</c:if>
+		       </c:forEach>
+	       <div class="img-title">
+	       <img src="${img0}" width="auto" height="100%">
+	       </div>
 	    </div>
 	    <div id="con-text">
 	    	<div id="detail-text">
@@ -349,7 +350,7 @@
   	<form action="#" method="POST" name="requestForm">
 		<input type="hidden" name="boardNo" value="${board.boardNo}">
 		<input type="hidden" name="cp" value="${param.cp}">
-		<input type="hidden" name="type" value="${param.type}">
+		<input type="hidden" name="memberType" value="${param.type}">
 		<input type="hidden" name="type" value="${param.style}">
 	</form>
   	
@@ -366,7 +367,7 @@
              });
        });
       
-      function btnAmend(){
+      function btnAmend(addr){
     	  swal({
     		  title: "게시글을 수정 하시겠습니까?",
     		  icon: "warning",
@@ -375,7 +376,8 @@
     		})
 			.then((willDelete) => {
 	      		  if (willDelete) {
-	      			document.requestForm.action = "${contextPath}/BoardTwo/" + addr;
+	      			document.requestForm.action = "${contextPath}/BoardTwo/" + addr + "?boardNo="+${board.boardNo}
+	      			+"&style="+${param.style}+"&type="+${param.type};
 			      	document.requestForm.submit();
 	      		  }else{
 	      		    swal("게시글 수정을 취소 하였습니다.");
