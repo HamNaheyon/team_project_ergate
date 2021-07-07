@@ -294,7 +294,7 @@
            </div>
 	    </div>
 	    <div id="etc-btn">
-    		<c:if test="${comLoginMember.memberNo == board.memberNo}"> 
+    		<c:if test="${comLoginMember.memberNo == board.memberNo || freLoginMember.memberNo == board.memberNo }"> 
 		    	<div id="btn-size1">
 			    	<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
 			    	<button id="delete-btn" onclick="btnDeletion('deleteBoard');">게시글 삭제</button>

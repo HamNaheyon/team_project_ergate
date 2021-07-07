@@ -46,17 +46,20 @@ public class BoardTwoController extends HttpServlet {
 				if(result >0) {
 					icon = "success";
 					title = "게시글 삭제 성공";
-					path = "$request.getContextPath()";
+					session.setAttribute("icon", icon);
+					session.setAttribute("title", title);
 					response.sendRedirect(request.getContextPath());
 				}else {
 					icon = "error";
 					title = "게시글 삭제 실패";
+					session.setAttribute("icon", icon);
+					session.setAttribute("title", title);
 					path = request.getHeader("referer");
+					response.sendRedirect(path);
 				}
 				
-				session.setAttribute("icon", icon);
-				session.setAttribute("title", title);
-				response.sendRedirect(path);
+				
+				
 				
 			}
 		}catch (Exception e) {
