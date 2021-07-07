@@ -105,9 +105,6 @@
    	</div>
 	</form>
 
-        
-  
-
 	<script>
 		
 		// 이미지 추가
@@ -128,6 +125,7 @@
             ip.setAttribute("type", "file");
             ip.setAttribute("name", "img" + count++);
             ip.setAttribute("class", "boardImg");
+            ip.setAttribute("accept", "image/*");
             btn.setAttribute("onclick", "deleteImage(this)");
 
             p.appendChild(ip);
