@@ -123,10 +123,11 @@ public class InsertBoardController extends HttpServlet {
 						at.setFilePath(filePath);
 						at.setFileNM(mpRequest.getFilesystemName(name) );
 						
-						if(name.substring(0, 4).equals("img")) {
-							at.setFileLevel(Integer.parseInt(name.substring("img".length())));
-						}else {
+						if(!name.substring(0, 3).equals("img")) {
 							at.setFileLevel(1);
+							System.out.println("name : " + name.substring(0,4));
+						}else {
+							at.setFileLevel(Integer.parseInt(name.substring("img".length())));
 						}
 
 						atList.add(at);
