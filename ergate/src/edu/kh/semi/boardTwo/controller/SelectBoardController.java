@@ -53,7 +53,7 @@ public class SelectBoardController extends HttpServlet {
 					
 					request.setAttribute("board", board);
 					request.setAttribute("rList", rList);
-					
+
 					path = "/WEB-INF/views/detail/detailFree.jsp";
 					
 				}else if(type == 1){
@@ -65,6 +65,7 @@ public class SelectBoardController extends HttpServlet {
 						request.setAttribute("board", board);
 						request.setAttribute("rList", rList);
 						
+						System.out.println("board : " + board);
 						path = "/WEB-INF/views/detail/detailCompany.jsp";
 						
 					}else if(memberType == 2){
@@ -72,6 +73,7 @@ public class SelectBoardController extends HttpServlet {
 						
 						List<Comments> rList = new CommentsService().selectList(boardNo);
 						
+						System.out.println("board : " + board);
 						request.setAttribute("board", board);
 						request.setAttribute("rList", rList);
 						

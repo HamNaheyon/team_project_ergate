@@ -19,6 +19,11 @@ public class QuestionsService {
 		
 		int result = dao.freQuestionsSend(conn, frequestions);
 		
+		String questionsContent = frequestions.getQuestionsContent(); // <script> \r\n
+		questionsContent = replaceParameter(questionsContent); // &lt;script&gt;
+		questionsContent = questionsContent.replaceAll("\r\n", "<br>"); // &lt;script&gt; <br>
+		frequestions.setQuestionsContent(questionsContent);
+		
 		if(result > 0)	commit(conn);
 		else			rollback(conn);
 		
@@ -33,11 +38,28 @@ public class QuestionsService {
 		
 		int result = dao.comQuestionsSend(conn, comLoginMember);
 		
+		String questionsContent = comLoginMember.getQuestionsContent(); // <script> \r\n
+		questionsContent = replaceParameter(questionsContent); // &lt;script&gt;
+		questionsContent = questionsContent.replaceAll("\r\n", "<br>"); // &lt;script&gt; <br>
+		comLoginMember.setQuestionsContent(questionsContent);
+		
 		if(result > 0)	commit(conn);
 		else			rollback(conn);
 		
 		close(conn);
 
+		return result;
+	}
+	
+	private String replaceParameter(String param) {
+		String result = param;
+		if(param != null) {
+			result = result.replaceAll("&", "&amp;");
+			result = result.replaceAll("<", "&lt;");
+			result = result.replaceAll(">", "&gt;");
+			result = result.replaceAll("\"", "&quot;");
+		}
+		
 		return result;
 	}
 

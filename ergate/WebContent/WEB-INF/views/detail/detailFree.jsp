@@ -291,9 +291,9 @@
 		    	<c:if test="${comLoginMember.memberNo == board.memberNo || freLoginMember.memberNo == board.memberNo }"> 
 			    	<div id="btn-size1">
 				    	<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
-				    	<button id="delete-btn" onclick="btnDeletion();">게시글 삭제</button>
+				    	<button id="delete-btn" onclick="btnDeletion('deleteBoard');">게시글 삭제</button>
 			    	</div>
-			</c:if> 
+				</c:if> 
 	    	<div id="btn-size2">
 	    	<c:choose>
 	    	<c:when test="${memeber.memberId.val('admin')}">
@@ -361,23 +361,22 @@
         		  dangerMode: true,
         		})
         };
-        function btnDeletion(){
-        	swal({
-      		  title: "정말로 삭제하시겠습니까?",
-      		  icon: "warning",
-      		  buttons: true,
-      		  dangerMode: true,
-      		})
-      		.then((willDelete) => {
-      		  if (willDelete) {
-      		    swal("게시글이 삭제되었습니다.", {
-      		      icon: "success",
-      		    });
-      		  } else {
-      		    swal("게시글 삭제를 취소 하였습니다.");
-      		  }
-      		});
-        }
+        function btnDeletion(addr){
+          	swal({
+        		  title: "정말로 삭제하시겠습니까?",
+        		  icon: "warning",
+        		  buttons: true,
+        		  dangerMode: true
+        		})
+    			.then((willDelete) => {
+    	      		  if (willDelete) {
+    	      			document.requestForm.action = "${contextPath}/BoardTwo/" + addr;
+    			      	document.requestForm.submit();
+    	      		  }else{
+    	      		    swal("게시글 삭제를 취소 하였습니다.");
+    	      		  }
+    	      		});
+          }
     </script>
 	<jsp:include page="../common/footer.jsp"/>
 </body>

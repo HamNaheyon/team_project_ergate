@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Board {
     
+	private String boardStats;
+	
 	private int boardNo;
 	private String boardTitle;
 	
@@ -146,7 +148,6 @@ public class Board {
 	/*public List<Attachment> getAtList() {
 		return atList;
 	}
-
 	public void setAtList(List<Attachment> atList) {
 		this.atList = atList;
 	}*/
@@ -250,16 +251,25 @@ public class Board {
 	public void setFileLevel(List<String> fileLevel) {
 		this.fileLevel = fileLevel;
 	}
+	
+
+	public String getBoardStats() {
+		return boardStats;
+	}
+	public void setBoardStats(String boardStats) {
+		this.boardStats = boardStats;
+	}
 
 	@Override
 	public String toString() {
-		return "Board [boardNo=" + boardNo + ", boardTitle=" + boardTitle + ", memberGrade=" + memberGrade
-				+ ", categoryName=" + categoryName + ", readCount=" + readCount + ", memberId=" + memberId
-				+ ", createDt=" + createDt + ", filePath=" + filePath + ", fileName=" + fileName + ", fileLevel="
-				+ fileLevel + ", boardContent=" + boardContent + ", memberNo=" + memberNo + ", modifyDate=" + modifyDate
-				+ ", atList=" + atList + ", memberEmail=" + memberEmail + ", minTime=" + minTime + ", maxTime="
-				+ maxTime + ", minSalary=" + minSalary + ", maxSalary=" + maxSalary + ", work=" + work + ", experience="
-				+ experience + ", skil=" + skil + ", manager=" + manager + ", companyName=" + companyName + "]";
+		return "Board [boardStats=" + boardStats + ", boardNo=" + boardNo + ", boardTitle=" + boardTitle
+				+ ", memberGrade=" + memberGrade + ", categoryName=" + categoryName + ", readCount=" + readCount
+				+ ", memberId=" + memberId + ", createDt=" + createDt + ", filePath=" + filePath + ", fileName="
+				+ fileName + ", fileLevel=" + fileLevel + ", boardContent=" + boardContent + ", memberNo=" + memberNo
+				+ ", modifyDate=" + modifyDate + ", atList=" + atList + ", memberEmail=" + memberEmail + ", minTime="
+				+ minTime + ", maxTime=" + maxTime + ", minSalary=" + minSalary + ", maxSalary=" + maxSalary + ", work="
+				+ work + ", experience=" + experience + ", skil=" + skil + ", manager=" + manager + ", companyName="
+				+ companyName + "]";
 	}
 
 }

@@ -136,6 +136,7 @@ public class SelectBoardDAO {
 			rs = pstmt.executeQuery();
 			board = new Board();
 			board.setAtList(new ArrayList<Attachment>());
+			
 			boolean flag = true;
 			while (rs.next()) {
 				if (flag) {
@@ -159,11 +160,14 @@ public class SelectBoardDAO {
 				at.setFilePath(rs.getString("FILE_PATH"));
 				at.setFileName(rs.getString("FILE_NM"));
 				at.setFileLevel(rs.getInt("FILE_LEVEL"));
-
+				
 				// 값 세팅이 완료된 Attachment 객체를
 				// board의 atList에 추가
+				
+				System.out.println("at : " + at);
 				board.getAtList().add(at);
 			}
+			
 		} finally {
 			close(rs);
 			close(pstmt);
@@ -256,7 +260,4 @@ public class SelectBoardDAO {
 		}
 		return result;
 	}
-
-	
-
 }

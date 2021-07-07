@@ -294,10 +294,10 @@
            </div>
 	    </div>
 	    <div id="etc-btn">
-    		<c:if test="${comLoginMember.memberNo == board.memberNo}"> 
+    		<c:if test="${comLoginMember.memberNo == board.memberNo || freLoginMember.memberNo == board.memberNo }"> 
 		    	<div id="btn-size1">
 			    	<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
-			    	<button id="delete-btn" onclick="btnDeletion();">게시글 삭제</button>
+			    	<button id="delete-btn" onclick="btnDeletion('deleteBoard');">게시글 삭제</button>
 		    	</div>
 			</c:if> 
 	    	<div id="btn-size2">
@@ -323,11 +323,12 @@
   		<div id="con-main-text">
   			<label id="name-text" class="navi-name">제안서</label>
 			<div id="name-con">
-				<%-- <a class="btn" href="${contextPath}/${at.filePath}${at.fileName}" download>제안서 다운로드</a> --%>
 				<c:forEach items="${board.atList}" var="at">
-					<a href="${contextPath}/${at.filePath}${at.fileName}" download="${at.fileName}">
-						파일 다운로드
-					</a>
+					<c:if test="${!empty at.fileName}">
+						<a href="${contextPath}/${at.filePath}${at.fileName}" download="${at.fileName}">
+							파일 다운로드
+						</a>
+					</c:if>
 				</c:forEach>
   			</div>
   			<hr id="plan-text">
@@ -344,8 +345,15 @@
   		
   		</div>
   	</div>
+  	
+  	<form action="#" method="POST" name="requestForm">
+		<input type="hidden" name="boardNo" value="${board.boardNo}">
+		<input type="hidden" name="cp" value="${param.cp}">
+		<input type="hidden" name="type" value="${param.type}">
+		<input type="hidden" name="type" value="${param.style}">
+	</form>
+  	
 	  <script>
-	  
 	  /* 스크롤 메뉴 */
       $(document).ready(function() {
              var menu_offset = $('#main-btn').offset();
@@ -358,31 +366,30 @@
              });
        });
       
-        function btnAmend(){
-        	swal({
-        		  title: "게시글을 수정하시겠습니까?",
-        		  icon: "warning",
-        		  buttons: true,
-        		  dangerMode: true,
-        		})
-        };
-        function btnDeletion(){
-        	swal({
-      		  title: "정말로 삭제하시겠습니까?",
+      function btnAmend(){
+      	swal({
+      		  title: "게시글을 수정하시겠습니까?",
       		  icon: "warning",
       		  buttons: true,
       		  dangerMode: true,
       		})
-      		.then((willDelete) => {
-      		  if (willDelete) {
-      		    swal("게시글이 삭제되었습니다.", {
-      		      icon: "success",
-      		    });
-      		  } else {
-      		    swal("게시글 삭제를 취소 하였습니다.");
-      		  }
-      		});
-        }
+      };
+      function btnDeletion(addr){
+      	swal({
+    		  title: "정말로 삭제하시겠습니까?",
+    		  icon: "warning",
+    		  buttons: true,
+    		  dangerMode: true
+    		})
+			.then((willDelete) => {
+	      		  if (willDelete) {
+	      			document.requestForm.action = "${contextPath}/BoardTwo/" + addr;
+			      	document.requestForm.submit();
+	      		  }else{
+	      		    swal("게시글 삭제를 취소 하였습니다.");
+	      		  }
+	      		});
+      }
     </script>
 	<jsp:include page="../common/footer.jsp"/>
 </body>
