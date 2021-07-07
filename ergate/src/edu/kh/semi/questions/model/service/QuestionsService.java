@@ -18,15 +18,11 @@ public class QuestionsService {
 		Connection conn = getConnection();
 		
 		int result = dao.freQuestionsSend(conn, frequestions);
-
+		
 		String questionsContent = frequestions.getQuestionsContent(); // <script> \r\n
 		questionsContent = replaceParameter(questionsContent); // &lt;script&gt;
 		questionsContent = questionsContent.replaceAll("\r\n", "<br>"); // &lt;script&gt; <br>
 		frequestions.setQuestionsContent(questionsContent);
-		
-		frequestions.setQuestionsContent( replaceParameter( frequestions.getQuestionsContent()) );
-		frequestions.setQuestionsTitle( replaceParameter( frequestions.getQuestionsTitle()) );
-		frequestions.setQuestionsContent( frequestions.getQuestionsContent().replaceAll("\r\n", "<br>") );
 		
 		if(result > 0)	commit(conn);
 		else			rollback(conn);
@@ -46,11 +42,6 @@ public class QuestionsService {
 		questionsContent = replaceParameter(questionsContent); // &lt;script&gt;
 		questionsContent = questionsContent.replaceAll("\r\n", "<br>"); // &lt;script&gt; <br>
 		comLoginMember.setQuestionsContent(questionsContent);
-		
-		comLoginMember.setQuestionsContent( replaceParameter( comLoginMember.getQuestionsContent()) );
-		comLoginMember.setQuestionsTitle( replaceParameter( comLoginMember.getQuestionsTitle()) );
-		comLoginMember.setQuestionsContent( comLoginMember.getQuestionsContent().replaceAll("\r\n", "<br>") );
-
 		
 		if(result > 0)	commit(conn);
 		else			rollback(conn);

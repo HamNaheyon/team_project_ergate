@@ -52,6 +52,7 @@ public class QuestionsServelt extends HttpServlet {
 				String title = null;
 				String text = null;
 				
+				
 				if(result > 0) { 
 					icon = "success";
 					title = "문의가 접수되었습니다.";

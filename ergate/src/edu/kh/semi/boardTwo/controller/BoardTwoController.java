@@ -46,7 +46,8 @@ public class BoardTwoController extends HttpServlet {
 				if(result >0) {
 					icon = "success";
 					title = "게시글 삭제 성공";
-					path = "WEB-INF/views/board/BoardMain.jsp";
+					path = "$request.getContextPath()";
+					response.sendRedirect(request.getContextPath());
 				}else {
 					icon = "error";
 					title = "게시글 삭제 실패";

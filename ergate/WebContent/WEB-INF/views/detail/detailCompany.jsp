@@ -297,7 +297,7 @@
     		<c:if test="${comLoginMember.memberNo == board.memberNo}"> 
 		    	<div id="btn-size1">
 			    	<button id="update-btn" onclick="btnAmend();">게시글 수정</button>
-			    	<button id="delete-btn" onclick="btnDeletion('btnDeletion')">게시글 삭제</button>
+			    	<button id="delete-btn" onclick="btnDeletion('deleteBoard');">게시글 삭제</button>
 		    	</div>
 			</c:if> 
 	    	<div id="btn-size2">
@@ -324,9 +324,11 @@
   			<label id="name-text" class="navi-name">제안서</label>
 			<div id="name-con">
 				<c:forEach items="${board.atList}" var="at">
-					<a href="${contextPath}/${at.filePath}${at.fileName}" download="${at.fileName}">
-						파일 다운로드
-					</a>
+					<c:if test="${!empty at.fileName}">
+						<a href="${contextPath}/${at.filePath}${at.fileName}" download="${at.fileName}">
+							파일 다운로드
+						</a>
+					</c:if>
 				</c:forEach>
   			</div>
   			<hr id="plan-text">
@@ -381,7 +383,7 @@
     		})
 			.then((willDelete) => {
 	      		  if (willDelete) {
-	      			document.requestForm.action = "../BoardTwo/" + addr;
+	      			document.requestForm.action = "${contextPath}/BoardTwo/" + addr;
 			      	document.requestForm.submit();
 	      		  }else{
 	      		    swal("게시글 삭제를 취소 하였습니다.");
