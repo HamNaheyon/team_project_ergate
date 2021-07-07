@@ -68,10 +68,10 @@
     			
 				<c:if test="${style == 1}">
 		            <td>
-		                <label for="thumbnail">첨부파일</label>
+		                <label for="thumbnail">첨부파일(최대 40MB)</label>
 		            </td>
 		            <td>
-	                    <input type="file" accept=".pdf, .doc, .docx, .hwp">
+	                    <input name="chumbufile" type="file" accept=".pdf, .doc, .docx, .hwp">
 		            </td>
 	            </c:if>
             	<c:if test="${style == 2}">

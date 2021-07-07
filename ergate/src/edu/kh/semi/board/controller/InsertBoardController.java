@@ -88,7 +88,7 @@ public class InsertBoardController extends HttpServlet {
 				
 				
 
-				int maxSize = 1024 * 1024 * 20; 
+				int maxSize = 1024 * 1024 * 40; 
 				
 				String root = session.getServletContext().getRealPath("/");
 				System.out.println("root : " + root);
@@ -96,8 +96,8 @@ public class InsertBoardController extends HttpServlet {
 				String filePath = "resources/img/";
 				
 				switch(boardStyle) {
-				case 1 : filePath += "pfboard/"; break; 
-				case 2 : filePath += "ppboard/"; break; 
+				case 1 : filePath += "ppboard/"; break;  // 제안서
+				case 2 : filePath += "pfboard/"; break;  // 포트폴리오
 				}
 				
 				System.out.println("실제 저장경로 : " + root + filePath);
@@ -111,18 +111,24 @@ public class InsertBoardController extends HttpServlet {
 				
 				while(images.hasMoreElements()) {
 					String name = images.nextElement();
-					System.out.println("name : " + name);
+//					System.out.println("name : " + name);
 					
-					System.out.println("변경 된 파일 명 : " + mpRequest.getFilesystemName(name));
-					System.out.println("변경 전 파일 명 : " + mpRequest.getOriginalFileName(name));
+//					System.out.println("변경 된 파일 명 : " + mpRequest.getFilesystemName(name));
+//					System.out.println("변경 전 파일 명 : " + mpRequest.getOriginalFileName(name));
 					
 					if(mpRequest.getFilesystemName(name) != null) {
 						Attachment at = new Attachment();
 						
+						
 						at.setFilePath(filePath);
 						at.setFileNM(mpRequest.getFilesystemName(name) );
-						at.setFileLevel(Integer.parseInt(name.substring("img".length())));
-					
+						
+						if(name.substring(0, 4).equals("img")) {
+							at.setFileLevel(Integer.parseInt(name.substring("img".length())));
+						}else {
+							at.setFileLevel(1);
+						}
+
 						atList.add(at);
 					}
 				}
