@@ -57,9 +57,9 @@ public class BoardTwoController extends HttpServlet {
 					path = request.getHeader("referer");
 					response.sendRedirect(path);
 				}
+			}else if(command.equals("updateBoard")) {
 				
-				
-				
+				HttpSession session = request.getSession();
 				
 			}
 		}catch (Exception e) {
