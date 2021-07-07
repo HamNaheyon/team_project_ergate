@@ -99,13 +99,13 @@
 			                <div id="pftitle"><h4>${board.boardTitle}</h4></div>
 			                <div id="pfwriter">
 				                <c:if test="${board.boardType == 1}">
-				                	<h4>프리랜서 회원</h4>
+				                	<h6>프리랜서 회원</h4>
 				                </c:if>
 				                <c:if test="${board.boardType == 2}">
-				                	<h4>기업 회원</h4>
+				                	<h6>기업 회원</h4>
 				                </c:if>
 			                </div>
-			                <div id="pfviews"><h6>${board.readCount}</h6></div>
+			                <div id="pfviews"><h6>조회수 ${board.readCount}</h6></div>
 						
 						</c:forEach>
 					</c:otherwise>

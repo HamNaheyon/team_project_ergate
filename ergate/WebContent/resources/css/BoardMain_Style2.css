@@ -17,8 +17,6 @@
         	float:left;
         }
         
-
-        
         /************* 현재 페이지 경로 *************/
         #boardroute{
             margin-left:16px;
@@ -31,19 +29,19 @@
             width:100%;
             height:4.5%;
         }
-        .pftitle > h4{
-            float:left;
+        .pftitle > h3{
+            text-align:center;
             margin:auto;
             font-size:30px;
         }
         /************* 게시판정렬 *************/        
-/*         .pfsort{
+        .pfsort{
             width:100%;
             height:2.5%;
         }
         .pfsort > select{
             margin-left:620px;
-        } */
+        }
         /************* 게시판내용 *************/
         .pfboardcontents{
             width:100%;
@@ -84,24 +82,14 @@
         #pfviews{
             width:100%;
             height:12%;
+            float:left
         }
         #pfviews > h6{
             margin-left:165px;
-            
         }
         /************* 게시판페이징 *************/
         .pfpaging{
             width:100%;
             height:4.5%;
-            text-align : center;
-            float:left;
-            /* position:absolute; */
+            clear:both;
         }
-        .pagination {
-		    padding-left: 0;
-		   /*  left:0;
-		    right:0;
-		    top:0;
-		    bottom:0;
-		    position:relative; */
-		}	
