@@ -47,7 +47,7 @@
         #fre_mblistdt{width:20%;}
 
         #mbn{width:20%;}
-        #mbt{width:20%;}
+        #mbt{width:20%; font-size : 15px; cursor : pointer; font-weight: bold;}
         #mbw{width:20%;}
         #mbc{width:20%;}
         #mbd{width:20%;}
@@ -83,7 +83,7 @@
                     <li id="mbn">${board.boardNo}</li>
                     <li class="boardNo" id="mbt">${board.boardTitle}</li>
                     <li id="mbw">${board.memberId}</li>
-                    <li id="mbc">${board.readCount }</li>
+                    <li id="mbc">${board.readCount}</li>
                     <li id="mbd">
 	                    <fmt:formatDate var="createDate" value="${board.createDate}"/>
 	                    <fmt:formatDate var="today" value="<%= new java.util.Date() %>"  pattern="yyyy-MM-dd"/>
@@ -110,6 +110,10 @@
 			<c:set var="prev" value="${pageURL}&cp=${pagination.prevPage}"/><%-- &ca=${category.prevPage} --%>
 			<c:set var="next" value="${pageURL}&cp=${pagination.nextPage}"/><%-- &ca=${category.nextPage} --%>
 			
+            </div>
+            </div>
+        </div>
+			</div>
 			<div class="my-5">
 				<ul class="pagination">
 					
@@ -156,10 +160,6 @@
           	
           	
             </div>
-            </div>
-            </div>
-        </div>
-			</div>
         <jsp:include page="../common/footer.jsp"/>
 </body>
 
