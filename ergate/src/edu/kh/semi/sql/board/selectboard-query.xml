@@ -7,6 +7,7 @@
 		SELECT COUNT(*)
 		FROM BOARD_LIST
 		WHERE BOARD_STYLE=?
+		AND BOARD_STATUS = 'Y'
 	</entry>
 	
 	<!-- 카테고리별 게시글 수 + 게시판 이름 조회  SQL -->
@@ -15,6 +16,7 @@
 		FROM (SELECT COUNT(*) CNT
 		FROM BOARD_LIST
 		WHERE BOARD_STYLE = ?
+		AND BOARD_STATUS = 'Y'
 		AND CATEGORY_CD = ?)
 	</entry>
 
@@ -84,6 +86,7 @@
 		FROM (SELECT COUNT(*) CNT
 		FROM BOARD_LIST
 		WHERE BOARD_STYLE = ?
+		AND BOARD_STATUS = 'Y'
 		AND CATEGORY_CD = ?
 	</entry>
 	

@@ -85,10 +85,8 @@ public class InsertBoardController extends HttpServlet {
 					memberNo = ((FreMember)session.getAttribute("freLoginMember")).getMemberNo();
 					writerType = 1;
 				}
-				
-				
 
-				int maxSize = 1024 * 1024 * 40; 
+				int maxSize = 1024 * 1024 * 40;  //40MB
 				
 				String root = session.getServletContext().getRealPath("/");
 				System.out.println("root : " + root);
@@ -125,7 +123,8 @@ public class InsertBoardController extends HttpServlet {
 						
 						if(!name.substring(0, 3).equals("img")) {
 							at.setFileLevel(1);
-							System.out.println("name : " + name.substring(0,4));
+//							System.out.println("name : " + name.substring(0,4));
+							
 						}else {
 							at.setFileLevel(Integer.parseInt(name.substring("img".length())));
 						}
