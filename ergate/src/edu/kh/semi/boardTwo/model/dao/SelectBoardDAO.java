@@ -256,7 +256,4 @@ public class SelectBoardDAO {
 		}
 		return result;
 	}
-
-	
-
 }
