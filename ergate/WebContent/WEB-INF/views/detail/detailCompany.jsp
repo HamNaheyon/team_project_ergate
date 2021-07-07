@@ -302,18 +302,7 @@
 		    	</div>
 			</c:if> 
 	    	<div id="btn-size2">
-	    	<c:choose>
-	    	<c:when test="${memeber.memberId.val('admin')}">
-		    	<a href="admin/ComBoardAll?style=${param.style}&cp=${param.cp}">
-		    		<button id="return-btn">이전 페이지로 이동</button>
-		    	</a>
-	    	</c:when>
-	    	<c:otherwise>
-		    	<a href="board/list?style=${param.style}&cp=${param.cp}">
-		    		<button id="return-btn">이전 페이지로 이동</button>
-		    	</a>
-	    	</c:otherwise>
-	    	</c:choose>
+	    		<button id="return-btn" onclick="history.go(-1)">이전 페이지로 이동</button>
 	    	</div>
 	    </div>
   		<div id="main-btn">
