@@ -74,29 +74,32 @@
 		                </div>
 					</c:when>
 					<c:otherwise>
+					
+					
 						<c:forEach items ="${boardList}" var="board">
 							
-		                	<a href="${contextPath}/detailBoard?boardNo=${board.boardNo}&cp=${pagination.currentPage}&style=${pagination.boardStyle}&type=${board.boardType}${searchStr}">
-
-				                <c:choose>
-	
-				                	<c:when test="${ empty board.fileName[0]}"> 
-					                	<div id="pfthumbnail" style=float:left;>
-				                    		<img src="${contextPath}/resources/img/developer.png" style="width:95%;">
-				                		</div>
-				                	</c:when>
-	
-				                	<c:otherwise>
-					                	<div id="pfthumbnail">
-				                    		<img src="${contextPath}/${board.filePath[0]}${board.fileName[0]}" style="width:95%;">
-				                		</div>
-				                	</c:otherwise>
-	
-				                </c:choose>
-				                
-		                	</a>
+							<div class="atageee">
+		                		<a href="${contextPath}/detailBoard?boardNo=${board.boardNo}&cp=${pagination.currentPage}&style=${pagination.boardStyle}&type=${board.boardType}${searchStr}">
+							
+					                <c:choose>
+		
+					                	<c:when test="${ empty board.fileName[0]}"> 
+						                	<div id="pfthumbnail" style=float:left;>
+					                    		<img src="${contextPath}/resources/img/developer.png" style="width:95%;">
+					                		</div>
+					                	</c:when>
+		
+					                	<c:otherwise>
+						                	<div id="pfthumbnail">
+					                    		<img src="${contextPath}/${board.filePath[0]}${board.fileName[0]}" style="width:95%;">
+					                		</div>
+					                	</c:otherwise>
+		
+					                </c:choose>
+			                	
+				                	<div id="pftitle"><h4>${board.boardTitle}</h4></div>
+		                		</a>
 		                	
-			                <div id="pftitle"><h4>${board.boardTitle}</h4></div>
 			                <div id="pfwriter">
 				                <c:if test="${board.boardType == 1}">
 				                	<h6>프리랜서 회원</h4>
@@ -106,13 +109,14 @@
 				                </c:if>
 			                </div>
 			                <div id="pfviews"><h6>조회수 ${board.readCount}</h6></div>
+						</div>
 						
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 			</div>
-
         </div>
+        
         <div class="pfpaging">
             			<%---------------------- Pagination start----------------------%>
 			<%-- 페이징 처리 시 주소를 쉽게 작성할 수 있도록 필요한 변수를 미리 선언 --%>
