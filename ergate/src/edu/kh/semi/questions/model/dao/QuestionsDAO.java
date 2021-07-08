@@ -24,7 +24,6 @@ public class QuestionsDAO {
 	public QuestionsDAO() {
 		
 		String filePath = QuestionsDAO.class.getResource("/edu/kh/semi/sql/questions/questions.xml").getPath();
-		// 													/edu/kh/semi/sql/member/member-query.xml
 		try {
 			prop = new Properties();
 			
@@ -46,7 +45,6 @@ public class QuestionsDAO {
 			
 			pstmt.setString(1, frequestions.getQuestionsTitle());
 			pstmt.setString(2, frequestions.getQuestionsContent());
-//			pstmt.setInt(3, questions.getComNo());
 			pstmt.setInt(3, frequestions.getFreNo());
 			
 			result = pstmt.executeUpdate();
