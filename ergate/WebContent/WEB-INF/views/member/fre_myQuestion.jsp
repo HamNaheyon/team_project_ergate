@@ -50,7 +50,7 @@
         #mbw{width:15%;}
         #mbc{width:15%;}
         
-        #pagination{margin-left: 800px;}
+        #pagination{margin-left: 500px;}
     </style>
 </head>
 <body>

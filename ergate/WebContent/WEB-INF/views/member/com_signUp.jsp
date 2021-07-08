@@ -62,7 +62,7 @@
         <div class="input-form-backgroud row">
                 <form class="validation-form" method="POST" action="com_signUp" onsubmit="return validate();">
             <div class="input-form col-md-12 mx-auto">
-                <h4 class="mb-3">회원가입(필수)</h4>
+                <h4 class="mb-3">회원가입</h4>
                 <br>
                 <hr>
                     <!-- 담당자 -->
