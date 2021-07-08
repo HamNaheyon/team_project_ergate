@@ -7,9 +7,15 @@
 <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title></title>
+<style>
+	#mimg{
+	margin: auto;
+	}
+</style>
 </head>
 <body>
-<sapn style="float='left'">어드민임</sapn>
+
+<div style="text-align: center;"><img id="mimg" src='${contextPath}/resources/img/ergatelogo.png' width="1000px"></div>
 
 </body>
 </html>
