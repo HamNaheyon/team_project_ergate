@@ -40,17 +40,17 @@
             float:left;
         }
 
-        #fre_mblistno{width:20%;}
-        #fre_mblisttitle{width:20%;}
-        #fre_mblistwriter{width:20%;}
-        #fre_mblistcontents{width:20%;}
-        #fre_mblistdt{width:20%;}
+        #fre_mblistno{width:15%;}
+        #fre_mblisttitle{width:40%;}
+        #fre_mblistwriter{width:15%;}
+        #fre_mblistcontents{width:15%;}
+        #fre_mblistdt{width:15%;}
 
-        #mbn{width:20%;}
-        #mbt{width:20%; font-size : 15px; cursor : pointer; font-weight: bold;}
-        #mbw{width:20%;}
-        #mbc{width:20%;}
-        #mbd{width:20%;}
+        #mbn{width:15%;}
+        #mbt{width:40%; font-size : 15px; cursor : pointer; font-weight: bold;}
+        #mbw{width:15%;}
+        #mbc{width:15%;}
+        #mbd{width:15%;}
         
         #pagination{margin-left: 800px;}
     </style>

@@ -40,15 +40,15 @@
             float:left;
         }
 
-        #fre_mblistno{width:25%;}
-        #fre_mblisttitle{width:25%;}
-        #fre_mblistwriter{width:25%;}
-        #fre_mblistcontents{width:25%;}
+        #fre_mblistno{width:15%;}
+        #fre_mblisttitle{width:55%;}
+        #fre_mblistwriter{width:15%;}
+        #fre_mblistcontents{width:15%;}
 
-        #mbn{width:25%;}
-        #mbt{width:25%; font-size : 15px; cursor : pointer;}
-        #mbw{width:25%;}
-        #mbc{width:25%;}
+        #mbn{width:15%;}
+        #mbt{width:55%; font-size : 15px; cursor : pointer;}
+        #mbw{width:15%;}
+        #mbc{width:15%;}
         
         #pagination{margin-left: 800px;}
     </style>
