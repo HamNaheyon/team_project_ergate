@@ -52,11 +52,15 @@ public class InsertBoardService {
 			board.setBoardNo(boardNo);
 			
 			String boardContent = board.getBoardContent();
+			String boardTitle = board.getBoardTitle();
 			
+			boardTitle = replaceParameter(boardTitle);
 			boardContent = replaceParameter(boardContent);
 			boardContent = boardContent.replaceAll("\r\n", "<br>");
+			boardTitle = boardTitle.replaceAll("\r\n", "<br>");
 			
 			board.setBoardContent(boardContent);
+			board.setBoardTitle(boardTitle);
 			
 			result = dao.insertBoard(conn, board, categoryCode, boardStyle, writerType);
 			
