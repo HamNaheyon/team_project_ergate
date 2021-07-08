@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>posting</title>
+    <title>게시글 수정</title>
 
 	<link rel = "stylesheet" type = "text/css" href = "${contextPath}/resources/css/posting_style.css">
 	<jsp:include page="../common/header.jsp"/>
@@ -22,7 +22,7 @@
 	<form action="${contextPath}/board2/insert" method="post" 
 		  name="insertFrm" enctype="multipart/form-data" role="form" onsubmit="return boardValidate();">
     <div class="pcontainer">
-    			<h3 class="boardinsert">게시글 작성</h3></td>
+    			<h3 class="boardinsert">게시글 수정</h3></td>
     	<table>
     		<tr>
     			
@@ -45,7 +45,7 @@
     		<tr>
     			<td><label for="category">카테고리*</label></td>
     			<td>
-    				<select id="categoryCode" name="categoryCd" onsubmit="return boardCategory();">
+    				<select id="categoryCode" name="categoryCd" onsubmit="return boardCategory();" value="${param.cg}">
 	                    <option value="0" selected>=== 카테고리를 선택해주세요 ===</option>
 	                    <option value="1">웹 개발자</option>
 	                    <option value="2">앱 개발자</option>
@@ -54,11 +54,11 @@
     		</tr>
     		<tr>
     			<td><label for="category">제목*</label></td>
-    			<td><input name="boardTitle" id="boardTitle" type="text" placeholder = "제목을 입력해주세요" required>  </td>
+    			<td><input name="boardTitle" id="boardTitle" type="text" placeholder = "제목을 입력해주세요" value="${board.boardTitle}" required>  </td>
     		</tr>
     		<tr>
     			<td><label for="contents">내용*</label></td>
-    			<td><textarea name="boardContent" id="contentsarea" placeholder = "내용을 입력해주세요" required style="resize: none;"></textarea></td>
+    			<td><textarea name="boardContent" id="contentsarea" placeholder = "내용을 입력해주세요" required style="resize: none;">${board.boardContent}</textarea></td>
     		</tr>
     		<tr>
     			<td><label for="thumbnail">썸네일</label></td>
@@ -156,7 +156,7 @@
         		return false;
         		
         	}else{
-        		document.insertFrm.action = "${contextPath}/board2/insert?style=" + $("#boardStyle").val();
+        		document.insertFrm.action = "${contextPath}/BoardTwo/updateBoard1?boardNo="+${board.boardNo}+"&style=" + $("#boardStyle").val();
             	document.insertFrm.submit();
         	}
         }

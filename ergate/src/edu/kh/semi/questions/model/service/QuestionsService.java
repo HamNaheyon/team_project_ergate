@@ -17,12 +17,10 @@ public class QuestionsService {
 		
 		Connection conn = getConnection();
 		
-		int result = dao.freQuestionsSend(conn, frequestions);
+		frequestions.setQuestionsContent(replaceParameter(frequestions.getQuestionsContent()));
+		frequestions.setQuestionsContent(frequestions.getQuestionsContent().replaceAll("(\r\n|\r|\n|\n\r)", "<br>"));
 		
-		String questionsContent = frequestions.getQuestionsContent(); // <script> \r\n
-		questionsContent = replaceParameter(questionsContent); // &lt;script&gt;
-		questionsContent = questionsContent.replaceAll("\r\n", "<br>"); // &lt;script&gt; <br>
-		frequestions.setQuestionsContent(questionsContent);
+		int result = dao.freQuestionsSend(conn, frequestions);
 		
 		if(result > 0)	commit(conn);
 		else			rollback(conn);
@@ -32,16 +30,14 @@ public class QuestionsService {
 		return result;
 	}
 
-	public int comQuestionsSend(Questions comLoginMember) throws Exception {
+	public int comQuestionsSend(Questions comquestions) throws Exception {
 		
 		Connection conn = getConnection();
+
+		comquestions.setQuestionsContent(replaceParameter(comquestions.getQuestionsContent()));
+		comquestions.setQuestionsContent(comquestions.getQuestionsContent().replaceAll("(\r\n|\r|\n|\n\r)", "<br>"));
 		
-		int result = dao.comQuestionsSend(conn, comLoginMember);
-		
-		String questionsContent = comLoginMember.getQuestionsContent(); // <script> \r\n
-		questionsContent = replaceParameter(questionsContent); // &lt;script&gt;
-		questionsContent = questionsContent.replaceAll("\r\n", "<br>"); // &lt;script&gt; <br>
-		comLoginMember.setQuestionsContent(questionsContent);
+		int result = dao.comQuestionsSend(conn, comquestions);
 		
 		if(result > 0)	commit(conn);
 		else			rollback(conn);
@@ -59,7 +55,6 @@ public class QuestionsService {
 			result = result.replaceAll(">", "&gt;");
 			result = result.replaceAll("\"", "&quot;");
 		}
-		
 		return result;
 	}
 

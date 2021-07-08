@@ -57,7 +57,7 @@ public class QuestionsDAO {
 		return result;
 	}
 
-	public int comQuestionsSend(Connection conn, Questions comLoginMember) throws Exception {
+	public int comQuestionsSend(Connection conn, Questions comquestions) throws Exception {
 int result = 0;
 		
 		String sql = prop.getProperty("questionsSend");
@@ -65,9 +65,9 @@ int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, comLoginMember.getQuestionsTitle());
-			pstmt.setString(2, comLoginMember.getQuestionsContent());
-			pstmt.setInt(3, comLoginMember.getComNo());
+			pstmt.setString(1, comquestions.getQuestionsTitle());
+			pstmt.setString(2, comquestions.getQuestionsContent());
+			pstmt.setInt(3, comquestions.getComNo());
 			
 			result = pstmt.executeUpdate();
 			

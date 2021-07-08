@@ -175,7 +175,7 @@ function selectcommentsList(){
 				
 				// 작성자, 작성일, 수정일 영역 
 				var div = $("<div>");
-				var rWriter = $("<p>").addClass("rWriter").text(item.memberName);
+				var rWriter = $("<p>").addClass("rWriter").text(item.memberId);
 				var rDate = $("<p>").addClass("rDate").text("작성일 : " + item.commentsDt);
 				div.append(rWriter).append(rDate)
 				   
