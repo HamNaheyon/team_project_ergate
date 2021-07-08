@@ -51,6 +51,8 @@
         #mbw{width:20%;}
         #mbc{width:20%;}
         #mbd{width:20%;}
+        
+        #pagination{margin-left: 800px;}
     </style>
 </head>
 <body>
@@ -104,7 +106,6 @@
             </div>
             </div>
             <div>
-                ${MyPostPagination}
           	<%-- 페이징 처리 시 주소를 쉽게 작성할 수 있도록 필요한 변수를 미리 선언 --%>
 			<c:set var="pageURL" value="list?no=${pagination.memberNo}"/>
 			
@@ -115,7 +116,7 @@
             </div>
         </div>
 			</div>
-			<div class="my-5">
+			<div class="my-5" id="pagination">
 				<ul class="pagination">
 					
 					<%-- 현재 페이지가 10페이지 초과인 경우 --%>

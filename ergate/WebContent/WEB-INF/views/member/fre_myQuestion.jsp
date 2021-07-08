@@ -49,6 +49,8 @@
         #mbt{width:25%; font-size : 15px; cursor : pointer;}
         #mbw{width:25%;}
         #mbc{width:25%;}
+        
+        #pagination{margin-left: 800px;}
     </style>
 </head>
 <body>
@@ -110,7 +112,7 @@
             </div>
      		   </div>
 			</div>
-			<div class="my-5">
+			<div class="my-5" id="pagination">
 				<ul class="pagination">
 					
 					<%-- 현재 페이지가 10페이지 초과인 경우 --%>

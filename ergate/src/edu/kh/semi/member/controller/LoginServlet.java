@@ -75,7 +75,6 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("freLoginMember",freLoginMember );
 					
 				
-				System.out.println("freLoginMember : " + freLoginMember);
 				response.sendRedirect( request.getHeader("referer") );
 			}
 			
@@ -98,7 +97,6 @@ public class LoginServlet extends HttpServlet {
 				}else if(comLoginMember != null) {
 					session.setAttribute("comLoginMember",comLoginMember );
 					
-					System.out.println("comLoginMember : " + comLoginMember);
 					/* response.sendRedirect(request.getContextPath()); */
 					response.sendRedirect( request.getHeader("referer") );
 				}

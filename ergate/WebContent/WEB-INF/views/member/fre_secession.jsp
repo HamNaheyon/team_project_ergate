@@ -43,7 +43,6 @@
 </head>
 
 <body>
-    <div class="container">
         <jsp:include page="../common/header.jsp"></jsp:include>
 
 		<div class="row my-5">
@@ -113,7 +112,6 @@
 				</div>
             </div>
 	<jsp:include page="../common/footer.jsp"/>
-        </div>
 
 </body>
     <!-- 콘솔 창으로 회원 탈퇴 시 yes,or 팝업 띄우기 -->
