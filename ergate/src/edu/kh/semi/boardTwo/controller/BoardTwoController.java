@@ -80,8 +80,11 @@ public class BoardTwoController extends HttpServlet {
 				
 				edu.kh.semi.boardTwo.model.service.SelectBoardService service1 = new edu.kh.semi.boardTwo.model.service.SelectBoardService();
 				
+				
 				if(type == 2) {
 					Board board = service1.freeSelectBoard(boardNo);
+					
+					board.setBoardContent(board.getBoardContent().replaceAll("<br>", "\r\n"));
 					
 					List<Comments> rList = new CommentsService().selectList(boardNo);
 					request.setAttribute("style", type);
@@ -93,6 +96,8 @@ public class BoardTwoController extends HttpServlet {
 				}else if(type == 1){
 					if(memberType == 1) {
 						Board board = service1.comFreeSelectBoard(boardNo);
+						
+						board.setBoardContent(board.getBoardContent().replaceAll("<br>", "\r\n"));
 						
 						List<Comments> rList = new CommentsService().selectList(boardNo);
 						request.setAttribute("style", type);
