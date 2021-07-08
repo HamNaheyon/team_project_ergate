@@ -182,14 +182,14 @@
 			margin-top: 65px;
 			margin-bottom: 40px;
 			width: 100%;
-			height: 43%;
+			height: 53%;
 			border: 2px solid rgba(166, 206, 231, 0.7);
 			font-size : 30px;
 		}
 		#comment-con{
 			margin-top: 65px;
 			width: 100%;
-			height: 20%;
+			height: 30%;
 			border: 2px solid rgba(166, 206, 231, 0.7);
 			overflow: auto;
 		}
