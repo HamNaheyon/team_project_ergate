@@ -219,7 +219,7 @@
 		       	</c:if>
 		       </c:forEach>
 	       <div class="img-title">
-	       <img src="${img0}" width="auto" height="100%">
+	       <img src="${img0}" width="100%" height="auto">
 	       </div>
 	    </div>
 	    <div id="con-text">
