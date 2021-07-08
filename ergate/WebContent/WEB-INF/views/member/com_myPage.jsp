@@ -40,7 +40,6 @@
 </head>
 
 <body>
-        <div class="container">
 		<jsp:include page="../common/header.jsp"></jsp:include>
         
 		
@@ -139,7 +138,6 @@
             </div>
         </div>
     <jsp:include page="../common/footer.jsp"/>
-    </div>
 </body>
 
 	<script>

@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
-    <jsp:include page="../common/header.jsp"/>
 
 <head>
     <meta charset="UTF-8">
@@ -59,13 +58,13 @@
 </head>
 
 <body>
-    <div class="container">
+    <jsp:include page="../common/header.jsp"/>
         <div class="input-form-backgroud row">
+                <form class="validation-form" method="POST" action="com_signUp" onsubmit="return validate();">
             <div class="input-form col-md-12 mx-auto">
                 <h4 class="mb-3">회원가입(필수)</h4>
                 <br>
                 <hr>
-                <form class="validation-form" method="POST" action="com_signUp" onsubmit="return validate();">
                     <!-- 담당자 -->
                     <div class="row mb-3 form-row">
                         <div class="col-md-3">
@@ -231,7 +230,6 @@
             </div>
         </div>
         <jsp:include page="../common/footer.jsp"/>
-    </div>
     <script src="${contextPath}/resources/js/com_member.js"></script>
 </body>
 

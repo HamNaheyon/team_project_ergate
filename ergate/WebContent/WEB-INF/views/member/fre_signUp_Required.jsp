@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
-<jsp:include page="../common/header.jsp"/>
 
 <head>
     <meta charset="UTF-8">
@@ -57,7 +56,7 @@
 </head>
 
 <body>
-    <div class="container">
+<jsp:include page="../common/header.jsp"/>
         <div class="input-form-backgroud row">
                 <form class="validation-form" method="POST" action="fre_signUp_Required" onsubmit="return validate();">
             <div class="input-form col-md-12 mx-auto" id="signUp1">
@@ -314,10 +313,9 @@
                     <button class="btn btn-primary btn-lg btn-block" type="submit">가입하기</button>
             </div>
             </form>
-        </div>
     	<jsp:include page="../common/footer.jsp"/>
+        </div>
     	<script src="${contextPath}/resources/js/member.js"></script>
-    </div>
 </body>
 
 	<script>
