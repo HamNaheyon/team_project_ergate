@@ -95,15 +95,15 @@
         	height:50%;
         }
         #btn-size1>button{
-        	background-color: rgb(166, 206, 231);
-        	border: 5px solid white;
-        	font-weight: bold;
-        	font-family: 'MaplestoryOTFBold';
-           text-shadow: 1px 1px 5px #000;
-        	width:50%;
-        	height:100%;
-        	float: left;
-           color: white;
+	       	background-color: rgb(166, 206, 231);
+	       	border: 5px solid white;
+	       	font-weight: bold;
+	       	font-family: 'MaplestoryOTFBold';
+	        text-shadow: 1px 1px 5px #000;
+	       	width:50%;
+	       	height:100%;
+	       	float: left;
+	        color: white;
         }
         
        #btn-size1>button:hover{
@@ -127,28 +127,27 @@
            border:3px outset rgb(152, 203, 235);
        }
        /* 제안서, 제안서 설명, 댓글 바 */
-       #main-btn{
+       .main-btn{
        	width:60%;
-       	/* height: 3%; */
        	float: left;
-       	background-color: white;
        }
-       #main-btn>a{
+       .main-btn>a{
        	margin:2px;
        	border: 1px solid black;
        	float: left;
        	padding : 15px;
        	padding-right : 25px;
        	padding-left : 25px;
-       	font-size: 26px; font-weight: bold;
+       	font-size: 26px; 
+       	font-weight: bold;
        	color: black;
-           text-decoration-line : none;
+        text-decoration-line : none;
+        background-color: white;
        }
        .menu-fixed {
 		  position: fixed;
 		  top: 10px;
 		  left:5%;
-		  background-color: white;
 		}
 		/* 내용 들어갈 부분*/
 		#con-main-text{
@@ -201,8 +200,8 @@
   	<div id="container">
   		<div id="con-img">
 	        <div id="img-text">
-	            <lable id="la1">${board.boardTitle}</lable>
-	            <lable id="la2">조회수 ${board.readCount}</lable>
+	            <div id="la1">${board.boardTitle}</div>
+	            <div id="la2">조회수 ${board.readCount}</div>
 	        </div>
 	       <c:set var ="stop" value="false"/>
 		       <c:forEach items="${board.atList}" var="at">
@@ -219,7 +218,7 @@
 		       	</c:if>
 		       </c:forEach>
 	       <div class="img-title">
-	       <img src="${img0}" width="100%" height="auto">
+	       <img src="${img0}" width="100%" height="98%">
 	       </div>
 	    </div>
 	    <div id="con-text">
@@ -308,7 +307,7 @@
 		    	</a>
 	    	</div>
 	    </div>
-  		<div id="main-btn">
+  		<div class="main-btn">
   			<a id="name-btn" href="#con-main-text">제안서</a>
   			<a id="plan-btn" href="#plan-text">제안서 설명</a>
   			<a id="comment-btn" href="#comment-text">댓글</a>
@@ -349,12 +348,12 @@
 	  <script>
 	  /* 스크롤 메뉴 */
       $(document).ready(function() {
-             var menu_offset = $('#main-btn').offset();
+             var menu_offset = $('.main-btn').offset();
              $(window).scroll(function() {
                if ($(document).scrollTop() > menu_offset.top) {
-                     $('#main-btn').addClass('menu-fixed');
+                     $('.main-btn').addClass('menu-fixed');
                }else {
-                     $('#main-btn').removeClass('menu-fixed');
+                     $('.main-btn').removeClass('menu-fixed');
                }
              });
        });
