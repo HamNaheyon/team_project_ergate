@@ -74,7 +74,7 @@
 				<tr>
 					<td><label>제목*</label></td>
 					<td><textarea rows = "1" cols = "80" name = "title" id="title" maxlength='30'
-					    style="resize: none" placeholder = "제목을 입력해주세요"></textarea></td>
+					    style="resize: none" placeholder = "제목을 입력해주세요(30글자 제한)"></textarea></td>
 				</tr>
 				<tr>
 				    <td><label>내용*</label></td>

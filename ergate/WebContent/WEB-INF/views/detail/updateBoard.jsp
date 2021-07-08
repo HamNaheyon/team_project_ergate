@@ -54,7 +54,7 @@
     		</tr>
     		<tr>
     			<td><label for="category">제목*</label></td>
-    			<td><input name="boardTitle" id="boardTitle" type="text" placeholder = "제목을 입력해주세요" value="${board.boardTitle}" maxlength='30' required>  </td>
+    			<td><input name="boardTitle" id="boardTitle" type="text" placeholder = "제목을 입력해주세요(30글자 제한)" value="${board.boardTitle}" maxlength='30' required>  </td>
     		</tr>
     		<tr>
     			<td><label for="contents">내용*</label></td>
