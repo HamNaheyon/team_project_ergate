@@ -44,7 +44,7 @@
 		<table >
 			<tr>
 				<td id="commentsContentArea">
-					<textArea rows="3" id="commentsContent"></textArea>
+					<textArea rows="3" id="commentsContent" maxlength='100'></textArea>
 				</td>
 				<td id="commentsBtnArea">
 					<button class="btn btn-primary" id="addcomments" onclick="addcomments();">
