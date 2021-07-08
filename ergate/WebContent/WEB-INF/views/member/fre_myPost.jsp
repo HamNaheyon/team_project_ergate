@@ -52,7 +52,7 @@
         #mbc{width:15%;}
         #mbd{width:15%;}
         
-        #pagination{margin-left: 800px;}
+        #pagination{margin-left: 500px;}
     </style>
 </head>
 <body>
