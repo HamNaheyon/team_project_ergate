@@ -57,7 +57,7 @@
         <div class="row my-5">
        		<jsp:include page="com_sideMenu.jsp"></jsp:include>
             <div class="col-sm-8">
-                <h4 class="fre_mbtitle">내 게시글</h4>
+                <h4 class="fre_mbtitle">내 문의사항</h4>
                 <br>
                 <hr>
             <div class="fre_mblist col-sm-8">
