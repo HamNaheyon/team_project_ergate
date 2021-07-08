@@ -74,8 +74,6 @@
          
         </div>
         <div id="tjs">
-            <h1>선택 사항</h1>
-            첨부파일 :<br><br>
            
         </div>
     </div>

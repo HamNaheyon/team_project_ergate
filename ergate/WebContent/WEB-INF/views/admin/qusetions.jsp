@@ -164,7 +164,7 @@ $('.look').on("click",function(){
 	// children() : 모든 자식요소 (td 4개)
 	// eq(0) : 모든 자식 요소 중 0번 째 인덱스 자식 (숫자 써진 td)			
 	// text() : 요소에 작성된 내용 얻어오기
-	location.href="${contextPath}/admin/qSel?questionNo="+qNo;
+	location.href="${contextPath}/admin/qSel?questionNo="+qNo+"&cp="+${pagination.currentPage};
 });
 $('.memRe').on("click",function(){
 	let qNo = $(this).parent().parent().children().eq(0).text().trim();

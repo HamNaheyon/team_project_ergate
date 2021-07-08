@@ -74,9 +74,15 @@
         </div>
         <div id="content" style="border: 2px solid black;">${aq.questionContent}</div>
         <div id="muk" style="text-align: center;">
-            <button onclick="history.go(-1)">목록으로</button>
+            <button onclick="back();">목록으로</button>
         </div>
     </div>
+    
+    <script>
+    function back(){
+    	location.href = "${contextPath}/admin/qusetions?cp="+${param.cp};
+    }
+    </script>
 </body>
 
 </html>
