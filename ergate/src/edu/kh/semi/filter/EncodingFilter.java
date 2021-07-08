@@ -50,7 +50,7 @@ public class EncodingFilter implements Filter {
 		// 	    없으면 Servlet 또는 JSP로 전달
 		chain.doFilter(request, response);
 		
-		/* Filter.doFilter(request. responsem, chain)
+		/* Filter.doFilter(request. response, chain)
 		 * -> 실제 필터링 처리를 하는 메소드
 		 * 
 		 * FilterChain.doFilter(request, response)
