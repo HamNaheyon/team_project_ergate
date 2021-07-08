@@ -65,7 +65,6 @@ public class InsertBoardService {
 			result = dao.insertBoard(conn, board, categoryCode, boardStyle, writerType);
 			
 			if(result > 0) {
-				
 				for(Attachment at : atList) {
 					at.setBoardNo(boardNo);
 					result = dao.insertAttachment(conn, at);

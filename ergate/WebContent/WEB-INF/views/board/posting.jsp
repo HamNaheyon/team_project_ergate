@@ -54,11 +54,11 @@
     		</tr>
     		<tr>
     			<td><label for="category">제목*</label></td>
-    			<td><input name="boardTitle" id="boardTitle" type="text" placeholder = "제목을 입력해주세요" required>  </td>
+    			<td><input name="boardTitle" id="boardTitle" type="text" placeholder = "제목을 입력해주세요(최대 30글자)" maxlength="30" oninput="titleMaxLength(this)" required >  </td>
     		</tr>
     		<tr>
     			<td><label for="contents">내용*</label></td>
-    			<td><textarea name="boardContent" id="contentsarea" placeholder = "내용을 입력해주세요" required style="resize: none;"></textarea></td>
+    			<td><textarea name="boardContent" id="contentsarea" placeholder = "내용을 입력해주세요(최대 20000글자)" maxlength="20000" oninput="contentMaxLength(this)" required style="resize: none;"></textarea></td>
     		</tr>
     		<tr>
     			<td><label for="thumbnail">썸네일</label></td>
@@ -202,6 +202,19 @@
 		     }
 		 }
 
+ 		function titleMaxLength(input){
+ 			if(input.value.lenth > input.maxLength){
+ 				input.value = input.value.slice(0, input.maxLength);
+
+ 			}
+ 		}
+ 		
+ 		function contentMaxLength(input){
+ 			if(input.value.lenth > input.maxLength){
+ 				input.value = input.value.slice(0, input.maxLength);
+
+ 			}
+ 		}
 	</script>
 	
 
