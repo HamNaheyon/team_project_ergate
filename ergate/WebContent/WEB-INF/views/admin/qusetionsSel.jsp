@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>html문서 제목</title>
     <style>
+     a{
+       text-decoration: none;}
+       #qq:hover{
+       color :white;
+       }
         div{ box-sizing: border-box;
        
         }

@@ -15,6 +15,11 @@
 	crossorigin="anonymous">
 <title>html문서 제목</title>
 <style>
+ a{
+       text-decoration: none;}
+        #qq:hover{
+       color :white;
+       }
 #main-ComBoradAll {
 	width: 88%;
 	float: left;

@@ -77,6 +77,9 @@ scope="application"/>
        }
        a{
        text-decoration: none;}
+       a:hover{
+       color :white;
+       }
        .menu-menu-color{
                color: white;
             width: 100%;
@@ -113,7 +116,7 @@ scope="application"/>
                     <li ><a class="menu-menu-color" href="${contextPath}/admin/freMemberDel?type=F">-회원 삭제</a></li>
                 </ul>
             </div>
-            <div id="inquiry" class="font cursor" style="margin-bottom: 20px;"><a class="menu-menu-color" href="${contextPath}/admin/qusetions">▶ 문의 사항</a></div>
+            <div id="inquiry" class="font cursor" style="margin-bottom: 20px;"><a id="qq"class="menu-menu-color" href="${contextPath}/admin/qusetions">▶ 문의 사항</a></div>
         </div>
         <div id="logout-area">
             <div style="text-align: center;"><a href="${contextPath}/admin/logout" style="text-decoration: none;"><img src="${contextPath}/resources/img/external-link-297789_640.png" width="50px"></a></div>
