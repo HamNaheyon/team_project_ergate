@@ -54,11 +54,11 @@
     		</tr>
     		<tr>
     			<td><label for="category">제목*</label></td>
-    			<td><input name="boardTitle" id="boardTitle" type="text" placeholder = "제목을 입력해주세요" value="${board.boardTitle}" required>  </td>
+    			<td><input name="boardTitle" id="boardTitle" type="text" placeholder = "제목을 입력해주세요" value="${board.boardTitle}" maxlength='30' required>  </td>
     		</tr>
     		<tr>
     			<td><label for="contents">내용*</label></td>
-    			<td><textarea name="boardContent" id="contentsarea" placeholder = "내용을 입력해주세요" required style="resize: none;">${board.boardContent}</textarea></td>
+    			<td><textarea name="boardContent" id="contentsarea" placeholder = "내용을 입력해주세요" maxlength='20000' required style="resize: none;">${board.boardContent}</textarea></td>
     		</tr>
     		<tr>
     			<td><label for="thumbnail">썸네일</label></td>
