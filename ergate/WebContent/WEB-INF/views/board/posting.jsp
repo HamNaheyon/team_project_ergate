@@ -71,7 +71,7 @@
 		                <label for="thumbnail">첨부파일(최대 40MB)</label>
 		            </td>
 		            <td>
-	                    <input name="chumbufile" type="file" accept=".pdf, .doc, .docx, .hwp">
+	                    <input name="chumbufile" type="file" accept=".pdf, .doc, .docx, .hwp" onchange="checkSize(this);">
 		            </td>
 	            </c:if>
             	<c:if test="${style == 2}">
@@ -105,9 +105,6 @@
    	</div>
 	</form>
 
-        
-  
-
 	<script>
 		
 		// 이미지 추가
@@ -128,6 +125,7 @@
             ip.setAttribute("type", "file");
             ip.setAttribute("name", "img" + count++);
             ip.setAttribute("class", "boardImg");
+            ip.setAttribute("accept", "image/*");
             btn.setAttribute("onclick", "deleteImage(this)");
 
             p.appendChild(ip);
@@ -161,10 +159,49 @@
         	}
         }
         
-/*         // 게시글 작성내용 지우기
-        $("#reset").on("click", function(){
-        	$("#contents").val("");
-        }); */
+/*         function fileCheck(){
+        	
+            // 사이즈체크
+            var maxSize  = 40 * 1024 * 1024    //
+            var fileSize = 0;
+
+        	// 브라우저 확인
+        	var browser=navigator.appName;
+        	
+        	// 익스플로러일 경우
+        	if (browser=="Microsoft Internet Explorer")
+        	{
+        		var oas = new ActiveXObject("Scripting.FileSystemObject");
+        		fileSize = oas.getFile( file.value ).size;
+        	}
+        	// 익스플로러가 아닐경우
+        	else
+        	{
+        		fileSize = file.files[0].size;
+        	}
+
+        	alert("파일사이즈 : "+ fileSize +", 최대파일사이즈 : 5MB");
+
+                if(fileSize > maxSize)
+                {
+                    alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.    ");
+                    return;
+                }
+
+                document.fileForm.submit();
+        }
+ */        
+ 
+		 function checkSize(input) {
+		     if (input.files && input.files[0].size > (40 * 1024 * 1024)) {
+        		swal({
+					"icon" : "warning",
+					"title" : "파일 용량이 40MB를 초과합니다."
+				});
+		         input.value = null;
+		     }
+		 }
+
 	</script>
 	
 

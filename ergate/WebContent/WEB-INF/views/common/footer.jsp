@@ -80,7 +80,7 @@
         <div class="footer">
             <div class="footer-1">
                 <div class="footer1 subtl">
-                    <img id="sublogo" src="${contextPath}/resources/img/subtitle.png" style="width:100px;">
+                    <a href="${contextPath}"><img id="sublogo" src="${contextPath}/resources/img/subtitle.png" style="width:100px;"></a>
                 </div>
                 <div class="footer1 tos">이용약관</div>
                 <div class="footer1 pp">개인정보처리방침</div>
