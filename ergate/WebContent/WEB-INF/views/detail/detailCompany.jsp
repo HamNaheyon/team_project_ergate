@@ -303,7 +303,9 @@
 		    	</div>
 			</c:if> 
 	    	<div id="btn-size2">
-	    		<button id="return-btn" onclick="history.go(-1)">이전 페이지로 이동</button>
+		    	<a href="board/list?style=${param.style}&cp=${param.cp}">
+		    		<button id="return-btn">목록으로 이동</button>
+		    	</a>
 	    	</div>
 	    </div>
   		<div id="main-btn">
