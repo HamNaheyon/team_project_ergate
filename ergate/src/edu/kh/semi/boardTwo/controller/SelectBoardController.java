@@ -73,7 +73,6 @@ public class SelectBoardController extends HttpServlet {
 						
 						List<Comments> rList = new CommentsService().selectList(boardNo);
 						
-						System.out.println("board : " + board);
 						request.setAttribute("board", board);
 						request.setAttribute("rList", rList);
 						

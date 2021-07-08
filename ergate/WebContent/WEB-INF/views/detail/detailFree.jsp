@@ -122,18 +122,16 @@
            color: white;
         }
         #return-btn:hover{
-       	background-color: rgb(152, 203, 235);
-           text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-           border:3px outset rgb(152, 203, 235);
+        	background-color: rgb(152, 203, 235);
+            text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+            border:3px outset rgb(152, 203, 235);
        }
        /* 포트폴리오, 포트폴리오 설명, 댓글 바 */
-       #main-btn{
+       .main-btn{
        	width:60%;
-       	/* height: 3%; */
        	float: left;
-       	background-color: white;
        }
-       #main-btn>a{
+       .main-btn>a{
        	margin:2px;
        	border: 1px solid black;
        	float: left;
@@ -142,13 +140,13 @@
        	padding-left : 25px;
        	font-size: 26px; font-weight: bold;
        	color: black;
-           text-decoration-line : none;
+        text-decoration-line : none;
+        background-color: white;
        }
        .menu-fixed {
 		  position: fixed;
 		  top: 10px;
 		  left:5%;
-		  background-color: white;
 		}
 		/* 내용 들어갈 부분*/
 		#con-main-text{
@@ -195,8 +193,8 @@
   	<div id="container">
   		<div id="con-img">
 	        <div id="img-text">
-	            <lable id="la1">${board.boardTitle}</lable>
-	            <lable id="la2">조회수 ${board.readCount}</lable>
+	            <div id="la1">${board.boardTitle}</div>
+	            <div id="la2">조회수 ${board.readCount}</div>
 	        </div>
 	       <c:set var ="stop" value="false"/>
 		       <c:forEach items="${board.atList}" var="at">
@@ -213,7 +211,7 @@
 		       	</c:if>
 		       </c:forEach>
 	       <div class="img-title">
-	       <img src="${img0}" width="auto" height="100%">
+	       		<img src="${img0}" width="100%" height="98%">
 	       </div>
 	    </div>
 	    <div id="con-text">
@@ -302,7 +300,7 @@
 		    	</a>
 	    	</div>
 	    </div>
-  		<div id="main-btn">
+  		<div class="main-btn">
   			<a id="name-btn" href="#con-main-text">포트폴리오</a>
   			<a id="plan-btn" href="#plan-text">포트폴리오 설명</a>
   			<a id="comment-btn" href="#comment-text">댓글</a>
@@ -342,12 +340,12 @@
 	  <script>
 	  /* 스크롤 메뉴 */
       $(document).ready(function() {
-             var menu_offset = $('#main-btn').offset();
+             var menu_offset = $('.main-btn').offset();
              $(window).scroll(function() {
                if ($(document).scrollTop() > menu_offset.top) {
-                     $('#main-btn').addClass('menu-fixed');
+                     $('.main-btn').addClass('menu-fixed');
                }else {
-                     $('#main-btn').removeClass('menu-fixed');
+                     $('.main-btn').removeClass('menu-fixed');
                }
              });
        });
