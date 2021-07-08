@@ -29,7 +29,8 @@ public class MyPostService {
 		
 		close(conn);
 		
-		int listCount = (int)map.get("listCount");
+		int listCount = map.get("listCount") != null ? (int)map.get("listCount") : 0;
+		
 		String boardName = (String)map.get("boardName");
 		
 		return new MyPostPagination(cp, listCount, boardName);
