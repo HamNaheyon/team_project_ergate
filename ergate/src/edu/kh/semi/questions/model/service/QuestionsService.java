@@ -18,7 +18,10 @@ public class QuestionsService {
 		Connection conn = getConnection();
 		
 		frequestions.setQuestionsContent(replaceParameter(frequestions.getQuestionsContent()));
+		frequestions.setQuestionsTitle(replaceParameter(frequestions.getQuestionsTitle()));
+		
 		frequestions.setQuestionsContent(frequestions.getQuestionsContent().replaceAll("(\r\n|\r|\n|\n\r)", "<br>"));
+		frequestions.setQuestionsTitle(frequestions.getQuestionsTitle().replaceAll("(\r\n|\r|\n|\n\r)", "<br>"));
 		
 		int result = dao.freQuestionsSend(conn, frequestions);
 		
@@ -35,7 +38,10 @@ public class QuestionsService {
 		Connection conn = getConnection();
 
 		comquestions.setQuestionsContent(replaceParameter(comquestions.getQuestionsContent()));
+		comquestions.setQuestionsTitle(replaceParameter(comquestions.getQuestionsTitle()));
+		
 		comquestions.setQuestionsContent(comquestions.getQuestionsContent().replaceAll("(\r\n|\r|\n|\n\r)", "<br>"));
+		comquestions.setQuestionsTitle(comquestions.getQuestionsTitle().replaceAll("(\r\n|\r|\n|\n\r)", "<br>"));
 		
 		int result = dao.comQuestionsSend(conn, comquestions);
 		

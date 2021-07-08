@@ -179,6 +179,7 @@
 			height: 43%;
 			border: 2px solid rgba(166, 206, 231, 0.7);
 			font-size : 30px;
+			overflow: auto;
 		}
 		#comment-con{
 			margin-top: 65px;
@@ -263,7 +264,7 @@
 			    		</c:if>
 				    	근무 형태 : 
 				    	<c:choose>
-				    		<c:when test = "${!empty board.work}" >
+				    		<c:when test = "${!board.work==none}" >
 				    		${board.work} 
 				    		</c:when>
 				    		<c:otherwise>
@@ -271,11 +272,11 @@
 				    		</c:otherwise>
 				    	</c:choose>
 				    	<br>
-				    	<c:if test = "${!empty board.experience}" >
+				    	<c:if test = "${!board.experience==none}" >
 			    			프리랜서 경험 : ${board.experience} 
 				    	 <br>
 			    		</c:if>
-				    	<c:if test = "${!empty board.skil}" >
+				    	<c:if test = "${!board.skil==none}" >
 			    			스킬 : ${board.skil}
 			    		<br>
 			    		</c:if>

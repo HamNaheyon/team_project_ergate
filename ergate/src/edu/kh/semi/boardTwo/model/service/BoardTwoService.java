@@ -38,10 +38,15 @@ public class BoardTwoService {
 		board.setBoardNo(boardNo);
 		
 		String boardContent = board.getBoardContent();
+		String boardTitle = board.getBoardTitle();
 		
 		boardContent = replaceParameter(boardContent);
-		boardContent = boardContent.replaceAll("\r\n", "<br>");
+		boardTitle = replaceParameter(boardTitle);
 		
+		boardContent = boardContent.replaceAll("\r\n", "<br>");
+		boardTitle = boardTitle.replaceAll("\r\n", "<br>");
+		
+		board.setBoardTitle(boardTitle);
 		board.setBoardContent(boardContent);
 		
 		result = dao.updateBoard1(conn, board, categoryCode, boardStyle, writerType,boardNo);
