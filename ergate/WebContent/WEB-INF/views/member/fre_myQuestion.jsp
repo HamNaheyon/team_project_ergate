@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fre_myPost</title>
+    <title>fre_Question</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
@@ -57,7 +57,7 @@
         <div class="row my-5">
        		<jsp:include page="sideMenu.jsp"></jsp:include>
             <div class="col-sm-8">
-                <h4 class="fre_mbtitle">내 게시글</h4>
+                <h4 class="fre_mbtitle">내 문의사항</h4>
                 <br>
                 <hr>
             <div class="fre_mblist col-sm-8">

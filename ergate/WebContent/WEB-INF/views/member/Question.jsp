@@ -70,11 +70,11 @@
 				<div id="main">문의사항</div>
 				<tr>
 					<td><label>제목</label></td>
-					<td><textarea rows = "1" cols = "110" style="resize: none">${question.questionTitle}</textarea></td>
+					<td><textarea rows = "1" cols = "110" style="resize: none" readonly>${question.questionTitle}</textarea></td>
 				</tr>
 				<tr>
 				    <td><label>내용</label></td>
-				    <td><textarea rows = "25" cols = "110" style="resize: none">${question.questionContent}</textarea></td>
+				    <td><textarea rows = "25" cols = "110" style="resize: none" readonly>${question.questionContent}</textarea></td>
 				</tr>
 			</table>
 			<br>

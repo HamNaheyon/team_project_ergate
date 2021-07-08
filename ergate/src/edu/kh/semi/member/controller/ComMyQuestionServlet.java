@@ -58,7 +58,7 @@ public class ComMyQuestionServlet extends HttpServlet {
 				 session.setAttribute("pagination", pagination);
 				 session.setAttribute("questionList", questionList);
 				  
-				 path = "/WEB-INF/views/member/com_myQuestion.jsp"; 
+				 path = "/WEB-INF/views/member/com_myQuestion.jsp";
 				 view = request.getRequestDispatcher(path); 
 				 view.forward(request, response);
 				 
