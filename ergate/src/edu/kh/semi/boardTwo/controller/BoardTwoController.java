@@ -110,6 +110,8 @@ public class BoardTwoController extends HttpServlet {
 					}else if(memberType == 2){
 						Board board = service1.comSelectBoard(boardNo);
 						
+						board.setBoardContent(board.getBoardContent().replaceAll("<br>", "\r\n"));
+						
 						List<Comments> rList = new CommentsService().selectList(boardNo);
 						request.setAttribute("style", type);
 						System.out.println("board : " + board);
