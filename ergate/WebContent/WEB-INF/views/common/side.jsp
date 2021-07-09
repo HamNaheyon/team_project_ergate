@@ -107,7 +107,7 @@ scope="application"/>
                 </ul>
             </div>
 
-            <div id="mem-admin" class="admin font cursor">▶ 회원</div>
+            <div id="mem-admin" class="admin font cursor">▶ 프리랜서</div>
             <div class="ul cursor">
                 <ul class="second">
                    <li ><a class="menu-menu-color" href="${contextPath}/admin/freBoardAll?type=1">-게시판 전체조회</a></li>
